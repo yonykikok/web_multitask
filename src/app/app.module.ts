@@ -83,6 +83,9 @@ import { HomeComponent } from './paginas/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BienvenidoComponent } from './paginas/bienvenido/bienvenido.component';
 import { HeaderComponent } from './componentes/header/header.component';
+import { HomeClienteComponent } from './paginas/homeCliente/home-cliente/home-cliente.component';
+import { HomeAdministradorComponent } from './paginas/homeAdministrador/home-administrador/home-administrador.component';
+import { HomeEmpleadoComponent } from './paginas/homeEmpleado/home-empleado/home-empleado.component';
 
 
 
@@ -94,7 +97,10 @@ import { HeaderComponent } from './componentes/header/header.component';
     LoginComponent,
     HomeComponent,
     BienvenidoComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeClienteComponent,
+    HomeAdministradorComponent,
+    HomeEmpleadoComponent
   ],
   imports: [
     BrowserModule,

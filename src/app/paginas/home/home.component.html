@@ -4,3 +4,29 @@
        
         <app-login id="login"></app-login> 
     </div>
+
+
+
+    <div *ngIf = "tipoUsuario == 'administrador'">
+      
+        <app-home-administrador></app-home-administrador>
+
+    </div>
+
+
+
+    <div *ngIf = "tipoUsuario == 'empleado'">
+     
+        <app-home-empleado></app-home-empleado>
+
+    </div>
+    
+    
+    <div *ngIf = "tipoUsuario == 'cliente' || tipoUsuario == 'servicioTecnico'">
+
+        <app-home-cliente></app-home-cliente>
+
+    </div>
+    
+    
+    
