@@ -1,32 +1,20 @@
-    <app-header [userIsLogged]="true"></app-header>
-    <div class="pruebalogin">
-        <div class="lenteDeCamara"></div>
-       
-        <app-login id="login"></app-login> 
-    </div>
+<app-header [userIsLogged]="userIsLogged" (ingresarEventClick)="mostrarFormLogin=true"></app-header>
+
+<app-login *ngIf="mostrarFormLogin" id="login" (ingresarEventClick)="userIsLogged=true" (cancelLoginEventClick)="mostrarFormLogin=false"></app-login>
 
 
+<div *ngIf="tipoUsuario == 'administrador'">
 
-    <div *ngIf = "tipoUsuario == 'administrador'">
-      
-        <app-home-administrador></app-home-administrador>
+    <app-home-administrador></app-home-administrador>
 
-    </div>
+</div>
+<div *ngIf="tipoUsuario == 'empleado'">
 
+    <app-home-empleado></app-home-empleado>
 
+</div>
+<div *ngIf="tipoUsuario == 'cliente' || tipoUsuario == 'servicioTecnico'">
 
-    <div *ngIf = "tipoUsuario == 'empleado'">
-     
-        <app-home-empleado></app-home-empleado>
+    <app-home-cliente></app-home-cliente>
 
-    </div>
-    
-    
-    <div *ngIf = "tipoUsuario == 'cliente' || tipoUsuario == 'servicioTecnico'">
-
-        <app-home-cliente></app-home-cliente>
-
-    </div>
-    
-    
-    
+</div>

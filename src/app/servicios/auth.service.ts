@@ -6,7 +6,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
   providedIn: 'root'
 })
 export class AuthService {
-
+  public isLogged:any =false;
   constructor(private AFauth : AngularFireAuth) { }
 
 

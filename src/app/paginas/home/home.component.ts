@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 
 // FIRESTORE
 import {AngularFirestore} from "@angular/fire/firestore";
 
 import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
+import { AuthService } from 'src/app/servicios/auth.service';
 
 
 
@@ -13,20 +14,23 @@ import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,OnChanges {
 
+  userIsLogged;
   tokenUsuario;
   payloadUsuario;
   emailUsuario;
 
+  mostrarFormLogin=false;
   // HARDCODEADO PARA VER EL TIPO DE USUARIO
   tipoUsuario = 'administrador';
 
 
-  constructor(private firestore : AngularFirestore) { }
+  constructor(private firestore : AngularFirestore, private authService:AuthService) {
+  
+   }
 
   ngOnInit(): void {
-
 
     this.tokenUsuario = localStorage.getItem('token');
     this.payloadUsuario = jwt_decode(this.tokenUsuario);
@@ -36,7 +40,10 @@ export class HomeComponent implements OnInit {
 
 
   }
-
+  ngOnChanges(){
+    this.userIsLogged=this.authService.isLogged;
+    alert("ENTRA");
+  }
 
   buscarInfoLogueado(){
 

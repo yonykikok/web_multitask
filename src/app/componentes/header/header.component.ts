@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() mostrarHamburger=true;
   @Input() userIsLogged=false;
+
+  @Output() ingresarEventClick:EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
@@ -15,5 +17,9 @@ export class HeaderComponent implements OnInit {
 
   SendEventClickJHamburgerMenu(){
 
+  }
+
+  enviarEventoDeIngreso(){
+    this.ingresarEventClick.emit();
   }
 }
