@@ -58,3 +58,8 @@ form {
       width: 96%;
     }
   }
+  #formLogin{
+    border:none;
+    max-width: 80%;
+    margin-left: 10%;
+  }

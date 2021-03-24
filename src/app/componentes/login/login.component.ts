@@ -17,9 +17,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-
-
   private ocultaClave = true;
   public correo;
   public clave;
@@ -30,24 +27,15 @@ export class LoginComponent implements OnInit {
   constructor( 
     private formBuilder: FormBuilder, 
     private authService : AuthService,
-    private routerService : Router ) 
-    
+    private routerService : Router )     
     {
       this.formularioLogin = this.formBuilder.group({
         claveValidada: ['', [Validators.required, Validators.minLength(6)]],
         correoValidado: ['', [Validators.required, Validators.email] ],
      });
-
     }
 
-
-
-  ngOnInit(): void {
-
-
-  }
-
-
+  ngOnInit(): void {  }
   
   public setOcultaClave(valor: boolean): void {
     this.ocultaClave = valor;
@@ -56,7 +44,6 @@ export class LoginComponent implements OnInit {
   public getOcultaClave(): boolean {
     return this.ocultaClave;
   }
-
 
   public mostrarError(control: string): string {
 
@@ -68,18 +55,15 @@ export class LoginComponent implements OnInit {
         if (this.formularioLogin.controls.correoValidado.hasError('required')) 
         {
           retorno = 'Debe ingresar un correo electrónico.';
-        } 
-        
+        }         
         else if (this.formularioLogin.controls.correoValidado.hasError('email')) 
         {
           retorno = 'Debe ingresar un correo electrónico válido.';
-        }
-        
+        }       
         else 
         {
           retorno = 'Error con el correo.';
         }
-
         break;
     
       case 'claveValidada':
@@ -87,12 +71,10 @@ export class LoginComponent implements OnInit {
         {
           retorno = 'Debe ingresar una clave';
         } 
-        
         else if (this.formularioLogin.controls.claveValidada.hasError('minlength')) 
         {
           retorno = 'La clave ingresada debe contener al menos 6 caracteres';
         } 
-
         break;
     }
 
@@ -102,18 +84,11 @@ export class LoginComponent implements OnInit {
 
   
   onSubmitLogin()
-  {
-  
-  this.authService.login(this.correo, this.clave)
-  
-  .then (res => this.routerService.navigate(['/home']))
-  
-  .catch(err => alert("Los datos son incorrectos. No existe tal usuario"));
-
+  {    
+    this.authService.login(this.correo, this.clave)  
+    .then (res => this.routerService.navigate(['/home']))  
+    .catch(err => alert("Los datos son incorrectos. No existe tal usuario"));
   }
-
-
-
   irRegistrarse()
   {
     this.routerService.navigate(['/registro']);

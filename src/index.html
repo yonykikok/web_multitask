@@ -9,6 +9,22 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<script type="text/javascript">
+  (function () {
+    var options = {
+      facebook: "100006719346740", // Facebook page ID
+      whatsapp: "1138941181", // WhatsApp number
+      call_to_action: "Contactanos", // Call to action
+      button_color: "#009688", // Color of button
+      position: "left", // Position may be 'right' or 'left'
+      order: "facebook,whatsapp", // Order of buttons
+    };
+    var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+    s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+  })();
+</script>
 <body>
   <app-root></app-root>
 </body>

@@ -1,0 +1,61 @@
+
+mat-toolbar{
+    border-bottom: 2px solid #BDBDBD;
+}
+
+.reflejo-text:hover{     
+    background: linear-gradient(264.51deg, #ffffff 4.38%, #bebebe 11.51%, #ffffff 25.06%);
+    background-position: 58% 50%;
+    background-size: 500%;
+    -webkit-background-clip: text;
+    -webkit-animation: gradient-shift 3s ;
+    -webkit-text-fill-color: transparent;
+}
+@keyframes gradient-shift{
+    from{
+        background-position-x: 100%;
+    }
+    to{
+        background-position-x: 0%;
+
+    }
+}
+
+*{
+    color: white;
+}
+#imgLogo{
+    width: 20px;
+}
+
+#btnHamburgerMenu{
+    display: none;    
+    transition: all 50ms;
+}
+#divButtonsContent,#divHamburgerMenuContent{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 1vw;
+}
+#iconIniciarSesion{
+    background-color: transparent;
+    color: #FF5722;
+    border-radius:5px;
+    font-size: 150%;
+}
+@media (max-width: 700px) {
+    #btnHamburgerMenu{
+        display: inherit;
+        transform: scale(1.2);
+    }
+    #divButtonsContent{
+        display: none;
+    }
+}
+#btnHamburgerMenu:active{
+    transform: scale(1);
+}
+#btnHamburgerMenu:hover{
+    cursor: pointer;
+}

@@ -82,6 +82,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { HomeComponent } from './paginas/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BienvenidoComponent } from './paginas/bienvenido/bienvenido.component';
+import { HeaderComponent } from './componentes/header/header.component';
 
 
 
@@ -92,7 +93,8 @@ import { BienvenidoComponent } from './paginas/bienvenido/bienvenido.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    BienvenidoComponent
+    BienvenidoComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,19 @@
+<mat-toolbar id="topToolbar" class="default-primary-color">
+    <span class="reflejo-text">
+        <mat-icon><img id="imgLogo" src="../../../assets/images/pc5e5enyi.png" alt="logo-Multitask"></mat-icon>
+        Multitask
+    </span>
+    
+    <div id="divHamburgerMenuContent" >
+        <span class="material-icons" id="btnHamburgerMenu" *ngIf="mostrarHamburger" (click)="SendEventClickJHamburgerMenu()"> menu </span>
+        <span class="material-icons" id="iconIniciarSesion" *ngIf="!mostrarHamburger"> login </span>
+    </div>
+    <div id="divButtonsContent">
+        <a mat-button href="#">Inicio</a>
+        <a mat-button href="#">Servicios</a>
+        <a mat-button href="#">Acerca de nosotros?</a>
+        <a mat-button href="#">Conctacto</a>
+        <a mat-raised-button id="btnIniciarSesion" class="accent-color" [routerLink]="['/tienda']" *ngIf="userIsLogged" >Ir a la tienda</a>
+        <a mat-raised-button id="btnIniciarSesion" class="accent-color" [routerLink]="['/login']" *ngIf="!userIsLogged" >Ingresar</a>
+    </div>
+</mat-toolbar>
