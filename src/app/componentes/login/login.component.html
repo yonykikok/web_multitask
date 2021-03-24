@@ -1,0 +1,27 @@
+<form [formGroup]="formularioLogin">
+    <div class="containerLogin">
+    
+
+        <mat-form-field appearance="fill">
+          <mat-label>Correo electrónico</mat-label>
+
+          <input matInput placeholder="Ingrese su dirección de correo" formControlName="correoValidado" [(ngModel)]="correo">
+         
+          <mat-error *ngIf="formularioLogin.controls.correoValidado.invalid">{{ mostrarError('correoValidado') }}</mat-error>
+        </mat-form-field>
+       
+        <mat-form-field appearance="fill">
+            <mat-label>Clave</mat-label>
+
+            <input matInput formControlName="claveValidada" [(ngModel)]="clave" [type]="getOcultaClave() ? 'password' : 'text'">
+            
+            <mat-error *ngIf="formularioLogin.controls.claveValidada.invalid">{{mostrarError('claveValidada') }}</mat-error>
+        </mat-form-field>
+
+
+        <button [disabled]="!formularioLogin.valid" type="submit" mat-raised-button color="primary" class="btnLogin" (click)="onSubmitLogin()">Ingresar</button>
+        <button type="submit" mat-raised-button color="primary" class="btnLogin" (click)="irRegistrarse()">Registrarse</button>
+    
+    
+    </div>
+</form>
