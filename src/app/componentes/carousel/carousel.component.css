@@ -1,0 +1,12 @@
+.picsum-img-wrapper{
+    text-align: center;
+}
+
+#divCarousel{
+    margin-top: 50px;
+    background: lightblue;
+    box-shadow: 0 0 15px black ;
+}
+img{
+    width:100%;
+}

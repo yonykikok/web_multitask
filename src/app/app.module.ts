@@ -86,9 +86,11 @@ import { HeaderComponent } from './componentes/header/header.component';
 import { HomeClienteComponent } from './paginas/homeCliente/home-cliente/home-cliente.component';
 import { HomeAdministradorComponent } from './paginas/homeAdministrador/home-administrador/home-administrador.component';
 import { HomeEmpleadoComponent } from './paginas/homeEmpleado/home-empleado/home-empleado.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselComponent } from './componentes/carousel/carousel.component';
 
 
-
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -100,7 +102,8 @@ import { HomeEmpleadoComponent } from './paginas/homeEmpleado/home-empleado/home
     HeaderComponent,
     HomeClienteComponent,
     HomeAdministradorComponent,
-    HomeEmpleadoComponent
+    HomeEmpleadoComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +147,10 @@ import { HomeEmpleadoComponent } from './paginas/homeEmpleado/home-empleado/home
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgbModule,
+    NgbPaginationModule,
+NgbAlertModule
 
 
 
