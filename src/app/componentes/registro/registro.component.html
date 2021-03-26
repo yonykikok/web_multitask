@@ -1,0 +1,73 @@
+<form [formGroup]="registroLogin">
+    <div class="containerLogin">
+    
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+
+          <input matInput placeholder="Ingrese su nombre" formControlName="nombreValidado" [(ngModel)]="usuarioJSON.nombre">
+         
+          <mat-error *ngIf="registroLogin.controls.nombreValidado.invalid">{{mostrarErrorRegistro('nombreValidado') }}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+  
+            <input matInput placeholder="Ingrese su apellido" formControlName="apellidoValidado" [(ngModel)]="usuarioJSON.apellido">
+           
+            <mat-error *ngIf="registroLogin.controls.apellidoValidado.invalid">{{mostrarErrorRegistro('apellidoValidado') }}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>DNI</mat-label>
+  
+            <input matInput placeholder="Ingrese su DNI" formControlName="DNIValidado" [(ngModel)]="usuarioJSON.DNI">
+           
+            <mat-error *ngIf="registroLogin.controls.DNIValidado.invalid">{{mostrarErrorRegistro('DNIValidado') }}</mat-error>
+        </mat-form-field>
+       
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Correo</mat-label>
+  
+            <input matInput placeholder="Ingrese su correo" formControlName="correoValidado" [(ngModel)]="usuarioJSON.correo">
+           
+            <mat-error *ngIf="registroLogin.controls.correoValidado.invalid">{{mostrarErrorRegistro('correoValidado') }}</mat-error>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+  
+            <input matInput placeholder="Ingrese su contraseña" formControlName="contraseniaValidada" [(ngModel)]="usuarioJSON.contrasenia"[type]="getOcultaClave() ? 'password' : 'text'">
+           
+            <mat-error *ngIf="registroLogin.controls.contraseniaValidada.invalid">{{mostrarErrorRegistro('contraseniaValidada') }}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Repetir contraseña</mat-label>
+            <input matInput placeholder="Repita su contraseña" formControlName="repetirContraseniaValidada" [(ngModel)]="usuarioJSON.repetirContrasenia" [type]="getOcultaClave() ? 'password' : 'text'">
+           
+            <mat-error *ngIf="registroLogin.controls.repetirContraseniaValidada.invalid">{{mostrarErrorRegistro('repetirContraseniaValidada') }}</mat-error>
+        </mat-form-field>
+
+
+        
+        <div class="container-input-file">
+            <label class="custom-file">
+              <input type="file" (change)="handleImage($event)"/>
+            </label>
+        </div>            
+
+
+
+        <button [disabled]="!registroLogin.valid" type="submit" mat-raised-button color="primary" class="btnLogin" (click)="registrarUsuarioBD()">Registrarse</button>
+    
+    
+    </div>
+</form>

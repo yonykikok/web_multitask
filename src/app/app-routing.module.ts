@@ -14,6 +14,11 @@ import { HomeComponent } from './paginas/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 
 
+// COMPONENTE REGISTRO.
+import { RegistroComponent } from './componentes/registro/registro.component';
+
+
+
 // GUARD.
 import { AuthGuard } from '../app/guards/auth.guard';
 
@@ -23,10 +28,13 @@ const routes: Routes = [
 
 
   { path: 'home', component: HomeComponent, },
+
   { path: '', pathMatch: 'full', redirectTo: 'home'},
 
   
   { path: 'login', component: LoginComponent },
+
+  { path: 'registro', component: RegistroComponent},
 
   
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
