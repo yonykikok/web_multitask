@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from "@angular/fire/auth";
+import { Usuario } from '../clases/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   public isLogged:any =false;
+  public user:Usuario;
   constructor(private AFauth : AngularFireAuth) { }
 
 
@@ -24,8 +26,6 @@ export class AuthService {
     
     .then (user => resolve(user.user.getIdToken()
     .then (d => {localStorage.setItem('token', d)})
-    
-  
     ))
     
     .catch(err => rejected(err))

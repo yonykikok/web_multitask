@@ -4,6 +4,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import {AngularFirestore} from "@angular/fire/firestore";
 
 import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
+import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 
@@ -46,24 +47,17 @@ export class HomeComponent implements OnInit,OnChanges {
   }
 
   buscarInfoLogueado(){
+    let usuario:Usuario;
 
     this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
+      if(doc.data()['correo'] == this.emailUsuario)
+       { 
+         usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['fotoUsuario']);
+         this.authService.user=usuario;
 
-        // Correo de la BD == Correo de la lista.
-
-        /*
-       if(doc.data().correo == this.emailUsuario)
-       {
-        this.nombreUsuario = doc.data().nombre;
-        this.apellidoUsuario = doc.data().apellido;
-        this.DNIUsuario = doc.data().DNI;
-        this.correoUsuario = doc.data().correo;
-        this.tipoUsuario = doc.data().tipo;
-        this.fotoUsuario = doc.data().foto;
-        this.especialidadUsuario = doc.data().especialidad;
        }
-       */
+       
 
       })
     })
