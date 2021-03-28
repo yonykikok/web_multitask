@@ -40,7 +40,7 @@ export class RegistroComponent implements OnInit {
     apellido: "",
     DNI: "",
     correo: "",
-    tipo: "Cliente",
+    tipo: "cliente",
     foto: "",
     contrasenia: "",
     repetirContrasenia: "",
