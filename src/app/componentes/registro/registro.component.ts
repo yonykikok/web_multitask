@@ -217,9 +217,6 @@ export class RegistroComponent implements OnInit {
 
   registrarUsuarioBD()
   {
-
-    this.usuarioJSON.ingreso = new Date().toLocaleString() // ASIGNA LA FECHA DE INGRESO A: AHORA MISMO.
-
     var storageRef = this.st.storage.ref();
 
     let referencia = `usuarios/${this.preimagen.name}`;
