@@ -30,13 +30,6 @@ export class RegistroComponent implements OnInit {
 
   private ocultaClave = true;
 
-  public nombre;
-  public apellido;
-  public dni;
-  public correo;
-  public contrasenia;
-  public repetirContrasenia;
-
   preimagen;
 
   registroLogin: FormGroup;
@@ -47,14 +40,11 @@ export class RegistroComponent implements OnInit {
     apellido: "",
     DNI: "",
     correo: "",
-    contrasenia: "",
-    repetirContrasenia: "",
     tipo: "Cliente",
     foto: "",
-    ingreso: ""
+    contrasenia: "",
+    repetirContrasenia: "",
   };
-
-
 
 
   constructor(private formBuilder: FormBuilder,
@@ -217,30 +207,37 @@ export class RegistroComponent implements OnInit {
 
   registrarUsuarioBD()
   {
-    var storageRef = this.st.storage.ref();
 
-    let referencia = `usuarios/${this.preimagen.name}`;
+    if (this.usuarioJSON.contrasenia == this.usuarioJSON.repetirContrasenia)
+    {
+      var storageRef = this.st.storage.ref();
+
+      let referencia = `usuarios/${this.preimagen.name}`;
     
-
-    var uploadTask = storageRef.child(referencia).put(this.preimagen).then(element => {
+      var uploadTask = storageRef.child(referencia).put(this.preimagen).then(element => {
 
       console.log(this.preimagen.name);
       
       this.st.storage.ref(referencia).getDownloadURL().then((link) => {
 
-        this.usuarioJSON.foto = link;
+          this.usuarioJSON.foto = link;
 
-        this.dataBase.crear('usuarios',this.usuarioJSON).then(resultado => {
-        
-        this.authService.register(this.usuarioJSON.correo,this.usuarioJSON.contrasenia).then (res => this.routerService.navigate(['/login']))
+          this.dataBase.crear('usuarios',this.usuarioJSON)
+          
+          .then(resultado => { this.authService.register(this.usuarioJSON.correo,this.usuarioJSON.contrasenia)
+      
+          .catch(err => alert("INCORRECTO"))})
     
-        .catch(err => alert("INCORRECTO"));;
         })
-       
-      })
-    });
+      });
 
+    }
+
+    else
+    {
+      alert("Las contraseñas no coinciden.")
+    }
+    
   }
   
-
 }
