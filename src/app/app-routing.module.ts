@@ -21,15 +21,17 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 
 // GUARD.
 import { AuthGuard } from '../app/guards/auth.guard';
+import { StepperComponent } from './componentes/stepper/stepper.component';
 
 
 
 const routes: Routes = [
 
 
+  { path: 'testeo', component: StepperComponent },
   { path: 'home', component: HomeComponent, },
 
-  { path: '', pathMatch: 'full', redirectTo: 'home'},
+  { path: '', pathMatch: 'full', redirectTo: 'login'},
 
   
   { path: 'login', component: LoginComponent },
@@ -37,7 +39,8 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent},
 
   
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent },
+  // , canActivate: [AuthGuard]
 
   
  

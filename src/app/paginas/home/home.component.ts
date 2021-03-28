@@ -33,11 +33,11 @@ export class HomeComponent implements OnInit,OnChanges {
 
   ngOnInit(): void {
 
-    this.tokenUsuario = localStorage.getItem('token');
-    this.payloadUsuario = jwt_decode(this.tokenUsuario);
-    this.emailUsuario = this.payloadUsuario.email;
+    // this.tokenUsuario = localStorage.getItem('token');
+    // this.payloadUsuario = jwt_decode(this.tokenUsuario);
+    // this.emailUsuario = this.payloadUsuario.email;
 
-    this.buscarInfoLogueado();
+    // this.buscarInfoLogueado();
 
 
   }

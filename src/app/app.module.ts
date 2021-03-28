@@ -92,6 +92,7 @@ import { CarouselComponent } from './componentes/carousel/carousel.component';
 
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { StepperComponent } from './componentes/stepper/stepper.component';
 
 
 @NgModule({
@@ -105,7 +106,8 @@ import { RegistroComponent } from './componentes/registro/registro.component';
     HomeAdministradorComponent,
     HomeEmpleadoComponent,
     CarouselComponent,
-    RegistroComponent
+    RegistroComponent,
+    StepperComponent
   ],
   imports: [
     BrowserModule,

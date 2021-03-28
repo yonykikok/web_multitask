@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site":"tp-ppsii",
+    "public": "dist/multitask",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
