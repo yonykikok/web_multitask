@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit,OnChanges {
     // this.emailUsuario = this.payloadUsuario.email;
 
     // this.buscarInfoLogueado();
+    console.log("0-----------");
 
 
   }
@@ -53,12 +54,10 @@ export class HomeComponent implements OnInit,OnChanges {
       querySnapShot.forEach((doc) => {
       if(doc.data()['correo'] == this.emailUsuario)
        { 
-         usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['fotoUsuario']);
+         usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['foto']);
          this.authService.user=usuario;
 
        }
-       
-
       })
     })
     

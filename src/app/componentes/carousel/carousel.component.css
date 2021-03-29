@@ -4,6 +4,7 @@
 
 #divCarousel{
     margin-top: 50px;
+    margin-bottom: 50px;
     background: lightblue;
     box-shadow: 0 0 15px black ;
 }

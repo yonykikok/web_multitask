@@ -1,6 +1,6 @@
 <app-header [userIsLogged]="userIsLogged" (ingresarEventClick)="mostrarFormLogin=true"></app-header>
 
-<app-login *ngIf="mostrarFormLogin" id="login" (ingresarEventClick)="userIsLogged=true" (cancelLoginEventClick)="mostrarFormLogin=false"></app-login>
+<app-login  *ngIf="mostrarFormLogin" id="login" (ingresarEventClick)="userIsLogged=true" (ingresarEventClick)="mostrarFormLogin=false" (cancelLoginEventClick)="mostrarFormLogin=false"></app-login>
 
 <app-carousel></app-carousel>
 

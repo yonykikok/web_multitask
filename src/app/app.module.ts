@@ -94,6 +94,8 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { StepperComponent } from './componentes/stepper/stepper.component';
 import { StoryWrapComponent } from './componentes/story-wrap/story-wrap.component';
+import { TiendaComponent } from './paginas/tienda/tienda.component';
+import { ProductToSellCardComponent } from './componentes/product-to-sell-card/product-to-sell-card.component';
 
 
 @NgModule({
@@ -109,7 +111,9 @@ import { StoryWrapComponent } from './componentes/story-wrap/story-wrap.componen
     CarouselComponent,
     RegistroComponent,
     StepperComponent,
-    StoryWrapComponent
+    StoryWrapComponent,
+    TiendaComponent,
+    ProductToSellCardComponent
   ],
   imports: [
     BrowserModule,

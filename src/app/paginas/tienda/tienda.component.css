@@ -1,0 +1,161 @@
+.inputSearch {
+  position: absolute;
+  width: 60vw;
+  left: 20vw;
+}
+
+.imgFotoDePerfil {
+  width: 40px;
+}
+.divPerfilUsuario > p {
+  margin-right: 5px;
+  display: inline;
+}
+.divPerfilUsuario {
+  position: absolute;
+  right: 10px;
+}
+
+/* intento de algo */
+
+#intentoAnimacion {
+  min-width: 100px;
+  min-height: 100px;
+}
+#intentoAnimacion::after {
+  animation-name: animacion;
+  animation-delay: 1s;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  content: "";
+}
+.listProducts {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+@media (max-width:750px) {
+  .pNombreUsuario{
+    display: none !important;
+  }
+}
+@media (max-width: 500px) {
+  .mobileNotVisible {
+    display: none;
+  }
+  .inputSearch {
+    width: 70vw;
+    left: 15vw;
+  }
+}
+
+@keyframes animacion {
+  from {
+  }
+  0% {
+    content: "R";
+  }
+  3% {
+    content: "Re";
+  }
+  6% {
+    content: "Rep";
+  }
+  9% {
+    content: "Repa";
+  }
+  12% {
+    content: "Repar";
+  }
+  15% {
+    content: "Repara";
+  }
+  18% {
+    content: "Reparac";
+  }
+  21% {
+    content: "Reparaci";
+  }
+  24% {
+    content: "Reparacion";
+  }
+  27% {
+    content: "Reparacion";
+  }
+  30% {
+    content: "Reparacion d";
+  }
+  33% {
+    content: "Reparacion de";
+  }
+  36% {
+    content: "Reparacion de c";
+  }
+  39% {
+    content: "Reparacion de ce";
+  }
+  42% {
+    content: "Reparacion de cel";
+  }
+  45% {
+    content: "Reparacion de celu";
+  }
+  48% {
+    content: "Reparacion de celul";
+  }
+  51% {
+    content: "Reparacion de celula";
+  }
+  54% {
+    content: "Reparacion de celular";
+  }
+  57% {
+    content: "Reparacion de celulare";
+  }
+  60% {
+    content: "Reparacion de celulares";
+  }
+  63% {
+    content: "Reparacion de celulares e";
+  }
+  66% {
+    content: "Reparacion de celulares en";
+  }
+  69% {
+    content: "Reparacion de celulares en e";
+  }
+  72% {
+    content: "Reparacion de celulares en el";
+  }
+  75% {
+    content: "Reparacion de celulares en el a";
+  }
+  78% {
+    content: "Reparacion de celulares en el ac";
+  }
+  81% {
+    content: "Reparacion de celulares en el act";
+  }
+  84% {
+    content: "Reparacion de celulares en el acto";
+  }
+  87% {
+    content: "Reparacion de celulares en el acto.";
+  }
+  90% {
+    /* content: "Reparacion de celulares en el acto"; */
+  }
+  90% {
+    /* content: "Reparacion de celulares en el acto"; */
+  }
+  93% {
+    /* content: "Reparacion de celulares en el acto"; */
+  }
+  96% {
+    /* content: "Reparacion de celulares en el acto"; */
+  }
+  99% {
+    /* content: "Reparacion de celulares en el acto"; */
+  }
+}

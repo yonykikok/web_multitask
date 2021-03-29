@@ -1,5 +1,6 @@
 mat-card.loginCard
 {
+
     width: 50%;
     height: 50%;
     margin: 0 auto;
@@ -41,7 +42,8 @@ mat-card.loginCard
 .btnLogout:active{
   color: var(--colorPrincipal);
 }
-  /*  INICIO LOGIN TABLET  */.marcoFablet {
+  /*  INICIO LOGIN TABLET  */
+  .marcoFablet {
   transition: 2s;
   display: flex;
   justify-content: center;
@@ -51,7 +53,7 @@ mat-card.loginCard
   height: 60%;
   border-radius: 30px;
   background: rgb(61, 61, 61);
-  z-index: 1;
+  z-index: 10000 !important;
   left: 10%;
   top: 20%;
 }

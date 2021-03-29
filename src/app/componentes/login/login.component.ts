@@ -11,12 +11,26 @@ import { AuthService } from "../../servicios/auth.service"
 import { Router } from '@angular/router';
 
 
+// FIRESTORE
+import {AngularFirestore} from "@angular/fire/firestore";
+
+import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
+import { Usuario } from 'src/app/clases/usuario';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+//test guard
+
+tokenUsuario;
+payloadUsuario;
+emailUsuario;
+//fin test guard
+
+
+
   private ocultaClave = true;
   public correo;
   public clave;
@@ -27,7 +41,8 @@ export class LoginComponent implements OnInit {
   constructor( 
     private formBuilder: FormBuilder, 
     private authService : AuthService,
-    private routerService : Router )     
+    private routerService : Router,
+    private firestore : AngularFirestore )     
     {
       this.formularioLogin = this.formBuilder.group({
         claveValidada: ['', [Validators.required, Validators.minLength(6)]],
@@ -35,7 +50,31 @@ export class LoginComponent implements OnInit {
      });
     }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+
+    this.tokenUsuario = localStorage.getItem('token');
+    this.payloadUsuario = jwt_decode(this.tokenUsuario);
+    this.emailUsuario = this.payloadUsuario.email;
+
+    this.buscarInfoLogueado();
+   }
+
+
+   buscarInfoLogueado(){
+    let usuario:Usuario;
+
+    this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
+      querySnapShot.forEach((doc) => {
+      if(doc.data()['correo'] == this.emailUsuario)
+       { 
+         usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['foto']);
+         this.authService.user=usuario;
+       }
+      })
+    })
+    
+  }
+
   
   cerrarFormLogin(){
     this.cancelLoginEventClick.emit();
@@ -92,6 +131,8 @@ export class LoginComponent implements OnInit {
     .then ((res) => {
       this.ingresarEventClick.emit();//si llega a esta linea es porque el usuario se logeo exitosamete
       // this.routerService.navigate(['/home'])
+    console.log("1----------------");
+
   }
     )  
     .catch(err => alert("Los datos son incorrectos. No existe tal usuario"));
