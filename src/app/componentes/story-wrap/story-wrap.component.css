@@ -1,0 +1,35 @@
+span{
+    color: black;  
+  }
+  .container{
+      position: relative;
+      width: 90vw;
+      left: 5vw;
+      z-index: 3;
+  }
+  .spanTitle{
+      text-align: center;
+      font-size: 250%;
+      display: block;
+      margin-bottom: 20px;
+  
+  }
+  .spanBold{
+      text-align: center;
+      font-size: 120%;
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+  }
+  
+  
+  @media only screen and (max-width: 530px) {
+      .spanTitle{
+          font-size: 130%;
+      }
+      span,.spanBold{        
+          font-size: 80%;
+      }
+  
+  }
+  
