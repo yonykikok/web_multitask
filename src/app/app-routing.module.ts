@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'testeo', component: StepperComponent },
   { path: 'home', component: HomeComponent, },
 
-  { path: '', pathMatch: 'full', redirectTo: 'login'},
+  { path: '', pathMatch: 'full', redirectTo: 'home'},
 
   
   { path: 'login', component: LoginComponent },

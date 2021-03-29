@@ -1,41 +1,124 @@
 <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
     {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
   </button> -->
-  <h1>Formulario de reparacion</h1>
+<div style="width: 100%; text-align: center;">
+    <h1>Pedir presupuesto</h1>
+</div>
 <mat-vertical-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
+
+
+    <mat-step [stepControl]="formGroupSeleccionEquipo">
+        <form [formGroup]="formGroupSeleccionEquipo">
             <ng-template matStepLabel>Selecciona el tipo de equipo</ng-template>
-            <mat-radio-group aria-label="Select an option">
+            <mat-radio-group aria-label="Select an option" formControlName="opcionesTipoDeEquipo">
                 <mat-radio-button value="tablet">Tablet</mat-radio-button>
                 <mat-radio-button value="celular">Celular</mat-radio-button>
                 <mat-radio-button value="pc/notebook">Pc/Notebook</mat-radio-button>
             </mat-radio-group>
             <div>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperNext>Siguiente</button>
             </div>
+
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="formGroupSeleccionServicio">
+        <form [formGroup]="formGroupSeleccionServicio">
             <ng-template matStepLabel>Selecciona el tipo de servicio</ng-template>
-            <mat-radio-group aria-label="Select an option">
+            <mat-radio-group aria-label="Select an option" formControlName="opcionesTipoDeServicio">
                 <mat-radio-button value="reparacion">Reparacion</mat-radio-button>
                 <mat-radio-button value="presupuesto">Presupuesto</mat-radio-button>
                 <mat-radio-button value="activacion">Activacion</mat-radio-button>
                 <mat-radio-button value="garantia">Garantia</mat-radio-button>
             </mat-radio-group>
             <div>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
+    <mat-step [stepControl]="formGroupDatosCliente">
+        <form [formGroup]="formGroupDatosCliente">
+            <ng-template matStepLabel>Ingresa tus datos de contacto</ng-template>
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre" formControlName="nombre" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Apellido</mat-label>
+                <input matInput placeholder="Apellido" formControlName="apellido" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>DNI</mat-label>
+                <input type="number" matInput placeholder="DNI" formControlName="dni" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Telefono</mat-label>
+                <input type="tel" matInput placeholder="Telefono" formControlName="telefono" required>
+            </mat-form-field>
+
+
+            <div>
+                <button mat-button matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="formGroupDatosEquipo">
+        <form [formGroup]="formGroupDatosEquipo">
+            <ng-template matStepLabel>Ingresa tus datos del equipo</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Marca del equipo</mat-label>
+                <mat-select required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let marca of marcasDeEquipos" [value]="marca">
+                        {{marca}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Modelo</mat-label>
+                <input matInput placeholder="Ejemplo: J7 2016" formControlName="modelo" required>
+            </mat-form-field>
+
+            <div>
+                <button mat-button matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="formGroupObservaciones">
+        <form [formGroup]="formGroupObservaciones">
+            <ng-template matStepLabel>Como se encuentra el equipo?</ng-template>
+            <mat-form-field class="example-chip-list">
+                <mat-label>Describe los detalles</mat-label>
+                <mat-chip-list #chipList aria-label="Seleccion de Observaciones">
+                    <mat-chip *ngFor="let observacion of observaciones" [selectable]="selectable"
+                        [removable]="removable" (removed)="remove(observacion)">
+                        {{observacion}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                        placeholder='Ej: "No prende" , "Camara rota" , "Mojado" , "Desarmado" , "Sin detalles" '
+                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
+                        formControlName="observaciones">
+                </mat-chip-list>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+
     <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
+        <ng-template matStepLabel>Finalizado con exito</ng-template>
+        <p>Terminaste el proceso, nos contactaremos.</p>
         <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button matStepperPrevious>Volver</button>
+            <button mat-button (click)="stepper.reset()">Volver a empezar</button>
         </div>
     </mat-step>
 </mat-vertical-stepper>
