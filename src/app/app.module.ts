@@ -96,6 +96,8 @@ import { StepperComponent } from './componentes/stepper/stepper.component';
 import { StoryWrapComponent } from './componentes/story-wrap/story-wrap.component';
 import { TiendaComponent } from './paginas/tienda/tienda.component';
 import { ProductToSellCardComponent } from './componentes/product-to-sell-card/product-to-sell-card.component';
+import { SubirImagenesComponentComponent } from './componentes/subir-imagenes-component/subir-imagenes-component.component';
+import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -113,14 +115,15 @@ import { ProductToSellCardComponent } from './componentes/product-to-sell-card/p
     StepperComponent,
     StoryWrapComponent,
     TiendaComponent,
-    ProductToSellCardComponent
+    ProductToSellCardComponent,
+    SubirImagenesComponentComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     BrowserAnimationsModule,
     AppRoutingModule,
-
+    AngularFireStorageModule,
 
     ReactiveFormsModule,
     
@@ -165,7 +168,9 @@ NgbAlertModule
 
 
   ],
-  providers: [],
+  providers: [
+    {provide: BUCKET, useValue:'gs://tp-ppsii.appspot.com/'}//para la subida de imagenes
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

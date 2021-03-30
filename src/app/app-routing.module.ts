@@ -41,6 +41,9 @@ const routes: Routes = [
 
   
   { path: 'home', component: HomeComponent },
+
+
+  { path: 'upload-image', loadChildren: () => import('./shared/upload-image/upload-image.module').then(m => m.UploadImageModule) },
   // , canActivate: [AuthGuard]
 
   
