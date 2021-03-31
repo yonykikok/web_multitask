@@ -96,6 +96,7 @@ import { StepperComponent } from './componentes/stepper/stepper.component';
 import { StoryWrapComponent } from './componentes/story-wrap/story-wrap.component';
 import { TiendaComponent } from './paginas/tienda/tienda.component';
 import { ProductToSellCardComponent } from './componentes/product-to-sell-card/product-to-sell-card.component';
+import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/lista-de-personal.component';
 
 
 @NgModule({
@@ -113,7 +114,8 @@ import { ProductToSellCardComponent } from './componentes/product-to-sell-card/p
     StepperComponent,
     StoryWrapComponent,
     TiendaComponent,
-    ProductToSellCardComponent
+    ProductToSellCardComponent,
+    ListaDePersonalComponent
   ],
   imports: [
     BrowserModule,

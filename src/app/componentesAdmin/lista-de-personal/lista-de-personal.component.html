@@ -1,0 +1,17 @@
+<div *ngFor = "let persona of listado">  
+
+
+    <div class="cardsHorizontales">
+    
+                    <div class="picture">
+    
+                    <img class="img-fluid" [src]= "persona.foto">
+                     </div>
+                            <div class="team-content">
+                            <h3 class="name">Nombre: {{persona.nombre}} {{persona.apellido}}</h3>
+                            <h4 class="title">Correo: {{persona.correo}}</h4>
+                            <h4 class="title">DNI: {{persona.DNI}}</h4>
+                    </div>
+    </div>
+    
+</div>

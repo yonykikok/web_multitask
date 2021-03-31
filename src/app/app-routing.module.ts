@@ -24,6 +24,9 @@ import { AuthGuard } from '../app/guards/auth.guard';
 import { StepperComponent } from './componentes/stepper/stepper.component';
 import { TiendaComponent } from './paginas/tienda/tienda.component';
 
+////////
+import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/lista-de-personal.component';
+
 
 
 const routes: Routes = [
@@ -43,6 +46,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   // , canActivate: [AuthGuard]
 
+
+  /// ESTO DESPUES BORRAR, PORQUE ES UN COMPONENTE PROPIO DE ADMIN.
+
+  { path: 'listaPersonal', component: ListaDePersonalComponent },
   
  
 ];
