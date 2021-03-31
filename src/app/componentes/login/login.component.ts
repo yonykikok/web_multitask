@@ -29,6 +29,8 @@ payloadUsuario;
 emailUsuario;
 //fin test guard
 
+//
+quiereRegistrarse = false;
 
 
   private ocultaClave = true;
@@ -141,5 +143,7 @@ emailUsuario;
   {
     this.routerService.navigate(['/registro']);
   }
+
+
 
 }

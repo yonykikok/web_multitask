@@ -17,7 +17,6 @@
         <a mat-raised-button id="btnIniciarSesion" class="accent-color" routerLink="/testeo" *ngIf="userIsLogged" >Ir a la tienda</a>
         <!-- <button mat-button> <mat-icon>lock_open</mat-icon> Ingresar</button> -->
         <!-- <button mat-button > <mat-icon>list</mat-icon> Servicios </button> -->
-        <a mat-raised-button id="btnIniciarSesion" routerLink="/registro" class="accent-color"  *ngIf="!userIsLogged" >Registrarse</a>
         <a mat-raised-button id="btnIniciarSesion" class="accent-color"  *ngIf="!userIsLogged" (click)="enviarEventoDeIngreso()">Ingresar</a>
     </div>
 </mat-toolbar>

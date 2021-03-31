@@ -1,6 +1,7 @@
-<div class="marcoFablet">
+<div class="marcoFablet" *ngIf = "!quiereRegistrarse">
     <span class="material-icons btnLogout" (click)="cerrarFormLogin()"> power_settings_new </span>
     <div class="lenteDeCamara"></div>
+
     <form [formGroup]="formularioLogin" id="formLogin">
         <div class="containerLogin">
             <mat-form-field appearance="fill">
@@ -19,10 +20,21 @@
                 </mat-error>
             </mat-form-field>
 
-            <button [disabled]="!formularioLogin.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
-                (click)="onSubmitLogin()">Ingresar</button>
-            <!-- <button type="submit" mat-raised-button color="primary" class="btnLogin"
-                (click)="irRegistrarse()">Registrarse</button> -->
+            <button [disabled]="!formularioLogin.valid" type="submit" mat-raised-button color="primary" class="btnLogin" (click)="onSubmitLogin()">Ingresar</button>
+            <button type="submit" mat-raised-button color="primary" class="btnLogin" (click)="quiereRegistrarse = true">Registrarse</button>
+
+            
         </div>
     </form>
+</div>
+
+
+
+<div class="marcoFablet" *ngIf = "quiereRegistrarse">
+    <span class="material-icons btnLogout" (click)="cerrarFormLogin()"> power_settings_new </span>
+    <div class="lenteDeCamara"></div>
+    
+<app-registro style="z-index: 12; text-align: center;"> </app-registro>
+
+
 </div>

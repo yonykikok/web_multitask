@@ -53,7 +53,7 @@ mat-card.loginCard
   height: 60%;
   border-radius: 30px;
   background: rgb(61, 61, 61);
-  z-index: 10000 !important;
+  z-index: 11 !important;
   left: 10%;
   top: 20%;
 }

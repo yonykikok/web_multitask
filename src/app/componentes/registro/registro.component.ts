@@ -20,6 +20,10 @@ import { AuthService } from "../../servicios/auth.service"
 import { Router } from '@angular/router';
 
 
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -32,7 +36,12 @@ export class RegistroComponent implements OnInit {
 
   preimagen;
 
-  registroLogin: FormGroup;
+  nombreGrupoValidador: FormGroup;
+  apellidoGrupoValidador: FormGroup;
+  DNIGrupoValidador: FormGroup;
+  contactoGrupoValidador: FormGroup;
+  contraseniaGrupoValidador: FormGroup;
+  fotoGrupoValidador: FormGroup;
 
 
   usuarioJSON = {
@@ -57,25 +66,39 @@ export class RegistroComponent implements OnInit {
     
     ) {
 
-    this.registroLogin = this.formBuilder.group({
 
-      nombreValidado: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z]{4,20}$')]],
+  this.nombreGrupoValidador = this.formBuilder.group({
+    nombreValidado: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z]{4,20}$')]],
+    });
 
-      apellidoValidado: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z]{4,20}$')]],
 
-      DNIValidado: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+  this.apellidoGrupoValidador = this.formBuilder.group({
+    apellidoValidado: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z]{4,20}$')]],
+    });
 
-      correoValidado: ['', [Validators.required, Validators.email]],
 
-      numeroValidado: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+  this.DNIGrupoValidador = this.formBuilder.group({
+    DNIValidado: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+    });
 
-      contraseniaValidada: ['', [Validators.required, Validators.minLength(6)]],
+  
+  this.contactoGrupoValidador = this.formBuilder.group({
+    correoValidado: ['', [Validators.required, Validators.email]],
+    numeroValidado: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+    });
 
-      repetirContraseniaValidada:['', [Validators.required, Validators.minLength(6)]],
 
-   });
+  this.contraseniaGrupoValidador = this.formBuilder.group({
+    contraseniaValidada: ['', [Validators.required, Validators.minLength(6)]],
+      });
+    
+
+  this.fotoGrupoValidador = this.formBuilder.group({
+    fotoValidada: ['', [Validators.required]],
+  });
   
  }
+
 
   ngOnInit(): void {
   }
@@ -106,17 +129,17 @@ export class RegistroComponent implements OnInit {
 
       case 'nombreValidado':
 
-            if (this.registroLogin.controls.nombreValidado.hasError('required')) 
+            if (this.nombreGrupoValidador.controls.nombreValidado.hasError('required')) 
             {
               retorno = 'Debe ingresar un nombre.';
             } 
             
-            if (this.registroLogin.controls.nombreValidado.hasError('minLength')) 
+            if (this.nombreGrupoValidador.controls.nombreValidado.hasError('minLength')) 
             {
               retorno = 'Debe ingresar un nombre válido.';
             }
             
-            if (this.registroLogin.controls.nombreValidado.hasError('pattern')) 
+            if (this.nombreGrupoValidador.controls.nombreValidado.hasError('pattern')) 
             {
               retorno = 'Error con el formato del nombre.';
             }
@@ -125,17 +148,17 @@ export class RegistroComponent implements OnInit {
     
         case 'apellidoValidado':
 
-            if (this.registroLogin.controls.apellidoValidado.hasError('required')) 
+            if (this.apellidoGrupoValidador.controls.apellidoValidado.hasError('required')) 
             {
               retorno = 'Debe ingresar un apellido.';
             } 
             
-            if (this.registroLogin.controls.apellidoValidado.hasError('minLength')) 
+            if (this.apellidoGrupoValidador.controls.apellidoValidado.hasError('minLength')) 
             {
               retorno = 'Debe ingresar un apellido válido.';
             }
             
-            if (this.registroLogin.controls.apellidoValidado.hasError('pattern')) 
+            if (this.apellidoGrupoValidador.controls.apellidoValidado.hasError('pattern')) 
             {
               retorno = 'Error con el formato del apellido.';
             }
@@ -145,12 +168,12 @@ export class RegistroComponent implements OnInit {
 
         case 'DNIValidado':
 
-            if (this.registroLogin.controls.DNIValidado.hasError('required')) 
+            if (this.DNIGrupoValidador.controls.DNIValidado.hasError('required')) 
             {
               retorno = 'Debe ingresar un DNI.';
             } 
             
-            if (this.registroLogin.controls.DNIValidado.hasError('pattern')) 
+            if (this.DNIGrupoValidador.controls.DNIValidado.hasError('pattern')) 
             {
               retorno = 'Error con el formato del DNI.';
             }
@@ -159,14 +182,14 @@ export class RegistroComponent implements OnInit {
 
 
 
-        case 'numeroInvalido':
+        case 'numeroValidado':
 
-            if (this.registroLogin.controls.numeroValidado.hasError('required')) 
+            if (this.contactoGrupoValidador.controls.numeroValidado.hasError('required')) 
             {
               retorno = 'Debe ingresar un numero.';
             } 
             
-            if (this.registroLogin.controls.numeroValidado.hasError('pattern')) 
+            if (this.contactoGrupoValidador.controls.numeroValidado.hasError('pattern')) 
             {
               retorno = 'Error con el formato del numero.';
             }
@@ -174,15 +197,14 @@ export class RegistroComponent implements OnInit {
         break;
 
 
-
         case 'correoValidado':
 
-            if (this.registroLogin.controls.correoValidado.hasError('required')) 
+            if (this.contactoGrupoValidador.controls.correoValidado.hasError('required')) 
             {
               retorno = 'Debe ingresar un email.';
             } 
             
-            if (this.registroLogin.controls.correoValidado.hasError('email')) 
+            if (this.contactoGrupoValidador.controls.correoValidado.hasError('email')) 
             {
               retorno = 'Debe ingresar un email válido.';
             }
@@ -192,32 +214,18 @@ export class RegistroComponent implements OnInit {
 
         case 'contraseniaValidada':
 
-            if (this.registroLogin.controls.correoValidado.hasError('required')) 
+            if (this.contraseniaGrupoValidador.controls.contraseniaValidada.hasError('required')) 
             {
               retorno = 'Debe ingresar una contraseña';
             } 
             
-            if (this.registroLogin.controls.correoValidado.hasError('minLength')) 
+            if (this.contraseniaGrupoValidador.controls.contraseniaValidada.hasError('minLength')) 
             {
               retorno = 'Debe ingresar una contraseña mayor a 6 caracteres';
             }
 
         break;
 
-
-        case 'repetirContraseniaValidada':
-
-            if (this.registroLogin.controls.correoValidado.hasError('required')) 
-            {
-              retorno = 'Debe ingresar una contraseña';
-            } 
-            
-            if (this.registroLogin.controls.correoValidado.hasError('minLength')) 
-            {
-              retorno = 'Debe ingresar una contraseña mayor a 6 caracteres';
-            }
-
-        break; 
     }
 
     return retorno;
