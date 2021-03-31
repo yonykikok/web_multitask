@@ -1,0 +1,52 @@
+.card {
+  height: 350px;
+}
+.card-header {
+  text-transform: uppercase;
+  background: #2196f3 linear-gradient(180deg, #42a6f5, #2196f3) repeat-x;
+  border-color: #2196f3;
+  height: 3.5rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.drop-zone {
+  border: dotted 3px lightgray;
+  color: #666;
+  height: 253px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.drop-zone:hover img{
+    transform: rotate(-360deg);
+    transition: 3s;
+}
+
+.file-over {
+  border: dotted 3px #2196f3;
+}
+img {
+  height: 50px;
+  width: 50px;
+}
+.card-header {
+  text-transform: uppercase;
+  background: #2196f3 linear-gradient(180deg, #42a6f5, #2196f3) repeat-x;
+  border-color: #2196f3;
+  height: 3.5rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.card {
+  height: 350px;
+}
+.btn-primary {
+  padding: 0 4rem;
+}
+.container-buttons {
+  display: flex;
+  justify-content: space-between;
+}
