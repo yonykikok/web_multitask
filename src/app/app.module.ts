@@ -96,12 +96,12 @@ import { StepperComponent } from './componentes/stepper/stepper.component';
 import { StoryWrapComponent } from './componentes/story-wrap/story-wrap.component';
 import { TiendaComponent } from './paginas/tienda/tienda.component';
 import { ProductToSellCardComponent } from './componentes/product-to-sell-card/product-to-sell-card.component';
-<<<<<<< HEAD
+
 import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/lista-de-personal.component';
-=======
+
 import { SubirImagenesComponentComponent } from './componentes/subir-imagenes-component/subir-imagenes-component.component';
 import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
->>>>>>> origin/dragAndDropImgs
+
 
 
 @NgModule({
@@ -120,11 +120,9 @@ import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
     StoryWrapComponent,
     TiendaComponent,
     ProductToSellCardComponent,
-<<<<<<< HEAD
-    ListaDePersonalComponent
-=======
+    ListaDePersonalComponent,
+
     SubirImagenesComponentComponent
->>>>>>> origin/dragAndDropImgs
   ],
   imports: [
     BrowserModule,
