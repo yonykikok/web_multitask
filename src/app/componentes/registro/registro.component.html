@@ -86,7 +86,7 @@
   <mat-step [stepControl]="contraseniaGrupoValidador">
     <form [formGroup]="contraseniaGrupoValidador">
 
-      <ng-template matStepLabel>Ingrese sus datos de contacto</ng-template>
+      <ng-template matStepLabel>Ingrese su contraseña</ng-template>
       <mat-form-field>
         <mat-label>Contraseña</mat-label>
         <input matInput placeholder="Contraseña" formControlName="contraseniaValidada" [(ngModel)]="usuarioJSON.contrasenia" [type]="getOcultaClave() ? 'password' : 'text'" required>
@@ -114,7 +114,7 @@
     <ng-template matStepLabel>Ingrese su foto</ng-template>
 
       <input type="file" formControlName="fotoValidada" (change)="handleImage($event)" required style="text-align: center">
-
+      <mat-error *ngIf="fotoGrupoValidador.controls.fotoValidada.invalid">{{mostrarErrorRegistro('fotoValidada') }}</mat-error>
     <div>
       <button mat-button matStepperNext>Siguiente</button>
     </div>
@@ -127,7 +127,7 @@
 
     <mat-step>
       <ng-template matStepLabel>Final</ng-template>
-      <p>¿Esta seguro que los datos son correctos?.</p>
+      <p>¿Esta seguro que los datos son correctos?</p>
       <div>
         <button mat-button (click)="stepper.reset()">Volver a empezar</button>
         <button mat-button mat-raised-button color="primary" (click)="registrarUsuarioBD()">Registrarse!</button>

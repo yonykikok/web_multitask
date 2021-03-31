@@ -226,6 +226,16 @@ export class RegistroComponent implements OnInit {
 
         break;
 
+
+        case 'fotoValidada':
+
+            if (this.fotoGrupoValidador.controls.fotoValidada.hasError('required')) 
+            {
+              retorno = 'Se necesita una foto para continuar (JPEG, PNG, JPG)';
+            } 
+          
+        break;
+
     }
 
     return retorno;
