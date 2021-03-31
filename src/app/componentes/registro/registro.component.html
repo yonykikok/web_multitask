@@ -41,6 +41,16 @@
 
 
         <mat-form-field appearance="fill">
+            <mat-label>Numero de telefono</mat-label>
+  
+            <input matInput placeholder="Ingrese su numero" formControlName="numeroValidado" [(ngModel)]="usuarioJSON.numero">
+           
+            <mat-error *ngIf="registroLogin.controls.correoValidado.invalid">{{mostrarErrorRegistro('numeroInvalido') }}</mat-error>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="fill">
             <mat-label>Contraseña</mat-label>
   
             <input matInput placeholder="Ingrese su contraseña" formControlName="contraseniaValidada" [(ngModel)]="usuarioJSON.contrasenia"[type]="getOcultaClave() ? 'password' : 'text'">

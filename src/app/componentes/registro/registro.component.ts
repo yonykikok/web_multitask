@@ -40,6 +40,7 @@ export class RegistroComponent implements OnInit {
     apellido: "",
     DNI: "",
     correo: "",
+    numero: "",
     tipo: "cliente",
     foto: "",
     contrasenia: "",
@@ -65,6 +66,8 @@ export class RegistroComponent implements OnInit {
       DNIValidado: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
 
       correoValidado: ['', [Validators.required, Validators.email]],
+
+      numeroValidado: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
 
       contraseniaValidada: ['', [Validators.required, Validators.minLength(6)]],
 
@@ -155,6 +158,23 @@ export class RegistroComponent implements OnInit {
         break;
 
 
+
+        case 'numeroInvalido':
+
+            if (this.registroLogin.controls.numeroValidado.hasError('required')) 
+            {
+              retorno = 'Debe ingresar un numero.';
+            } 
+            
+            if (this.registroLogin.controls.numeroValidado.hasError('pattern')) 
+            {
+              retorno = 'Error con el formato del numero.';
+            }
+            
+        break;
+
+
+
         case 'correoValidado':
 
             if (this.registroLogin.controls.correoValidado.hasError('required')) 
@@ -220,6 +240,7 @@ export class RegistroComponent implements OnInit {
       
       this.st.storage.ref(referencia).getDownloadURL().then((link) => {
 
+        
           this.usuarioJSON.foto = link;
 
           this.dataBase.crear('usuarios',this.usuarioJSON)
