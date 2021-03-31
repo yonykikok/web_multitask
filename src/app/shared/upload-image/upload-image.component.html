@@ -2,7 +2,7 @@
     <div class="col-md-4 mt-5">
       <div class="card">
         <div class="card-header">
-          <span>Files</span>
+          <span>Archivos</span>
         </div>
         <div class="card-body">
           <div
@@ -12,8 +12,8 @@
             [ngClass]="{ 'file-over': isOverDrop }"
             class="drop-zone"
           >
-            <h4>Drop here your images</h4>
-            <img src="../../../assets/images/pc5e5enyi.png" alt="drop-images" />
+            <h4>Suelte sus imagenes aqui</h4>
+            <img id="imgLogoUploadFiles" src="../../../assets/images/pc5e5enyi.png" alt="drop-images" />
           </div>
         </div>
       </div>
@@ -21,17 +21,17 @@
     <div class="col-md-8 mt-5">
       <div class="card">
         <div class="card-header">
-          <h4>Files to Upload</h4>
+          <h4>Archivos para subir</h4>
         </div>
   
         <div class="card-body">
           <table class="table">
             <thead>
               <tr>
-                <th>File name</th>
-                <th>Size</th>
-                <th>Progress</th>
-                <th>URL</th>
+                <th>Nombre del archivo</th>
+                <th>Tamaño</th>
+                <th>Progreso</th>
+                <th>Link de descarga</th>
               </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@
                   </div>
                 </td>
                 <td *ngIf="file.downloadURL | async as downloadURL">
-                  <a [href]="downloadURL" target="_blank">Download URL</a>
+                  <a [href]="downloadURL" target="_blank">Link de descarga</a>
                 </td>
               </tr>
             </tbody>

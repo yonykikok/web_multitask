@@ -30,6 +30,7 @@ const routes: Routes = [
 
 
   { path: 'testeo', component: TiendaComponent },
+  { path: 'testeo2', component: StepperComponent },
   { path: 'home', component: HomeComponent, },
 
   { path: '', pathMatch: 'full', redirectTo: 'home'},

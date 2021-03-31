@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileItem } from '../models/file-item';
 import { finalize} from 'rxjs/operators';
+import { AuthService } from 'src/app/servicios/auth.service';
 @Injectable()
 export class StorageService {
 private MEDIA_STORAGE_PATH='multitask'
-  constructor(private readonly storage:AngularFireStorage) { 
+  constructor(private readonly storage:AngularFireStorage,private authService: AuthService) { 
 
   }
 
   private generateFileName(name:string):string{
-    return `${this.MEDIA_STORAGE_PATH}/${new Date().getTime()}_${name}`
+    return `${'publicaciones/'+this.authService.user.dni+'/'}/${new Date().getTime()}_${name}`
   }
 
   uploadImage(images:FileItem[]){

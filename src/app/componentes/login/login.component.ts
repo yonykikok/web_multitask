@@ -55,8 +55,8 @@ emailUsuario;
     this.tokenUsuario = localStorage.getItem('token');
     this.payloadUsuario = jwt_decode(this.tokenUsuario);
     this.emailUsuario = this.payloadUsuario.email;
-
     this.buscarInfoLogueado();
+    
    }
 
 
