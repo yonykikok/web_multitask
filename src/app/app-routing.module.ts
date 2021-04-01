@@ -26,6 +26,7 @@ import { TiendaComponent } from './paginas/tienda/tienda.component';
 
 ////////
 import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/lista-de-personal.component';
+import { UsuarioComponent } from './paginas/usuario/usuario.component';
 
 
 
@@ -36,15 +37,17 @@ const routes: Routes = [
   { path: 'testeo2', component: StepperComponent },
   { path: 'home', component: HomeComponent, },
 
-  { path: '', pathMatch: 'full', redirectTo: 'home'},
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
 
-  
+
   { path: 'login', component: LoginComponent },
 
-  { path: 'registro', component: RegistroComponent},
+  { path: 'registro', component: RegistroComponent },
 
-  
+
   { path: 'home', component: HomeComponent },
+
+  { path: 'usuario', component: UsuarioComponent },
 
 
   { path: 'upload-image', loadChildren: () => import('./shared/upload-image/upload-image.module').then(m => m.UploadImageModule) },
@@ -54,8 +57,8 @@ const routes: Routes = [
   /// ESTO DESPUES BORRAR, PORQUE ES UN COMPONENTE PROPIO DE ADMIN.
 
   { path: 'listaPersonal', component: ListaDePersonalComponent },
-  
- 
+
+
 ];
 
 

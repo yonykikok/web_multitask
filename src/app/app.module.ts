@@ -13,7 +13,7 @@ import { MatSliderModule } from '@angular/material/slider';
 
 
 // CARDS -> Para login.
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 
 // FORMBUILDER
@@ -21,20 +21,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 // BUTTON
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 
 // SNACKBAR -> PARA MENSAJES.
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 // SELECTORS -> Para seleccionar usuario.
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 
 // FECHAS -> Para turnos.
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -43,34 +43,34 @@ import { MatSortModule } from '@angular/material/sort';
 
 
 // Para hacer los dialogs.
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
 
 // ANGULAR MATERIAL:
 //Angular Material Components
-import {MatInputModule} from '@angular/material/input';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatListModule} from '@angular/material/list';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -90,7 +90,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './componentes/carousel/carousel.component';
 
 
-import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { StepperComponent } from './componentes/stepper/stepper.component';
 import { StoryWrapComponent } from './componentes/story-wrap/story-wrap.component';
@@ -100,7 +100,8 @@ import { ProductToSellCardComponent } from './componentes/product-to-sell-card/p
 import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/lista-de-personal.component';
 
 import { SubirImagenesComponentComponent } from './componentes/subir-imagenes-component/subir-imagenes-component.component';
-import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
+import { BUCKET, AngularFireStorageModule } from '@angular/fire/storage';
+import { UsuarioComponent } from './paginas/usuario/usuario.component';
 
 
 
@@ -121,8 +122,8 @@ import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
     TiendaComponent,
     ProductToSellCardComponent,
     ListaDePersonalComponent,
-
-    SubirImagenesComponentComponent
+    SubirImagenesComponentComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -130,9 +131,7 @@ import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireStorageModule,
-
     ReactiveFormsModule,
-    
     MatSliderModule,
     MatCardModule,
     MatButtonModule,
@@ -169,13 +168,12 @@ import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
     MatPaginatorModule,
     NgbModule,
     NgbPaginationModule,
-NgbAlertModule
-
+    NgbAlertModule
 
 
   ],
   providers: [
-    {provide: BUCKET, useValue:'gs://tp-ppsii.appspot.com/'}//para la subida de imagenes
+    { provide: BUCKET, useValue: 'gs://tp-ppsii.appspot.com/' }//para la subida de imagenes
   ],
   bootstrap: [AppComponent]
 })

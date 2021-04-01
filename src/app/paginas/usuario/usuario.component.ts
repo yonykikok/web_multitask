@@ -3,13 +3,15 @@ import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
-  selector: 'app-tienda',
-  templateUrl: './tienda.component.html',
-  styleUrls: ['./tienda.component.css']
+  selector: 'app-usuario',
+  templateUrl: './usuario.component.html',
+  styleUrls: ['./usuario.component.css']
 })
-export class TiendaComponent implements OnInit {
+export class UsuarioComponent implements OnInit {
 
   user: Usuario;
+  userIsLogged;
+  mostrarFormLogin = true;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -19,6 +21,10 @@ export class TiendaComponent implements OnInit {
         console.log(this.authService.user.toString());
       }
     }, 200);
+  }
+
+  ngOnChanges() {
+    this.userIsLogged = this.authService.isLogged;
   }
 
 }
