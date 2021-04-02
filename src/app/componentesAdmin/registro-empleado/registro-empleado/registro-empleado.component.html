@@ -1,0 +1,142 @@
+<mat-horizontal-stepper [linear]="true" #stepper >
+
+    <mat-step [stepControl]="nombreGrupoValidador">
+      <form [formGroup]="nombreGrupoValidador">
+
+        <ng-template matStepLabel>Nombre</ng-template>
+        <p>Ingrese su nombre</p>
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="nombreValidado" [(ngModel)]="usuarioJSON.nombre" required >
+          <mat-error *ngIf="nombreGrupoValidador.controls.nombreValidado.invalid">{{mostrarErrorRegistro('nombreValidado') }}</mat-error>
+        </mat-form-field>
+        
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+
+      </form>
+    </mat-step>
+
+    
+
+    <mat-step [stepControl]="apellidoGrupoValidador">
+        <form [formGroup]="apellidoGrupoValidador">
+  
+          <ng-template matStepLabel>Apellido</ng-template>
+        <p>Ingrese su apellido</p>
+        <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="Apellido" formControlName="apellidoValidado" [(ngModel)]="usuarioJSON.apellido" required>
+            <mat-error *ngIf="apellidoGrupoValidador.controls.apellidoValidado.invalid">{{mostrarErrorRegistro('apellidoValidado') }}</mat-error>
+          </mat-form-field>
+          
+          <div>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+  
+        </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="DNIGrupoValidador">
+        <form [formGroup]="DNIGrupoValidador">
+  
+          <ng-template matStepLabel>DNI</ng-template>
+        <p>Ingrese su DNI</p>
+        <mat-form-field>
+            <mat-label>DNI</mat-label>
+            <input matInput placeholder="Nombre" formControlName="DNIValidado" [(ngModel)]="usuarioJSON.DNI" required>
+            <mat-error *ngIf="DNIGrupoValidador.controls.DNIValidado.invalid">{{mostrarErrorRegistro('DNIValidado') }}</mat-error>
+          </mat-form-field>
+          
+          <div>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+  
+        </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="contactoGrupoValidador">
+      <form [formGroup]="contactoGrupoValidador">
+
+        <ng-template matStepLabel>Contacto</ng-template>
+        <p>Ingrese sus datos de contacto</p>
+        <mat-form-field>
+          <mat-label>Correo</mat-label>
+          <input matInput placeholder="Correo" formControlName="correoValidado" [(ngModel)]="usuarioJSON.correo" required>
+          <mat-error *ngIf="contactoGrupoValidador.controls.correoValidado.invalid">{{mostrarErrorRegistro('correoValidado') }}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field>
+          <mat-label>Numero</mat-label>
+          <input matInput placeholder="Numero" formControlName="numeroValidado" [(ngModel)]="usuarioJSON.numero" required>
+          <mat-error *ngIf="contactoGrupoValidador.controls.numeroValidado.invalid">{{mostrarErrorRegistro('numeroValidado') }}</mat-error>
+        </mat-form-field>
+        
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+
+      </form>
+  </mat-step>
+
+
+
+  <mat-step [stepControl]="contraseniaGrupoValidador">
+    <form [formGroup]="contraseniaGrupoValidador">
+
+      <ng-template matStepLabel>contraseña</ng-template>
+        <p>Ingrese su contraseña</p>
+        <mat-form-field>
+        <mat-label>contraseña</mat-label>
+        <input matInput placeholder="Contraseña" formControlName="contraseniaValidada" [(ngModel)]="usuarioJSON.contrasenia" [type]="getOcultaClave() ? 'password' : 'text'" required>
+        <mat-error *ngIf="contraseniaGrupoValidador.controls.contraseniaValidada.invalid">{{mostrarErrorRegistro('contraseniaValidada') }}</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Repetir contraseña</mat-label>
+        <input matInput placeholder="Repetir contraseña" formControlName="contraseniaValidada" [(ngModel)]="usuarioJSON.repetirContrasenia" [type]="getOcultaClave() ? 'password' : 'text'" required>
+        <mat-error *ngIf="contraseniaGrupoValidador.controls.contraseniaValidada.invalid">{{mostrarErrorRegistro('contraseniaValidada') }}</mat-error>
+      </mat-form-field>
+      
+      <div>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+
+    </form>
+</mat-step>
+
+
+<mat-step [stepControl]="fotoGrupoValidador">
+  <form [formGroup]="fotoGrupoValidador">
+
+    <ng-template matStepLabel>Foto</ng-template>
+    <p>Seleccione su foto de perfil</p>
+
+      <input type="file"  (change)="handleImage($event)" required style="text-align: center">
+    <div>
+      <button mat-button matStepperNext>Siguiente</button>
+    </div>
+
+  </form>
+</mat-step>
+
+
+
+
+    <mat-step>
+      <ng-template matStepLabel>Final</ng-template>
+      <p>¿Esta seguro que los datos son correctos?</p>
+      <div>
+        <button mat-button (click)="stepper.reset()">Volver a empezar</button>
+        <button mat-button mat-raised-button color="primary" (click)="registrarUsuarioBD()">Registrarse!</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+

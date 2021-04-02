@@ -103,6 +103,7 @@ import { FormAltaProductoComponent } from './componentes/form-alta-producto/form
 import {StorageService } from '../app/shared/upload-image/storage.service';
 import { NgMultitaskFilesDirective } from '../app/shared/upload-image/directives/ng-multitask-files.directive';
 import { UsuarioComponent } from './paginas/usuario/usuario/usuario.component';
+import { RegistroEmpleadoComponent } from '../app/componentesAdmin/registro-empleado/registro-empleado/registro-empleado.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { UsuarioComponent } from './paginas/usuario/usuario/usuario.component';
 
     FormAltaProductoComponent,
 
-    UsuarioComponent
+    UsuarioComponent,
+    RegistroEmpleadoComponent
   ],
   imports: [
     BrowserModule,
