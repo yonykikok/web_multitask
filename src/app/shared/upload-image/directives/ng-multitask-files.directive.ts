@@ -1,7 +1,7 @@
 import { Directive, Input, Output,EventEmitter, HostListener } from '@angular/core';
 import { FileItem } from '../../models/file-item';
 import { ImageValidator } from '../helpers/ImageValidator';
-
+import { StorageService } from '../storage.service';
 @Directive({
   selector: '[appNgMultitaskFiles]'
 })
@@ -46,17 +46,24 @@ export class NgMultitaskFilesDirective extends ImageValidator{
   }
 
 private extractFiles(fileList:FileList):void{
+  let auxList=[];
+  let divPreview=document.getElementById('preview');
   for(let i=0;i<fileList.length;i++){
     const temporaleFile=fileList[i];
     if(this.canBeUploaded(temporaleFile)){
-
-      console.log(i);
-        obtenerPathImagen(fileList[i]);
-
-      const newFile= new FileItem(temporaleFile);
-      this.files.push(newFile);
+    if(auxList.length<3 && divPreview.childElementCount<3){//verifico que no se pasen de 3 fotos. osea solo selecciono las 3 primeras
+        auxList.push(obtenerSrcDeImagen(fileList[i],divPreview) );
+        
+        const newFile= new FileItem(temporaleFile);
+        this.files.push(newFile);
+      }
+      else{
+        alert("Solo 3 fotos como maximo no insista, usa bien mi software!");
+        break;
+      }
     }
   }
+  StorageService.imagenesDropeadas=auxList;
 }
 
 
@@ -76,13 +83,12 @@ private extractFiles(fileList:FileList):void{
   }
 
 }
-async function obtenerPathImagen(file:any) {
+async function obtenerSrcDeImagen(file:any,preview:any )  {
     let reader = new FileReader();
 
       reader.readAsDataURL(file);
       reader.onload = await function(){
-      let preview = document.getElementById('preview'),
-              image = document.createElement('img');
+      let       image = document.createElement('img');
   
       image.src = reader.result as string;
       preview.appendChild(image);
@@ -90,5 +96,5 @@ async function obtenerPathImagen(file:any) {
   
     };
   
-  
+  return reader.result as string;
 }

@@ -17,6 +17,7 @@ export class SubirImagenesComponentComponent implements OnInit {
 
   onUpload():void{
     console.log(this.files);
+    
     // this.storageService.uploadImage(this.files);
   }
   ngOnInit(): void {

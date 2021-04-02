@@ -5,7 +5,8 @@ import { finalize} from 'rxjs/operators';
 import { AuthService } from 'src/app/servicios/auth.service';
 @Injectable()
 export class StorageService {
-private MEDIA_STORAGE_PATH='multitask'
+private MEDIA_STORAGE_PATH='multitask';
+static  imagenesDropeadas:string[];
   constructor(private readonly storage:AngularFireStorage,private authService: AuthService) { 
 
   }
