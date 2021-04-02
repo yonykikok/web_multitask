@@ -20,6 +20,7 @@ export class UsuarioComponent implements OnInit {
   //ADMIN
   boolRegistroCliente = false;
   boolRegistroEmpleado = false;
+  boolListadoCuentas = false;
 
 
 
@@ -54,7 +55,7 @@ export class UsuarioComponent implements OnInit {
     let usuario: Usuario;
 
     this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
-    console.log("2");
+      console.log("2");
       querySnapShot.forEach((doc) => {
         if (doc.data()['correo'].toUpperCase() == this.emailUsuario.toUpperCase()) {
           usuario = new Usuario(doc.data()['nombre'], doc.data()['apellido'], doc.data()['DNI'], doc.data()['correo'], doc.data()['tipo'], doc.data()['foto']);
@@ -68,14 +69,23 @@ export class UsuarioComponent implements OnInit {
 
   }
 
-  mostrarRegistroCliente(){
+  mostrarRegistroCliente() {
     this.boolRegistroCliente = true;
     this.boolRegistroEmpleado = false;
+    this.boolListadoCuentas = false;
+
   }
 
-  mostrarRegistroEmpleado(){
+  mostrarRegistroEmpleado() {
     this.boolRegistroCliente = false;
     this.boolRegistroEmpleado = true;
+    this.boolListadoCuentas = false;
+  }
+
+  mostrarListadoCuentas() {
+    this.boolRegistroCliente = false;
+    this.boolRegistroEmpleado = false;
+    this.boolListadoCuentas = true;
   }
 
 

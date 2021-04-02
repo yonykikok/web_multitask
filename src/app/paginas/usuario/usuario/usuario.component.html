@@ -8,6 +8,8 @@
     <mat-card-subtitle>Nombre: {{user.nombre}} {{user.apellido}}</mat-card-subtitle>
     <mat-card-subtitle>Correo: {{user.correo}} </mat-card-subtitle>
     <mat-card-subtitle>DNI: {{user.dni}} </mat-card-subtitle>
+    <!-- agregar botton para editar datos, hacer la funcion -s -->
+    <!-- <mat-card-actions>  </mat-card-actions> -->
 </mat-card>
 
 <div *ngIf="user.tipo == 'administrador'">
@@ -17,6 +19,7 @@
         <mat-toolbar-row>
             <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
             <button mat-button (click)="mostrarRegistroEmpleado()"> Resgistrar Empleado</button>
+            <button mat-button (click)="mostrarListadoCuentas()"> Ver Cuentas</button>
         </mat-toolbar-row>
     </mat-toolbar>
 
@@ -33,6 +36,12 @@
     <!-- Estadisticas -->
 
     <!-- Administrar Publicaciones -->
+
+    <div *ngIf="boolListadoCuentas == true">
+        <h2>Listado de Cuentas</h2>
+        <app-lista-de-personal></app-lista-de-personal>
+    </div>
+
 
 </div>
 <div *ngIf="user.tipo == 'empleado'">
@@ -55,9 +64,9 @@
 
 </div>
 <div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">
-<!-- //seguikiento servicios -->
-<!-- //subir Publicaciones -->
-<!-- //reseñas -->
+    <!-- //seguikiento servicios -->
+    <!-- //subir Publicaciones -->
+    <!-- //reseñas -->
 
 
 </div>
