@@ -1,0 +1,45 @@
+<!-- <app-header [userIsLogged]="userIsLogged" (ingresarEventClick)="mostrarFormLogin=true"></app-header> -->
+
+<!-- <app-login  *ngIf="mostrarFormLogin" id="login"></app-login> -->
+
+<div *ngIf="user.tipo == 'administrador'">
+
+    Panel de Control Administrador
+
+    Registrar nuevo Cliente
+    <div>
+        <app-registro></app-registro>
+    </div>
+
+    Registrar nuevo Empleado
+    <div>
+        <app-registro></app-registro>
+    </div>
+
+    Estadisticas
+
+
+    
+</div>
+<div *ngIf="user.tipo == 'empleado'">
+
+    Panel de Control Empleado
+
+    Registrar nuevo Cliente
+    <div>
+        <app-registro></app-registro>
+    </div>
+
+    Administrar Publicaciones
+
+</div>
+<div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">
+
+    Datos
+
+    {{user.nombre}}
+
+
+
+
+</div>

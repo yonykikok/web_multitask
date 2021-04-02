@@ -27,6 +27,7 @@ import { TiendaComponent } from './paginas/tienda/tienda.component';
 ////////
 import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/lista-de-personal.component';
 import { FormAltaProductoComponent } from './componentes/form-alta-producto/form-alta-producto.component';
+import { UsuarioComponent } from './paginas/usuario/usuario/usuario.component';
 
 
 
@@ -42,6 +43,7 @@ const routes: Routes = [
 
   
   { path: 'login', component: LoginComponent },
+  { path: 'usuario', component: UsuarioComponent },
 
   { path: 'registro', component: RegistroComponent},
 

@@ -16,11 +16,10 @@
   right: 10px;
 }
 
-select{
-    border:none;
-    appearance: none;
+select {
+  border: none;
+  appearance: none;
 }
-
 
 /* intento de animacion 'reparacion de celulares'  */
 
@@ -41,8 +40,8 @@ select{
   flex-wrap: wrap;
 }
 
-@media (max-width:750px) {
-  .pNombreUsuario{
+@media (max-width: 750px) {
+  .pNombreUsuario {
     display: none !important;
   }
 }

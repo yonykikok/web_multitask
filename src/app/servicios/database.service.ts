@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore,AngularFirestoreCollection } from "@angular/fire/firestore";
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
 
 
 @Injectable({
@@ -10,58 +10,53 @@ export class DatabaseService {
   constructor(private firestore: AngularFirestore) { }
 
 
-
-  
   //Crea un nuevo dato   
-  public crear(collection: string, data: any) 
-  {    
-     return this.firestore.collection(collection).add(data);   
-   }
- 
+  public crear(collection: string, data: any) {
+    return this.firestore.collection(collection).add(data);
+  }
 
-   public obtenerPorId(coleccion:string,id:string)
-   {
-     return this.firestore.collection(coleccion).doc(id).snapshotChanges();
-     // El documento que tenga ese id tal cual este ahora, le saca una foto y me lo devuelve
-   }
- 
+  public obtenerPorId(coleccion: string, id: string) {
+    return this.firestore.collection(coleccion).doc(id).snapshotChanges();
+    // El documento que tenga ese id tal cual este ahora, le saca una foto y me lo devuelve
+  }
 
-   public obtenerTodos(coleccion:string)
-   {
-     return this.firestore.collection(coleccion).snapshotChanges();
-   }
- 
+  public obtenerTodos(coleccion: string) {
+    return this.firestore.collection(coleccion).snapshotChanges();
+  }
 
-   public actualizar(coleccion:string, data:any,id:string)
-   {
-     return this.firestore.collection(coleccion).doc(id).set(data);
-   }
- 
-   
-   /*
+  public actualizar(coleccion: string, data: any, id: string) {
+    return this.firestore.collection(coleccion).doc(id).set(data);
+  }
 
-   // Creo una funcion que me obtiene el perfil del usuario, buscando en la base de datos el correo 
-   public obtenerUsuariosBD(coleccion:string, email:string)
-   {
-     let auxPerfil : string;
-     let auxPerfilDos : string = "";
+  public eliminar(collection: string, id: string) {
+    return this.firestore.collection(collection).doc(id).delete();
+  }
+
+
+  /*
+
+  // Creo una funcion que me obtiene el perfil del usuario, buscando en la base de datos el correo 
+  public obtenerUsuariosBD(coleccion:string, email:string)
+  {
+    let auxPerfil : string;
+    let auxPerfilDos : string = "";
  
-     this.firestore.collection(coleccion).get().subscribe((querySnapShot) => {
+    this.firestore.collection(coleccion).get().subscribe((querySnapShot) => {
  
-       querySnapShot.forEach(datos => {
+      querySnapShot.forEach(datos => {
  
-         if(datos.data().correo == email )
-         {
-           auxPerfil = datos.data().perfil;
-           console.log(auxPerfil);
-           return auxPerfil;
-         }
-       })
+        if(datos.data().correo == email )
+        {
+          auxPerfil = datos.data().perfil;
+          console.log(auxPerfil);
+          return auxPerfil;
+        }
+      })
  
-     })
+    })
  
-   }
-   */
+  }
+  */
 
 
 
