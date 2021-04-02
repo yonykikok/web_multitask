@@ -44,7 +44,11 @@ mat-card.loginCard
   }
   */
 
-
+  mat-horizontal-stepper 
+  {
+    background: none;
+    max-width: 100% !important;
+  }
   mat-radio-group,form{
     display: flex;
     flex-direction: column;

@@ -8,6 +8,13 @@ import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 })
 export class FormAltaProductoComponent implements OnInit {
 
+
+  /**
+   * titulo
+   * condicion  
+   * precio
+   * fotos
+  */
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -16,10 +23,10 @@ export class FormAltaProductoComponent implements OnInit {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      titulo: ['', Validators.required]
+      firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      imagen: ['', Validators.required]
+      secondCtrl: ['', Validators.required]
     });
   }
 

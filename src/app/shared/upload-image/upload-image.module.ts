@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { UploadImageRoutingModule } from './upload-image-routing.module';
 import { UploadImageComponent } from './upload-image.component';
-import { NgMultitaskFilesDirective } from './directives/ng-multitask-files.directive';
+// import { NgMultitaskFilesDirective } from './directives/ng-multitask-files.directive';
 
 
 @NgModule({
-  declarations: [UploadImageComponent, NgMultitaskFilesDirective],
+  declarations: [UploadImageComponent/*, NgMultitaskFilesDirective*/],
   imports: [
     CommonModule,
     UploadImageRoutingModule

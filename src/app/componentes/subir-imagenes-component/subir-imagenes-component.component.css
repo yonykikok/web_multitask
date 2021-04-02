@@ -1,0 +1,38 @@
+*{
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.drop-zone {
+  border-radius: 100%;
+  border: dotted 4px lightgray;
+  color: #666;
+  height: 150px;
+  width: 150px;
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.card-body{
+  border: none;
+}
+.drop-zone:hover img {
+  transform: rotate(-360deg);
+  transition: 3s;
+}
+
+.file-over {
+  border: dotted 3px #2196f3;
+}
+img {
+  height: 50px;
+  width: 50px;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-between;
+}

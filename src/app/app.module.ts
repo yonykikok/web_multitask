@@ -101,8 +101,10 @@ import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/l
 
 import { SubirImagenesComponentComponent } from './componentes/subir-imagenes-component/subir-imagenes-component.component';
 import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
+import { FormAltaProductoComponent } from './componentes/form-alta-producto/form-alta-producto.component';
 
-
+import {StorageService } from '../app/shared/upload-image/storage.service';
+import { NgMultitaskFilesDirective } from '../app/shared/upload-image/directives/ng-multitask-files.directive';
 
 @NgModule({
   declarations: [
@@ -121,8 +123,11 @@ import { BUCKET,AngularFireStorageModule } from '@angular/fire/storage';
     TiendaComponent,
     ProductToSellCardComponent,
     ListaDePersonalComponent,
+    NgMultitaskFilesDirective,
 
-    SubirImagenesComponentComponent
+    SubirImagenesComponentComponent,
+
+    FormAltaProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -175,7 +180,8 @@ NgbAlertModule
 
   ],
   providers: [
-    {provide: BUCKET, useValue:'gs://tp-ppsii.appspot.com/'}//para la subida de imagenes
+    {provide: BUCKET, useValue:'gs://tp-ppsii.appspot.com/'},//para la subida de imagenes,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

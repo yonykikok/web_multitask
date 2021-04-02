@@ -51,7 +51,27 @@ quiereRegistrarse = false;
         correoValidado: ['', [Validators.required, Validators.email] ],
      });
     }
-
+    cargarDatosAutoLogin(perfil){
+      switch(perfil){
+        case 'admin':
+          this.correo="kamizama@gmail.com";
+          this.clave='401325';
+          this.onSubmitLogin();
+        break;
+        case 'empleado':
+          this.correo="prueba@gmail.com";
+          this.clave='123456';
+          this.onSubmitLogin();
+          break;
+        case 'cliente':
+          alert("no esta configrado en el login aun ");
+          // this.correo="kamizama@gmail.com";
+          // this.clave='401325';
+          // this.onSubmitLogin();
+          break;
+        
+      }
+    }
   ngOnInit(): void { 
 
     this.tokenUsuario = localStorage.getItem('token');

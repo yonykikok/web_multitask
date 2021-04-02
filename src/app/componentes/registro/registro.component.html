@@ -1,9 +1,10 @@
-<mat-horizontal-stepper linear #stepper>
+<mat-horizontal-stepper linear #stepper >
 
     <mat-step [stepControl]="nombreGrupoValidador">
       <form [formGroup]="nombreGrupoValidador">
 
-        <ng-template matStepLabel>Ingrese su nombre</ng-template>
+        <ng-template matStepLabel>Nombre</ng-template>
+        <p>Ingrese su nombre</p>
         <mat-form-field>
           <mat-label>Nombre</mat-label>
           <input matInput placeholder="Nombre" formControlName="nombreValidado" [(ngModel)]="usuarioJSON.nombre" required >
@@ -22,8 +23,9 @@
     <mat-step [stepControl]="apellidoGrupoValidador">
         <form [formGroup]="apellidoGrupoValidador">
   
-          <ng-template matStepLabel>Ingrese su apellido</ng-template>
-          <mat-form-field>
+          <ng-template matStepLabel>Apellido</ng-template>
+        <p>Ingrese su apellido</p>
+        <mat-form-field>
             <mat-label>Apellido</mat-label>
             <input matInput placeholder="Apellido" formControlName="apellidoValidado" [(ngModel)]="usuarioJSON.apellido" required>
             <mat-error *ngIf="apellidoGrupoValidador.controls.apellidoValidado.invalid">{{mostrarErrorRegistro('apellidoValidado') }}</mat-error>
@@ -41,8 +43,9 @@
     <mat-step [stepControl]="DNIGrupoValidador">
         <form [formGroup]="DNIGrupoValidador">
   
-          <ng-template matStepLabel>Ingrese su DNI</ng-template>
-          <mat-form-field>
+          <ng-template matStepLabel>DNI</ng-template>
+        <p>Ingrese su DNI</p>
+        <mat-form-field>
             <mat-label>DNI</mat-label>
             <input matInput placeholder="Nombre" formControlName="DNIValidado" [(ngModel)]="usuarioJSON.DNI" required>
             <mat-error *ngIf="DNIGrupoValidador.controls.DNIValidado.invalid">{{mostrarErrorRegistro('DNIValidado') }}</mat-error>
@@ -60,7 +63,8 @@
     <mat-step [stepControl]="contactoGrupoValidador">
       <form [formGroup]="contactoGrupoValidador">
 
-        <ng-template matStepLabel>Ingrese sus datos de contacto</ng-template>
+        <ng-template matStepLabel>Contacto</ng-template>
+        <p>Ingrese sus datos de contacto</p>
         <mat-form-field>
           <mat-label>Correo</mat-label>
           <input matInput placeholder="Correo" formControlName="correoValidado" [(ngModel)]="usuarioJSON.correo" required>
@@ -86,8 +90,9 @@
   <mat-step [stepControl]="contraseniaGrupoValidador">
     <form [formGroup]="contraseniaGrupoValidador">
 
-      <ng-template matStepLabel>Ingrese su contraseña</ng-template>
-      <mat-form-field>
+      <ng-template matStepLabel>Cotnraseña</ng-template>
+        <p>Ingrese su cotnraseña</p>
+        <mat-form-field>
         <mat-label>Contraseña</mat-label>
         <input matInput placeholder="Contraseña" formControlName="contraseniaValidada" [(ngModel)]="usuarioJSON.contrasenia" [type]="getOcultaClave() ? 'password' : 'text'" required>
         <mat-error *ngIf="contraseniaGrupoValidador.controls.contraseniaValidada.invalid">{{mostrarErrorRegistro('contraseniaValidada') }}</mat-error>
@@ -111,7 +116,8 @@
 <mat-step [stepControl]="fotoGrupoValidador">
   <form [formGroup]="fotoGrupoValidador">
 
-    <ng-template matStepLabel>Ingrese su foto</ng-template>
+    <ng-template matStepLabel>Foto</ng-template>
+    <p>Seleccione su foto de perfil</p>
 
       <input type="file" formControlName="fotoValidada" (change)="handleImage($event)" required style="text-align: center">
       <mat-error *ngIf="fotoGrupoValidador.controls.fotoValidada.invalid">{{mostrarErrorRegistro('fotoValidada') }}</mat-error>

@@ -16,7 +16,13 @@
   right: 10px;
 }
 
-/* intento de algo */
+select{
+    border:none;
+    appearance: none;
+}
+
+
+/* intento de animacion 'reparacion de celulares'  */
 
 #intentoAnimacion {
   min-width: 100px;

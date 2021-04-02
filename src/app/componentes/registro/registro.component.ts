@@ -101,6 +101,7 @@ export class RegistroComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
   }
 
 

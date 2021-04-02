@@ -26,6 +26,7 @@ import { TiendaComponent } from './paginas/tienda/tienda.component';
 
 ////////
 import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/lista-de-personal.component';
+import { FormAltaProductoComponent } from './componentes/form-alta-producto/form-alta-producto.component';
 
 
 
@@ -34,6 +35,7 @@ const routes: Routes = [
 
   { path: 'testeo', component: TiendaComponent },
   { path: 'testeo2', component: StepperComponent },
+  { path: 'testeo3', component: FormAltaProductoComponent },
   { path: 'home', component: HomeComponent, },
 
   { path: '', pathMatch: 'full', redirectTo: 'home'},

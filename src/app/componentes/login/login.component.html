@@ -1,4 +1,4 @@
-<div class="marcoFablet" *ngIf = "!quiereRegistrarse">
+<div class="marcoFablet" *ngIf="!quiereRegistrarse">
     <span class="material-icons btnLogout" (click)="cerrarFormLogin()"> power_settings_new </span>
     <div class="lenteDeCamara"></div>
 
@@ -20,21 +20,36 @@
                 </mat-error>
             </mat-form-field>
 
-            <button [disabled]="!formularioLogin.valid" type="submit" mat-raised-button color="primary" class="btnLogin" (click)="onSubmitLogin()">Ingresar</button>
-            <button type="submit" mat-raised-button color="primary" class="btnLogin" (click)="quiereRegistrarse = true">Registrarse</button>
+            <button [disabled]="!formularioLogin.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
+                (click)="onSubmitLogin()">Ingresar</button>
+            <button type="submit" mat-raised-button color="primary" class="btnLogin"
+                (click)="quiereRegistrarse = true">Registrarse</button>
 
-            
+
         </div>
     </form>
+    <div class="contenedorBotonesAutoLogin">
+        <span class="material-icons btnAutoLogin" (click)="cargarDatosAutoLogin('admin')">
+            admin_panel_settings
+        </span>
+
+        <span class="material-icons  btnAutoLogin" (click)="cargarDatosAutoLogin('empleado')">
+            supervised_user_circle
+        </span>
+        <span class="material-icons btnAutoLogin" (click)="cargarDatosAutoLogin('cliente')">
+            admin_panel_settings
+        </span>
+    </div>
 </div>
 
 
 
-<div class="marcoFablet" *ngIf = "quiereRegistrarse">
+<div class="marcoFablet" *ngIf="quiereRegistrarse" style="overflow-x: hidden;">
     <span class="material-icons btnLogout" (click)="cerrarFormLogin()"> power_settings_new </span>
     <div class="lenteDeCamara"></div>
-    
-<app-registro style="z-index: 12; text-align: center;"> </app-registro>
+
+
+    <app-registro style="z-index: 12; text-align: center;  max-width: 95%; "> </app-registro>
 
 
 </div>
