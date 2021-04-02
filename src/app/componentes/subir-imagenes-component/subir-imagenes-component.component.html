@@ -1,9 +1,11 @@
-<div appNgMultitaskFiles [files]="files" (mouseOver)="isOverDrop = $event" [ngClass]="{ 'file-over': isOverDrop }"
-  class="drop-zone">
-  <h6>Suelte sus imagenes aqui</h6>
-  <img id="imgLogoUploadFiles" src="../../../assets/images/pc5e5enyi.png" alt="drop-images" />
+<div id="contenedorUploadFiles">
+  <div appNgMultitaskFiles [files]="files" (mouseOver)="isOverDrop = $event" [ngClass]="{ 'file-over': isOverDrop }"
+    class="drop-zone">
+    <h6>Suelte sus imagenes aqui</h6>
+    <img id="imgLogoUploadFiles" src="../../../assets/images/pc5e5enyi.png" alt="drop-images" />
+  </div>
+  <div id="preview"></div>
 </div>
-<div id="preview"></div>
 
 
 <!-- 
