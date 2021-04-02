@@ -114,8 +114,8 @@ export class LoginComponent implements OnInit {
     this.routerService.navigate(['/registro']);
   }
 
-  selecCuenta() {
-    switch (this.cuenta) {
+  selecCuenta(cuenta) {
+    switch (cuenta) {
       case "admin": {
         this.clave = "123456";
         this.correo = "admin@gmail.com";

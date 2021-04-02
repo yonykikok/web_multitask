@@ -25,19 +25,10 @@
             <button type="submit" mat-raised-button color="primary" class="btnLogin"
                 (click)="quiereRegistrarse = true">Registrarse</button>
 
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Cuentas guardadas</mat-label>
-                <mat-select [(value)]="cuenta">
-                    <option value="admin">Administrador</option>
-                    <option value="emple">Empleado1</option>
-                    <option value="clie1">Cliente1</option>
-                    <option value="st">ST</option>
-                </select>
-            </mat-form-field> -->
 
             <mat-form-field appearance="fill">
                 <mat-label>Cuentas Guardadas</mat-label>
-                <mat-select [(value)]="cuenta">
+                <mat-select (selectionChange)="selecCuenta($event.value)">
                     <mat-option>None</mat-option>
                     <mat-option value="admin">Administrador</mat-option>
                     <mat-option value="emple">Empleado1</mat-option>
