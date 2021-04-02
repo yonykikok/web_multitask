@@ -11,12 +11,13 @@
     <div id="divButtonsContent">
         <a mat-button href="#">Inicio</a>
         <a mat-button href="#">Servicios</a>
-        <!-- <button mat-button> <mat-icon>account_circle</mat-icon> Acerca</button> -->
-        <a mat-button href="#">Acerca de nosotros?</a>
-        <a mat-button routerLink='/upload-image'>Conctacto</a>
-        <a mat-raised-button id="btnIniciarSesion" class="accent-color" routerLink="/testeo" *ngIf="userIsLogged" >Ir a la tienda</a>
-        <!-- <button mat-button> <mat-icon>lock_open</mat-icon> Ingresar</button> -->
-        <!-- <button mat-button > <mat-icon>list</mat-icon> Servicios </button> -->
+        <a mat-button href="#">Acerca de nosotros</a>
+        <a mat-button routerLink='/upload-image'>Contacto</a>
+
         <a mat-raised-button id="btnIniciarSesion" class="accent-color"  *ngIf="!userIsLogged" (click)="enviarEventoDeIngreso()">Ingresar</a>
+
+        <a mat-raised-button id="btnIniciarSesion" class="accent-color" routerLink="/testeo" *ngIf="userIsLogged" >Ir a la tienda</a>
+       <!-- todo hacer responsove foto -->
+        <a mat-button href="usuario" *ngIf="userIsLogged"><img src="{{user.foto}}" style="width: 40px;"> {{user.nombre}}</a>
     </div>
 </mat-toolbar>

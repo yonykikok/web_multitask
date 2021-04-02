@@ -12,8 +12,6 @@ import { DatabaseService } from '../../servicios/database.service'
   styleUrls: ['./lista-de-personal.component.css']
 })
 export class ListaDePersonalComponent implements OnInit {
-
-
   displayedColumns: string[] = ['nombre', 'apellido', 'correo', 'DNI', 'tipo'];
   listado: any[] = [];
 
@@ -22,29 +20,21 @@ export class ListaDePersonalComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
     this.listado = this.cargarUsuariosQueNoSean("cliente");
     console.log(this.listado);
-
   }
 
 
-
   cargarUsuariosQueNoSean(tipoUsuario: string): any {
-
     var listaUsuarios = [];
     this.firestore.collection("usuarios").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
-
         // Acá cambiar a !=
         if (doc.data()['tipo'] != tipoUsuario) {
           listaUsuarios.push(doc.data());
         }
-
       })
     })
-
     return listaUsuarios;
   }
 

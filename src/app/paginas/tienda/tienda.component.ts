@@ -16,14 +16,14 @@ export class TiendaComponent implements OnInit {
   user: Usuario;
 
   currentUser$: Observable<Usuario>;
-  constructor(private authService:AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
-      this.user = usuarios;     
+      this.user = usuarios;
     });
-    this.authService.actualizarUsuario();    
+    this.authService.actualizarUsuario();
   }
 
 
