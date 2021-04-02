@@ -35,6 +35,7 @@ export class RegistroComponent implements OnInit {
   private ocultaClave = true;
 
   preimagen;
+  seEligioImagen = false;
 
   nombreGrupoValidador: FormGroup;
   apellidoGrupoValidador: FormGroup;
@@ -45,15 +46,16 @@ export class RegistroComponent implements OnInit {
 
 
   usuarioJSON = {
-    nombre : "jonathan",
-    apellido: "haedo",
-    DNI: "4014040",
-    correo: "jonathan@gmail.com",
-    numero: "1542514251",
+    nombre : "",
+    apellido: "",
+    DNI: "",
+    correo: "@gmail.com",
+    numero: "",
     tipo: "cliente",
+    // CAMBIAR ESTO, PORQUE ES UN LINK DE DESCARGA EN LUGAR DE UNO DE VISUALIZACION POR DEFECTO.
     foto: "https://firebasestorage.googleapis.com/v0/b/tp-ppsii.appspot.com/o/defaultUserIMG.png?alt=media&token=d3d95cee-dc8e-4d8a-9d67-ac5a51ba62a6",
-    contrasenia: "123456",
-    repetirContrasenia: "123456",
+    contrasenia: "",
+    repetirContrasenia: "",
   };
 
 
@@ -106,6 +108,7 @@ export class RegistroComponent implements OnInit {
 
   
   handleImage(e: any):void{
+    this.seEligioImagen = true;
     this.preimagen = e.target.files[0];  
   }
 
@@ -238,9 +241,13 @@ export class RegistroComponent implements OnInit {
 
     if (this.usuarioJSON.contrasenia == this.usuarioJSON.repetirContrasenia)
     {
+
+      if (this.seEligioImagen == true)
+      {
+
       var storageRef = this.st.storage.ref();
       
-    let referencia = `usuarios/${this.preimagen.name}`;
+      let referencia = `usuarios/${this.preimagen.name}`;
     
       var uploadTask = storageRef.child(referencia).put(this.preimagen).then(element => {
 
@@ -257,6 +264,20 @@ export class RegistroComponent implements OnInit {
     
         })
       });
+
+      }
+
+      else
+      {
+
+        this.dataBase.crear('usuarios',this.usuarioJSON)
+          
+        .then(resultado => { this.authService.register(this.usuarioJSON.correo,this.usuarioJSON.contrasenia)
+    
+        .catch(err => alert("INCORRECTO"))})
+
+      }
+      
 
 
     }
