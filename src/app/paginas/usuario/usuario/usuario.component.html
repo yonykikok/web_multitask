@@ -2,44 +2,62 @@
 
 <!-- <app-login  *ngIf="mostrarFormLogin" id="login"></app-login> -->
 
+<mat-card>
+    <mat-card-title>Datos</mat-card-title>
+    <img mat-card-image src="{{user.foto}}" style="width:10%;">
+    <mat-card-subtitle>Nombre: {{user.nombre}} {{user.apellido}}</mat-card-subtitle>
+    <mat-card-subtitle>Correo: {{user.correo}} </mat-card-subtitle>
+    <mat-card-subtitle>DNI: {{user.dni}} </mat-card-subtitle>
+</mat-card>
+
 <div *ngIf="user.tipo == 'administrador'">
+    <h1>Panel de Control Administrador</h1>
+    <h2>Elija que quiere realizar</h2>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
+            <button mat-button (click)="mostrarRegistroEmpleado()"> Resgistrar Empleado</button>
+        </mat-toolbar-row>
+    </mat-toolbar>
 
-    Panel de Control Administrador
-
-    Registrar nuevo Cliente
-    <div>
+    <div *ngIf="boolRegistroCliente == true">
+        <h2>Registrar nuevo Cliente</h2>
         <app-registro></app-registro>
     </div>
 
-    Registrar nuevo Empleado
-    <div>
+    <div *ngIf="boolRegistroEmpleado == true">
+        <h2>Registrar nuevo Empleado</h2>
         <app-registro-empleado></app-registro-empleado>
     </div>
 
-    Estadisticas
+    <!-- Estadisticas -->
 
+    <!-- Administrar Publicaciones -->
 
-    
 </div>
 <div *ngIf="user.tipo == 'empleado'">
 
     Panel de Control Empleado
 
-    Registrar nuevo Cliente
-    <div>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
+            <!-- <button mat-button (click)="mostrarAdministrarAplicaciones()"> Resgistrar Empleado</button> -->
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div *ngIf="boolRegistroCliente == true">
+        <h2>Registrar nuevo Cliente</h2>
         <app-registro></app-registro>
     </div>
 
-    Administrar Publicaciones
+    <!-- Administrar Publicaciones -->
 
 </div>
 <div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">
-
-    Datos
-
-    {{user.nombre}}
-
-
+<!-- //seguikiento servicios -->
+<!-- //subir Publicaciones -->
+<!-- //reseñas -->
 
 
 </div>

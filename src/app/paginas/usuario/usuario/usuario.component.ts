@@ -13,7 +13,17 @@ import jwt_decode from "jwt-decode";
 
 export class UsuarioComponent implements OnInit {
 
+
+
   user: Usuario;
+
+  //ADMIN
+  boolRegistroCliente = false;
+  boolRegistroEmpleado = false;
+
+
+
+
 
   //
   tokenUsuario;
@@ -56,6 +66,16 @@ export class UsuarioComponent implements OnInit {
     })
 
 
+  }
+
+  mostrarRegistroCliente(){
+    this.boolRegistroCliente = true;
+    this.boolRegistroEmpleado = false;
+  }
+
+  mostrarRegistroEmpleado(){
+    this.boolRegistroCliente = false;
+    this.boolRegistroEmpleado = true;
   }
 
 
