@@ -1,0 +1,60 @@
+div.divRealizarConsulta{   
+    
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 15px black;
+}
+
+
+mat-grid-tile {
+    background: lightgray;
+  }
+
+
+mat-card.loginCard
+{
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    border: 3px solid green;
+    padding: 10px;
+    top: 50%;
+}
+
+
+form {
+    border: 3px solid #f1f1f1;
+    margin: 16px;
+  }
+  
+  mat-form-field {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+  
+  button {
+    margin-right: 8px;
+  }
+  
+  .btnLogin {
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    button {
+      margin: 2%;
+      width: 96%;
+    }
+  }
