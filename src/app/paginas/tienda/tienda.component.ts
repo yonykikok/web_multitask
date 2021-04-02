@@ -13,27 +13,27 @@ import { delay } from 'rxjs/operators';
 })
 export class TiendaComponent implements OnInit {
 
-  user:Usuario;
+  user: Usuario;
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-     
-    this.authService.buscarUsuarioLogueado(); 
 
-    setTimeout(() => {     
+    this.authService.buscarUsuarioLogueado();
+
+    setTimeout(() => {
       this.user = this.authService.user;
       console.log(this.user);
-    }, 2000);  
+    }, 2000);
 
 
-  
-}
+
+  }
 
 }
 
 /**
- 
+
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -61,17 +61,17 @@ export class TiendaComponent implements OnInit {
   constructor(private authService:AuthService, private firestore : AngularFirestore) { }
 
   ngOnInit(): void {
-     
+
     this.tokenUsuario = localStorage.getItem('token');
     this.payloadUsuario = jwt_decode(this.tokenUsuario);
     this.emailUsuario = this.payloadUsuario.email;
-  
+
     let usuario:Usuario;
-  
+
       this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
         querySnapShot.forEach((doc) => {
         if(doc.data()['correo'].toUpperCase() == this.emailUsuario.toUpperCase())
-         { 
+         {
            usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['foto']);
            this.user = usuario;
            console.log("ENCUENTRO EL USUARIO")
@@ -96,7 +96,7 @@ boton2()
 
 
 
- 
- 
+
+
  */
 

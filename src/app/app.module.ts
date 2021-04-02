@@ -83,9 +83,6 @@ import { HomeComponent } from './paginas/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BienvenidoComponent } from './paginas/bienvenido/bienvenido.component';
 import { HeaderComponent } from './componentes/header/header.component';
-import { HomeClienteComponent } from './paginas/homeCliente/home-cliente/home-cliente.component';
-import { HomeAdministradorComponent } from './paginas/homeAdministrador/home-administrador/home-administrador.component';
-import { HomeEmpleadoComponent } from './paginas/homeEmpleado/home-empleado/home-empleado.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './componentes/carousel/carousel.component';
 
@@ -105,6 +102,7 @@ import { FormAltaProductoComponent } from './componentes/form-alta-producto/form
 
 import {StorageService } from '../app/shared/upload-image/storage.service';
 import { NgMultitaskFilesDirective } from '../app/shared/upload-image/directives/ng-multitask-files.directive';
+import { UsuarioComponent } from './paginas/usuario/usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -113,9 +111,6 @@ import { NgMultitaskFilesDirective } from '../app/shared/upload-image/directives
     HomeComponent,
     BienvenidoComponent,
     HeaderComponent,
-    HomeClienteComponent,
-    HomeAdministradorComponent,
-    HomeEmpleadoComponent,
     CarouselComponent,
     RegistroComponent,
     StepperComponent,
@@ -127,7 +122,9 @@ import { NgMultitaskFilesDirective } from '../app/shared/upload-image/directives
 
     SubirImagenesComponentComponent,
 
-    FormAltaProductoComponent
+    FormAltaProductoComponent,
+
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
