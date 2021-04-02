@@ -1,4 +1,5 @@
 import { Component, Input, OnInit,Output,EventEmitter } from '@angular/core';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +8,15 @@ import { Component, Input, OnInit,Output,EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input() mostrarHamburger=true;
-  @Input() userIsLogged=false;
+  @Input() userIsLogged;
 
   @Output() ingresarEventClick:EventEmitter<boolean> = new EventEmitter<boolean>();
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
+
+    this.userIsLogged = this.authService.isLogged;
+
   }
 
   SendEventClickJHamburgerMenu(){

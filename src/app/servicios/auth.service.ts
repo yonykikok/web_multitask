@@ -22,7 +22,9 @@ export class AuthService {
   payloadUsuario;
   emailUsuario;
 
-  constructor(private AFauth : AngularFireAuth, private firestore : AngularFirestore) { }
+  constructor(private AFauth : AngularFireAuth, private firestore : AngularFirestore) 
+  
+  { AFauth.authState.subscribe(user => (this.isLogged = user)) }
 
 
 
