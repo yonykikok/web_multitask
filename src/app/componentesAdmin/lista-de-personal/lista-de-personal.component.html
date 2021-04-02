@@ -1,17 +1,21 @@
-<div *ngFor = "let persona of listado">  
+<div *ngFor="let persona of listado">
 
 
     <div class="cardsHorizontales">
-    
-                    <div class="picture">
-    
-                    <img class="img-fluid" [src]= "persona.foto">
-                     </div>
-                            <div class="team-content">
-                            <h3 class="name">Nombre: {{persona.nombre}} {{persona.apellido}}</h3>
-                            <h4 class="title">Correo: {{persona.correo}}</h4>
-                            <h4 class="title">DNI: {{persona.DNI}}</h4>
-                    </div>
+
+        <div class="picture">
+
+            <img class="img-fluid" [src]="persona.foto">
+        </div>
+        <div class="team-content">
+            <h3 class="name">Nombre: {{persona.nombre}} {{persona.apellido}}</h3>
+            <h4 class="title">Tipo: {{persona.tipo}}</h4>
+            <h4 class="title">Correo: {{persona.correo}}</h4>
+            <h4 class="title">DNI: {{persona.DNI}}</h4>
+            <!-- todo: eliminar cuenta y editar cuenta -->
+            <button mat-raised-button color="primary">Editar cuenta</button>
+            <button mat-raised-button color="warn">Borrar cuenta</button>
+        </div>
     </div>
-    
+
 </div>

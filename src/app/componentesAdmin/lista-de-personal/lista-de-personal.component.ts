@@ -14,35 +14,33 @@ import { DatabaseService } from '../../servicios/database.service'
 export class ListaDePersonalComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['nombre', 'apellido', 'correo', 'DNI'];
-  listado : any[]=[];
+  displayedColumns: string[] = ['nombre', 'apellido', 'correo', 'DNI', 'tipo'];
+  listado: any[] = [];
 
-  constructor(private dataBase : DatabaseService,
-    private firestore : AngularFirestore) { }
+  constructor(private dataBase: DatabaseService,
+    private firestore: AngularFirestore) { }
 
 
   ngOnInit(): void {
 
 
-    this.listado = this.cargarUsuariosQueNoSean("Cliente");
+    this.listado = this.cargarUsuariosQueNoSean("cliente");
     console.log(this.listado);
 
   }
 
 
 
-  cargarUsuariosQueNoSean(tipoUsuario : string) : any
-  {
+  cargarUsuariosQueNoSean(tipoUsuario: string): any {
 
     var listaUsuarios = [];
     this.firestore.collection("usuarios").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
 
         // Acá cambiar a !=
-       if(doc.data()['tipo'] != tipoUsuario)
-       {
-        listaUsuarios.push(doc.data());  
-       }
+        if (doc.data()['tipo'] != tipoUsuario) {
+          listaUsuarios.push(doc.data());
+        }
 
       })
     })
