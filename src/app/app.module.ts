@@ -106,6 +106,12 @@ import { UsuarioComponent } from './paginas/usuario/usuario/usuario.component';
 import { RegistroEmpleadoComponent } from '../app/componentesAdmin/registro-empleado/registro-empleado/registro-empleado.component';
 import { NuestrosServiciosComponent } from './componentes/nuestros-servicios/nuestros-servicios.component';
 
+
+// componente maps.
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapsComponent } from './componentes/maps/maps.component';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -128,7 +134,8 @@ import { NuestrosServiciosComponent } from './componentes/nuestros-servicios/nue
 
     UsuarioComponent,
     RegistroEmpleadoComponent,
-    NuestrosServiciosComponent
+    NuestrosServiciosComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
@@ -138,7 +145,12 @@ import { NuestrosServiciosComponent } from './componentes/nuestros-servicios/nue
     AngularFireStorageModule,
 
     ReactiveFormsModule,
-    
+
+    // componentes de maps.
+    GoogleMapsModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
+
     MatSliderModule,
     MatCardModule,
     MatButtonModule,

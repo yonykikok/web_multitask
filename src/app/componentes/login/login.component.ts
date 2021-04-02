@@ -77,7 +77,6 @@ quiereRegistrarse = false;
         this.correo="serviciotecnico@gmail.com";
       break;
     }
-    this.onSubmitLogin();
   }
 
 
