@@ -13,13 +13,13 @@ export class TiendaComponent implements OnInit {
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {      
+     
       if(this.authService.user!=null)
       {
         this.user=this.authService.user;
         console.log(this.authService.user.toString());
       }
-    }, 200);
-  }
+    }
+    
 
 }

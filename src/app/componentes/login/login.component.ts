@@ -59,10 +59,10 @@ quiereRegistrarse = false;
           this.correo="admin@gmail.com";
         break;
         case 'empleado':
-          this.correo="empleadoUno@hotmail.com";
+          this.correo="empleadouno@hotmail.com";
         break;
         case 'cliente':
-          this.correo="clienteUno@hotmail.com";
+          this.correo="clienteuno@hotmail.com";
         break;
         case 'st':
           this.correo="serviciotecnico@gmail.com";
@@ -77,20 +77,23 @@ quiereRegistrarse = false;
     this.tokenUsuario = localStorage.getItem('token');
     this.payloadUsuario = jwt_decode(this.tokenUsuario);
     this.emailUsuario = this.payloadUsuario.email;
+
     this.buscarInfoLogueado();
-    
    }
 
 
    buscarInfoLogueado(){
     let usuario:Usuario;
+    console.log("ESTOY POR ACÁ");
 
     this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
-      if(doc.data()['correo'] == this.emailUsuario)
+      if(doc.data()['correo'].toUpperCase() == this.emailUsuario.toUpperCase())
        { 
          usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['foto']);
          this.authService.user=usuario;
+         console.log("PUDE ENTRAR ACÁ")
+         console.log("DESDE LOGIN" + usuario)
        }
       })
     })
