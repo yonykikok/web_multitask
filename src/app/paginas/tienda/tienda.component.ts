@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 
 // IMPORTO EL TIMER:
 import { timer } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tienda',
@@ -18,20 +19,18 @@ export class TiendaComponent implements OnInit {
 
   ngOnInit(): void {
      
-    console.log("ejecuto 1");
     this.authService.buscarUsuarioLogueado(); 
-    console.log("ejecuto 2");
-    this.user = this.authService.user;
-    console.log("ejecuto 3");
-    console.log(this.user);
-    }
+
+    setTimeout(() => {     
+      this.user = this.authService.user;
+      console.log(this.user);
+    }, 2000);  
 
 
-
-
+  
 }
 
-
+}
 
 /**
  
