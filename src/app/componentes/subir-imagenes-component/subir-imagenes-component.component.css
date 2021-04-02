@@ -39,7 +39,7 @@ img {
 
 
 #contenedorUploadFiles{
-  max-width: 50%;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;

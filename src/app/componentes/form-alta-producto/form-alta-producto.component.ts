@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 })
 export class FormAltaProductoComponent implements OnInit {
 
-
+mostrarTextAreaDeGarantia=false;
   /**
    * titulo
    * condicion  
@@ -30,4 +30,7 @@ export class FormAltaProductoComponent implements OnInit {
     });
   }
 
+  cambiarEstado(garantia){
+    garantia=='conGarantia'?this.mostrarTextAreaDeGarantia=true:this.mostrarTextAreaDeGarantia=false;
+  }
 }
