@@ -15,7 +15,9 @@ import { Router } from '@angular/router';
 import {AngularFirestore} from "@angular/fire/firestore";
 
 import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
+
 import { Usuario } from 'src/app/clases/usuario';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -51,59 +53,39 @@ quiereRegistrarse = false;
         correoValidado: ['', [Validators.required, Validators.email] ],
      });
     }
-    cargarDatosAutoLogin(perfil){
-      this.clave='123456';
 
-      switch(perfil){
-        case 'administrador':
-          this.correo="admin@gmail.com";
-        break;
-        case 'empleado':
-          this.correo="empleadouno@hotmail.com";
-        break;
-        case 'cliente':
-          this.correo="clienteuno@hotmail.com";
-        break;
-        case 'st':
-          this.correo="serviciotecnico@gmail.com";
-        break;
-        
-      }
-      this.onSubmitLogin();
 
-    }
   ngOnInit(): void { 
 
-    this.tokenUsuario = localStorage.getItem('token');
-    this.payloadUsuario = jwt_decode(this.tokenUsuario);
-    this.emailUsuario = this.payloadUsuario.email;
 
-    this.buscarInfoLogueado();
    }
 
+   cargarDatosAutoLogin(perfil){
+    this.clave='123456';
 
-   buscarInfoLogueado(){
-    let usuario:Usuario;
-    console.log("ESTOY POR ACÁ");
-
-    this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
-      querySnapShot.forEach((doc) => {
-      if(doc.data()['correo'].toUpperCase() == this.emailUsuario.toUpperCase())
-       { 
-         usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['foto']);
-         this.authService.user=usuario;
-         console.log("PUDE ENTRAR ACÁ")
-         console.log("DESDE LOGIN" + usuario)
-       }
-      })
-    })
-    
+    switch(perfil){
+      case 'administrador':
+        this.correo="admin@gmail.com";
+      break;
+      case 'empleado':
+        this.correo="empleadouno@hotmail.com";
+      break;
+      case 'cliente':
+        this.correo="clienteuno@hotmail.com";
+      break;
+      case 'st':
+        this.correo="serviciotecnico@gmail.com";
+      break;
+    }
+    this.onSubmitLogin();
   }
+
 
   
   cerrarFormLogin(){
     this.cancelLoginEventClick.emit();
   }
+
   public setOcultaClave(valor: boolean): void {
     this.ocultaClave = valor;
   }
@@ -154,8 +136,7 @@ quiereRegistrarse = false;
   {    
     this.authService.login(this.correo, this.clave)  
     .then ((res) => {
-      this.ingresarEventClick.emit();//si llega a esta linea es porque el usuario se logeo exitosamete
-      // this.routerService.navigate(['/home'])
+      this.ingresarEventClick.emit();
     console.log("1----------------");
 
   }

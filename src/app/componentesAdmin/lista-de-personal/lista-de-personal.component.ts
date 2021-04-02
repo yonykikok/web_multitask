@@ -39,7 +39,7 @@ export class ListaDePersonalComponent implements OnInit {
       querySnapShot.forEach((doc) => {
 
         // Acá cambiar a !=
-       if(doc.data()['tipo'] == tipoUsuario)
+       if(doc.data()['tipo'] != tipoUsuario)
        {
         listaUsuarios.push(doc.data());  
        }
