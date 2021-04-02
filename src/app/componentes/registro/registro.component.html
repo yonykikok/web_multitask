@@ -1,4 +1,4 @@
-<mat-horizontal-stepper linear #stepper >
+<mat-horizontal-stepper [linear]="false" #stepper >
 
     <mat-step [stepControl]="nombreGrupoValidador">
       <form [formGroup]="nombreGrupoValidador">
@@ -90,10 +90,10 @@
   <mat-step [stepControl]="contraseniaGrupoValidador">
     <form [formGroup]="contraseniaGrupoValidador">
 
-      <ng-template matStepLabel>Cotnraseña</ng-template>
-        <p>Ingrese su cotnraseña</p>
+      <ng-template matStepLabel>contraseña</ng-template>
+        <p>Ingrese su contraseña</p>
         <mat-form-field>
-        <mat-label>Contraseña</mat-label>
+        <mat-label>contraseña</mat-label>
         <input matInput placeholder="Contraseña" formControlName="contraseniaValidada" [(ngModel)]="usuarioJSON.contrasenia" [type]="getOcultaClave() ? 'password' : 'text'" required>
         <mat-error *ngIf="contraseniaGrupoValidador.controls.contraseniaValidada.invalid">{{mostrarErrorRegistro('contraseniaValidada') }}</mat-error>
       </mat-form-field>
@@ -119,8 +119,7 @@
     <ng-template matStepLabel>Foto</ng-template>
     <p>Seleccione su foto de perfil</p>
 
-      <input type="file" formControlName="fotoValidada" (change)="handleImage($event)" required style="text-align: center">
-      <mat-error *ngIf="fotoGrupoValidador.controls.fotoValidada.invalid">{{mostrarErrorRegistro('fotoValidada') }}</mat-error>
+      <input type="file"  (change)="handleImage($event)" required style="text-align: center">
     <div>
       <button mat-button matStepperNext>Siguiente</button>
     </div>

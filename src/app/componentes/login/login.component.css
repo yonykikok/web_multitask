@@ -57,6 +57,10 @@ mat-card.loginCard
 
   
 }
+.btnAutoLogin:hover{
+
+  box-shadow: 0 0 20px teal;
+}
   .btnAutoLogin{
     margin: 5px;
   padding: 10px;

@@ -52,25 +52,25 @@ quiereRegistrarse = false;
      });
     }
     cargarDatosAutoLogin(perfil){
+      this.clave='123456';
+
       switch(perfil){
-        case 'admin':
-          this.correo="kamizama@gmail.com";
-          this.clave='401325';
-          this.onSubmitLogin();
+        case 'administrador':
+          this.correo="admin@gmail.com";
         break;
         case 'empleado':
-          this.correo="prueba@gmail.com";
-          this.clave='123456';
-          this.onSubmitLogin();
-          break;
+          this.correo="empleadoUno@hotmail.com";
+        break;
         case 'cliente':
-          alert("no esta configrado en el login aun ");
-          // this.correo="kamizama@gmail.com";
-          // this.clave='401325';
-          // this.onSubmitLogin();
-          break;
+          this.correo="clienteUno@hotmail.com";
+        break;
+        case 'st':
+          this.correo="serviciotecnico@gmail.com";
+        break;
         
       }
+      this.onSubmitLogin();
+
     }
   ngOnInit(): void { 
 

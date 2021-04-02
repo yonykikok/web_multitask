@@ -1,3 +1,6 @@
+<app-subir-imagenes-component></app-subir-imagenes-component>
+
+
 <mat-vertical-stepper [linear]="false" #stepper>
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
@@ -42,7 +45,6 @@
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Seleccione las fotografias</ng-template>
             <!-- <app-upload-image></app-upload-image> -->
-            <app-subir-imagenes-component></app-subir-imagenes-component>
 
             <!-- <mat-form-field>
                 <mat-label>Fotos</mat-label>

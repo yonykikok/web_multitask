@@ -23,6 +23,10 @@ export class NgMultitaskFilesDirective extends ImageValidator{
   @HostListener('drop',['$event'])
   onDrop(event:any){
     const dataTransfer=this.getDataTransfer(event);
+
+  
+
+
     if(!dataTransfer){
       return;
     }
@@ -31,6 +35,7 @@ export class NgMultitaskFilesDirective extends ImageValidator{
     this.mouseOver.emit(false);
   }
 
+  
 
 
 
@@ -41,9 +46,13 @@ export class NgMultitaskFilesDirective extends ImageValidator{
   }
 
 private extractFiles(fileList:FileList):void{
-  for(const property in Object.getOwnPropertyNames(fileList)){
-    const temporaleFile=fileList[property];
+  for(let i=0;i<fileList.length;i++){
+    const temporaleFile=fileList[i];
     if(this.canBeUploaded(temporaleFile)){
+
+      console.log(i);
+        obtenerPathImagen(fileList[i]);
+
       const newFile= new FileItem(temporaleFile);
       this.files.push(newFile);
     }
@@ -66,4 +75,20 @@ private extractFiles(fileList:FileList):void{
     event.stopPropagation();
   }
 
+}
+async function obtenerPathImagen(file:any) {
+    let reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onload = await function(){
+      let preview = document.getElementById('preview'),
+              image = document.createElement('img');
+  
+      image.src = reader.result as string;
+      preview.appendChild(image);
+      image.width=100;
+  
+    };
+  
+  
 }

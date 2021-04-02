@@ -45,15 +45,15 @@ export class RegistroComponent implements OnInit {
 
 
   usuarioJSON = {
-    nombre : "",
-    apellido: "",
-    DNI: "",
-    correo: "",
-    numero: "",
+    nombre : "jonathan",
+    apellido: "haedo",
+    DNI: "4014040",
+    correo: "jonathan@gmail.com",
+    numero: "1542514251",
     tipo: "cliente",
-    foto: "",
-    contrasenia: "",
-    repetirContrasenia: "",
+    foto: "https://firebasestorage.googleapis.com/v0/b/tp-ppsii.appspot.com/o/defaultUserIMG.png?alt=media&token=d3d95cee-dc8e-4d8a-9d67-ac5a51ba62a6",
+    contrasenia: "123456",
+    repetirContrasenia: "123456",
   };
 
 
@@ -94,7 +94,6 @@ export class RegistroComponent implements OnInit {
     
 
   this.fotoGrupoValidador = this.formBuilder.group({
-    fotoValidada: ['', [Validators.required]],
   });
   
  }
@@ -227,16 +226,6 @@ export class RegistroComponent implements OnInit {
 
         break;
 
-
-        case 'fotoValidada':
-
-            if (this.fotoGrupoValidador.controls.fotoValidada.hasError('required')) 
-            {
-              retorno = 'Se necesita una foto para continuar (JPEG, PNG, JPG)';
-            } 
-          
-        break;
-
     }
 
     return retorno;
@@ -250,13 +239,11 @@ export class RegistroComponent implements OnInit {
     if (this.usuarioJSON.contrasenia == this.usuarioJSON.repetirContrasenia)
     {
       var storageRef = this.st.storage.ref();
-
-      let referencia = `usuarios/${this.preimagen.name}`;
+      
+    let referencia = `usuarios/${this.preimagen.name}`;
     
       var uploadTask = storageRef.child(referencia).put(this.preimagen).then(element => {
 
-      console.log(this.preimagen.name);
-      
       this.st.storage.ref(referencia).getDownloadURL().then((link) => {
 
         
@@ -270,6 +257,7 @@ export class RegistroComponent implements OnInit {
     
         })
       });
+
 
     }
 
