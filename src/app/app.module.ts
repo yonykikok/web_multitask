@@ -111,6 +111,7 @@ import { NuestrosServiciosComponent } from './componentes/nuestros-servicios/nue
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MapsComponent } from './componentes/maps/maps.component';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { RealizarConsultaAnonimaComponent } from './componentes/realizar-consulta-anonima/realizar-consulta-anonima.component';
 
 @NgModule({
   declarations: [
@@ -135,7 +136,8 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
     UsuarioComponent,
     RegistroEmpleadoComponent,
     NuestrosServiciosComponent,
-    MapsComponent
+    MapsComponent,
+    RealizarConsultaAnonimaComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,6 @@ export class MapsComponent implements OnInit {
   apiLoaded: Observable<boolean>;
   
 
-
   constructor(httpClient: HttpClient) {
     this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyCOV3fj1vzZs_EJCzn2cSqTlaxV-ckIFCQ', 'callback')
         .pipe(
@@ -27,10 +26,11 @@ export class MapsComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
 
-    
   }
 
 }
+
+
+
