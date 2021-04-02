@@ -8,6 +8,7 @@ import { Usuario } from '../clases/usuario';
 import {AngularFirestore} from "@angular/fire/firestore";
 
 import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,31 @@ export class AuthService {
   public isLogged:any =false;
 
   public user : Usuario;
+
+  
+  private currentUser$ = new Subject<Usuario>();
+
+  //obtenerUsuario
+  obtenerUsuario$(): Observable<Usuario> {
+    return this.currentUser$.asObservable();
+  }
+  public actualizarUsuario() {
+    this.tokenUsuario = localStorage.getItem('token');
+    this.payloadUsuario = jwt_decode(this.tokenUsuario);
+    this.emailUsuario = this.payloadUsuario.email;
+
+      this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
+        querySnapShot.forEach((doc) => {
+        if(doc.data()['correo'].toUpperCase() == this.emailUsuario.toUpperCase())
+         { 
+           let usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['foto']);
+           this.user = usuario;
+           this.currentUser$.next(usuario);
+         }
+        })
+      })
+  }
+  //obtenerUsuario
 
   tokenUsuario;
   payloadUsuario;

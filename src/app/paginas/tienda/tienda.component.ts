@@ -3,7 +3,7 @@ import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 // IMPORTO EL TIMER:
-import { timer } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Component({
@@ -15,20 +15,16 @@ export class TiendaComponent implements OnInit {
 
   user:Usuario;
 
+  currentUser$: Observable<Usuario>;
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
-     
-    this.authService.buscarUsuarioLogueado(); 
-
-    setTimeout(() => {     
-      this.user = this.authService.user;
-      console.log(this.user);
-    }, 2000);  
-
-
-  
-}
+    this.currentUser$ = this.authService.obtenerUsuario$();
+    this.currentUser$.subscribe(usuarios => {
+      this.user = usuarios;     
+    });
+    this.authService.actualizarUsuario();    
+  }
 
 }
 
