@@ -104,6 +104,7 @@ import {StorageService } from '../app/shared/upload-image/storage.service';
 import { NgMultitaskFilesDirective } from '../app/shared/upload-image/directives/ng-multitask-files.directive';
 import { UsuarioComponent } from './paginas/usuario/usuario/usuario.component';
 import { RegistroEmpleadoComponent } from '../app/componentesAdmin/registro-empleado/registro-empleado/registro-empleado.component';
+import { NuestrosServiciosComponent } from './componentes/nuestros-servicios/nuestros-servicios.component';
 
 @NgModule({
   declarations: [
@@ -126,7 +127,8 @@ import { RegistroEmpleadoComponent } from '../app/componentesAdmin/registro-empl
     FormAltaProductoComponent,
 
     UsuarioComponent,
-    RegistroEmpleadoComponent
+    RegistroEmpleadoComponent,
+    NuestrosServiciosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,13 @@
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://www.seekpng.com/png/full/251-2518363_tech-support-png-servicio-post-venta-png.png');
+    background-size: cover;
+  }
+
+  mat-grid-tile {
+    background: lightblue;
+  }
+
