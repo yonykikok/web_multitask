@@ -1,36 +1,38 @@
 <mat-vertical-stepper [linear]="false" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
+    <mat-step [stepControl]="tituloFormGroup">
+        <form [formGroup]="tituloFormGroup">
             <ng-template matStepLabel>Ingrese el titulo de la publicacion</ng-template>
             <mat-form-field>
                 <mat-label>Titulo</mat-label>
-                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                <input matInput placeholder="Last name, First name" formControlName="tituloControl" required>
             </mat-form-field>
             <div>
                 <button mat-button matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="estadoFormGroup">
+        <form [formGroup]="estadoFormGroup">
             <ng-template matStepLabel>Seleccione el estado del equipo</ng-template>
-            <mat-form-field>
-                <mat-label>Estado</mat-label>
-                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-            </mat-form-field>
+            <mat-radio-group formControlName="estadoControl" aria-label="Seleccione si da garantia" required>
+                <mat-radio-button value="nuevo"> Nuevo </mat-radio-button>
+                <mat-radio-button value="bueno"> Bueno </mat-radio-button>
+                <mat-radio-button value="conDetalle">Con detalles
+                </mat-radio-button>
+            </mat-radio-group>
             <div>
                 <button mat-button matStepperPrevious>Atras</button>
                 <button mat-button matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="descripcionFormGroup">
+        <form [formGroup]="descripcionFormGroup">
             <ng-template matStepLabel>Descripcion del producto</ng-template>
             <mat-form-field>
                 <mat-label>Descripcion</mat-label>
-                <textarea matInput formControlName="secondCtrl" class="form-control" id="exampleFormControlTextarea1"
-                    rows="3" required></textarea>
+                <textarea matInput formControlName="descripcionControl" class="form-control"
+                    id="exampleFormControlTextarea1" rows="3" required></textarea>
             </mat-form-field>
             <div>
                 <button mat-button matStepperPrevious>Atras</button>
@@ -38,8 +40,8 @@
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="fotosFormGroup">
+        <form [formGroup]="fotosFormGroup">
             <ng-template matStepLabel>Seleccione las fotografias</ng-template>
             <app-subir-imagenes-component></app-subir-imagenes-component>
 
@@ -50,16 +52,17 @@
             </mat-form-field> -->
             <div>
                 <button mat-button matStepperPrevious>Atras</button>
-                <button mat-button matStepperNext>Siguiente</button>
+                <button mat-button matStepperNext [disabled]='!imagenSeleccionada'>Siguiente</button>
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="precioFormGroup">
+        <form [formGroup]="precioFormGroup">
             <ng-template matStepLabel>Indique el precio</ng-template>
             <mat-form-field>
                 <mat-label>Precio</mat-label>
-                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                <input type="number" matInput formControlName="precioControl" placeholder="Ex. 1 Main St, New York, NY"
+                    required>
             </mat-form-field>
             <div>
                 <button mat-button matStepperPrevious>Atras</button>
@@ -67,17 +70,20 @@
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Seleccione si da garantia</ng-template>
-            <mat-radio-group aria-label="Seleccione si da garantia" required>
-                <mat-radio-button style="display: block;" value="conGarantia" (click)="cambiarEstado('conGarantia')">Con
+    <mat-step [stepControl]="garantiaFormGroup">
+        <form [formGroup]="garantiaFormGroup">
+            <ng-template matStepLabel>Tipo de garantia</ng-template>
+            <mat-radio-group aria-label="Seleccione si da garantia" formControlName="garantiaControl" required>
+                <mat-radio-button style="display: block;" value="conGarantia"
+                    (click)="cambiarEstadoGarantia('conGarantia')">Con
                     Garantia</mat-radio-button>
-                <mat-radio-button style="display: block;" value="sinGarantia" (click)="cambiarEstado('sinGarantia')">Sin
+                <mat-radio-button style="display: block;" value="sinGarantia"
+                    (click)="cambiarEstadoGarantia('sinGarantia')">Sin
                     Garantia</mat-radio-button>
-                <mat-form-field class="example-full-width" *ngIf='mostrarTextAreaDeGarantia' >
+                <mat-form-field class="example-full-width" *ngIf='mostrarTextAreaDeGarantia'>
                     <mat-label>Explica la garantia</mat-label>
-                    <textarea matInput placeholder="Ejemplo: Garantia de 15 dias para que lo pruebe completamente." style="height: 120px; width: 100%;"></textarea>
+                    <textarea matInput placeholder="Ejemplo: Garantia de 15 dias para que lo pruebe completamente."
+                        style="height: 120px; width: 100%;"></textarea>
                 </mat-form-field>
             </mat-radio-group>
             <!-- <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required> -->
@@ -93,7 +99,7 @@
         <div>
             <button mat-button (click)="stepper.reset()">Empezar de nuevo</button>
             <button mat-button matStepperPrevious>Volver</button>
-            <button mat-stroked-button color="accent" (click)="stepper.reset()">Publicar</button>
+            <button mat-stroked-button color="accent" (click)="publicarProducto()">Publicar</button>
         </div>
     </mat-step>
 </mat-vertical-stepper>

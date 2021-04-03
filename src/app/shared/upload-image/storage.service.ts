@@ -7,12 +7,13 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class StorageService {
 private MEDIA_STORAGE_PATH='multitask';
 static  imagenesDropeadas:string[];
+static  filesDropped:FileItem[];
   constructor(private readonly storage:AngularFireStorage,private authService: AuthService) { 
 
   }
 
   private generateFileName(name:string):string{
-    return `${'publicaciones/'+/*this.authService.user.dni+*/'/'}/${new Date().getTime()}_${name}`
+    return `${'publicaciones/'+/*this.authService.user.dni+*/'/'}/${new Date().getTime()}_${name}+'-----'`
   }
 
   uploadImage(images:FileItem[]){

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
-
+import { Observable } from 'rxjs';
+import {InfoCompartidaService} from 'src/app/servicios/info-compartida.service';
+import { StorageService } from 'src/app/shared/upload-image/storage.service';
 @Component({
   selector: 'app-form-alta-producto',
   templateUrl: './form-alta-producto.component.html',
@@ -8,7 +10,8 @@ import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 })
 export class FormAltaProductoComponent implements OnInit {
 
-mostrarTextAreaDeGarantia=false;
+  mostrarTextAreaDeGarantia=false;
+  imagenesSeleccionadas=false;
   /**
    * titulo
    * condicion  
@@ -16,21 +19,67 @@ mostrarTextAreaDeGarantia=false;
    * fotos
   */
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  tituloFormGroup: FormGroup;
+  estadoFormGroup: FormGroup;
+  descripcionFormGroup: FormGroup;
+  fotosFormGroup: FormGroup;
+  precioFormGroup: FormGroup;
+  garantiaFormGroup: FormGroup;
+  hayImagenesSeleccionadas$: Observable<boolean>;
+  imagenSeleccionada=false;
+ 
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder,private readonly storageService:StorageService) {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    this.hayImagenesSeleccionadas$ = InfoCompartidaService.obtenerSiHayImagenesSeleccionadas$();
+    this.hayImagenesSeleccionadas$.subscribe(hayImagen => {
+      this.imagenSeleccionada = hayImagen;     
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+
+    this.tituloFormGroup = this._formBuilder.group({
+      tituloControl: ['', Validators.required]
     });
+    this.estadoFormGroup = this._formBuilder.group({
+      estadoControl: ['', Validators.required]
+    })
+    this.descripcionFormGroup = this._formBuilder.group({
+      descripcionControl: ['', Validators.required]
+    });
+    this.fotosFormGroup = this._formBuilder.group({
+      fotosControl: ['']
+    });
+    this.precioFormGroup = this._formBuilder.group({
+      precioControl: ['', Validators.required]
+    });
+    this.garantiaFormGroup = this._formBuilder.group({
+      garantiaControl: ['', Validators.required]
+    });
+    this.imagenesSeleccionadas=InfoCompartidaService.imagenesSeleccionadas;
   }
 
-  cambiarEstado(garantia){
+  cambiarEstadoGarantia(garantia){
     garantia=='conGarantia'?this.mostrarTextAreaDeGarantia=true:this.mostrarTextAreaDeGarantia=false;
   }
+
+
+  publicarProducto(){    
+
+
+   let producto={
+      titulo:this.tituloFormGroup.controls['tituloControl'].value,
+      estado:this.estadoFormGroup.controls['estadoControl'].value,
+      descripcion:this.descripcionFormGroup.controls['descripcionControl'].value,
+      fotos:this.fotosFormGroup.controls['fotosControl'].value,
+      precio:this.precioFormGroup.controls['precioControl'].value,
+      garantia:this.garantiaFormGroup.controls['garantiaControl'].value    
+    }
+     this.subirImagenesAlStorage(producto);
+    
+  }
+    subirImagenesAlStorage(producto){
+     this.storageService.uploadImage(StorageService.filesDropped);
+  
+  }
+
 }

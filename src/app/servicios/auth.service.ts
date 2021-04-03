@@ -26,6 +26,7 @@ export class AuthService {
   obtenerUsuario$(): Observable<Usuario> {
     return this.currentUser$.asObservable();
   }
+  
   public actualizarUsuario() {
     this.tokenUsuario = localStorage.getItem('token');
     this.payloadUsuario = jwt_decode(this.tokenUsuario);
