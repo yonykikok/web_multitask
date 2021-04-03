@@ -4,6 +4,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 
 import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
+import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 
@@ -23,20 +24,11 @@ export class HomeComponent implements OnInit, OnChanges {
   // HARDCODEADO PARA VER EL TIPO DE USUARIO
   tipoUsuario = 'administrador';
 
-
   constructor(private firestore: AngularFirestore, private authService: AuthService) {
 
   }
 
   ngOnInit(): void {
-
-    // this.tokenUsuario = localStorage.getItem('token');
-    // this.payloadUsuario = jwt_decode(this.tokenUsuario);
-    // this.emailUsuario = this.payloadUsuario.email;
-
-    // this.buscarInfoLogueado();
-    console.log("0-----------");
-
 
   }
   ngOnChanges() {

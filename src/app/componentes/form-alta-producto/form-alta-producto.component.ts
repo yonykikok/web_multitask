@@ -87,8 +87,11 @@ export class FormAltaProductoComponent implements OnInit {
       descripcion:this.descripcionFormGroup.controls['descripcionControl'].value,
       fotos:this.fotosFormGroup.controls['fotosControl'].value,
       precio:this.precioFormGroup.controls['precioControl'].value,
-      garantia:this.garantiaFormGroup.controls['garantiaControl'].value    
+      garantia:this.garantiaFormGroup.controls['garantiaControl'].value,
+      fechaDePublicacion:new Date().getMilliseconds(),
+      estadoPublicacion:'pendiente'
     }
+
     if(publicacion.garantia){
       publicacion['detalleGarantia']=this.garantiaFormGroup.controls['textAreaControl'].value;
      }

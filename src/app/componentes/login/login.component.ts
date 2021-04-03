@@ -18,6 +18,7 @@ import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
 
 import { Usuario } from 'src/app/clases/usuario';
 import { DatabaseService } from 'src/app/servicios/database.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -43,6 +44,10 @@ quiereRegistrarse = false;
   //evento de salida
   @Output() ingresarEventClick:EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() cancelLoginEventClick:EventEmitter<boolean> = new EventEmitter<boolean>();
+  
+  user: Usuario;
+  currentUser$: Observable<Usuario>;
+  
   constructor( 
     private formBuilder: FormBuilder, 
     private authService : AuthService,
@@ -58,8 +63,7 @@ quiereRegistrarse = false;
 
 
   ngOnInit(): void { 
-
-
+  
    }
 
    cargarDatosAutoLogin(perfil){
@@ -137,9 +141,12 @@ quiereRegistrarse = false;
   {    
     this.authService.login(this.correo, this.clave)  
     .then ((res) => {      
-      console.log("RESS", res);
       this.ingresarEventClick.emit();
-    console.log("1----------------");
+      this.currentUser$ = this.authService.obtenerUsuario$();
+      this.currentUser$.subscribe(usuarios => {
+      this.user = usuarios;
+    });
+    this.authService.actualizarUsuario();
 
   }
     )  

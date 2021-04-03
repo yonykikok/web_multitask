@@ -1,5 +1,5 @@
 <div *ngIf="apiLoaded | async">
-<google-map [options]="options"  [center]="position">
+<google-map [options]="options" [zoom]='15' [center]="position">
     <map-marker
         [position]="position"
         [label]="label"
