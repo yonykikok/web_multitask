@@ -13,9 +13,15 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class MapsComponent implements OnInit {
 
- 
   apiLoaded: Observable<boolean>;
-  
+
+  position={lat: -34.6621179, lng: -58.3660891};
+  label={
+    color:'white',
+    text:'UTN FRA'
+  }
+
+
   options: google.maps.MapOptions = {
     center: {lat: -34.6621179, lng: -58.3660891},
     zoom: 4

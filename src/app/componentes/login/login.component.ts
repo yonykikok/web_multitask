@@ -17,6 +17,7 @@ import {AngularFirestore} from "@angular/fire/firestore";
 import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
 
 import { Usuario } from 'src/app/clases/usuario';
+import { DatabaseService } from 'src/app/servicios/database.service';
 
 @Component({
   selector: 'app-login',
@@ -46,7 +47,8 @@ quiereRegistrarse = false;
     private formBuilder: FormBuilder, 
     private authService : AuthService,
     private routerService : Router,
-    private firestore : AngularFirestore )     
+    private firestore : AngularFirestore,
+    private dataBase:DatabaseService )     
     {
       this.formularioLogin = this.formBuilder.group({
         claveValidada: ['', [Validators.required, Validators.minLength(6)]],
@@ -134,7 +136,8 @@ quiereRegistrarse = false;
   onSubmitLogin()
   {    
     this.authService.login(this.correo, this.clave)  
-    .then ((res) => {
+    .then ((res) => {      
+      console.log("RESS", res);
       this.ingresarEventClick.emit();
     console.log("1----------------");
 

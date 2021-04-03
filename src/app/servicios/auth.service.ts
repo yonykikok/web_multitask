@@ -37,6 +37,7 @@ export class AuthService {
         if(doc.data()['correo'].toUpperCase() == this.emailUsuario.toUpperCase())
          { 
            let usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['foto']);
+           usuario['id']=doc.id;
            this.user = usuario;
            this.currentUser$.next(usuario);
          }

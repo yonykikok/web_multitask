@@ -1,3 +1,9 @@
 <div *ngIf="apiLoaded | async">
-<google-map [options]="options"></google-map>
+<google-map [options]="options"  [center]="position">
+    <map-marker
+        [position]="position"
+        [label]="label"
+        [title]="FACULTAD"
+        ></map-marker>
+</google-map>
 </div>

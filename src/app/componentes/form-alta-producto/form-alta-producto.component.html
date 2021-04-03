@@ -1,4 +1,4 @@
-<mat-vertical-stepper [linear]="false" #stepper>
+<mat-vertical-stepper [linear]="true" #stepper>
     <mat-step [stepControl]="tituloFormGroup">
         <form [formGroup]="tituloFormGroup">
             <ng-template matStepLabel>Ingrese el titulo de la publicacion</ng-template>
@@ -82,7 +82,7 @@
                     Garantia</mat-radio-button>
                 <mat-form-field class="example-full-width" *ngIf='mostrarTextAreaDeGarantia'>
                     <mat-label>Explica la garantia</mat-label>
-                    <textarea matInput placeholder="Ejemplo: Garantia de 15 dias para que lo pruebe completamente."
+                    <textarea id="textAreaGarantia" formControlName="textAreaControl" matInput placeholder="Ejemplo: Garantia de 15 dias para que lo pruebe completamente."
                         style="height: 120px; width: 100%;"></textarea>
                 </mat-form-field>
             </mat-radio-group>

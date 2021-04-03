@@ -8,15 +8,17 @@ export class StorageService {
 private MEDIA_STORAGE_PATH='multitask';
 static  imagenesDropeadas:string[];
 static  filesDropped:FileItem[];
+static arrayImagenes:string[]=[];
   constructor(private readonly storage:AngularFireStorage,private authService: AuthService) { 
 
   }
 
   private generateFileName(name:string):string{
-    return `${'publicaciones/'+/*this.authService.user.dni+*/'/'}/${new Date().getTime()}_${name}+'-----'`
+    return `${'publicaciones/'+this.authService.user.dni+'/'}/${new Date().getTime()}_${this.authService.user.dni}`
   }
 
-  uploadImage(images:FileItem[]){
+    uploadImage(images:FileItem[]){
+    StorageService.arrayImagenes=[];
     for(const item of images){
       item.uploading=true;
       const filePath=this.generateFileName(item.name);     
@@ -24,12 +26,16 @@ static  filesDropped:FileItem[];
       const task=this.storage.upload(filePath,item.file);
 
       item.uploadPercent=task.percentageChanges();
-      task
+       task
       .snapshotChanges()
       .pipe(
         finalize(() => {
           item.downloadURL=fileRef.getDownloadURL();
           item.uploading=false;
+           item.downloadURL.subscribe((link)=>{
+             StorageService.arrayImagenes.push(link);
+             console.log(link);
+          });
       })
       ).subscribe();
     }

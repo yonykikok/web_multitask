@@ -14,7 +14,6 @@ import { delay } from 'rxjs/operators';
 export class TiendaComponent implements OnInit {
 
   user: Usuario;
-
   currentUser$: Observable<Usuario>;
   constructor(private authService: AuthService) { }
 
