@@ -1,3 +1,44 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.nuestrosServicios{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 50px 0 50px;
+}
+
+mat-card{
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.img {
+  width: 200px;
+  height: 200px;
+  text-align: center !important;
+}
+
+
+.picsum-img-wrapper{
+  text-align: center;
+}
+
+#divCarousel{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background: gray;
+  box-shadow: 0 0 15px black ;
+}
+
+
+
+/* DE ACÁ EN ADELANTE, CSS DE JONY*/
+
+
 .inputSearch {
   position: absolute;
   width: 60vw;
@@ -21,7 +62,7 @@ select {
   appearance: none;
 }
 
-/* intento de animacion 'reparacion de celulares'  */
+/* intento de animacion 'reparacion de celulares' 
 
 #intentoAnimacion {
   min-width: 100px;
@@ -149,18 +190,19 @@ select {
     content: "Reparacion de celulares en el acto.";
   }
   90% {
-    /* content: "Reparacion de celulares en el acto"; */
+    /* content: "Reparacion de celulares en el acto"; 
   }
   90% {
-    /* content: "Reparacion de celulares en el acto"; */
+    /* content: "Reparacion de celulares en el acto"; 
   }
   93% {
-    /* content: "Reparacion de celulares en el acto"; */
+    /* content: "Reparacion de celulares en el acto"; 
   }
   96% {
-    /* content: "Reparacion de celulares en el acto"; */
+    /* content: "Reparacion de celulares en el acto"; 
   }
   99% {
-    /* content: "Reparacion de celulares en el acto"; */
+    /* content: "Reparacion de celulares en el acto"; 
   }
 }
+ */
