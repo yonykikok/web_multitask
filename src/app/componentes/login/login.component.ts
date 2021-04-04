@@ -68,7 +68,6 @@ quiereRegistrarse = false;
 
    cargarDatosAutoLogin(perfil){
     this.clave='123456';
-
     switch(perfil){
       case 'administrador':
         this.correo="admin@gmail.com";
@@ -83,6 +82,7 @@ quiereRegistrarse = false;
         this.correo="serviciotecnico@gmail.com";
       break;
     }
+    this.onSubmitLogin();
   }
 
 

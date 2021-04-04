@@ -47,7 +47,7 @@ mat-card.loginCard
 .contenedorBotonesAutoLogin{
   position: absolute;
   z-index: 12;
-  bottom: 20px;
+  bottom: 5%;
 }
 
 .btnAutoLogin:active{
@@ -63,10 +63,10 @@ mat-card.loginCard
 }
   .btnAutoLogin{
     margin: 5px;
-  padding: 10px;
-  font-size: 250%;
-  border-radius: 100%;
-  box-shadow: 0 0 10px black;
+    padding: 10px;
+    font-size: 150%;
+    border-radius: 100%;
+    box-shadow: 0 0 10px black;
 }
 /* FIN BOTON AUTOLOGIN  */
 
@@ -154,6 +154,23 @@ mat-card.loginCard
   .marcoFablet{
     width: 60%;
     left: 20%;
+  }
+}
+
+@media (max-height:650px)
+{  
+  .btnLogin{
+    display: inline;    
+    width: 48%;
+  }
+  .btnLogin:last-child{
+    margin-left: 2%;
+  }
+  .marcoFablet{
+    height: 75vh;
+  }
+  .marcoFablet::before{
+    display: none;
   }
 }
 
