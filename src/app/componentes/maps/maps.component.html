@@ -1,8 +1,5 @@
 <div *ngIf="apiLoaded | async">
-<google-map [options]="options" [zoom]='15' [center]="position">
-    <map-marker
-        [position]="position"
-        [label]="label"
-        ></map-marker>
-</google-map>
+    <google-map id="map-canvas" [options]="options" [zoom]='15' [center]="position">
+        <map-marker [position]="position" [label]="label"></map-marker>
+    </google-map>
 </div>

@@ -112,6 +112,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { MapsComponent } from './componentes/maps/maps.component';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { RealizarConsultaAnonimaComponent } from './componentes/realizar-consulta-anonima/realizar-consulta-anonima.component';
+import { SpinnerComponent } from './componentes/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { RealizarConsultaAnonimaComponent } from './componentes/realizar-consult
     RegistroEmpleadoComponent,
     NuestrosServiciosComponent,
     MapsComponent,
-    RealizarConsultaAnonimaComponent
+    RealizarConsultaAnonimaComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

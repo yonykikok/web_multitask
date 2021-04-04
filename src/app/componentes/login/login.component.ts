@@ -19,7 +19,6 @@ import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
 import { Usuario } from 'src/app/clases/usuario';
 import { DatabaseService } from 'src/app/servicios/database.service';
 import { Observable } from 'rxjs';
-import { ToastService } from 'src/app/servicios/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -54,8 +53,7 @@ quiereRegistrarse = false;
     private authService : AuthService,
     private routerService : Router,
     private firestore : AngularFirestore,
-    private dataBase:DatabaseService,
-    private toast : ToastService )     
+    private dataBase:DatabaseService, )     
     {
       this.formularioLogin = this.formBuilder.group({
         claveValidada: ['', [Validators.required, Validators.minLength(6)]],
@@ -149,7 +147,6 @@ quiereRegistrarse = false;
       this.user = usuarios;
     });
     this.authService.actualizarUsuario();
-    this.toast.snackBarMensaje("Bienvenido", "Aceptar", 3000);
 
   }
     )  

@@ -1,4 +1,4 @@
-body
+/* body
 {
   width: 50%;
 }
@@ -64,4 +64,55 @@ form {
       margin: 2%;
       width: 96%;
     }
+  } */
+
+
+  .divRealizarConsulta,.btnContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+ 
+  .appMapa{
+    transition: 3s;
+    transform: scale(0.9);
+  }
+.inputsContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.textAreaContainer{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+#matFormFieldConsulta{
+  width: 100%;
+}
+  mat-form-field{
+    width: 30%;
+  }
+  
+  
+ 
+  @media (max-width: 700px) {
+    .appMapa{
+      transform: scale(0.6);
+    }
+    #matFormFieldConsulta{
+      width: 90%; 
+    }
+      mat-form-field{
+        width: 90%;
+      }
+      .inputsContainer,.textAreaContainer{
+        justify-content: center;
+      }
+      
   }

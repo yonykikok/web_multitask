@@ -1,74 +1,70 @@
-<div class = "divRealizarConsulta">
+<div class="divRealizarConsulta">
+    <app-maps class="appMapa" > </app-maps>
 
-<mat-grid-list cols="2" rowHeight="2:1">
-
-    <mat-grid-tile>
-
-        <app-maps style = "transform: scale(0.9);"> </app-maps>
-       
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-   
     <form [formGroup]="consultaForm">
-    <div class="containerLogin">
-    
+        <div class="inputsContainer">
 
-        <mat-form-field appearance="fill">
-          <mat-label>Nombre</mat-label>
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
 
-          <input matInput placeholder="Ingrese su nombre" formControlName="nombreValidado" [(ngModel)]="consultaJSON.nombre">
-         
-          <mat-error *ngIf="consultaForm.controls.nombreValidado.invalid">{{mostrarErrorRegistro('nombreValidado') }}</mat-error>
-        </mat-form-field>
+                <input matInput placeholder="Ingrese su nombre" formControlName="nombreValidado"
+                    [(ngModel)]="consultaJSON.nombre">
 
-
-        <mat-form-field appearance="fill">
-            <mat-label>Apellido</mat-label>
-  
-            <input matInput placeholder="Ingrese su apellido" formControlName="apellidoValidado" [(ngModel)]="consultaJSON.apellido">
-           
-            <mat-error *ngIf="consultaForm.controls.apellidoValidado.invalid">{{mostrarErrorRegistro('apellidoValidado') }}</mat-error>
-        </mat-form-field>
+                <mat-error *ngIf="consultaForm.controls.nombreValidado.invalid">{{mostrarErrorRegistro('nombreValidado')
+                    }}</mat-error>
+            </mat-form-field>
 
 
+            <mat-form-field appearance="fill">
+                <mat-label>Apellido</mat-label>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Correo</mat-label>
-  
-            <input matInput placeholder="Ingrese su correo" formControlName="correoValidado" [(ngModel)]="consultaJSON.correo">
-           
-            <mat-error *ngIf="consultaForm.controls.correoValidado.invalid">{{mostrarErrorRegistro('correoValidado') }}</mat-error>
-        </mat-form-field>
+                <input matInput placeholder="Ingrese su apellido" formControlName="apellidoValidado"
+                    [(ngModel)]="consultaJSON.apellido">
+
+                <mat-error *ngIf="consultaForm.controls.apellidoValidado.invalid">
+                    {{mostrarErrorRegistro('apellidoValidado') }}</mat-error>
+            </mat-form-field>
 
 
 
-        <mat-form-field appearance="fill">
-            <mat-label>Consulta</mat-label>
-  
-            <input matInput placeholder="Ingrese su consulta" formControlName="consultaValidada" [(ngModel)]="consultaJSON.consulta">
-           
-            <mat-error *ngIf="consultaForm.controls.consultaValidada.invalid">{{mostrarErrorRegistro('consultaValidada') }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Correo</mat-label>
+
+                <input matInput placeholder="Ingrese su correo" formControlName="correoValidado"
+                    [(ngModel)]="consultaJSON.correo">
+
+                <mat-error *ngIf="consultaForm.controls.correoValidado.invalid">{{mostrarErrorRegistro('correoValidado')
+                    }}</mat-error>
+            </mat-form-field>
+
+
+        </div>
+
+        <div class="textAreaContainer">
+
+            <mat-form-field id="matFormFieldConsulta" appearance="fill">
+                <mat-label>Consulta</mat-label>
+
+                <!-- <input matInput placeholder="Ingrese su consulta" formControlName="consultaValidada"
+                    [(ngModel)]="consultaJSON.consulta"> -->
+
+                <textarea id="textAreaConsulta" matInput formControlName="consultaValidada" class="form-control"
+                    placeholder="Ingrese su consulta" [(ngModel)]="consultaJSON.consulta" required rows="5" cols="40"></textarea>
 
 
 
-        <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin" (click)="registrarConsultasAnonimasBD()">Enviar consulta</button>
-    
-    
-    </div>
+                <mat-error *ngIf="consultaForm.controls.consultaValidada.invalid">
+                    {{mostrarErrorRegistro('consultaValidada') }}</mat-error>
+            </mat-form-field>
+        </div>
+
+
+
+
+        <div class="btnContainer">
+            <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
+            (click)="registrarConsultasAnonimasBD()">Enviar consulta</button>
+        </div>
+
     </form>
-
-
-       
-</mat-grid-tile>
-
-
-</mat-grid-list>
-
-
 </div>
-
-
-
-
