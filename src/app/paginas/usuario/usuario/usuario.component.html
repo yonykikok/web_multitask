@@ -2,19 +2,36 @@
 
 <!-- <app-login  *ngIf="mostrarFormLogin" id="login"></app-login> -->
 
+
+
+  <div has-header="true">
+    <div id="profile-bg"></div>
+    <div id="content">
+      <div id="informacion">
+        <img id="imagenPerfil" src="{{user.foto}}">
+        <h3 id="nombrePerfil">{{user.nombre}} {{user.apellido}}</h3>
+        <span id="descripcionPerfil"> Correo: {{user.correo}} </span>
+        <br>
+        <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
+      </div>
+
+    </div>
+  </div>
+
+
+<!--
 <mat-card>
     <mat-card-title>Datos</mat-card-title>
     <img mat-card-image src="{{user.foto}}" style="width:10%;">
     <mat-card-subtitle>Nombre: {{user.nombre}} {{user.apellido}}</mat-card-subtitle>
     <mat-card-subtitle>Correo: {{user.correo}} </mat-card-subtitle>
     <mat-card-subtitle>DNI: {{user.dni}} </mat-card-subtitle>
-    <!-- agregar botton para editar datos, hacer la funcion -s -->
-    <!-- <mat-card-actions>  </mat-card-actions> -->
+    agregar botton para editar datos, hacer la funcion <mat-card-actions>  </mat-card-actions> 
 </mat-card>
+-->
 
 <div *ngIf="user.tipo == 'administrador'">
     <h1>Panel de Control Administrador</h1>
-    <h2>Elija que quiere realizar</h2>
     <mat-toolbar color="primary">
         <mat-toolbar-row>
             <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
