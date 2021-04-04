@@ -1,43 +1,53 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
-
-.nuestrosServicios{
+.divCardsContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  text-align: center;
   flex-wrap: wrap;
-  margin: 50px 0 50px;
 }
 
-mat-card{
-  margin-bottom: 20px;
-  width: 300px;
-}
-
-.img {
-  width: 200px;
-  height: 200px;
-  text-align: center !important;
+mat-card {
+  overflow: hidden;
+  margin: 20px;
+  width: 330px;
+  /* height: 450px; */
+  box-shadow: 0 0 10px var(--colorPrincipal) !important;
 }
 
 
-.picsum-img-wrapper{
+mat-card-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
+mat-card img{
+  max-width: 90%;
+  max-height: 330px;
+  width: auto;
+}
+.divImgContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 330px;
+}
+.divDescripcionProducto {
+  display: none;
+}
+.divButtonsProducto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 20px;
 
-#divCarousel{
-  margin-top: 50px;
-  margin-bottom: 50px;
-  background: gray;
-  box-shadow: 0 0 15px black ;
 }
 
-
-
 /* DE ACÁ EN ADELANTE, CSS DE JONY*/
-
 
 .inputSearch {
   position: absolute;
@@ -62,6 +72,31 @@ select {
   appearance: none;
 }
 
+.visibility-hover{
+  transition: 1s;
+  visibility: hidden;
+}
+mat-card:hover .visibility-hover{
+  visibility: visible;
+}
+
+
+.mostrar-hover{
+  display: none;
+}
+.ocultar-hover{
+  display: inline;  
+}
+mat-card:hover .mostrar-hover{
+  display: inline;
+}
+mat-card:hover .ocultar-hover{
+  display: none;
+
+}
+hr{
+  box-shadow: 0 0 2px var(--colorPrincipal);
+}
 /* intento de animacion 'reparacion de celulares' 
 
 #intentoAnimacion {

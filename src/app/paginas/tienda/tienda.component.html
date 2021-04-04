@@ -28,58 +28,40 @@
 <!--<app-product-to-sell-card></app-product-to-sell-card> -->
 
 
-<div class="nuestrosServicios">
+<div class="divCardsContainer">
 
-      <mat-card class="example-card" *ngFor="let producto of listado">
-               <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>{{producto.titulo}}</mat-card-title>
-                  <mat-card-subtitle>{{producto.estado}}</mat-card-subtitle>
-              </mat-card-header>
+  <div *ngFor="let publicacion of listado">
 
-              <ngb-carousel  id="divCarousel">
+    <mat-card class="example-card" *ngIf="publicacion.estadoPublicacion!='todas'"> 
+      <!-- <mat-card-header >
+                   <div mat-card-avatar class="example-header-image"></div> 
+                   <mat-card-title>{{producto.titulo}}</mat-card-title>
+                  <mat-card-subtitle> estado: {{producto.estado}}</mat-card-subtitle>
+                  <mat-card-subtitle>{{producto.precio| currency }}</mat-card-subtitle>
+                </mat-card-header> -->
 
-                <ng-template ngbSlide>
-                    <div class="picsum-img-wrapper">
-                      <img mat-card-image class="img" src="{{producto.fotos[0]}}">
-                    </div>
-                </ng-template>
-              
-                <ng-template ngbSlide>
-                  <div class="picsum-img-wrapper">
-                    <img mat-card-image class="img" src="{{producto.fotos[1]}}">
-                  </div>
-                </ng-template>
-              
-                <ng-template ngbSlide>
-                  <div class="picsum-img-wrapper">
-                    <img mat-card-image class="img" src="{{producto.fotos[2]}}">
-                  </div>
-                </ng-template>
-
-              </ngb-carousel>
-               
-                <mat-card-content>
+      <ngb-carousel id="divCarousel" style="height: 70%;">
+        <ng-template ngbSlide *ngFor="let foto of publicacion.fotos">
+          <div class="divImgContainer">
+            <img class="imagen" mat-card-image class="img" src="{{foto}}">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <hr style="margin: 10px;">
+      <mat-card-title>{{publicacion.precio| currency }}</mat-card-title>
+      <mat-card-subtitle class="visibility-hover">{{publicacion.titulo}}</mat-card-subtitle>
+      <!-- <mat-card-content class="divDescripcionProducto">
                   <p>
                     {{producto.descripcion}}
                   </p>
-                </mat-card-content>
+                </mat-card-content> -->
 
-                <mat-card-actions>
+      <!-- <mat-card-actions class="divButtonsProducto">
                   <button mat-button color="primary">Comprar</button>
                   <button mat-button color="primary">Permutar</button>
-                </mat-card-actions>
+                </mat-card-actions> -->
 
-      </mat-card>
-            
+    </mat-card>
+  </div>
+
 </div>
-
-
-
-
-
-
-
-
-
-

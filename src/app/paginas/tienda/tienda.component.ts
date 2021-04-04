@@ -13,7 +13,7 @@ import { delay } from 'rxjs/operators';
   styleUrls: ['./tienda.component.css']
 })
 export class TiendaComponent implements OnInit {
-
+  mostrar;
   user: Usuario;
   currentUser$: Observable<Usuario>;
   listado: any[] = [];
@@ -44,6 +44,7 @@ export class TiendaComponent implements OnInit {
 
       })
     })
+    console.log(listaPublicaciones);
     return listaPublicaciones;
   }
 
