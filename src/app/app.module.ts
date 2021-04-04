@@ -112,7 +112,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { MapsComponent } from './componentes/maps/maps.component';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { RealizarConsultaAnonimaComponent } from './componentes/realizar-consulta-anonima/realizar-consulta-anonima.component';
-import { SpinnerComponent } from './componentes/spinner/spinner.component';
+
+//import { SpinnerComponent } from './componentes/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +140,7 @@ import { SpinnerComponent } from './componentes/spinner/spinner.component';
     NuestrosServiciosComponent,
     MapsComponent,
     RealizarConsultaAnonimaComponent,
-    SpinnerComponent
+    //SpinnerComponent
   ],
   imports: [
     BrowserModule,
