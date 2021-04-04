@@ -1,3 +1,85 @@
 button{
     width: 100%;
 }
+
+#profile-bg {
+    position: fixed;
+    left: 0;
+    top: 44px;
+    width: 100%;
+    height: 150px;
+
+    background: rgb(95,54,165);
+    background: linear-gradient(90deg, rgba(95,54,165,1) 2%, rgba(15,137,178,1) 30%, rgba(59,90,172,1) 76%, rgba(0,212,255,1) 98%);
+    background-size: 100%;
+    background-position: 50% 20%;
+
+    text-align: center;
+  }
+
+  #content {
+    position: relative;
+    margin-top: 150px;
+    background-color: white;
+    box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
+    padding-top: 200px;
+  }
+
+  #informacion {
+    position: absolute;
+    top: -95px;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+  }
+
+  #nombrePerfil {
+    color: #444;
+    font-size: 26px;
+  }
+  #descripcionPerfil {
+    font-size: 15px;
+    color: #888;
+  }
+  #descripcionPerfil a {
+    color: #888;
+  }
+
+  #imagenPerfil {
+    display: block;
+    border-radius: 100px;
+    border: 1px solid #fff;
+    width: 128px;
+    height: 128px;
+    margin: 30px auto 0;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+  }
+
+  .list-item-content {
+    padding: 5px;
+  }
+
+  .list-item {
+    color: #666666;
+  }
+
+  .post {
+    color: #444;
+  }
+
+  .post-time {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 11px;
+    color: #888;
+  }
+
+  .post-imagenPerfil {
+    display: inline-block;
+    vertical-align: top;
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+  }
+
