@@ -2,18 +2,19 @@
   <span class="material-icons"> store </span>
   <span class="mobileNotVisible">Tienda</span>
   <!-- Inicio buscador -->
-  <div class="input-group inputSearch">
-    <input type="text" class="form-control" placeholder="Escribe lo que quieras buscar."
-      aria-label="Escribe lo que quieras buscar." aria-describedby="basic-addon2">
+  <div class="input-group inputSearch displayNoneInPhone" [formGroup]="inputSearch">
+    <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()" placeholder="Escribe lo que quieras buscar.">
     <div class="input-group-append">
-      <span class="input-group-text" id="basic-addon2"><span class="material-icons">
+      <span class="input-group-text" id="basic-addon2"  >
+        <span class="material-icons">
           search
-        </span></span>
+        </span>
+      </span>
     </div>
   </div>
 
   <!-- Fin buscador -->
-  <a href="/usuario">
+  <a href="/usuario" class="divAvatarUsuario">
     <div class="divPerfilUsuario" *ngIf="user">
       <p class="pNombreUsuario">{{user.nombre}}</p>
       <img class="imgFotoDePerfil" src="{{user.foto}}" alt="Foto de perfil">
@@ -21,6 +22,16 @@
   </a>
 </mat-toolbar>
 
+<div class="input-group inputSearch displayInPhone"  [formGroup]="inputSearch">
+  <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()" placeholder="Escribe lo que quieras buscar.">
+  <div class="input-group-append">
+    <span class="input-group-text" id="basic-addon2"  >
+      <span class="material-icons">
+        search
+      </span>
+    </span>
+  </div>
+</div>
 
 <app-carousel></app-carousel>
 
@@ -30,9 +41,9 @@
 
 <div class="divCardsContainer">
 
-  <div *ngFor="let publicacion of listado">
+  <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
 
-    <mat-card class="example-card" *ngIf="publicacion.estadoPublicacion!='todas'"> 
+    <mat-card class="divCard" *ngIf="publicacion.estadoPublicacion!='todas'">
       <!-- <mat-card-header >
                    <div mat-card-avatar class="example-header-image"></div> 
                    <mat-card-title>{{producto.titulo}}</mat-card-title>

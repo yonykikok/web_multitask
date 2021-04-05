@@ -26,6 +26,7 @@
   align-items: center;
   flex-wrap: wrap;
   margin: 50px 0 50px;
+  text-align: center;
 }
 
 mat-card{

@@ -2,7 +2,9 @@
 mat-toolbar{
     border-bottom: 2px solid #BDBDBD;
 }
-
+html,body{
+    scroll-behavior: smooth;
+}
 .reflejo-text:hover{     
     background: linear-gradient(264.51deg, #ffffff 4.38%, #bebebe 11.51%, #ffffff 25.06%);
     background-position: 58% 50%;

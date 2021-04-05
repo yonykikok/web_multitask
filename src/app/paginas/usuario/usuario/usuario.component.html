@@ -1,25 +1,26 @@
 <!-- <app-header [userIsLogged]="userIsLogged" (ingresarEventClick)="mostrarFormLogin=true"></app-header> -->
 
 <!-- <app-login  *ngIf="mostrarFormLogin" id="login"></app-login> -->
+<div *ngIf="user">
 
 
 
-  <div has-header="true">
-    <div id="profile-bg"></div>
-    <div id="content">
-      <div id="informacion">
-        <img id="imagenPerfil" src="{{user.foto}}">
-        <h3 id="nombrePerfil">{{user.nombre}} {{user.apellido}}</h3>
-        <span id="descripcionPerfil"> Correo: {{user.correo}} </span>
-        <br>
-        <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
-      </div>
+    <div has-header="true">
+        <div id="profile-bg"></div>
+        <div id="content">
+            <div id="informacion">
+                <img id="imagenPerfil" src="{{user.foto}}">
+                <h3 id="nombrePerfil">{{user.nombre}} {{user.apellido}}</h3>
+                <span id="descripcionPerfil"> Correo: {{user.correo}} </span>
+                <br>
+                <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
+            </div>
 
+        </div>
     </div>
-  </div>
 
 
-<!--
+    <!--
 <mat-card>
     <mat-card-title>Datos</mat-card-title>
     <img mat-card-image src="{{user.foto}}" style="width:10%;">
@@ -30,63 +31,64 @@
 </mat-card>
 -->
 
-<div *ngIf="user.tipo == 'administrador'">
-    <h1>Panel de Control Administrador</h1>
-    <mat-toolbar color="primary">
-        <mat-toolbar-row>
-            <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
-            <button mat-button (click)="mostrarRegistroEmpleado()"> Resgistrar Empleado</button>
-            <button mat-button (click)="mostrarListadoCuentas()"> Ver Cuentas</button>
-        </mat-toolbar-row>
-    </mat-toolbar>
+    <div *ngIf="user.tipo == 'administrador'">
+        <h1>Panel de Control Administrador</h1>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
+                <button mat-button (click)="mostrarRegistroEmpleado()"> Resgistrar Empleado</button>
+                <button mat-button (click)="mostrarListadoCuentas()"> Ver Cuentas</button>
+            </mat-toolbar-row>
+        </mat-toolbar>
 
-    <div *ngIf="boolRegistroCliente == true">
-        <h2>Registrar nuevo Cliente</h2>
-        <app-registro></app-registro>
+        <div *ngIf="boolRegistroCliente == true">
+            <h2>Registrar nuevo Cliente</h2>
+            <app-registro></app-registro>
+        </div>
+
+        <div *ngIf="boolRegistroEmpleado == true">
+            <h2>Registrar nuevo Empleado</h2>
+            <app-registro-empleado></app-registro-empleado>
+        </div>
+
+        <!-- Estadisticas -->
+
+        <!-- Administrar Publicaciones -->
+
+        <div *ngIf="boolListadoCuentas == true">
+            <h2>Listado de Cuentas</h2>
+            <app-lista-de-personal></app-lista-de-personal>
+        </div>
+
+
     </div>
 
-    <div *ngIf="boolRegistroEmpleado == true">
-        <h2>Registrar nuevo Empleado</h2>
-        <app-registro-empleado></app-registro-empleado>
+    <div *ngIf="user.tipo == 'empleado'">
+
+        Panel de Control Empleado
+
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
+                <!-- <button mat-button (click)="mostrarAdministrarAplicaciones()"> Resgistrar Empleado</button> -->
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <div *ngIf="boolRegistroCliente == true">
+            <h2>Registrar nuevo Cliente</h2>
+            <app-registro></app-registro>
+            <app-form-alta-producto></app-form-alta-producto>
+        </div>
+
+
+        <!-- Administrar Publicaciones -->
+
     </div>
+    <div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">
+        <!-- //seguikiento servicios -->
+        <!-- //subir Publicaciones -->
+        <!-- //reseñas -->
 
-    <!-- Estadisticas -->
 
-    <!-- Administrar Publicaciones -->
-
-    <div *ngIf="boolListadoCuentas == true">
-        <h2>Listado de Cuentas</h2>
-        <app-lista-de-personal></app-lista-de-personal>
     </div>
-
-
-</div>
-
-<div *ngIf="user.tipo == 'empleado'">
-
-    Panel de Control Empleado
-
-    <mat-toolbar color="primary">
-        <mat-toolbar-row>
-            <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
-            <!-- <button mat-button (click)="mostrarAdministrarAplicaciones()"> Resgistrar Empleado</button> -->
-        </mat-toolbar-row>
-    </mat-toolbar>
-
-    <div *ngIf="boolRegistroCliente == true">
-        <h2>Registrar nuevo Cliente</h2>
-        <app-registro></app-registro>
-    </div>
-
-
-    <!-- Administrar Publicaciones -->
-
-</div>
-<div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">
-    <!-- //seguikiento servicios -->
-    <!-- //subir Publicaciones -->
-    <!-- //reseñas -->
-    <app-form-alta-producto></app-form-alta-producto>
-
-
 </div>

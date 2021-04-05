@@ -9,15 +9,15 @@
         <span class="material-icons" id="iconIniciarSesion" *ngIf="!mostrarHamburger"> login </span>
     </div>
     <div id="divButtonsContent">
-        <a mat-button href="#">Inicio</a>
-        <a mat-button href="#">Servicios</a>
-        <a mat-button href="#">Acerca de nosotros</a>
-        <a mat-button routerLink='/upload-image'>Contacto</a>
+        <a mat-button routerLink="/home">Inicio</a>
+        <a mat-button href="#appServicios">Servicios</a>
+        <a mat-button href="#appHistoryWrapper">Acerca de nosotros</a>
+        <a mat-button href='#appConsultaAnonima'>Contacto</a>
 
         <a mat-raised-button id="btnIniciarSesion" class="accent-color"  *ngIf="!userIsLogged" (click)="enviarEventoDeIngreso()">Ingresar</a>
 
         <a mat-raised-button id="btnIniciarSesion" class="accent-color" routerLink="/testeo" *ngIf="userIsLogged" >Ir a la tienda</a>
        <!-- todo hacer responsove foto -->
-        <a mat-button href="usuario" *ngIf="userIsLogged"><img src="{{user.foto}}" style="width: 40px;"> {{user.nombre}}</a>
+        <a  mat-button href="usuario" *ngIf="user"><img src="{{user.foto}}" style="width: 40px;"> {{user.nombre}}</a>
     </div>
 </mat-toolbar>
