@@ -1,0 +1,35 @@
+<div class="divDetalleConsultaContainer">
+    <div class="divLetter">
+        <mat-toolbar>
+            <span>Cliente: {{consulta.apellido}} {{consulta.nombre}}</span>
+            <span style="position: relative;">{{consulta.horaConsulta}}</span>
+        </mat-toolbar>
+        <div class="divBodyLetter">
+            <div class="divConsultasCliente">
+                <br>
+                <h6>{{consulta.correo}}</h6>
+                <p style="word-break: break-word;">{{consulta.consulta}}</p>
+            </div>
+            <div class="divRespuestaEmpleado">
+                <form [formGroup]="respuestaForm">
+                    <mat-form-field appearance="fill">
+                        <textarea class="textAreaRespuesta" matInput formControlName="respuestaValida"
+                            class="form-control" placeholder="Ingrese la respuesta para el cliente" required
+                            rows="5"></textarea>
+                    </mat-form-field>
+                    <div class="divEnviar">
+                        <img class="imgCarta" *ngIf="mostrarAnimacion" src="../../../assets/images/cartaCerrada.png"
+                            alt="Enviar respuesta">
+                        <img class="imgAvion" *ngIf="mostrarAnimacion" src="../../../assets/images/sendSvg.svg"
+                            alt="Enviar respuesta">
+                        <div style="display: flex; justify-content: space-between;">
+                            <button *ngIf="!mostrarAnimacion" (click)="cerrarFormulario()" class="btn btn-secondary">Volver</button>
+                            <button (click)="enviarRespuesta()" [disabled]="!respuestaForm.valid"
+                                *ngIf="!mostrarAnimacion" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
