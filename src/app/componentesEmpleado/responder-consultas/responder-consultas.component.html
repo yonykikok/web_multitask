@@ -1,19 +1,55 @@
-<div class="divCardsContainer">
+<div *ngIf="listadoConsultasSinResponder.length != 0">
 
-    <div *ngFor="let consulta of listadoConsultasSinResponder">
+
+  <table mat-table [dataSource]="this.listadoConsultasSinResponder" class="mat-elevation-z8">
   
-      <mat-card class="divCard" *ngIf="consulta.estadoConsulta=='sinResponder'">
-
-        <hr style="margin: 10px;">
-        <mat-card-title>{{consulta.correo}}</mat-card-title>
-        <mat-card-subtitle class="visibility-hover">{{consulta.consulta}}</mat-card-subtitle>
     
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre | uppercase}}</td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef> Apellido </th>
+      <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+        <td mat-cell *matCellDef="let element"> {{element.horaConsulta}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef> Correo </th>
+        <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+    </ng-container>
 
-        <mat-card-actions class="divButtonsProducto">
-                  <button mat-button color="primary">Marcar como resuelta</button>
-        </mat-card-actions> 
 
-      </mat-card>
-    </div>
+    <ng-container matColumnDef="consulta">
+      <th mat-header-cell *matHeaderCellDef> Consulta </th>
+      <td mat-cell *matCellDef="let element"> {{element.consulta}} </td>
+  </ng-container>
+  
+  
+    <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef> Accion </th>
+        <td mat-cell *matCellDef="let element"> 
+        <button mat-raised-button color="warn" style="margin-right:5px;" (click)="marcarComoResuelta(element.correo, element.horaConsulta)">Marcar como resuelta</button>  
+        </td>
+    </ng-container>
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  </table>
   
   </div>
+
+
+  
+  
+
