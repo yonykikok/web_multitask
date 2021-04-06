@@ -19,24 +19,28 @@ import { DatabaseService } from 'src/app/servicios/database.service';
 })
 export class ResponderConsultasComponent implements OnInit {
 
+  mostrarDetalladoConsulta=false;
   listadoConsultasSinResponder: any[] = [];
-  displayedColumns: string[] = ['nombre', 'apellido', 'fecha', 'correo', 'consulta', 'accion'];
+  displayedColumns: string[] = ['cliente', 'fecha', 'accion'];
 
   constructor(private authService: AuthService, private firestore: AngularFirestore, private dataBase : DatabaseService) { }
 
   ngOnInit(): void {
 
-    this.listadoConsultasSinResponder = this.cargarConsultas("sinResponder");
+    this.listadoConsultasSinResponder = this.cargarConsultas();
+   
 
   }
-
+  leerConsulta(){
+    this.mostrarDetalladoConsulta=true;
+  }
 
   // Esta funcion carga las publicaciones de la base de datos. Incoporar estado.
-  cargarConsultas(estadoConsulta): any {
+  cargarConsultas(): any {
     var listaPublicaciones = [];
     this.firestore.collection("consultasAnonimas").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
-        if (doc.data()['estadoConsulta'] == estadoConsulta) 
+        if (doc.data()['estadoConsulta'] != 'respondido') 
         {
           listaPublicaciones.push(doc.data());
         }
@@ -48,25 +52,26 @@ export class ResponderConsultasComponent implements OnInit {
   }
 
 
+
   // esta funcion cambia el estado de la consulta a "respondida"
-  marcarComoResuelta(correo, horaConsulta)
+  cambiarEstadoEnFirebase(consultaRespondida)
   {
-    let auxConsulta = null;
+    // let auxConsulta = null;
     
     this.firestore.collection("consultasAnonimas").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
-        if (doc.data()['correo'] == correo && doc.data()['horaConsulta'] == horaConsulta) 
+        if (doc.data()['correo'] == consultaRespondida.correo && doc.data()['horaConsulta'] == consultaRespondida.horaConsulta) 
         {
-          console.log(doc.data());
-          auxConsulta = doc.data();
-          auxConsulta.estadoConsulta = "respondido";
-          this.dataBase.actualizar("consultasAnonimas", auxConsulta, doc.id);
+          // console.log(doc.data());
+          // auxConsulta = doc.data();
+          this.dataBase.actualizar("consultasAnonimas", consultaRespondida, doc.id);
 
-
-          setTimeout(() => {
-            auxConsulta = null; // seteo a null nuevamente la consulta.
-            this.ngOnInit(); // Esto hace que me vuelva a cargar el listado, con los estados cambiados.
-          }, 500);
+          if(consultaRespondida.estadoConsulta!='leido'){
+            setTimeout(() => {
+              // auxConsulta = null; // seteo a null nuevamente la consulta.
+              this.listadoConsultasSinResponder = this.cargarConsultas();
+            }, 500);
+          }
         }
 
       })
@@ -74,8 +79,18 @@ export class ResponderConsultasComponent implements OnInit {
 
   }
 
-
-
+marcarComoLeido(consulta){
+  consulta.estadoConsulta='leido';
+  this.cambiarEstadoEnFirebase(consulta);
+  this.mostrarDetalladoConsulta=false;
+}
+enviarRespuesta(consultaRespondida){
+  if( consultaRespondida!= null &&  consultaRespondida.respuesta.length>1){
+    consultaRespondida.estadoConsulta='respondido';    
+    this.cambiarEstadoEnFirebase(consultaRespondida);
+    this.mostrarDetalladoConsulta=false;
+  }
+}
 
 
 }

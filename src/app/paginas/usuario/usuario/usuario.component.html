@@ -4,7 +4,6 @@
 <div *ngIf="user">
 
 
-
     <div has-header="true">
         <div id="profile-bg"></div>
         <div id="content">
@@ -85,7 +84,7 @@
         </div>
 
 
-        
+
         <div *ngIf="boolResponderConsultas == true">
             <h2>Consultas pendientes</h2>
             <app-responder-consultas></app-responder-consultas>
@@ -100,7 +99,14 @@
 
 
     </div>
-    <div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">
+    <div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'"
+        style="display: flex; justify-content: center; align-items: center;">
+        <div>
+            <button style="min-width: 100%;" class="btn btn-primary"
+                (click)="mostrarFormularioPublicar=!mostrarFormularioPublicar">Toggle publicar test</button>
+
+            <app-form-alta-producto *ngIf="mostrarFormularioPublicar"></app-form-alta-producto>
+        </div>
         <!-- //seguikiento servicios -->
         <!-- //subir Publicaciones -->
         <!-- //reseñas -->

@@ -7,3 +7,10 @@ table {
 button{
     width: 100%;
 }
+
+.imgMensaje{
+  width: 40px;
+}
+.imgMensaje:active{
+  transform: scale(0.9);
+}

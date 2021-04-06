@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/servicios/auth.service';
 
 export class UsuarioComponent implements OnInit {
 
+  mostrarFormularioPublicar=false;
+  
   user: Usuario;
   currentUser$: Observable<Usuario>;
 

@@ -3,7 +3,7 @@ button{
 }
 
 #profile-bg {
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 44px;
     width: 100%;
