@@ -63,6 +63,9 @@
 
     </div>
 
+
+
+
     <div *ngIf="user.tipo == 'empleado'">
 
         Panel de Control Empleado
@@ -71,17 +74,30 @@
             <mat-toolbar-row>
                 <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
                 <!-- <button mat-button (click)="mostrarAdministrarAplicaciones()"> Resgistrar Empleado</button> -->
+                <button mat-button (click)="mostrarResponderConsultas()"> Responder Consultas </button>
+
             </mat-toolbar-row>
         </mat-toolbar>
 
         <div *ngIf="boolRegistroCliente == true">
             <h2>Registrar nuevo Cliente</h2>
             <app-registro></app-registro>
-            <app-form-alta-producto></app-form-alta-producto>
+        </div>
+
+
+        
+        <div *ngIf="boolResponderConsultas == true">
+            <h2>Consultas pendientes</h2>
+            <app-responder-consultas></app-responder-consultas>
         </div>
 
 
         <!-- Administrar Publicaciones -->
+
+
+
+
+
 
     </div>
     <div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">

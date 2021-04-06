@@ -30,7 +30,8 @@ export class RealizarConsultaAnonimaComponent implements OnInit {
     apellido: "",
     correo: "",
     consulta:"",
-    horaConsulta:""
+    horaConsulta:"",
+    estadoConsulta:"sinResponder"
   };
 
   

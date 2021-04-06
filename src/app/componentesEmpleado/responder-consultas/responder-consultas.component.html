@@ -1,0 +1,19 @@
+<div class="divCardsContainer">
+
+    <div *ngFor="let consulta of listadoConsultasSinResponder">
+  
+      <mat-card class="divCard" *ngIf="consulta.estadoConsulta=='sinResponder'">
+
+        <hr style="margin: 10px;">
+        <mat-card-title>{{consulta.correo}}</mat-card-title>
+        <mat-card-subtitle class="visibility-hover">{{consulta.consulta}}</mat-card-subtitle>
+    
+
+        <mat-card-actions class="divButtonsProducto">
+                  <button mat-button color="primary">Marcar como resuelta</button>
+        </mat-card-actions> 
+
+      </mat-card>
+    </div>
+  
+  </div>

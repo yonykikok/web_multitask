@@ -18,6 +18,10 @@ export class UsuarioComponent implements OnInit {
   boolRegistroCliente = false;
   boolRegistroEmpleado = false;
   boolListadoCuentas = false;
+  
+
+  // EMPLEADO
+  boolResponderConsultas = false;
 
   constructor(private authService: AuthService) { }
 
@@ -33,6 +37,7 @@ export class UsuarioComponent implements OnInit {
     this.boolRegistroCliente = true;
     this.boolRegistroEmpleado = false;
     this.boolListadoCuentas = false;
+    this.boolResponderConsultas = false;
 
   }
 
@@ -46,7 +51,17 @@ export class UsuarioComponent implements OnInit {
     this.boolRegistroCliente = false;
     this.boolRegistroEmpleado = false;
     this.boolListadoCuentas = true;
+   
   }
+
+
+  // EMPLEADO
+
+  mostrarResponderConsultas() {
+    this.boolRegistroCliente = false;
+    this.boolResponderConsultas = true;
+  }
+
 
 
 

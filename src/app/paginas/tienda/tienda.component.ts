@@ -56,9 +56,6 @@ export class TiendaComponent implements OnInit {
     }
   
 
-
-
-  // ERROR CON ESTO. A VECES TARDA EN ENCONTRAR TODO.
   // Esta funcion carga las publicaciones de la base de datos. Incoporar estado.
   cargarPublicacionesActivas(): any {
     var listaPublicaciones = [];

@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  .divAvatarUsuario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .divCardsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  
+  mat-card {
+    overflow: hidden;
+    margin: 20px;
+    width: 330px;
+    /* height: 450px; */
+    box-shadow: 0 0 10px var(--colorPrincipal) !important;
+  }
+  
+  mat-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
