@@ -18,7 +18,7 @@ import { DatabaseService } from 'src/app/servicios/database.service';
   styleUrls: ['./responder-consultas.component.css']
 })
 export class ResponderConsultasComponent implements OnInit {
-
+  consultaSeleccionada;
   mostrarDetalladoConsulta=false;
   listadoConsultasSinResponder: any[] = [];
   displayedColumns: string[] = ['cliente', 'fecha', 'accion'];
@@ -31,7 +31,8 @@ export class ResponderConsultasComponent implements OnInit {
    
 
   }
-  leerConsulta(){
+  leerConsulta(consulta){
+    this.consultaSeleccionada=consulta;
     this.mostrarDetalladoConsulta=true;
   }
 

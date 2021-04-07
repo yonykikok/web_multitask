@@ -1,6 +1,6 @@
 
 <div *ngIf="listadoConsultasSinResponder.length != 0">
-  <app-detallado-consulta-anonima *ngIf="mostrarDetalladoConsulta" (enviarRespuestaEvent)="enviarRespuesta($event)" (cerrarFormularioEvent)="marcarComoLeido($event)" [consulta]="listadoConsultasSinResponder[0]"></app-detallado-consulta-anonima>
+  <app-detallado-consulta-anonima *ngIf="mostrarDetalladoConsulta" (enviarRespuestaEvent)="enviarRespuesta($event)" (cerrarFormularioEvent)="marcarComoLeido($event)" [consulta]="consultaSeleccionada"></app-detallado-consulta-anonima>
 
   
   <table mat-table [dataSource]="this.listadoConsultasSinResponder" class="mat-elevation-z8">
@@ -33,9 +33,9 @@
       <th mat-header-cell *matHeaderCellDef> Estado </th>
       <td mat-cell *matCellDef="let element">
         <img class="imgMensaje" src="../responder-consultas/../../../assets/images/cartaCerrada.png"
-          alt="mensaje sin leer" *ngIf="element.estadoConsulta !='leido'" (click)="leerConsulta()">
+          alt="mensaje sin leer" *ngIf="element.estadoConsulta !='leido'" (click)="leerConsulta(element)">
         <img class="imgMensaje" style="width: 40px;" src="../responder-consultas/../../../assets/images/cartaAbierta.png"
-          alt="mensaje leido" *ngIf="element.estadoConsulta =='leido'" (click)="leerConsulta()">
+          alt="mensaje leido" *ngIf="element.estadoConsulta =='leido'" (click)="leerConsulta(element)">
         <!-- <button mat-raised-button color="warn" style="margin-right:5px;"
           (click)="marcarComoResuelta(element.correo, element.horaConsulta)">Marcar como resuelta</button> -->
       </td>

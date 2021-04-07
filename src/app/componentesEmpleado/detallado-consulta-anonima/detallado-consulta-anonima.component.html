@@ -1,8 +1,8 @@
 <div class="divDetalleConsultaContainer">
     <div class="divLetter">
         <mat-toolbar>
-            <span>Cliente: {{consulta.apellido}} {{consulta.nombre}}</span>
-            <span style="position: relative;">{{consulta.horaConsulta}}</span>
+            <span> {{consulta.apellido}} {{consulta.nombre}}</span>
+            <span style="position: relative; font-size: 70%;">{{consulta.horaConsulta}}</span>
         </mat-toolbar>
         <div class="divBodyLetter">
             <div class="divConsultasCliente">
@@ -23,7 +23,8 @@
                         <img class="imgAvion" *ngIf="mostrarAnimacion" src="../../../assets/images/sendSvg.svg"
                             alt="Enviar respuesta">
                         <div style="display: flex; justify-content: space-between;">
-                            <button *ngIf="!mostrarAnimacion" (click)="cerrarFormulario()" class="btn btn-secondary">Volver</button>
+                            <button *ngIf="!mostrarAnimacion" (click)="cerrarFormulario()"
+                                class="btn btn-secondary">Volver</button>
                             <button (click)="enviarRespuesta()" [disabled]="!respuestaForm.valid"
                                 *ngIf="!mostrarAnimacion" class="btn btn-primary">Enviar</button>
                         </div>
