@@ -10,9 +10,9 @@
     </div>
     <div id="divButtonsContent">
         <a mat-button routerLink="/home">Inicio</a>
-        <a mat-button href="#appServicios">Servicios</a>
-        <a mat-button href="#appHistoryWrapper">Acerca de nosotros</a>
-        <a mat-button href='#appConsultaAnonima'>Contacto</a>
+        <a mat-button href="#appServicios" class="btnRedireccionar"  (click)="scrollToElement($event,'#appServicios')">Servicios</a>
+        <a mat-button href="#appHistoryWrapper"  class="btnRedireccionar" (click)="scrollToElement($event,'#appHistoryWrapper')"> Acerca de nosotros</a>
+        <a mat-button href='#appConsultaAnonima' class="btnRedireccionar"  (click)="scrollToElement($event,'#appConsultaAnonima')">Contacto</a>
 
         <a mat-raised-button id="btnIniciarSesion" class="accent-color"  *ngIf="!userIsLogged" (click)="enviarEventoDeIngreso()">Ingresar</a>
 

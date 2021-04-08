@@ -114,6 +114,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { RealizarConsultaAnonimaComponent } from './componentes/realizar-consulta-anonima/realizar-consulta-anonima.component';
 import { ResponderConsultasComponent } from './componentesEmpleado/responder-consultas/responder-consultas.component';
 import { DetalladoConsultaAnonimaComponent } from './componentesEmpleado/detallado-consulta-anonima/detallado-consulta-anonima.component';
+import { SpinnerComponent } from './componentes/spinner/spinner.component';
 //import { HorarioDeAperturaComponent } from './componentes/horario-de-apertura/horario-de-apertura.component';
 
 //import { SpinnerComponent } from './componentes/spinner/spinner.component';
@@ -128,6 +129,7 @@ import { DetalladoConsultaAnonimaComponent } from './componentesEmpleado/detalla
     CarouselComponent,
     RegistroComponent,
     StepperComponent,
+    SpinnerComponent,
     StoryWrapComponent,
     TiendaComponent,
     ProductToSellCardComponent,

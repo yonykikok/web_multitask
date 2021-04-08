@@ -38,6 +38,18 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  scrollToElement(e,href){   
+      e.preventDefault();      
+      let element=document.querySelector(href);
+        console.log(e.path[1]);
+      if(element !=null){        
+        scroll({
+          top: element.offsetTop,
+          behavior: "smooth"
+        });
+      }
+    
+  }
   enviarEventoDeIngreso(){
     this.ingresarEventClick.emit();
   }

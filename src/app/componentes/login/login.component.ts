@@ -135,7 +135,6 @@ quiereRegistrarse = false;
     return retorno;
   }
 
-
   
   onSubmitLogin()
   {    

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 
 // FIREBASE:
@@ -22,6 +22,8 @@ import { Router } from '@angular/router';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable } from 'rxjs';
+import { Usuario } from 'src/app/clases/usuario';
 
 
 @Component({
@@ -30,9 +32,12 @@ import { MatChipInputEvent } from '@angular/material/chips';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-
+  mostrarSpinner=false;
   private ocultaClave = true;
+  @Output() ingresarEventClick:EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  user: Usuario;
+  currentUser$: Observable<Usuario>;
   preimagen;
   seEligioImagen = false;
 
@@ -220,9 +225,28 @@ export class RegistroComponent implements OnInit {
   }
 
 
+  onSubmitLogin(correo,clave)
+  {    
+    this.authService.login(correo, clave)  
+    .then ((res) => {      
+      // this.ingresarEventClick.emit();
+      this.currentUser$ = this.authService.obtenerUsuario$();
+      this.currentUser$.subscribe(usuarios => {
+      this.user = usuarios;
+      this.mostrarSpinner=false;
+      this.ingresarEventClick.emit();
+
+    });
+    this.authService.actualizarUsuario();
+
+  }
+    )  
+    .catch(err => alert("Los datos son incorrectos. No existe tal usuario"));
+  }
+  
 
   registrarUsuarioBD() {
-
+    this.mostrarSpinner=true;
     if (this.usuarioJSON.contrasenia == this.usuarioJSON.repetirContrasenia) {
 
       if (this.seEligioImagen == true) {
@@ -241,8 +265,10 @@ export class RegistroComponent implements OnInit {
             this.dataBase.crear('usuarios', this.usuarioJSON)
 
               .then(resultado => {
-                this.authService.register(this.usuarioJSON.correo, this.usuarioJSON.contrasenia)
-
+                this.authService.register(this.usuarioJSON.correo, this.usuarioJSON.contrasenia).then(()=>{
+                //aca hay que llevar al usuario al login o autologearse!
+                  this.onSubmitLogin(this.usuarioJSON.correo,this.usuarioJSON.contrasenia);
+                }  )
                 .catch(err => alert("INCORRECTO"))
               })
 
