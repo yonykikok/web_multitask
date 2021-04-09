@@ -1,0 +1,35 @@
+<div class="divContainerDialog">
+    <mat-dialog-content class="mat-typography">
+        <div class="divHeadContainer">
+            <div class="imgContainer">
+                <img *ngFor="let foto of publicacion.fotos" src="{{foto}}" alt="foto ilustrativa del producto">
+            </div>
+            <div class="divDetallesProducto">
+                <h1 mat-dialog-title>{{publicacion.titulo}} <p class="idPublicacion">id: {{publicacion.id}}</p>
+                </h1>
+                <p><b>Estado: </b>{{publicacion.estado}}</p>
+                <p class="precio">{{publicacion.precio|currency}}</p>
+
+            </div>
+        </div>
+        <hr>
+        <div class="descripcionContainer">
+            <p>{{publicacion.descripcion}}</p>
+        </div>
+        <hr>
+        <div class="garantiaContainer">
+            <p *ngIf="publicacion.garantia=='conGarantia'" >Garantia: SI <span class="material-icons" style="color: green;"> done_all </span>
+            </p>
+            <p *ngIf="publicacion.garantia=='conGarantia'">Detalle de la garantia: {{publicacion.detalleGarantia}}</p>
+            <p *ngIf="publicacion.garantia=='sinGarantia'">Garantia: NO <mat-icon style=" color: red; ">warning
+                </mat-icon>
+            </p>
+        </div>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="'ACACA'">Rechazar</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+img {
+  height: 250px;
+  width: auto;
+  max-width: 200px;
+}
+.divContainerDialog {
+  text-align: center;
+}
+
+hr {
+  margin: 20px;
+  box-shadow: 0 0 10px var(--colorPrincipal);
+}
+.divDetallesProducto {
+  text-align: left;
+  width: 30%;
+}
+.imgContainer {
+  width: 70%;
+}
+.divHeadContainer {
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  font-weight: 600;
+  line-height: 1.18;
+  word-break: break-word;
+  hyphens: auto;
+}
+.idPublicacion {
+  font-size: 10px;
+  font-weight: normal;
+}
+.precio {
+  font-size: 30px;
+  font-weight: 4;
+  line-height: 2.5;
+}
+.garantiaContainer p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

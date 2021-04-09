@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Producto } from 'src/app/clases/producto/producto';
 import { Usuario } from 'src/app/clases/usuario';
@@ -14,6 +15,7 @@ import { StorageService } from 'src/app/shared/upload-image/storage.service';
 })
 export class FormAltaProductoComponent implements OnInit {
 
+  mostrarSpinner=false;
   mostrarTextAreaDeGarantia=false;
   imagenesSeleccionadas=false;
   
@@ -34,7 +36,8 @@ export class FormAltaProductoComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
     private readonly storageService:StorageService,
     private authService:AuthService,
-    private dataBase:DatabaseService) {}
+    private dataBase:DatabaseService,
+    private router:Router) {}
 
   ngOnInit() {
     this.hayImagenesSeleccionadas$ = InfoCompartidaService.obtenerSiHayImagenesSeleccionadas$();
@@ -80,7 +83,7 @@ export class FormAltaProductoComponent implements OnInit {
 
 
   publicarProducto(){    
-   
+   this.mostrarSpinner=true;
    let publicacion={
       titulo:this.tituloFormGroup.controls['tituloControl'].value,
       estado:this.estadoFormGroup.controls['estadoControl'].value,
@@ -105,6 +108,8 @@ export class FormAltaProductoComponent implements OnInit {
        setTimeout(() => {
         publicacion.fotos=StorageService.arrayImagenes;
          this.dataBase.crear('publicaciones',publicacion).then((res)=>{
+           this.mostrarSpinner=false;
+           this.router.navigateByUrl('/testeo');
          });
        }, 5000);
   

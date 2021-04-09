@@ -16,19 +16,6 @@
       <td mat-cell *matCellDef="let element"> {{element.horaConsulta}} </td>
     </ng-container>
 
-<!-- 
-    <ng-container matColumnDef="correo">
-      <th mat-header-cell *matHeaderCellDef> Correo </th>
-      <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
-    </ng-container> -->
-
-
-    <!-- <ng-container matColumnDef="consulta">
-      <th mat-header-cell *matHeaderCellDef> Consulta </th>
-      <td mat-cell *matCellDef="let element"> {{element.consulta}} </td>
-    </ng-container> -->
-
-
     <ng-container matColumnDef="accion">
       <th mat-header-cell *matHeaderCellDef> Estado </th>
       <td mat-cell *matCellDef="let element">
@@ -36,19 +23,9 @@
           alt="mensaje sin leer" *ngIf="element.estadoConsulta !='leido'" (click)="leerConsulta(element)">
         <img class="imgMensaje" style="width: 40px;" src="../responder-consultas/../../../assets/images/cartaAbierta.png"
           alt="mensaje leido" *ngIf="element.estadoConsulta =='leido'" (click)="leerConsulta(element)">
-        <!-- <button mat-raised-button color="warn" style="margin-right:5px;"
-          (click)="marcarComoResuelta(element.correo, element.horaConsulta)">Marcar como resuelta</button> -->
+    
       </td>
     </ng-container>
-    <!-- <ng-container matColumnDef="accion">
-      <th mat-header-cell *matHeaderCellDef> Accion </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button color="warn" style="margin-right:5px;"
-          (click)="marcarComoResuelta(element.correo, element.horaConsulta)">Marcar como resuelta</button>
-      </td>
-    </ng-container> -->
-
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 

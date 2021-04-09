@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 
 export class UsuarioComponent implements OnInit {
-
+  mostrarPublicacionesPendientes=false;
   mostrarFormularioPublicar=false;
   
   user: Usuario;

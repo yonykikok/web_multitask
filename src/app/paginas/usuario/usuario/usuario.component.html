@@ -74,6 +74,7 @@
                 <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
                 <!-- <button mat-button (click)="mostrarAdministrarAplicaciones()"> Resgistrar Empleado</button> -->
                 <button mat-button (click)="mostrarResponderConsultas()"> Responder Consultas </button>
+                <button mat-button (click)="mostrarPublicacionesPendientes=true"> Publicaciones pendientes </button>
 
             </mat-toolbar-row>
         </mat-toolbar>
@@ -81,6 +82,11 @@
         <div *ngIf="boolRegistroCliente == true">
             <h2>Registrar nuevo Cliente</h2>
             <app-registro></app-registro>
+        </div>
+
+        <div *ngIf="mostrarPublicacionesPendientes == true">
+            <h2>Mostrar publicaciones pendientes</h2>
+            <app-revisar-publicaciones-pendientes></app-revisar-publicaciones-pendientes>
         </div>
 
 

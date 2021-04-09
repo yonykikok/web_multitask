@@ -43,7 +43,7 @@
 
   <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
 
-    <mat-card class="divCard" *ngIf="publicacion.estadoPublicacion!='todas'">
+    <mat-card class="divCard" *ngIf="publicacion.estadoPublicacion=='aceptado'">
       <!-- <mat-card-header >
                    <div mat-card-avatar class="example-header-image"></div> 
                    <mat-card-title>{{producto.titulo}}</mat-card-title>

@@ -115,6 +115,8 @@ import { RealizarConsultaAnonimaComponent } from './componentes/realizar-consult
 import { ResponderConsultasComponent } from './componentesEmpleado/responder-consultas/responder-consultas.component';
 import { DetalladoConsultaAnonimaComponent } from './componentesEmpleado/detallado-consulta-anonima/detallado-consulta-anonima.component';
 import { SpinnerComponent } from './componentes/spinner/spinner.component';
+import { RevisarPublicacionesPendientesComponent } from './componentesEmpleado/revisar-publicaciones-pendientes/revisar-publicaciones-pendientes.component';
+import { DetalladoPublicacionComponent } from './componentes/detallado-publicacion/detallado-publicacion.component';
 //import { HorarioDeAperturaComponent } from './componentes/horario-de-apertura/horario-de-apertura.component';
 
 //import { SpinnerComponent } from './componentes/spinner/spinner.component';
@@ -147,6 +149,8 @@ import { SpinnerComponent } from './componentes/spinner/spinner.component';
     RealizarConsultaAnonimaComponent,
     ResponderConsultasComponent,
     DetalladoConsultaAnonimaComponent,
+    RevisarPublicacionesPendientesComponent,
+    DetalladoPublicacionComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],
