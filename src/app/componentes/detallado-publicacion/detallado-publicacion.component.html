@@ -9,6 +9,8 @@
                 </h1>
                 <p><b>Estado: </b>{{publicacion.estado}}</p>
                 <p class="precio">{{publicacion.precio|currency}}</p>
+                <button class="btnAcciones" mat-raised-button color="primary">Comprar ahora</button>
+                <button class="btnAcciones" mat-stroked-button color="accent">Permutar</button>
 
             </div>
         </div>
@@ -18,7 +20,8 @@
         </div>
         <hr>
         <div class="garantiaContainer">
-            <p *ngIf="publicacion.garantia=='conGarantia'" >Garantia: SI <span class="material-icons" style="color: green;"> done_all </span>
+            <p *ngIf="publicacion.garantia=='conGarantia'">Garantia: SI <span class="material-icons"
+                    style="color: green;"> done_all </span>
             </p>
             <p *ngIf="publicacion.garantia=='conGarantia'">Detalle de la garantia: {{publicacion.detalleGarantia}}</p>
             <p *ngIf="publicacion.garantia=='sinGarantia'">Garantia: NO <mat-icon style=" color: red; ">warning
@@ -28,7 +31,7 @@
 
 
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
+    <mat-dialog-actions align="end" *ngIf="!esVistaCompleta">
         <button mat-button [mat-dialog-close]="'ACACA'">Rechazar</button>
         <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
     </mat-dialog-actions>

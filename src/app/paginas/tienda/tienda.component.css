@@ -8,46 +8,12 @@
   align-items: center;
 }
 .divCardsContainer {
+  width: 100vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   text-align: center;
   flex-wrap: wrap;
-}
-
-mat-card {
-  overflow: hidden;
-  margin: 20px;
-  width: 330px;
-  /* height: 450px; */
-  box-shadow: 0 0 10px var(--colorPrincipal) !important;
-}
-
-mat-card-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-mat-card img {
-  max-width: 90%;
-  max-height: 330px;
-  width: auto;
-}
-.divImgContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 330px;
-}
-.divDescripcionProducto {
-  display: none;
-}
-.divButtonsProducto {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: 20px;
 }
 
 /* DE ACÁ EN ADELANTE, CSS DE JONY*/
@@ -68,35 +34,6 @@ mat-card img {
 .divPerfilUsuario {
   position: absolute;
   right: 10px;
-}
-
-select {
-  border: none;
-  appearance: none;
-}
-
-.visibility-hover {
-  transition: 1s;
-  visibility: hidden;
-}
-mat-card:hover .visibility-hover {
-  visibility: visible;
-}
-
-.mostrar-hover {
-  display: none;
-}
-.ocultar-hover {
-  display: inline;
-}
-mat-card:hover .mostrar-hover {
-  display: inline;
-}
-mat-card:hover .ocultar-hover {
-  display: none;
-}
-hr {
-  box-shadow: 0 0 2px var(--colorPrincipal);
 }
 
 .displayNoneInPhone {

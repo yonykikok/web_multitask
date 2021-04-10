@@ -1,6 +1,14 @@
-  <div class="card" >
-    <img class="card-img-top" src="https://www.compraensanjuan.com/fotos_articulos/1703085_1.jpg" alt="Card image cap">
-    <div class="card-body">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-  </div>
+<mat-card class="divCard" *ngIf="publicacion.estadoPublicacion=='aceptado'">
+
+  <ngb-carousel id="divCarousel" style="height: 70%;">
+    <ng-template ngbSlide *ngFor="let foto of publicacion.fotos">
+      <div class="divImgContainer">
+        <img class="imagen" mat-card-image class="img" src="{{foto}}">
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  <hr style="margin: 10px;">
+  <mat-card-title>{{publicacion.precio| currency }}</mat-card-title>
+  <mat-card-subtitle class="visibility-hover">{{publicacion.titulo}}</mat-card-subtitle>
+  <span   id="btnMostrarDetallado" class="material-icons" (click)="openDialog(publicacion)"> launch </span>
+</mat-card>

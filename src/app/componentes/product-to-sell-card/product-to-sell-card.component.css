@@ -1,17 +1,70 @@
 
-.card{
-    margin: 10px;
-    display: inline-flex;
-    width: 324px;
-    height: 424px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (max-width: 500px) {
-    
-    .card{
-        width: 90vw;
-        left: 5vw;
-    }
+mat-card {
+    overflow: hidden;
+    margin: 20px;
+    width: 300px;
+    /* height: 450px; */
+    box-shadow: 0 0 10px var(--colorPrincipal) !important;
   }
+  
+  mat-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  mat-card img {
+    max-width: 90%;
+    max-height: 330px;
+    width: auto;
+  }
+  .divImgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 330px;
+  }
+  .divDescripcionProducto {
+    display: none;
+  }
+  .divButtonsProducto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 20px;
+  }
+  
+.visibility-hover {
+    transition: 1s;
+    visibility: hidden;
+  }
+  mat-card:hover .visibility-hover {
+    visibility: visible;
+  }
+  
+  .mostrar-hover {
+    display: none;
+  }
+  .ocultar-hover {
+    display: inline;
+  }
+  mat-card:hover .mostrar-hover {
+    display: inline;
+  }
+  mat-card:hover .ocultar-hover {
+    display: none;
+  }
+  hr {
+    box-shadow: 0 0 2px var(--colorPrincipal);
+  }
+  #btnMostrarDetallado{
+      float: right;
+      justify-content: right;
+      visibility: hidden;
+      color: var(--colorPrincipal);
+      cursor: pointer;
+  }
+  mat-card:hover #btnMostrarDetallado{
+      visibility: visible;
+  }
+

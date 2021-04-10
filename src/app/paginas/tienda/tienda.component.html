@@ -36,43 +36,13 @@
 <app-carousel></app-carousel>
 
 
-<!--<app-product-to-sell-card></app-product-to-sell-card> -->
 
 
 <div class="divCardsContainer">
-
+  
   <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
-
-    <mat-card class="divCard" *ngIf="publicacion.estadoPublicacion=='aceptado'">
-      <!-- <mat-card-header >
-                   <div mat-card-avatar class="example-header-image"></div> 
-                   <mat-card-title>{{producto.titulo}}</mat-card-title>
-                  <mat-card-subtitle> estado: {{producto.estado}}</mat-card-subtitle>
-                  <mat-card-subtitle>{{producto.precio| currency }}</mat-card-subtitle>
-                </mat-card-header> -->
-
-      <ngb-carousel id="divCarousel" style="height: 70%;">
-        <ng-template ngbSlide *ngFor="let foto of publicacion.fotos">
-          <div class="divImgContainer">
-            <img class="imagen" mat-card-image class="img" src="{{foto}}">
-          </div>
-        </ng-template>
-      </ngb-carousel>
-      <hr style="margin: 10px;">
-      <mat-card-title>{{publicacion.precio| currency }}</mat-card-title>
-      <mat-card-subtitle class="visibility-hover">{{publicacion.titulo}}</mat-card-subtitle>
-      <!-- <mat-card-content class="divDescripcionProducto">
-                  <p>
-                    {{producto.descripcion}}
-                  </p>
-                </mat-card-content> -->
-
-      <!-- <mat-card-actions class="divButtonsProducto">
-                  <button mat-button color="primary">Comprar</button>
-                  <button mat-button color="primary">Permutar</button>
-                </mat-card-actions> -->
-
-    </mat-card>
+    <app-product-to-sell-card [publicacion]="publicacion"></app-product-to-sell-card>
+    
   </div>
 
 </div>
