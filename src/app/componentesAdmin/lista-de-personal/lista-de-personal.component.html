@@ -1,6 +1,4 @@
 <div *ngFor="let persona of listado">
-
-
     <div class="cardsHorizontales">
 
         <div class="picture">
@@ -12,9 +10,8 @@
             <h4 class="title">Tipo: {{persona.tipo}}</h4>
             <h4 class="title">Correo: {{persona.correo}}</h4>
             <h4 class="title">DNI: {{persona.DNI}}</h4>
-            <!-- todo: eliminar cuenta y editar cuenta -->
-            <button mat-raised-button color="primary">Editar cuenta</button>
-            <button mat-raised-button color="warn">Borrar cuenta</button>
+            <button mat-raised-button color="primary" (click)="editarUsuario(persona)">Editar cuenta</button>
+            <button mat-raised-button color="warn" (click)="borrarUsuario(persona)">Borrar cuenta</button>
         </div>
     </div>
 
