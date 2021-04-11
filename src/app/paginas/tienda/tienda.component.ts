@@ -14,33 +14,34 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./tienda.component.css']
 })
 export class TiendaComponent implements OnInit {
+  mostrarFormularioPublicar = false;
   mostrar;
   user: Usuario;
   currentUser$: Observable<Usuario>;
   listadoDePublicaciones: any[] = [];
-  listadoDePublicacionesAMostrar=[];
+  listadoDePublicacionesAMostrar = [];
   inputSearch;
 
   constructor(private authService: AuthService, private firestore: AngularFirestore,
-    private formBuilder: FormBuilder ) {
+    private formBuilder: FormBuilder) {
     this.inputSearch = this.formBuilder.group({
-      textoABuscar: ['', [Validators.required ]]
-   });
-   }
+      textoABuscar: ['', [Validators.required]]
+    });
+  }
 
-   buscarCoincidencias(){
-     let textoABuscar=this.inputSearch.controls['textoABuscar'].value.toLocaleLowerCase();
-     let listaAuxiliar=[];
+  buscarCoincidencias() {
+    let textoABuscar = this.inputSearch.controls['textoABuscar'].value.toLocaleLowerCase();
+    let listaAuxiliar = [];
 
-     this.listadoDePublicaciones.forEach((publicacion)=>{
-      if(publicacion.descripcion.toLocaleLowerCase().includes(textoABuscar)||publicacion.titulo.toLocaleLowerCase().includes(textoABuscar)){
+    this.listadoDePublicaciones.forEach((publicacion) => {
+      if (publicacion.descripcion.toLocaleLowerCase().includes(textoABuscar) || publicacion.titulo.toLocaleLowerCase().includes(textoABuscar)) {
         listaAuxiliar.push(publicacion);
       }
-     });
-     this.listadoDePublicacionesAMostrar=listaAuxiliar;
-   }
+    });
+    this.listadoDePublicacionesAMostrar = listaAuxiliar;
+  }
   ngOnInit(): void {
-    
+
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
       this.user = usuarios;
@@ -50,11 +51,11 @@ export class TiendaComponent implements OnInit {
     this.listadoDePublicaciones = this.cargarPublicacionesActivas();
     this.listadoDePublicacionesAMostrar = this.listadoDePublicaciones;
 
-      
-   
 
-    }
-  
+
+
+  }
+
 
   // Esta funcion carga las publicaciones de la base de datos. Incoporar estado.
   cargarPublicacionesActivas(): any {
@@ -62,7 +63,7 @@ export class TiendaComponent implements OnInit {
     this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         //if (doc.data()['tipo'] != tipoUsuario) 
-          listaPublicaciones.push(doc.data());
+        listaPublicaciones.push(doc.data());
 
       })
     })
@@ -71,7 +72,7 @@ export class TiendaComponent implements OnInit {
   }
 
 
-  
+
 
 }
 

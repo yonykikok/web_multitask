@@ -10,11 +10,10 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 
 export class UsuarioComponent implements OnInit {
-  // mostrarPublicacionesPendientes=false;
-  mostrarFormularioPublicar=false;
-  
+ 
   user: Usuario;
   currentUser$: Observable<Usuario>;
+  pedido = "";
 
   //ADMIN
   boolRegistroCliente = false;
@@ -118,9 +117,5 @@ export class UsuarioComponent implements OnInit {
     this.boolResenias = false;
     this.boolConsultas = true;
   }
-
-
-
-
 
 }

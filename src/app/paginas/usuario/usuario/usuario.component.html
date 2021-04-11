@@ -52,7 +52,7 @@
 
         <div *ngIf="boolListadoCuentas == true">
             <h2>Listado de Cuentas</h2>
-            <app-lista-de-personal></app-lista-de-personal>
+            <app-lista-de-personal [pedido]="'admin'"></app-lista-de-personal>
         </div>
     </div>
 
@@ -80,7 +80,7 @@
 
         <div *ngIf="boolListadoCuentas == true">
             <h2>Listado de Clientes</h2>
-            <app-lista-de-personal></app-lista-de-personal>
+            <app-lista-de-personal [pedido]="'empleado'"></app-lista-de-personal>
         </div>
 
         <div *ngIf="boolResponderConsultas == true">
@@ -90,7 +90,7 @@
     </div>
 
     <!-- CLIENTE Y ST -->
-    <div *nngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">
+    <div *ngIf="user.tipo == 'cliente' || user.tipo == 'st'">
         <h1>Panel de Control Empleado</h1>
         <mat-toolbar color="primary">
             <mat-toolbar-row>
@@ -124,15 +124,5 @@
 
         </div> -->
     </div>
-
-    <!-- el boton para sublir publicaciones deberia estar en la tienda, no aca -->
-    <!-- 
-            <button style="min-width: 100%;" class="btn btn-primary"
-                (click)="mostrarFormularioPublicar=!mostrarFormularioPublicar">Toggle publicar test</button>
-
-            <app-form-alta-producto *ngIf="mostrarFormularioPublicar"></app-form-alta-producto>
-    -->
-
-
-
+    <!-- el boton para sublir publicaciones lo movi a la pag de tienda -s-->
 </div>

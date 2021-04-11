@@ -3,17 +3,23 @@
   <span class="mobileNotVisible">Tienda</span>
   <!-- Inicio buscador -->
   <div class="input-group inputSearch displayNoneInPhone" [formGroup]="inputSearch">
-    <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()" placeholder="Escribe lo que quieras buscar.">
+    <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()"
+      placeholder="Escribe lo que quieras buscar.">
     <div class="input-group-append">
-      <span class="input-group-text" id="basic-addon2"  >
+      <span class="input-group-text" id="basic-addon2">
         <span class="material-icons">
           search
         </span>
       </span>
     </div>
   </div>
-
   <!-- Fin buscador -->
+
+  <button class="btn btn-primary"
+    (click)="mostrarFormularioPublicar=!mostrarFormularioPublicar">Publicar</button>
+    <!-- hy que acomodarlo -->
+  <!-- <app-form-alta-producto *ngIf="mostrarFormularioPublicar"></app-form-alta-producto> -->
+
   <a href="/usuario" class="divAvatarUsuario">
     <div class="divPerfilUsuario" *ngIf="user">
       <p class="pNombreUsuario">{{user.nombre}}</p>
@@ -22,10 +28,11 @@
   </a>
 </mat-toolbar>
 
-<div class="input-group inputSearch displayInPhone"  [formGroup]="inputSearch">
-  <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()" placeholder="Escribe lo que quieras buscar.">
+<div class="input-group inputSearch displayInPhone" [formGroup]="inputSearch">
+  <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()"
+    placeholder="Escribe lo que quieras buscar.">
   <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2"  >
+    <span class="input-group-text" id="basic-addon2">
       <span class="material-icons">
         search
       </span>
@@ -39,10 +46,10 @@
 
 
 <div class="divCardsContainer">
-  
+
   <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
     <app-product-to-sell-card [publicacion]="publicacion"></app-product-to-sell-card>
-    
+
   </div>
 
 </div>
