@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-story-wrap',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story-wrap.component.css']
 })
 export class StoryWrapComponent implements OnInit {
+  @Output() ingresarEventClick:EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  enviarEventoDeIngreso(){
+    this.ingresarEventClick.emit();
+  }
 }

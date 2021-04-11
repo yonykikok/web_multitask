@@ -1,35 +1,70 @@
-span{
-    color: black;  
+body {
+  background-color: #fedf9e;
+  color: #000000;
+  font-family: "Avenir Next", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.home-page {
+  position: relative;
+  width: 90vw;
+  left: 5vw;
+  z-index: 3;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.button {
+  background-color: #000000;
+  border: 2px solid #000000;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  padding: 12px 32px 14px 32px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.site-header {
+  background-color: #fedf9e;
+  margin: 0%;
+}
+
+
+.home-page {
+  display: grid;
+  font-size: 24px;
+  grid-template-columns: 70% 40%;
+  line-height: 1.4;
+  margin: 0 15em 0 auto;
+  max-width: 70%;
+  padding: 0;
+}
+.home-page h1 {
+  font-size: 1em;
+  margin: 4em 0 0 0;
+}
+.home-page .button {
+  margin: 1em 0;
+}
+
+
+
+@media screen and (max-width: 45em) {
+  .home-page {
+    display: block;
   }
-  .container{
-      position: relative;
-      width: 90vw;
-      left: 5vw;
-      z-index: 3;
-  }
-  .spanTitle{
-      text-align: center;
-      font-size: 250%;
-      display: block;
-      margin-bottom: 20px;
-  
-  }
-  .spanBold{
-      text-align: center;
-      font-size: 120%;
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 500;
-  }
-  
-  
-  @media only screen and (max-width: 530px) {
-      .spanTitle{
-          font-size: 130%;
-      }
-      span,.spanBold{        
-          font-size: 80%;
-      }
-  
-  }
-  
+}
