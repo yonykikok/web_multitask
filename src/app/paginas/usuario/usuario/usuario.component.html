@@ -1,9 +1,6 @@
-<!-- <app-header [userIsLogged]="userIsLogged" (ingresarEventClick)="mostrarFormLogin=true"></app-header> -->
-
-<!-- <app-login  *ngIf="mostrarFormLogin" id="login"></app-login> -->
 <div *ngIf="user">
 
-
+    <!-- DATOS -->
     <div has-header="true">
         <div id="profile-bg"></div>
         <div id="content">
@@ -13,30 +10,22 @@
                 <span id="descripcionPerfil"> Correo: {{user.correo}} </span>
                 <br>
                 <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
+                <button mat-stroked-button color="accent">Editar datos</button>
             </div>
 
         </div>
     </div>
 
-
-    <!--
-<mat-card>
-    <mat-card-title>Datos</mat-card-title>
-    <img mat-card-image src="{{user.foto}}" style="width:10%;">
-    <mat-card-subtitle>Nombre: {{user.nombre}} {{user.apellido}}</mat-card-subtitle>
-    <mat-card-subtitle>Correo: {{user.correo}} </mat-card-subtitle>
-    <mat-card-subtitle>DNI: {{user.dni}} </mat-card-subtitle>
-    agregar botton para editar datos, hacer la funcion <mat-card-actions>  </mat-card-actions> 
-</mat-card>
--->
-
+    <!-- ADMINISTRADOR -->
     <div *ngIf="user.tipo == 'administrador'">
         <h1>Panel de Control Administrador</h1>
         <mat-toolbar color="primary">
             <mat-toolbar-row>
                 <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
                 <button mat-button (click)="mostrarRegistroEmpleado()"> Resgistrar Empleado</button>
-                <button mat-button (click)="mostrarListadoCuentas()"> Ver Cuentas</button>
+                <button mat-button (click)="mostrarListadoCuentas()"> Ver Todas las Cuentas</button>
+                <button mat-button (click)="mostrarPublicacionesPendientes()"> Publicaciones Pendientes</button>
+                <button mat-button (click)="mostrarEstadisticas()"> Ver Estadisticas</button>
             </mat-toolbar-row>
         </mat-toolbar>
 
@@ -50,32 +39,32 @@
             <app-registro-empleado></app-registro-empleado>
         </div>
 
-        <!-- Estadisticas -->
+        <div *ngIf="booEstadisticas == true">
+            <h2>Estadisticas</h2>
+            <!--  -->
+            <!-- <app-registro-empleado></app-registro-empleado> -->
+        </div>
 
-        <!-- Administrar Publicaciones -->
+        <div *ngIf="boolAdministrarPublicaciones == true">
+            <h2>Publicaciones Pendientes</h2>
+            <app-revisar-publicaciones-pendientes></app-revisar-publicaciones-pendientes>
+        </div>
 
         <div *ngIf="boolListadoCuentas == true">
             <h2>Listado de Cuentas</h2>
             <app-lista-de-personal></app-lista-de-personal>
         </div>
-
-
     </div>
 
-
-
-
+<!-- EMPLEADO -->
     <div *ngIf="user.tipo == 'empleado'">
-
-        Panel de Control Empleado
-
+        <h1>Panel de Control Empleado</h1>
         <mat-toolbar color="primary">
             <mat-toolbar-row>
                 <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
-                <!-- <button mat-button (click)="mostrarAdministrarAplicaciones()"> Resgistrar Empleado</button> -->
+                <button mat-button (click)="mostrarPublicacionesPendientes()"> Publicaciones Pendientes</button>
+                <button mat-button (click)="mostrarListadoCuentas()"> Ver Cuentas Clientes</button>
                 <button mat-button (click)="mostrarResponderConsultas()"> Responder Consultas </button>
-                <button mat-button (click)="mostrarPublicacionesPendientes=true"> Publicaciones pendientes </button>
-
             </mat-toolbar-row>
         </mat-toolbar>
 
@@ -84,39 +73,66 @@
             <app-registro></app-registro>
         </div>
 
-        <div *ngIf="mostrarPublicacionesPendientes == true">
-            <h2>Mostrar publicaciones pendientes</h2>
+        <div *ngIf="boolAdministrarPublicaciones == true">
+            <h2>Publicaciones Pendientes</h2>
             <app-revisar-publicaciones-pendientes></app-revisar-publicaciones-pendientes>
         </div>
 
-
-
-        <div *ngIf="boolResponderConsultas == true">
-            <h2>Consultas pendientes</h2>
-            <app-responder-consultas></app-responder-consultas>
+        <div *ngIf="boolListadoCuentas == true">
+            <h2>Listado de Clientes</h2>
+            <app-lista-de-personal></app-lista-de-personal>
         </div>
 
-
-        <!-- Administrar Publicaciones -->
-
-
-
-
-
-
+        <div *ngIf="boolResponderConsultas == true">
+            <h2>Consultas Pendientes</h2>
+            <app-responder-consultas></app-responder-consultas>
+        </div>
     </div>
-    <div *ngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'"
-        style="display: flex; justify-content: center; align-items: center;">
-        <div>
+
+    <!-- CLIENTE Y ST -->
+    <div *nngIf="user.tipo == 'cliente' || user.tipo == 'servicioTecnico'">
+        <h1>Panel de Control Empleado</h1>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button mat-button (click)="mostrarServicio()"> Mis Reparaciones </button>
+                <button mat-button (click)="mostrarPublicaciones()"> Mis Publicaciones</button>
+                <button mat-button (click)="mostrarResenias()"> Mis Reseñas</button>
+                <!-- vamos a hacer que tenga un chat con algun empelaod al final por lo
+                que dijo el profe de que el cliente tendri que tener mas acceso directo, ya qie el
+                anonimo tiene las consultas? -->
+                <!-- <button mat-button (click)="mostrarConsultas()"> Consultas </button> -->
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <div *ngIf="boolServicio == true">
+            <h2>Informacion sobre mis Reparaciones</h2>
+            <!-- <app-registro></app-registro> -->
+        </div>
+
+        <div *ngIf="boolPubliciones == true">
+            <h2>Mis Publicaciones</h2>
+            <!-- <app-revisar-publicaciones-pendientes></app-revisar-publicaciones-pendientes> -->
+        </div>
+
+        <div *ngIf="boolResenias == true">
+            <h2>Mis Reseñas Pasadas</h2>
+            <!-- <app-lista-de-personal></app-lista-de-personal> -->
+        </div>
+
+        <!-- <div *ngIf="boolConsultas == true">
+            <h2>Mis Consultas</h2>
+
+        </div> -->
+    </div>
+
+    <!-- el boton para sublir publicaciones deberia estar en la tienda, no aca -->
+    <!-- 
             <button style="min-width: 100%;" class="btn btn-primary"
                 (click)="mostrarFormularioPublicar=!mostrarFormularioPublicar">Toggle publicar test</button>
 
             <app-form-alta-producto *ngIf="mostrarFormularioPublicar"></app-form-alta-producto>
-        </div>
-        <!-- //seguikiento servicios -->
-        <!-- //subir Publicaciones -->
-        <!-- //reseñas -->
+    -->
 
 
-    </div>
+
 </div>

@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 
 export class UsuarioComponent implements OnInit {
-  mostrarPublicacionesPendientes=false;
+  // mostrarPublicacionesPendientes=false;
   mostrarFormularioPublicar=false;
   
   user: Usuario;
@@ -20,10 +20,17 @@ export class UsuarioComponent implements OnInit {
   boolRegistroCliente = false;
   boolRegistroEmpleado = false;
   boolListadoCuentas = false;
+  booEstadisticas = false;
+  boolAdministrarPublicaciones = false;
   
-
   // EMPLEADO
   boolResponderConsultas = false;
+
+  //CLIENTE Y ST
+  boolServicio = false;
+  boolPubliciones = false;
+  boolResenias = false;
+  boolConsultas = false;
 
   constructor(private authService: AuthService) { }
 
@@ -35,11 +42,13 @@ export class UsuarioComponent implements OnInit {
     this.authService.actualizarUsuario();
   }
 
+  //ADMIN
   mostrarRegistroCliente() {
     this.boolRegistroCliente = true;
     this.boolRegistroEmpleado = false;
     this.boolListadoCuentas = false;
-    this.boolResponderConsultas = false;
+    this.booEstadisticas = false;
+    this.boolAdministrarPublicaciones = false;
 
   }
 
@@ -47,22 +56,69 @@ export class UsuarioComponent implements OnInit {
     this.boolRegistroCliente = false;
     this.boolRegistroEmpleado = true;
     this.boolListadoCuentas = false;
+    this.booEstadisticas = false;
+    this.boolAdministrarPublicaciones = false;
   }
 
   mostrarListadoCuentas() {
     this.boolRegistroCliente = false;
     this.boolRegistroEmpleado = false;
     this.boolListadoCuentas = true;
-   
+    this.booEstadisticas = false;
+    this.boolAdministrarPublicaciones = false;   
   }
 
+  mostrarPublicacionesPendientes() {
+    this.boolRegistroCliente = false;
+    this.boolRegistroEmpleado = false;
+    this.boolListadoCuentas = false;
+    this.booEstadisticas = false;
+    this.boolAdministrarPublicaciones = true;   
+  }
+
+  mostrarEstadisticas() {
+    this.boolRegistroCliente = false;
+    this.boolRegistroEmpleado = false;
+    this.boolListadoCuentas = false;
+    this.booEstadisticas = true;
+    this.boolAdministrarPublicaciones = false;   
+  }
 
   // EMPLEADO
-
   mostrarResponderConsultas() {
     this.boolRegistroCliente = false;
     this.boolResponderConsultas = true;
   }
+
+  // CLIENTE Y ST
+  mostrarServicio(){
+    this.boolServicio = true;
+    this.boolPubliciones = false;
+    this.boolResenias = false;
+    this.boolConsultas = false;
+  }
+
+  mostrarPublicaciones(){
+    this.boolServicio = false;
+    this.boolPubliciones = true;
+    this.boolResenias = false;
+    this.boolConsultas = false;
+  }
+
+  mostrarResenias(){
+    this.boolServicio = false;
+    this.boolPubliciones = false;
+    this.boolResenias = true;
+    this.boolConsultas = false;
+  }
+
+  mostrarConsultas(){
+    this.boolServicio = false;
+    this.boolPubliciones = false;
+    this.boolResenias = false;
+    this.boolConsultas = true;
+  }
+
 
 
 
