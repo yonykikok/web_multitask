@@ -48,7 +48,7 @@ export class UsuarioComponent implements OnInit {
     this.boolListadoCuentas = false;
     this.booEstadisticas = false;
     this.boolAdministrarPublicaciones = false;
-
+    this.boolResponderConsultas = false;
   }
 
   mostrarRegistroEmpleado() {
@@ -64,7 +64,8 @@ export class UsuarioComponent implements OnInit {
     this.boolRegistroEmpleado = false;
     this.boolListadoCuentas = true;
     this.booEstadisticas = false;
-    this.boolAdministrarPublicaciones = false;   
+    this.boolAdministrarPublicaciones = false; 
+    this.boolResponderConsultas = false;
   }
 
   mostrarPublicacionesPendientes() {
@@ -73,6 +74,7 @@ export class UsuarioComponent implements OnInit {
     this.boolListadoCuentas = false;
     this.booEstadisticas = false;
     this.boolAdministrarPublicaciones = true;   
+    this.boolResponderConsultas = false;
   }
 
   mostrarEstadisticas() {
