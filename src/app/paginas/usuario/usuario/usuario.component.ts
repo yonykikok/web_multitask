@@ -30,6 +30,7 @@ export class UsuarioComponent implements OnInit {
   boolPubliciones = false;
   boolResenias = false;
   boolConsultas = false;
+  boolFormPublicar=false;
 
   constructor(private authService: AuthService) { }
 

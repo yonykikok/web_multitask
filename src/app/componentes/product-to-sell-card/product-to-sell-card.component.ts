@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DetalladoPublicacionComponent } from '../detallado-publicacion/detallado-publicacion.component';
+import { SeleccionarMisArticulosComponent } from '../seleccionar-mis-articulos/seleccionar-mis-articulos.component';
 
 @Component({
   selector: 'app-product-to-sell-card',
@@ -24,6 +25,17 @@ export class ProductToSellCardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+    
+      switch(result){
+        case 'permutar':
+          this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
+          break;
+        case 'comprar':
+          break;
+        default:
+          //no hacemos nada!
+          break;
+      }
     });
   }
 }

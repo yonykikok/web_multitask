@@ -18,5 +18,7 @@ export class DetalladoPublicacionComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.publicacion);
   }
-
+  mostrarListaDeMisPublicaciones(){
+      
+  }
 }

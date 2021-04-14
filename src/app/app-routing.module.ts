@@ -28,6 +28,7 @@ import { TiendaComponent } from './paginas/tienda/tienda.component';
 import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/lista-de-personal.component';
 import { FormAltaProductoComponent } from './componentes/form-alta-producto/form-alta-producto.component';
 import { UsuarioComponent } from './paginas/usuario/usuario/usuario.component';
+import { SeleccionarMisArticulosComponent } from './componentes/seleccionar-mis-articulos/seleccionar-mis-articulos.component';
 
 
 
@@ -35,7 +36,7 @@ const routes: Routes = [
 
 
   { path: 'testeo', component: TiendaComponent },
-  { path: 'testeo2', component: StepperComponent },
+  { path: 'testeo2', component: SeleccionarMisArticulosComponent },
   { path: 'testeo3', component: FormAltaProductoComponent },
   { path: 'home', component: HomeComponent, },
 

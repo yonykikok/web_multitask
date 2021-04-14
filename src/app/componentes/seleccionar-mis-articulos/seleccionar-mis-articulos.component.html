@@ -1,0 +1,24 @@
+<div *ngIf="myListaDePublicaciones.length != 0">
+    <div *ngIf="myListaDePublicaciones.length != 0">
+
+        <mat-selection-list  #publicaciones  >
+            <mat-list-option *ngFor="let publicacion of myListaDePublicaciones">
+                <div class="divRow" >   
+                    <p>{{publicacion.titulo}}</p>
+                    <div style="float: right;">
+                        <img *ngFor="let foto of publicacion.fotos" class="imgMensaje" src="{{foto}}" alt="">
+                    </div>
+                </div>
+            </mat-list-option>
+          </mat-selection-list>
+          
+          <p>
+            <!-- Valor acumulado: {{valorAcumulado}} -->
+          </p> 
+    
+    
+    </div>
+
+
+
+</div>

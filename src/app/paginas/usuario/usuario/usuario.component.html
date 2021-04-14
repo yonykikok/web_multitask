@@ -97,6 +97,7 @@
                 <button mat-button (click)="mostrarServicio()"> Mis Reparaciones </button>
                 <button mat-button (click)="mostrarPublicaciones()"> Mis Publicaciones</button>
                 <button mat-button (click)="mostrarResenias()"> Mis Reseñas</button>
+                <button mat-button (click)="boolFormPublicar=true"> Publicar</button>
                 <!-- vamos a hacer que tenga un chat con algun empelaod al final por lo
                 que dijo el profe de que el cliente tendri que tener mas acceso directo, ya qie el
                 anonimo tiene las consultas? -->
@@ -117,6 +118,10 @@
         <div *ngIf="boolResenias == true">
             <h2>Mis Reseñas Pasadas</h2>
             <app-resenias-cliente></app-resenias-cliente>
+        </div>
+        <div *ngIf="boolFormPublicar == true">
+            <h2>Publicar Articulo</h2>
+            <app-form-alta-producto></app-form-alta-producto>
         </div>
 
         <!-- <div *ngIf="boolConsultas == true">

@@ -9,8 +9,14 @@
                 </h1>
                 <p><b>Estado: </b>{{publicacion.estado}}</p>
                 <p class="precio">{{publicacion.precio|currency}}</p>
-                <button class="btnAcciones" mat-raised-button color="primary">Comprar ahora</button>
-                <button class="btnAcciones" mat-stroked-button color="accent">Permutar</button>
+                <div mat-dialog-actions>
+
+                    <button *ngIf="esVistaCompleta" class="btnAcciones" mat-raised-button color="primary">Comprar ahora</button>
+                    <button *ngIf="esVistaCompleta" class="btnAcciones" mat-stroked-button color="accent"  [mat-dialog-close]="'permutar'">Permutar</button>
+                </div>
+                
+                <button *ngIf="!esVistaCompleta" class="btnAcciones" mat-raised-button color="primary" disabled >Comprar ahora</button>
+                <button *ngIf="!esVistaCompleta" class="btnAcciones" mat-stroked-button color="accent" disabled >Permutar</button>
 
             </div>
         </div>
@@ -29,10 +35,11 @@
             </p>
         </div>
 
-
+        
+        
     </mat-dialog-content>
     <mat-dialog-actions align="end" *ngIf="!esVistaCompleta">
-        <button mat-button [mat-dialog-close]="'ACACA'">Rechazar</button>
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+        <button mat-button [mat-dialog-close]="'rechazado'">Rechazar</button>
+        <button mat-button [mat-dialog-close]="'aceptado'" cdkFocusInitial>Aceptar</button>
     </mat-dialog-actions>
 </div>

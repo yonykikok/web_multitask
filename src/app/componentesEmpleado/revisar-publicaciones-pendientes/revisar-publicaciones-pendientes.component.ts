@@ -46,7 +46,13 @@ export class RevisarPublicacionesPendientesComponent implements OnInit {
     const dialogRef = this.dialog.open(DetalladoPublicacionComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+
+      if(result!=null && (result=='aceptado'|| result=='rechazado')){
+        this.cambiarEstadoDepublicacion(publicacion,result);
+      }
+      else{
+        alert("estoy");
+      }
     });
   }
 

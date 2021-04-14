@@ -17,7 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 
 
 // FORMBUILDER
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 // BUTTON
@@ -121,6 +121,7 @@ import { PublicacionesClienteComponent } from './componentesCliente/publicacione
 import { ReseniasClienteComponent } from './componentesCliente/resenias-cliente/resenias-cliente.component';
 import { EditarUsComponent } from './componentes/editar-us/editar-us.component';
 import { ReparacionesClienteComponent } from './componentesCliente/reparaciones-cliente/reparaciones-cliente.component';
+import { SeleccionarMisArticulosComponent } from './componentes/seleccionar-mis-articulos/seleccionar-mis-articulos.component';
 //import { HorarioDeAperturaComponent } from './componentes/horario-de-apertura/horario-de-apertura.component';
 
 //import { SpinnerComponent } from './componentes/spinner/spinner.component';
@@ -159,6 +160,7 @@ import { ReparacionesClienteComponent } from './componentesCliente/reparaciones-
     ReseniasClienteComponent,
     EditarUsComponent,
     ReparacionesClienteComponent,
+    SeleccionarMisArticulosComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],
@@ -168,7 +170,7 @@ import { ReparacionesClienteComponent } from './componentesCliente/reparaciones-
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireStorageModule,
-
+    FormsModule ,
     ReactiveFormsModule,
 
     // componentes de maps.

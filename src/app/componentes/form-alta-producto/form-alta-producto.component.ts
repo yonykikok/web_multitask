@@ -109,7 +109,6 @@ export class FormAltaProductoComponent implements OnInit {
         publicacion.fotos=StorageService.arrayImagenes;
          this.dataBase.crear('publicaciones',publicacion).then((res)=>{
            this.mostrarSpinner=false;
-           this.router.navigateByUrl('/testeo');
          });
        }, 5000);
   

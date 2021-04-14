@@ -1,0 +1,20 @@
+
+img{
+    max-width: 50px;
+    max-height: 50px;
+    width: auto; 
+    height: auto; 
+    border-radius: 10px;
+    border: 2px solid var(--colorPrincipal);
+    margin: 0 5px 0 5px;
+}
+
+
+.divRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+mat-list-option{
+    height: 80px;
+}
