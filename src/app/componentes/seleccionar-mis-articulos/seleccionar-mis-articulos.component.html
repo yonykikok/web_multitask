@@ -1,24 +1,45 @@
-<div *ngIf="myListaDePublicaciones.length != 0">
-    <div *ngIf="myListaDePublicaciones.length != 0">
+<div class="divContainerDragAndDrop">
+    <div class="example-container">
+        <h2>Publicaciones disponibles</h2>
 
-        <mat-selection-list  #publicaciones  >
-            <mat-list-option *ngFor="let publicacion of myListaDePublicaciones">
-                <div class="divRow" >   
-                    <p>{{publicacion.titulo}}</p>
-                    <div style="float: right;">
-                        <img *ngFor="let foto of publicacion.fotos" class="imgMensaje" src="{{foto}}" alt="">
-                    </div>
+        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="myListaDePublicaciones"
+            [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let publicacion of myListaDePublicaciones" cdkDrag>
+                <div class="title">
+                    {{publicacion.titulo}}
                 </div>
-            </mat-list-option>
-          </mat-selection-list>
-          
-          <p>
-            <!-- Valor acumulado: {{valorAcumulado}} -->
-          </p> 
-    
-    
+                <div class="imagenes">
+                    <img *ngFor="let foto of publicacion.fotos" class="imgMensaje" src="{{foto}}" alt="">
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="example-container">
+        <h2>Productos a ofrecer</h2>
+        
 
-
+        <div style="border: 3px solid red;" cdkDropList #doneList="cdkDropList" [cdkDropListData]="listaOferta" [cdkDropListConnectedTo]="[todoList]"
+            class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let publicacion of listaOferta" cdkDrag>
+                <div class="title">
+                    {{publicacion.titulo}}
+                </div>
+                <div class="imagenes">
+                    <img *ngFor="let foto of publicacion.fotos" src="{{foto}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<h1 style="text-align: center;"> {{precioActual|currency}}</h1>
+<!-- <div style="text-align: center;">
+    <h1>producto objetivo</h1>
+    <div class="example-list">
+        <h1 style="text-align: center;">
+            {{publicacionObjetivo.titulo}}
+        </h1>
+        <img *ngFor="let foto of publicacionObjetivo.fotos" style="max-width: 200px; max-height: 200px;" src="{{foto}}"
+            alt="">
+    </div>
+</div> -->

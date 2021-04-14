@@ -125,6 +125,7 @@ import { SeleccionarMisArticulosComponent } from './componentes/seleccionar-mis-
 //import { HorarioDeAperturaComponent } from './componentes/horario-de-apertura/horario-de-apertura.component';
 
 //import { SpinnerComponent } from './componentes/spinner/spinner.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -172,12 +173,11 @@ import { SeleccionarMisArticulosComponent } from './componentes/seleccionar-mis-
     AngularFireStorageModule,
     FormsModule ,
     ReactiveFormsModule,
-
     // componentes de maps.
     GoogleMapsModule,
     HttpClientModule,
     HttpClientJsonpModule,
-
+    DragDropModule,
     MatSliderModule,
     MatCardModule,
     MatButtonModule,
