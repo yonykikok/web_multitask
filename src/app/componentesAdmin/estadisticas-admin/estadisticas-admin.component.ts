@@ -29,7 +29,7 @@ export class EstadisticasAdminComponent implements OnInit {
 
 
 
-  // ATRIBUTOS CONSULTAS.
+  // GRAFICO CONSULTAS.
 
   public polarAreaChartLabels: Label[] = ['Consultas Anonimas', 'Consultas Anonimas Respondidas'];
   public polarAreaChartData: SingleDataSet = [0, 0];
@@ -37,6 +37,24 @@ export class EstadisticasAdminComponent implements OnInit {
   public polarAreaChartType: ChartType = 'polarArea';
   contadorConsultasAnonimas;
   contadorConsultasAnonimasRespondidas;
+
+
+  // GRAFICO PUBLICACIONES
+  public pieChartLabels: Label[] = ['Publicaciones pendientes', 'Publicaciones activas', 'Publicaciones rechazadas'];
+  public pieChartData: number[] = [0, 0, 0];
+  public pieChartLegend = true;
+  public pieChartType: ChartType = 'pie';
+  public pieChartColors = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+    },
+  ];
+  contadorPublicacionesPendientes;
+  contadorPublicacionesActivas;
+  contadorPublicacionesRechazadas;
+
+
+
 
 
   constructor(private firestore : AngularFirestore) { }
@@ -48,9 +66,20 @@ export class EstadisticasAdminComponent implements OnInit {
     this.obtenerConsultas();
 
 
+    this.contadorPublicacionesPendientes = 0;
+    this.contadorPublicacionesActivas = 0;
+    this.contadorPublicacionesRechazadas = 0;
+    this.obtenerPublicaciones();
+    
+
+
     // Hago que tarde un poco. Sino , no me carga nada.
     setTimeout(() => {
-    this.polarAreaChartData = [this.contadorConsultasAnonimasRespondidas, this.contadorConsultasAnonimas]
+      // cargo el char de consultas.
+    this.polarAreaChartData = [this.contadorConsultasAnonimasRespondidas, this.contadorConsultasAnonimas];
+      // cargo el grafico de publicaciones.
+    this.pieChartData = [this.contadorPublicacionesPendientes, this.contadorPublicacionesActivas, this.contadorPublicacionesRechazadas]
+      // cargo el grafico de usuarios.
     }, 2000);
 
   }
@@ -75,6 +104,31 @@ obtenerConsultas()
         if(doc.data()['estadoConsulta'] == 'respondido')
         {
           this.contadorConsultasAnonimasRespondidas += 1;  
+        }
+
+      })
+    })
+  }
+
+
+obtenerPublicaciones() 
+  {
+    this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
+      querySnapShot.forEach((doc) => {
+        
+        if(doc.data()['estadoPublicacion'] == 'pendiente')
+        {
+          this.contadorPublicacionesPendientes += 1;  
+        }
+
+        else if(doc.data()['estadoPublicacion'] == 'aceptado')
+        {
+          this.contadorPublicacionesActivas += 1;  
+        }
+
+        else if(doc.data()['estadoPublicacion'] == 'rechazado')
+        {
+          this.contadorPublicacionesRechazadas += 1;  
         }
 
       })
