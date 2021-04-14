@@ -20,7 +20,8 @@ button{
   #content {
     position: relative;
     margin-top: 150px;
-    background-color: white;
+    background-color: rgb(195, 236, 255);
+
     box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
     padding-top: 200px;
   }
@@ -83,3 +84,6 @@ button{
     margin-right: 10px;
   }
 
+div{
+  padding: 1%;
+}
