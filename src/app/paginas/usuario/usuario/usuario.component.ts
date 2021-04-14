@@ -88,8 +88,10 @@ export class UsuarioComponent implements OnInit {
 
   // EMPLEADO
   mostrarResponderConsultas() {
-    this.boolRegistroCliente = false;
     this.boolResponderConsultas = true;
+    this.boolRegistroCliente = false;
+    this.boolListadoCuentas = false;
+    this.boolAdministrarPublicaciones = false;   
   }
 
   // CLIENTE Y ST
