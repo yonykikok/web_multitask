@@ -20,6 +20,17 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class EstadisticasAdminComponent implements OnInit {
 
+
+
+  // ATRIBUTOS UNICAMENTE DEL TOOLBAR.
+  boolMostrarEstadisticasConsultas = false;
+  boolMostrarEstadisticasPublicaciones = false;
+  boolMostrarEstadisticasUsuarios = false;
+
+
+
+  // ATRIBUTOS CONSULTAS.
+
   public polarAreaChartLabels: Label[] = ['Consultas Anonimas', 'Consultas Anonimas Respondidas'];
   public polarAreaChartData: SingleDataSet = [0, 0];
   public polarAreaLegend = true;
@@ -43,6 +54,15 @@ export class EstadisticasAdminComponent implements OnInit {
     }, 2000);
 
   }
+
+
+  // FUNCIONES DE TOOLBAR.
+
+  mostrarEstadisticasConsultas() {this.boolMostrarEstadisticasConsultas = true; this.boolMostrarEstadisticasPublicaciones = false; this.boolMostrarEstadisticasUsuarios = false}
+
+  mostrarEstadisticasPublicaciones() {this.boolMostrarEstadisticasConsultas = false; this.boolMostrarEstadisticasPublicaciones = true; this.boolMostrarEstadisticasUsuarios = false}
+
+  mostrarEstadisticasUsuarios() {this.boolMostrarEstadisticasConsultas = false; this.boolMostrarEstadisticasPublicaciones = false; this.boolMostrarEstadisticasUsuarios = true}
 
 
 obtenerConsultas() 
