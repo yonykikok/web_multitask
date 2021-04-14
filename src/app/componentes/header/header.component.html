@@ -10,7 +10,8 @@
         <span class="material-icons" id="iconIniciarSesion" *ngIf="!mostrarHamburger"> login </span>
     </div>
     <div id="divButtonsContent">
-        <a mat-button routerLink="/home">Inicio</a>
+        <a mat-button href="#appInicio" class="btnRedireccionar"
+        (click)="scrollToElement($event,'#appInicio')">Inicio</a>
         <a mat-button href="#appServicios" class="btnRedireccionar"
             (click)="scrollToElement($event,'#appServicios')">Servicios</a>
         <a mat-button href="#appHistoryWrapper" class="btnRedireccionar"
