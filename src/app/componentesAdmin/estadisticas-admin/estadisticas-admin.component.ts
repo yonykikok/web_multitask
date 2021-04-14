@@ -6,7 +6,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SingleDataSet, Label } from 'ng2-charts';
-import { ChartType } from 'chart.js';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 
 
 // ANGULAR FIRESTORE.
@@ -53,7 +53,24 @@ export class EstadisticasAdminComponent implements OnInit {
   contadorPublicacionesActivas;
   contadorPublicacionesRechazadas;
 
+  
+  // GRAFICO USUARIOS
+  monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  nuevaFecha = new Date();
+  public barChartLabels: Label[] = [this.monthNames[this.nuevaFecha.getMonth()]];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
 
+  public barChartData: ChartDataSets[] = [
+    { data: [0], label: 'Administradores' },
+    { data: [0], label: 'Empleados'},
+    { data: [0], label: 'Servicio Tecnico'},
+    { data: [0], label: 'Clientes'}
+  ];
+  contadorAdministradores;
+  contadorEmpleados;
+  contadorServicioTecnico;
+  contadorClientes;
 
 
 
@@ -70,16 +87,30 @@ export class EstadisticasAdminComponent implements OnInit {
     this.contadorPublicacionesActivas = 0;
     this.contadorPublicacionesRechazadas = 0;
     this.obtenerPublicaciones();
+
+
+    this.contadorAdministradores = 0;
+    this.contadorEmpleados = 0;
+    this.contadorServicioTecnico = 0;
+    this.contadorClientes = 0;
+    this.obtenerUsuarios();
     
 
 
     // Hago que tarde un poco. Sino , no me carga nada.
     setTimeout(() => {
+
       // cargo el char de consultas.
-    this.polarAreaChartData = [this.contadorConsultasAnonimasRespondidas, this.contadorConsultasAnonimas];
+    this.polarAreaChartData = [this.contadorConsultasAnonimas, this.contadorConsultasAnonimasRespondidas];
+    
       // cargo el grafico de publicaciones.
     this.pieChartData = [this.contadorPublicacionesPendientes, this.contadorPublicacionesActivas, this.contadorPublicacionesRechazadas]
+
       // cargo el grafico de usuarios.
+    this.barChartData[0].data = [this.contadorAdministradores]; 
+    this.barChartData[1].data = [this.contadorEmpleados]; 
+    this.barChartData[2].data = [this.contadorServicioTecnico];
+    this.barChartData[3].data = [this.contadorClientes];
     }, 2000);
 
   }
@@ -92,6 +123,7 @@ export class EstadisticasAdminComponent implements OnInit {
   mostrarEstadisticasPublicaciones() {this.boolMostrarEstadisticasConsultas = false; this.boolMostrarEstadisticasPublicaciones = true; this.boolMostrarEstadisticasUsuarios = false}
 
   mostrarEstadisticasUsuarios() {this.boolMostrarEstadisticasConsultas = false; this.boolMostrarEstadisticasPublicaciones = false; this.boolMostrarEstadisticasUsuarios = true}
+
 
 
 obtenerConsultas() 
@@ -129,6 +161,35 @@ obtenerPublicaciones()
         else if(doc.data()['estadoPublicacion'] == 'rechazado')
         {
           this.contadorPublicacionesRechazadas += 1;  
+        }
+
+      })
+    })
+  }
+
+
+obtenerUsuarios() 
+  {
+    this.firestore.collection("usuarios").get().subscribe((querySnapShot) => {
+      querySnapShot.forEach((doc) => {
+        
+        if(doc.data()['tipo'] == 'cliente')
+        {
+          this.contadorClientes += 1;  
+        }
+
+        else if(doc.data()['tipo'] == 'empleado')
+        {
+          this.contadorEmpleados += 1;  
+        }
+
+        else if(doc.data()['tipo'] == 'st')
+        {
+          this.contadorServicioTecnico += 1;  
+        }
+        else 
+        {
+          this.contadorAdministradores += 1;  
         }
 
       })

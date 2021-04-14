@@ -8,9 +8,7 @@
 
 
     <div *ngIf = "boolMostrarEstadisticasConsultas == true"> <!-- Consultas -->
-
         <div>
-            <div>
               <div style="display: block">
                 <canvas baseChart
                   [data]="polarAreaChartData"
@@ -19,15 +17,11 @@
                   [chartType]="polarAreaChartType">
                 </canvas>
               </div>
-            </div>
-          </div>
-
+        </div>
     </div>
 
 
     <div *ngIf = "boolMostrarEstadisticasPublicaciones == true"> <!-- Publicaciones -->
-
-      <div>
         <div>
           <div class="chart">
             <canvas baseChart
@@ -39,12 +33,20 @@
             </canvas>
           </div>
         </div>
-      </div>
     </div>
 
 
     <div *ngIf = "boolMostrarEstadisticasUsuarios == true"> <!-- Usuarios -->
-
+      <div>
+        <div style="display: block">
+          <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+          </canvas>
+        </div>
+      </div>
     </div>
 
 
