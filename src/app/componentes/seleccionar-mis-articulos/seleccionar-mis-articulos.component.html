@@ -1,38 +1,51 @@
-<div class="divContainerDragAndDrop">
-    <div class="example-container">
-        <h2>Publicaciones disponibles</h2>
+<div class="divContenedor">
 
-        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="myListaDePublicaciones"
-            [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let publicacion of myListaDePublicaciones" cdkDrag>
-                <div class="title">
-                    {{publicacion.titulo}}
+    <div>
+        <h1 style="text-align: center;"> {{precioActual|currency}}</h1>
+        <h1 style="text-align: center;"> {{publicacionObjetivo.precio|currency}}</h1>
+    </div>
+    <div class="divContainerDragAndDrop">
+        <div class="example-container">
+            <h2>Publicaciones disponibles</h2>
+
+            <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="myListaDePublicaciones"
+                [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let publicacion of myListaDePublicaciones">
+                    <div class="example-box" cdkDrag>
+                        <div class="title">
+                            {{publicacion.titulo}}
+                        </div>
+                        <div class="imagenes">
+                            <img *ngFor="let foto of publicacion.fotos" class="imgMensaje" src="{{foto}}" alt="">
+                        </div>
+                    </div>
                 </div>
-                <div class="imagenes">
-                    <img *ngFor="let foto of publicacion.fotos" class="imgMensaje" src="{{foto}}" alt="">
+            </div>
+        </div>
+
+        <div class="example-container">
+            <h2>Productos a ofrecer</h2>
+            <div style="border: 3px solid red;" cdkDropList #doneList="cdkDropList" [cdkDropListData]="listaOferta"
+                [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let publicacion of listaOferta" cdkDrag>
+                    <div class="title">
+                        {{publicacion.titulo}}
+                    </div>
+                    <div class="imagenes">
+                        <img *ngFor="let foto of publicacion.fotos" src="{{foto}}" alt="">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="example-container">
-        <h2>Productos a ofrecer</h2>
-        
+    <div class="divBotones">
+        <button  mat-raised-button color="secondary" (click)="enviarEvento('cancelar')" >Cancelar</button>
+        <button  mat-raised-button color="primary" (click)="enviarEvento('enviarOferta')" >Enviar Oferta</button>
 
-        <div style="border: 3px solid red;" cdkDropList #doneList="cdkDropList" [cdkDropListData]="listaOferta" [cdkDropListConnectedTo]="[todoList]"
-            class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let publicacion of listaOferta" cdkDrag>
-                <div class="title">
-                    {{publicacion.titulo}}
-                </div>
-                <div class="imagenes">
-                    <img *ngFor="let foto of publicacion.fotos" src="{{foto}}" alt="">
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-<h1 style="text-align: center;"> {{precioActual|currency}}</h1>
+
 <!-- <div style="text-align: center;">
     <h1>producto objetivo</h1>
     <div class="example-list">

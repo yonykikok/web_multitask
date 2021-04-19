@@ -45,11 +45,11 @@
 
 
 
+<app-seleccionar-mis-articulos *ngIf="mostrarMiListaDeproductos" [publicacionObjetivo]="publicacionObjetivo" (cancelarEvent)="mostrarMiListaDeproductos=false"></app-seleccionar-mis-articulos>
 <div class="divCardsContainer">
 
   <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
-    <app-product-to-sell-card [publicacion]="publicacion"></app-product-to-sell-card>
-
+    <app-product-to-sell-card [publicacion]="publicacion" (permutarClickEvent)="mostrarListaDeProductos($event)"></app-product-to-sell-card>
   </div>
 
 </div>

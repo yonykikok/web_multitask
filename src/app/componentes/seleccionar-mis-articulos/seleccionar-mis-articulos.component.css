@@ -2,6 +2,15 @@
   margin: 0;
   padding: 0;
 }
+/* .divContenedor{
+  background-color: lightblue;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 11;
+  left: 0;
+  top: 0;
+} */
 img{
     max-width: 50px;
     max-height: 50px;

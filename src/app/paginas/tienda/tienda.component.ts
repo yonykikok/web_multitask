@@ -14,6 +14,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./tienda.component.css']
 })
 export class TiendaComponent implements OnInit {
+  publicacionObjetivo;
+  mostrarMiListaDeproductos=false;
   mostrarFormularioPublicar = false;
   mostrar;
   user: Usuario;
@@ -28,7 +30,10 @@ export class TiendaComponent implements OnInit {
       textoABuscar: ['', [Validators.required]]
     });
   }
-
+  mostrarListaDeProductos(publicacionObjetivo){
+      this.publicacionObjetivo=publicacionObjetivo;
+      this.mostrarMiListaDeproductos=true;
+  }
   buscarCoincidencias() {
     let textoABuscar = this.inputSearch.controls['textoABuscar'].value.toLocaleLowerCase();
     let listaAuxiliar = [];
@@ -55,7 +60,7 @@ export class TiendaComponent implements OnInit {
 
 
   }
-
+ 
 
   // Esta funcion carga las publicaciones de la base de datos. Incoporar estado.
   cargarPublicacionesActivas(): any {

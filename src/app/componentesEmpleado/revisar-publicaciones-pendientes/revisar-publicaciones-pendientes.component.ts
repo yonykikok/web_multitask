@@ -23,7 +23,7 @@ export class RevisarPublicacionesPendientesComponent implements OnInit {
 
   obtenerPublicacionesPendientes(): any {
     let publicacion;
-    var publicacionesPendientes = [];
+    let publicacionesPendientes = [];//var
     this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         publicacion=doc.data();

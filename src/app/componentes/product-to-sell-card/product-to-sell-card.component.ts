@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DetalladoPublicacionComponent } from '../detallado-publicacion/detallado-publicacion.component';
 import { SeleccionarMisArticulosComponent } from '../seleccionar-mis-articulos/seleccionar-mis-articulos.component';
@@ -11,6 +11,7 @@ import { SeleccionarMisArticulosComponent } from '../seleccionar-mis-articulos/s
 export class ProductToSellCardComponent implements OnInit {
 
   @Input() publicacion;
+  @Output() permutarClickEvent:EventEmitter<boolean>=new EventEmitter<boolean>(); 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -28,7 +29,8 @@ export class ProductToSellCardComponent implements OnInit {
     
       switch(result){
         case 'permutar':
-          this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
+          // this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
+          this.permutarClickEvent.emit(dialogConfig.data.publicacion);
           break;
         case 'comprar':
           break;
