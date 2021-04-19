@@ -126,6 +126,10 @@ import { SeleccionarMisArticulosComponent } from './componentes/seleccionar-mis-
 
 //import { SpinnerComponent } from './componentes/spinner/spinner.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { EstadisticasAdminComponent } from './componentesAdmin/estadisticas-admin/estadisticas-admin.component';
+
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -162,6 +166,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     EditarUsComponent,
     ReparacionesClienteComponent,
     SeleccionarMisArticulosComponent,
+    EstadisticasAdminComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],
@@ -214,7 +219,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatPaginatorModule,
     NgbModule,
     NgbPaginationModule,
-NgbAlertModule
+NgbAlertModule,
+ChartsModule
 
 
 

@@ -1,0 +1,57 @@
+<mat-toolbar color="warn">
+    <mat-toolbar-row>
+      <button mat-button (click)="mostrarEstadisticasConsultas()"> Consultas </button>
+      <button mat-button (click)="mostrarEstadisticasPublicaciones()"> Publicaciones </button>
+      <button mat-button (click)="mostrarEstadisticasUsuarios()"> Usuarios </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+    <div *ngIf = "boolMostrarEstadisticasConsultas == true"> <!-- Consultas -->
+        <div>
+              <div style="display: block">
+                <canvas baseChart
+                  [data]="polarAreaChartData"
+                  [labels]="polarAreaChartLabels"
+                  [legend]="polarAreaLegend"
+                  [chartType]="polarAreaChartType">
+                </canvas>
+              </div>
+        </div>
+    </div>
+
+
+    <div *ngIf = "boolMostrarEstadisticasPublicaciones == true"> <!-- Publicaciones -->
+        <div>
+          <div class="chart">
+            <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              [colors]="pieChartColors"
+              [legend]="pieChartLegend">
+            </canvas>
+          </div>
+        </div>
+    </div>
+
+
+    <div *ngIf = "boolMostrarEstadisticasUsuarios == true"> <!-- Usuarios -->
+      <div>
+        <div style="display: block">
+          <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
