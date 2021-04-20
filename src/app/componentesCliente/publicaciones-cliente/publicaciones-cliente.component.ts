@@ -39,11 +39,12 @@ export class PublicacionesClienteComponent implements OnInit {
   }
 
 
-  openDialog(listaDeOfertas) {
-    console.log(listaDeOfertas);
+  openDialog(publicacion) {
+    console.log(publicacion.listaDeOfertas);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data={
-      listaDeOfertas:listaDeOfertas
+      listaDeOfertas:publicacion.listaDeOfertas,
+      publicacionOriginal:publicacion
     }
     const dialogRef = this.dialog.open(VisualizarOfertaCompletaComponent,dialogConfig);
 

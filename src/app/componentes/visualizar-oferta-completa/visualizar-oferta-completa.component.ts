@@ -21,6 +21,7 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
   constructor( private dialogRef: MatDialogRef<VisualizarOfertaCompletaComponent>,
     @Inject(MAT_DIALOG_DATA) data, private authService:AuthService, private dataBase: DatabaseService,) { 
       this.listaDeOfertas = data.listaDeOfertas;
+      this.publicacionOriginal = data.publicacionOriginal;
       // this.esVistaCompleta=data.esVistaCompleta;
     }
     
@@ -30,74 +31,22 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
 
 
 
-  aceptarOferta(oferta)
-  {
-    let listaOfertasExistentes=[];
+  aceptarOferta(oferta,estado)
+  {  
+    this.publicacionOriginal.listaDeOfertas.forEach(auxOferta => {
 
-    // Acá cambio el estado de la oferta seleccionada a "aceptadaParaPermutar"
-    console.log("Desactualizada: " + oferta);
-    oferta.estadoOferta = "aceptadaParaPermutar";
-    console.log("Actualizada: " + oferta);
-
-
-    // Acá obtengo la publicación objetivo. Y veo que va a tener una lista de ofertas, las guardo asi no se pierden
-    if(this.publicacionOriginal.listaDeOfertas)
-    {
-      listaOfertasExistentes= this.publicacionOriginal.listaDeOfertas
-    }
-
-    // guardo la nueva oferta con el estado modificado.
-    listaOfertasExistentes.push(oferta);
-
+    if(auxOferta===oferta){
+        auxOferta.estadoOferta = estado;
+      }
+    });
   
-    // seteo la lista de ofertas de la publicación original
-    this.publicacionOriginal.listaDeOfertas = listaOfertasExistentes;
-
-
-    // ESTO LO COMENTO, PERO DEBERIA FUNCIONAR SI TUVIERA LA PUBLICACIÓN ORIGINAL
-    /*
-     this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
+    this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
       alert("Oferta actualizada con exito");
     }).catch(()=>{
       alert("NO SE PUDO ENVIAR LA OFERTA!");
-    })
-    */
-
+    })    
   }
 
 
-  rechazarOferta(oferta)
-  {
-    let listaOfertasExistentes=[];
-
-    // Acá cambio el estado de la oferta seleccionada a "aceptadaParaPermutar"
-    console.log("Desactualizada: " + oferta);
-    oferta.estadoOferta = "rechazadaParaPermutar";
-    console.log("Actualizada: " + oferta);
-
-
-    // Acá obtengo la publicación objetivo. Y veo que va a tener una lista de ofertas, las guardo asi no se pierden
-    if(this.publicacionOriginal.listaDeOfertas)
-    {
-      listaOfertasExistentes= this.publicacionOriginal.listaDeOfertas
-    }
-
-    // guardo la nueva oferta con el estado modificado.
-    listaOfertasExistentes.push(oferta);
-
-  
-    // seteo la lista de ofertas de la publicación original
-    this.publicacionOriginal.listaDeOfertas = listaOfertasExistentes;
-
-
-    // ESTO LO COMENTO, PERO DEBERIA FUNCIONAR SI TUVIERA LA PUBLICACIÓN ORIGINAL
-    /*
-     this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
-      alert("Oferta actualizada con exito");
-    }).catch(()=>{
-      alert("NO SE PUDO ENVIAR LA OFERTA!");
-    })
-    */
-  }
 
 }
