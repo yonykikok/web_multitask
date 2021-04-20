@@ -130,6 +130,7 @@ import { EstadisticasAdminComponent } from './componentesAdmin/estadisticas-admi
 
 import { ChartsModule } from 'ng2-charts';
 import { VisualizarOfertaCompletaComponent } from './componentes/visualizar-oferta-completa/visualizar-oferta-completa.component';
+import { VerOfertasRealizadasComponent } from './componentesCliente/ver-ofertas-realizadas/ver-ofertas-realizadas.component';
 
 
 @NgModule({
@@ -169,6 +170,7 @@ import { VisualizarOfertaCompletaComponent } from './componentes/visualizar-ofer
     SeleccionarMisArticulosComponent,
     EstadisticasAdminComponent,
     VisualizarOfertaCompletaComponent,
+    VerOfertasRealizadasComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],

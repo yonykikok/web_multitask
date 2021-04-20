@@ -24,12 +24,14 @@ export class UsuarioComponent implements OnInit {
   
   // EMPLEADO
   boolResponderConsultas = false;
+
   //CLIENTE Y ST
   boolServicio = false;
   boolPubliciones = false;
   boolResenias = false;
   boolConsultas = false;
   boolFormPublicar=false;
+  boolOfertasRealizadas=false;
 
   constructor(private authService: AuthService) { }
 
@@ -85,6 +87,10 @@ export class UsuarioComponent implements OnInit {
     this.boolAdministrarPublicaciones = false;   
   }
 
+
+
+
+
   // EMPLEADO
   mostrarResponderConsultas() {
     this.boolResponderConsultas = true;
@@ -93,33 +99,71 @@ export class UsuarioComponent implements OnInit {
     this.boolAdministrarPublicaciones = false;   
   }
 
+
+
+
+
+
   // CLIENTE Y ST
   mostrarServicio(){
     this.boolServicio = true;
     this.boolPubliciones = false;
+    this.boolOfertasRealizadas = false;
     this.boolResenias = false;
     this.boolConsultas = false;
+    this.boolFormPublicar = false;
   }
 
   mostrarPublicaciones(){
     this.boolServicio = false;
     this.boolPubliciones = true;
+    this.boolOfertasRealizadas = false;
     this.boolResenias = false;
     this.boolConsultas = false;
+    this.boolFormPublicar = false;
   }
+
+
+  mostrarOfertasRealizadas()
+  {
+    this.boolServicio = false;
+    this.boolPubliciones = false;
+    this.boolOfertasRealizadas = true;
+    this.boolResenias = false;
+    this.boolConsultas = false;
+    this.boolFormPublicar = false;
+  }
+
 
   mostrarResenias(){
     this.boolServicio = false;
     this.boolPubliciones = false;
+    this.boolOfertasRealizadas = false;
     this.boolResenias = true;
     this.boolConsultas = false;
+    this.boolFormPublicar = false;
   }
 
   mostrarConsultas(){
     this.boolServicio = false;
     this.boolPubliciones = false;
+    this.boolOfertasRealizadas = false;
     this.boolResenias = false;
     this.boolConsultas = true;
+    this.boolFormPublicar = false;
   }
+
+
+  mostrarAltaPublicacion()
+  {
+    this.boolServicio = false;
+    this.boolPubliciones = false;
+    this.boolOfertasRealizadas = false;
+    this.boolResenias = false;
+    this.boolConsultas = false;
+    this.boolFormPublicar = true;
+  }
+
+ 
 
 }
