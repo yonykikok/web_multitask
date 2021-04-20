@@ -16,7 +16,9 @@ button{
 
     text-align: center;
   }
-
+h2{
+  margin-top: 20px;
+}
   #content {
     position: relative;
     margin-top: 150px;

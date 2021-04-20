@@ -10,9 +10,7 @@ import { DatabaseService } from 'src/app/servicios/database.service';
   styleUrls: ['./visualizar-oferta-completa.component.css']
 })
 export class VisualizarOfertaCompletaComponent implements OnInit {
-
-
-  // ACA NECESITO SABER COMO OBTENER LA PUBLICACION ORIGINAL QUE VIENE DESDE EL MAT TABLE.
+  
   publicacionOriginal;
 
 
@@ -22,21 +20,21 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data, private authService:AuthService, private dataBase: DatabaseService,) { 
       this.listaDeOfertas = data.listaDeOfertas;
       this.publicacionOriginal = data.publicacionOriginal;
-      // this.esVistaCompleta=data.esVistaCompleta;
     }
     
   ngOnInit(): void {
     console.log(this.listaDeOfertas);
   }
 
-
-
-  aceptarOferta(oferta,estado)
+  aceptarORechazarOferta(oferta,estado)
   {  
     this.publicacionOriginal.listaDeOfertas.forEach(auxOferta => {
 
     if(auxOferta===oferta){
         auxOferta.estadoOferta = estado;
+        if(estado==='aceptadaParaPermutar'){
+          this.publicacionOriginal.estadoPublicacion="permutaPendiente";
+        }
       }
     });
   

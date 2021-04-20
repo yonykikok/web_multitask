@@ -24,7 +24,6 @@ export class UsuarioComponent implements OnInit {
   
   // EMPLEADO
   boolResponderConsultas = false;
-
   //CLIENTE Y ST
   boolServicio = false;
   boolPubliciones = false;

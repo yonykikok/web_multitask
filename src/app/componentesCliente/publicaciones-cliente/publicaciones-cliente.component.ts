@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit,EventEmitter, Output } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DetalladoPublicacionComponent } from 'src/app/componentes/detallado-publicacion/detallado-publicacion.component';
@@ -11,6 +11,10 @@ import { DatabaseService } from 'src/app/servicios/database.service';
   styleUrls: ['./publicaciones-cliente.component.css']
 })
 export class PublicacionesClienteComponent implements OnInit {
+  @Input() tituloSector;
+  @Input() criterioDeFiltrado;
+  mostrarPendientes=false;
+  cantidadDeOfertas;
   misPublicaciones = [];
   displayedColumns: string[] = ['titulo', 'precio', 'descripcion','accion'];
 
@@ -20,20 +24,27 @@ export class PublicacionesClienteComponent implements OnInit {
 
    ngOnInit(): void {    
     this.misPublicaciones=this.obtenerMisPublicaciones();
+
   }
 
+
   obtenerMisPublicaciones(): any {
+
+
+    let auxiliar=[];
     let publicacion;
-     this.misPublicaciones = [];
+    this.misPublicaciones = [];
     this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
-        publicacion=doc.data();        
+        publicacion=doc.data();      
+
         if(this.authService.user['id']==publicacion.idUserQuePublico){
-          if(publicacion.listaDeOfertas)
-          console.log(publicacion.listaDeOfertas.length);
-          this.misPublicaciones.push(publicacion);
+          auxiliar.push(publicacion);
         }
       })
+      this.misPublicaciones = auxiliar.filter(row => row.estadoPublicacion === this.criterioDeFiltrado); // returns array with only estadoPublicacion === {{criterioDeFiltrado}}
+   
+
     })
      return this.misPublicaciones;
   }

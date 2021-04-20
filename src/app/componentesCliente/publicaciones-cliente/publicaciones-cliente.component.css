@@ -17,3 +17,6 @@ img{
     border: 2px solid var(--colorPrincipal);
     margin: 0 5px 0 5px;
 }
+h2{
+  margin-top: 20px;
+}
