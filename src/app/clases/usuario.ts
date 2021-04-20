@@ -6,9 +6,7 @@ export class Usuario {
     tipo;  
     foto;
 
-    constructor( nombre,   
-        apellido,   
-        dni,  
+    constructor( nombre, apellido, dni,  
         correo,   
         tipo,  
         foto){

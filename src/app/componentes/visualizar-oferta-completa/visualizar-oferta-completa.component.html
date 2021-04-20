@@ -1,7 +1,7 @@
 <div style="display:  flex; justify-content: space-evenly; text-align: center; overflow: scroll; flex-wrap: wrap;">
     <div *ngFor="let oferta of listaDeOfertas" style="margin: 5px;">
 
-        <mat-card *ngIf="oferta.estadoOferta=='pendiente'">
+        <mat-card *ngIf="oferta.estadoOferta=='pendiente'" style="background-color: orange;">
             <mat-card-header>
                 <mat-card-subtitle>Este usuario te ofrece</mat-card-subtitle>
             </mat-card-header>
@@ -17,9 +17,27 @@
             </mat-card-content>
 
             <mat-card-actions>
-                <button mat-button color="primary">Aceptar</button>
-                <button mat-button>Rechazar</button>
+                <button mat-button (click)="aceptarOferta(oferta)" color="primary">Aceptar</button>
+                <button mat-button (click)="rechazarOferta(oferta)">Rechazar</button>
             </mat-card-actions>
+        </mat-card>
+
+
+        <mat-card *ngIf="oferta.estadoOferta=='aceptada'" style="background-color: green;">
+            <mat-card-header>
+                <mat-card-subtitle>Aceptaste la oferta</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div *ngFor="let producto of oferta.listaDeProductos">
+                    <div>
+                        <h5>{{producto.titulo}}</h5>
+                    </div>
+                    <h3 style="color: green;">+</h3>
+                </div>
+                <p><b>{{oferta.efectivo|currency}}</b> a tu favor!</p>
+            </mat-card-content>
+
         </mat-card>
     </div>
 </div>
