@@ -15,7 +15,7 @@ export class SeleccionarMisArticulosComponent implements OnInit {
   precioActual=0;
   contador=0;
   @Output() cancelarEvent:EventEmitter<any>=new EventEmitter<any>();
-  @Output() enviarOfertaEvent:EventEmitter<any>=new EventEmitter<any>();
+  // @Output() enviarOfertaEvent:EventEmitter<any>=new EventEmitter<any>();
 
   calcularValorActual(){
     let retorno=0;

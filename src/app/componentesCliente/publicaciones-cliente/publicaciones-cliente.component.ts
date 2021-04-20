@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DetalladoPublicacionComponent } from 'src/app/componentes/detallado-publicacion/detallado-publicacion.component';
+import { VisualizarOfertaCompletaComponent } from 'src/app/componentes/visualizar-oferta-completa/visualizar-oferta-completa.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
 @Component({
@@ -38,12 +39,13 @@ export class PublicacionesClienteComponent implements OnInit {
   }
 
 
-  openDialog(publicacion) {
+  openDialog(listaDeOfertas) {
+    console.log(listaDeOfertas);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data={
-      publicacion:publicacion
+      listaDeOfertas:listaDeOfertas
     }
-    const dialogRef = this.dialog.open(DetalladoPublicacionComponent,dialogConfig);
+    const dialogRef = this.dialog.open(VisualizarOfertaCompletaComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
 
@@ -51,7 +53,7 @@ export class PublicacionesClienteComponent implements OnInit {
         // this.cambiarEstadoDepublicacion(publicacion,result);
       }
       else{
-        alert("estoy");
+        // alert("estoy");
       }
     });
   }

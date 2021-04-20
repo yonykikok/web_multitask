@@ -27,7 +27,7 @@
                         <mat-icon>done</mat-icon>
                     </button> -->
                     <!-- <button mat-fab color="accent" (click)="abrirDetalladoPublicacion(element)"> -->
-                    <button mat-fab color="accent" (click)="openDialog(element)" *ngIf="element.listaDeOfertas">
+                    <button mat-fab color="accent" (click)="openDialog(element.listaDeOfertas)" *ngIf="element.listaDeOfertas">
                         <span >{{element.listaDeOfertas.length}}</span>
                     </button>
                     <!-- <button mat-fab color="warn" (click)="cambiarEstadoDepublicacion(element, 'rechazado')">

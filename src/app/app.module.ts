@@ -129,6 +129,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { EstadisticasAdminComponent } from './componentesAdmin/estadisticas-admin/estadisticas-admin.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { VisualizarOfertaCompletaComponent } from './componentes/visualizar-oferta-completa/visualizar-oferta-completa.component';
 
 
 @NgModule({
@@ -167,6 +168,7 @@ import { ChartsModule } from 'ng2-charts';
     ReparacionesClienteComponent,
     SeleccionarMisArticulosComponent,
     EstadisticasAdminComponent,
+    VisualizarOfertaCompletaComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],

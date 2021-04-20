@@ -10,6 +10,7 @@ import { SeleccionarMisArticulosComponent } from '../seleccionar-mis-articulos/s
 })
 export class ProductToSellCardComponent implements OnInit {
 
+  @Input() esVistaCompleta=true;
   @Input() publicacion;
   @Output() permutarClickEvent:EventEmitter<boolean>=new EventEmitter<boolean>(); 
   constructor(public dialog: MatDialog) { }
@@ -20,7 +21,7 @@ export class ProductToSellCardComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data={
       publicacion:publicacion,
-      esVistaCompleta:true
+      esVistaCompleta:this.esVistaCompleta
     }
     const dialogRef = this.dialog.open(DetalladoPublicacionComponent,dialogConfig);
 
