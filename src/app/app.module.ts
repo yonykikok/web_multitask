@@ -131,6 +131,7 @@ import { EstadisticasAdminComponent } from './componentesAdmin/estadisticas-admi
 import { ChartsModule } from 'ng2-charts';
 import { VisualizarOfertaCompletaComponent } from './componentes/visualizar-oferta-completa/visualizar-oferta-completa.component';
 import { VerOfertasRealizadasComponent } from './componentesCliente/ver-ofertas-realizadas/ver-ofertas-realizadas.component';
+import { GenerarReparacionComponent } from './componentesEmpleado/generar-reparacion/generar-reparacion.component';
 
 
 @NgModule({
@@ -171,6 +172,7 @@ import { VerOfertasRealizadasComponent } from './componentesCliente/ver-ofertas-
     EstadisticasAdminComponent,
     VisualizarOfertaCompletaComponent,
     VerOfertasRealizadasComponent,
+    GenerarReparacionComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],
