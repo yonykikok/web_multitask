@@ -1,0 +1,23 @@
+<div style="display: block;">
+    <div class="divHistorialMensajes" *ngIf="oferta.mensajes">
+        <div *ngFor="let mensaje of oferta.mensajes">
+            <p *ngIf="mensaje.idEmisor==user.id" class="mensajes mensajesEnviados">
+                <span style="font-size: 8px; display: block;">{{mensaje.fechaDeEnvio | date: 'dd/MM/yyyy'}}</span>
+                {{mensaje.mensaje}}
+            </p>
+            <p *ngIf="mensaje.idEmisor!=user.id" class="mensajes mensajesRecibidos">
+                <span style="font-size: 8px; display: block;">{{mensaje.fechaDeEnvio | date: 'dd/MM/yyyy'}}</span>
+                {{mensaje.mensaje}}
+            </p>
+        </div>
+    </div>
+    <div class="divInput">
+        <div class="input-group mb-3">
+            <input id="inputMsj" type="text" class="form-control" [(ngModel)]="mensaje" placeholder="Escribe tu mensaje"
+                aria-label="Escribe tu mensaje" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" (click)="enviarMensaje()">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>

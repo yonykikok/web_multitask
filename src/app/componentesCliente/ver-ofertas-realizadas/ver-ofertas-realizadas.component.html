@@ -1,1 +1,38 @@
-<p>ver-ofertas-realizadas works!</p>
+<!-- <div *ngFor="let oferta of misOfertasAceptadas">
+            <h3>efectivo a favor: {{oferta.ofertaAceptada.efectivo|currency}}</h3>
+        </div> -->
+<div style="display: flex; justify-content: space-evenly; align-items: top; border: 2px solid lightblue;"
+    *ngFor="let oferta of misPermutasOfrecidas">
+    <div style=" text-align: center; margin: 5px;">
+        <h2>OFRECISTE </h2>
+        <p style="color: lightcoral;">pagar {{oferta.ofertaAceptada.efectivo|currency}} en efectivo.</p>
+        <div *ngFor="let producto of oferta.ofertaAceptada.listaDeProductos">
+            <h5 style="color: green;">+</h5>
+            <p>tu "{{producto.titulo}}" publicado</p>
+        </div>
+    </div>
+    <div style="text-align: center; margin: 5px;">
+        <h2>POR </h2>
+        <p>
+            <span style="font-size: 300%;" class="material-icons">
+                east
+            </span>
+        </p>
+    </div>
+    <div style="text-align: center; margin: 5px;">
+        <h2>{{oferta.publicacionOfertada.titulo}}</h2>
+        <div style="display: flex; justify-content: space-evenly; ">
+            <img *ngFor="let foto of oferta.publicacionOfertada.fotos" style="width: 120px; height: 120px;"
+                src="{{foto}}">
+        </div>
+        <h4 style="margin: 5px;">de</h4>
+        <h2 style="color: green;">{{oferta.publicacionOfertada.precio|currency}}</h2>
+    </div>
+    <div style="float: right; bottom: 0;">
+        <button (click)="openDialog(oferta)">
+            <span class="material-icons">
+                forward_to_inbox
+            </span>
+        </button>
+    </div>
+</div>

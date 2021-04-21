@@ -14,7 +14,7 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
   publicacionOriginal;
 
 
-  listaDeOfertas;
+  @Input() listaDeOfertas;
   ampliarOferta=false;
   constructor( private dialogRef: MatDialogRef<VisualizarOfertaCompletaComponent>,
     @Inject(MAT_DIALOG_DATA) data, private authService:AuthService, private dataBase: DatabaseService,) { 
@@ -25,8 +25,28 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.listaDeOfertas);
   }
+  generarObjetoPermuta(publicacion){
+      let permuta={
+        estadoPermuta:'pendienteDeConcretacion',
+        publicacionOfertada:publicacion,
+        idUserQuePublico:publicacion.idUserQuePublico,
+      };
+     publicacion.listaDeOfertas.forEach(oferta => {
+      if(oferta['estadoOferta']=="aceptadaParaPermutar"){
+        permuta['ofertaAceptada']=oferta;
+        permuta['idUserQueOferto']=oferta['idUserQueOferto'];
+        return;
+      }
+     });  
+     
+     
 
+     console.log("PUBLICACION: ",publicacion);
+     console.log("PERMUTA: ",permuta);
+     return permuta;
+  }
   aceptarORechazarOferta(oferta,estado)
+  
   {  
     this.publicacionOriginal.listaDeOfertas.forEach(auxOferta => {
 
@@ -34,10 +54,10 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
         auxOferta.estadoOferta = estado;
         if(estado==='aceptadaParaPermutar'){
           this.publicacionOriginal.estadoPublicacion="permutaPendiente";
+          this.dataBase.crear('permutas',this.generarObjetoPermuta(this.publicacionOriginal));
         }
       }
-    });
-  
+    });     
     this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
       alert("Oferta actualizada con exito");
     }).catch(()=>{

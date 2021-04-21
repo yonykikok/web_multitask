@@ -1,0 +1,17 @@
+p{
+    display: block;
+    width: 100%;
+}
+.mensajes{    
+    border-radius: 5px;
+    padding: 8px;
+}
+.mensajesEnviados{
+    text-align: left; 
+    background-color: lightgreen;
+}
+.mensajesRecibidos{
+
+    text-align: right; 
+    background-color: lightgray;
+}
