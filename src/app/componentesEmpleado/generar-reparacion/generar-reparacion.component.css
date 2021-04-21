@@ -1,0 +1,29 @@
+.divRealizarConsulta,.btnContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+ 
+.inputsContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.textAreaContainer{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+#matFormFieldConsulta{
+  width: 100%;
+}
+
+  mat-form-field{
+    width: 30%;
+  }
+  

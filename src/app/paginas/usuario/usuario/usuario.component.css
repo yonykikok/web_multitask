@@ -2,6 +2,23 @@ button{
     width: 100%;
 }
 
+
+/*
+.mat-toolbar-row, .mat-toolbar-single-row {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+}
+*/
+
+/*
+de aca es para la imagen y perfil
+*/
+
 #profile-bg {
     position: absolute;
     left: 0;
