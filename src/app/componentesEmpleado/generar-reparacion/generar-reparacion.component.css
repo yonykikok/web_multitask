@@ -36,20 +36,9 @@ a.author {
   -webkit-box-shadow: -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
   -moz-box-shadow:    -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
   box-shadow:         -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
-  
+  border: 3px dashed rgba(50, 50, 50, 0.83);
 }
 
-
-#page:before {
-  content: '';
-  top: 0; bottom: 0; left: 0;
-  width: 60px;
-  background: radial-gradient(#575450 6px, transparent 7px) repeat-y;
-  background-size: 30px 30px;
-  border-right: 3px solid #D44147;
-  box-sizing: border-box;
-  z-index: 99;
-}
 
 /* Contact Form */
 #contact-form {
@@ -57,6 +46,7 @@ a.author {
    font-size: 16px;
    width: 100%;
 }
+
 
 .field-left {
    width: 50%;
