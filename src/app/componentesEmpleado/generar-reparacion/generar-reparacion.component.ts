@@ -20,13 +20,17 @@ export class GenerarReparacionComponent implements OnInit {
   consultaForm: FormGroup;
 
 
-  consultaJSON = {
+  reparacionJSON = {
+    fecha : new Date().toLocaleDateString(),
     nombre : "",
     apellido: "",
     correo: "",
-    consulta:"",
-    horaConsulta:"",
-    estadoConsulta:"sinResponder"
+    telefono:"",
+    marcaYModelo:"",
+    observaciones:"",
+    trabajoARealizar:"",
+    precio:"",
+    sena:""
   };
 
   
@@ -45,7 +49,19 @@ export class GenerarReparacionComponent implements OnInit {
 
       correoValidado: ['', [Validators.required, Validators.email]],
 
-      consultaValidada: ['', [Validators.required, Validators.minLength(30)]],
+      telefonoValidado: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+
+      marcaYModeloValidado: ['', [Validators.required]],
+
+      observacionesValidado: ['', [Validators.required, Validators.minLength(1)]],
+
+      trabajoARealizarValidado: ['', [Validators.required, Validators.minLength(1)]],
+
+      precioValidado: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+
+      señaValidada: ['', [Validators.pattern('^[0-9]{10}$')]],
+
+
 
    });
   
@@ -56,102 +72,28 @@ export class GenerarReparacionComponent implements OnInit {
   }
 
 
-  public mostrarErrorRegistro(control: string): string {
 
-    let retorno = '';
-
-    switch (control) {
-
-      case 'nombreValidado':
-
-            if (this.consultaForm.controls.nombreValidado.hasError('required')) 
-            {
-              retorno = 'Debe ingresar un nombre.';
-            } 
-            
-            if (this.consultaForm.controls.nombreValidado.hasError('minLength')) 
-            {
-              retorno = 'Debe ingresar un nombre válido.';
-            }
-            
-            if (this.consultaForm.controls.nombreValidado.hasError('pattern')) 
-            {
-              retorno = 'Error con el formato del nombre.';
-            }
-
-        break;
-    
-        case 'apellidoValidado':
-
-            if (this.consultaForm.controls.apellidoValidado.hasError('required')) 
-            {
-              retorno = 'Debe ingresar un apellido.';
-            } 
-            
-            if (this.consultaForm.controls.apellidoValidado.hasError('minLength')) 
-            {
-              retorno = 'Debe ingresar un apellido válido.';
-            }
-            
-            if (this.consultaForm.controls.apellidoValidado.hasError('pattern')) 
-            {
-              retorno = 'Error con el formato del apellido.';
-            }
-  
-        break;
-
-
-        case 'correoValidado':
-
-            if (this.consultaForm.controls.correoValidado.hasError('required')) 
-            {
-              retorno = 'Debe ingresar un email.';
-            } 
-            
-            if (this.consultaForm.controls.correoValidado.hasError('email')) 
-            {
-              retorno = 'Debe ingresar un email válido.';
-            }
-
-        break;
-
-
-        case 'consultaValidada':
-
-            if (this.consultaForm.controls.consultaValidada.hasError('required')) 
-            {
-              retorno = 'Debe ingresar una consulta';
-            } 
-            
-            if (this.consultaForm.controls.consultaValidada.hasError('minLength')) 
-            {
-              retorno = 'Debe ingresar una consulta mayor a 30 caracteres';
-            }
-
-        break;
-
-    }
-
-    return retorno;
-  }
-
-
-
-  registrarConsultasAnonimasBD()
+  registrarReparacionBD()
   {
-    this.consultaJSON.horaConsulta = new Date().toLocaleString() 
-    this.dataBase.crear('consultasAnonimas',this.consultaJSON)
+
+    this.dataBase.crear('reparaciones',this.reparacionJSON)
   
-    .then(resultado => { console.log("Consulta enviada con éxito") ; this.vaciarCampos()});
+    .then(resultado => 
+      { console.log("Consulta enviada con éxito") ; this.vaciarCampos()});
   }
 
 
   vaciarCampos()
   {
-    this.consultaJSON.nombre ="";
-    this.consultaJSON.apellido ="";
-    this.consultaJSON.correo ="";
-    this.consultaJSON.consulta ="";
+    this.reparacionJSON.nombre ="";
+    this.reparacionJSON.apellido ="";
+    this.reparacionJSON.correo ="";
+    this.reparacionJSON.telefono ="";
+    this.reparacionJSON.marcaYModelo ="";
+    this.reparacionJSON.observaciones ="";    
+    this.reparacionJSON.trabajoARealizar ="";
+    this.reparacionJSON.precio ="";
+    this.reparacionJSON.sena ="";
   }
 
 

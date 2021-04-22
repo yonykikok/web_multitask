@@ -1,69 +1,92 @@
-<div class="divRealizarConsulta">
+<div id="page">
 
-    <form [formGroup]="consultaForm">
-        <div class="inputsContainer">
+    FECHA : {{reparacionJSON.fecha}}
 
-            <mat-form-field appearance="fill">
-                <mat-label>Nombre</mat-label>
-
-                <input matInput placeholder="Ingrese su nombre" formControlName="nombreValidado"
-                    [(ngModel)]="consultaJSON.nombre">
-
-                <mat-error *ngIf="consultaForm.controls.nombreValidado.invalid">{{mostrarErrorRegistro('nombreValidado')
-                    }}</mat-error>
-            </mat-form-field>
+    <form [formGroup]="consultaForm" id="contact-form">
 
 
-            <mat-form-field appearance="fill">
-                <mat-label>Apellido</mat-label>
+        <div style="text-align: center;" class="form-title">DNI Cliente <span style="color: grey;"> (De no encontrarse
+                en la base de datos, se deberá crear una cuenta)</span></div>
+        <textarea rows="1" placeholder="Enter your message" class="form-field form-message"></textarea>
 
-                <input matInput placeholder="Ingrese su apellido" formControlName="apellidoValidado"
-                    [(ngModel)]="consultaJSON.apellido">
-
-                <mat-error *ngIf="consultaForm.controls.apellidoValidado.invalid">
-                    {{mostrarErrorRegistro('apellidoValidado') }}</mat-error>
-            </mat-form-field>
+        <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
+            (click)="registrarReparacionBD">Verificar existencia</button>
 
 
-
-            <mat-form-field appearance="fill">
-                <mat-label>Correo</mat-label>
-
-                <input matInput placeholder="Ingrese su correo" formControlName="correoValidado"
-                    [(ngModel)]="consultaJSON.correo">
-
-                <mat-error *ngIf="consultaForm.controls.correoValidado.invalid">{{mostrarErrorRegistro('correoValidado')
-                    }}</mat-error>
-            </mat-form-field>
+        <div class="titulo" style="color: red;">DETALLE CLIENTE</div>
 
 
-        </div>
+        <div class="field-left">
 
-        <div class="textAreaContainer">
+            <div class="form-title">Nombre del cliente:</div>
+            <input type="text" [(ngModel)]="reparacionJSON.nombre" placeholder="Ingrese su nombre"
+                formControlName="nombreValidado" class="form-field">
 
-            <mat-form-field id="matFormFieldConsulta" appearance="fill">
-                <mat-label>Consulta</mat-label>
-
-                <!-- <input matInput placeholder="Ingrese su consulta" formControlName="consultaValidada"
-                    [(ngModel)]="consultaJSON.consulta"> -->
-
-                <textarea id="textAreaConsulta" matInput formControlName="consultaValidada" class="form-control"
-                    placeholder="Ingrese su consulta" [(ngModel)]="consultaJSON.consulta" required rows="5" cols="40"></textarea>
-
-
-
-                <mat-error *ngIf="consultaForm.controls.consultaValidada.invalid">
-                    {{mostrarErrorRegistro('consultaValidada') }}</mat-error>
-            </mat-form-field>
+            <div class="form-title">Apellido del cliente:</div>
+            <input type="text" [(ngModel)]="reparacionJSON.apellido" placeholder="Ingrese su apellido"
+                formControlName="apellidoValidado" class="form-field">
         </div>
 
 
+        <div class="field-right">
+
+            <div class="form-title">Correo:</div>
+            <input type="email" [(ngModel)]="reparacionJSON.correo" placeholder="Email de contacto"
+                formControlName="correoValidado" class="form-field">
+
+            <div class="form-title">Telefono:</div>
+            <input type="text" [(ngModel)]="reparacionJSON.telefono" placeholder="Telefono de contacto"
+                formControlName="telefonoValidado" class="form-field">
+
+        </div>
 
 
-        <div class="btnContainer">
+        <div class="titulo" style="color: red;">DETALLE EQUIPO</div>
+
+
+        <div class="field-left">
+            <div class="form-title">Marca y Modelo: </div>
+            <input type="text" [(ngModel)]="reparacionJSON.marcaYModelo" placeholder="Ingrese marca y modelo"
+                formControlName="marcaYModeloValidado" class="form-field">
+        </div>
+
+        <div class="field-right">
+            <div class="form-title">Observaciones:</div>
+            <input type="text" [(ngModel)]="reparacionJSON.observaciones" placeholder="Ingrese observaciones"
+                formControlName="observacionesValidado" class="form-field">
+        </div>
+
+
+
+        <div class="form-title">Trabajo a realizar:</div>
+        <textarea name="message" rows="5" [(ngModel)]="reparacionJSON.trabajoARealizar" placeholder="Enter your message"
+            formControlName="trabajoARealizarValidado" class="form-field form-message"></textarea>
+
+
+
+        <div class="titulo" style="color: red;">DETALLES FACTURACION</div>
+
+
+        <div class="field-left">
+            <div class="form-title">Precio: </div>
+            <input type="text" [(ngModel)]="reparacionJSON.precio" placeholder="Precio de la reparacion"
+                formControlName="precioValidado" class="form-field">
+        </div>
+
+        <div class="field-right">
+            <div class="form-title">Seña:</div>
+            <input type="text" [(ngModel)]="reparacionJSON.sena" placeholder="Seña por parte del cliente"
+                formControlName="señaValidada" class="form-field">
+        </div>
+
+
+
+        <div class="buttons-container">
             <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
-            (click)="registrarConsultasAnonimasBD()">Enviar consulta</button>
+                (click)="registrarReparacionBD()">REGISTRAR REPARACIÓN</button>
         </div>
+
 
     </form>
+
 </div>
