@@ -48,6 +48,7 @@ export class UsuarioComponent implements OnInit {
   mostrarRegistroCliente() {
     this.boolRegistroCliente = true;
     this.boolRegistroEmpleado = false;
+    this.boolGenerarReparacion = false;
     this.boolListadoCuentas = false;
     this.booEstadisticas = false;
     this.boolAdministrarPublicaciones = false;

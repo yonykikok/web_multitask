@@ -22,6 +22,7 @@ export class GenerarReparacionComponent implements OnInit {
 
   reparacionJSON = {
     fecha : new Date().toLocaleDateString(),
+    DNI:"",
     nombre : "",
     apellido: "",
     correo: "",
@@ -43,6 +44,8 @@ export class GenerarReparacionComponent implements OnInit {
 
     this.consultaForm = this.formBuilder.group({
 
+      DNIValidado: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+
       nombreValidado: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z]{4,20}$')]],
 
       apellidoValidado: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z]{4,20}$')]],
@@ -57,9 +60,9 @@ export class GenerarReparacionComponent implements OnInit {
 
       trabajoARealizarValidado: ['', [Validators.required, Validators.minLength(1)]],
 
-      precioValidado: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      precioValidado: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
 
-      señaValidada: ['', [Validators.pattern('^[0-9]{10}$')]],
+      senaValidada: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
 
 
 
@@ -69,6 +72,12 @@ export class GenerarReparacionComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+
+  VerificarExistenciaUsuario()
+  {
+    
   }
 
 
@@ -85,6 +94,7 @@ export class GenerarReparacionComponent implements OnInit {
 
   vaciarCampos()
   {
+    this.reparacionJSON.DNI ="";
     this.reparacionJSON.nombre ="";
     this.reparacionJSON.apellido ="";
     this.reparacionJSON.correo ="";

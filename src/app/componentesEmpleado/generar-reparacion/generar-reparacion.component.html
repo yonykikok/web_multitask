@@ -1,4 +1,13 @@
+
+<!--
+
+                <mat-icon *ngIf="consultaForm.controls.nombreValidado.invalid">check_box_outline_blank</mat-icon>
+                <mat-icon *ngIf="!consultaForm.controls.nombreValidado.invalid">check_box</mat-icon>
+-->
+
 <div id="page">
+
+    <h2 class="divider gradient" contenteditable> FACTURA </h2>
 
     FECHA : {{reparacionJSON.fecha}}
 
@@ -7,22 +16,31 @@
 
         <div style="text-align: center;" class="form-title">DNI Cliente <span style="color: grey;"> (De no encontrarse
                 en la base de datos, se deberá crear una cuenta)</span></div>
-        <textarea rows="1" placeholder="Enter your message" class="form-field form-message"></textarea>
+        <mat-icon *ngIf="consultaForm.controls.DNIValidado.invalid">check_box_outline_blank</mat-icon>
+        <mat-icon *ngIf="!consultaForm.controls.DNIValidado.invalid">check_box</mat-icon>
+        <textarea rows="1" [(ngModel)]="reparacionJSON.DNI" placeholder="Ingrese su DNI"
+        formControlName="DNIValidado" class="form-field form-message"></textarea>
+
+
+        
 
         <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
             (click)="registrarReparacionBD">Verificar existencia</button>
 
 
-        <div class="titulo" style="color: red;">DETALLE CLIENTE</div>
+            <h2 class="divider gradient" contenteditable> Detalles cliente </h2>
+        
+             <div class="field-left">
 
-
-        <div class="field-left">
-
-            <div class="form-title">Nombre del cliente:</div>
+            <div class="form-title">Nombre del cliente: </div>
+            <mat-icon *ngIf="consultaForm.controls.nombreValidado.invalid">check_box_outline_blank</mat-icon>
+            <mat-icon *ngIf="!consultaForm.controls.nombreValidado.invalid">check_box</mat-icon>
             <input type="text" [(ngModel)]="reparacionJSON.nombre" placeholder="Ingrese su nombre"
                 formControlName="nombreValidado" class="form-field">
 
             <div class="form-title">Apellido del cliente:</div>
+            <mat-icon *ngIf="consultaForm.controls.apellidoValidado.invalid">check_box_outline_blank</mat-icon>
+            <mat-icon *ngIf="!consultaForm.controls.apellidoValidado.invalid">check_box</mat-icon>
             <input type="text" [(ngModel)]="reparacionJSON.apellido" placeholder="Ingrese su apellido"
                 formControlName="apellidoValidado" class="form-field">
         </div>
@@ -31,27 +49,35 @@
         <div class="field-right">
 
             <div class="form-title">Correo:</div>
+            <mat-icon *ngIf="consultaForm.controls.correoValidado.invalid">check_box_outline_blank</mat-icon>
+            <mat-icon *ngIf="!consultaForm.controls.correoValidado.invalid">check_box</mat-icon>
             <input type="email" [(ngModel)]="reparacionJSON.correo" placeholder="Email de contacto"
                 formControlName="correoValidado" class="form-field">
 
             <div class="form-title">Telefono:</div>
+            <mat-icon *ngIf="consultaForm.controls.telefonoValidado.invalid">check_box_outline_blank</mat-icon>
+            <mat-icon *ngIf="!consultaForm.controls.telefonoValidado.invalid">check_box</mat-icon>
             <input type="text" [(ngModel)]="reparacionJSON.telefono" placeholder="Telefono de contacto"
                 formControlName="telefonoValidado" class="form-field">
 
         </div>
 
 
-        <div class="titulo" style="color: red;">DETALLE EQUIPO</div>
+        <h2 class="divider gradient" contenteditable> Detalles equipo </h2>
 
 
         <div class="field-left">
             <div class="form-title">Marca y Modelo: </div>
+            <mat-icon *ngIf="consultaForm.controls.marcaYModeloValidado.invalid">check_box_outline_blank</mat-icon>
+            <mat-icon *ngIf="!consultaForm.controls.marcaYModeloValidado.invalid">check_box</mat-icon>
             <input type="text" [(ngModel)]="reparacionJSON.marcaYModelo" placeholder="Ingrese marca y modelo"
                 formControlName="marcaYModeloValidado" class="form-field">
         </div>
 
         <div class="field-right">
             <div class="form-title">Observaciones:</div>
+            <mat-icon *ngIf="consultaForm.controls.observacionesValidado.invalid">check_box_outline_blank</mat-icon>
+            <mat-icon *ngIf="!consultaForm.controls.observacionesValidado.invalid">check_box</mat-icon>
             <input type="text" [(ngModel)]="reparacionJSON.observaciones" placeholder="Ingrese observaciones"
                 formControlName="observacionesValidado" class="form-field">
         </div>
@@ -59,24 +85,30 @@
 
 
         <div class="form-title">Trabajo a realizar:</div>
-        <textarea name="message" rows="5" [(ngModel)]="reparacionJSON.trabajoARealizar" placeholder="Enter your message"
+        <mat-icon *ngIf="consultaForm.controls.trabajoARealizarValidado.invalid">check_box_outline_blank</mat-icon>
+        <mat-icon *ngIf="!consultaForm.controls.trabajoARealizarValidado.invalid">check_box</mat-icon>
+        <textarea name="message" rows="5" [(ngModel)]="reparacionJSON.trabajoARealizar" placeholder="Ingrese trabajo a realizar"
             formControlName="trabajoARealizarValidado" class="form-field form-message"></textarea>
 
 
 
-        <div class="titulo" style="color: red;">DETALLES FACTURACION</div>
+            <h2 class="divider gradient" contenteditable> Detalles Facturacion </h2>
 
 
         <div class="field-left">
             <div class="form-title">Precio: </div>
+            <mat-icon *ngIf="consultaForm.controls.precioValidado.invalid">check_box_outline_blank</mat-icon>
+            <mat-icon *ngIf="!consultaForm.controls.precioValidado.invalid">check_box</mat-icon>
             <input type="text" [(ngModel)]="reparacionJSON.precio" placeholder="Precio de la reparacion"
                 formControlName="precioValidado" class="form-field">
         </div>
 
         <div class="field-right">
             <div class="form-title">Seña:</div>
+            <mat-icon *ngIf="consultaForm.controls.senaValidada.invalid">check_box_outline_blank</mat-icon>
+            <mat-icon *ngIf="!consultaForm.controls.senaValidada.invalid">check_box</mat-icon>
             <input type="text" [(ngModel)]="reparacionJSON.sena" placeholder="Seña por parte del cliente"
-                formControlName="señaValidada" class="form-field">
+                formControlName="senaValidada" class="form-field">
         </div>
 
 

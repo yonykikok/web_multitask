@@ -141,3 +141,40 @@ a.author {
 	position:relative;
 	top:1px;
 }
+
+
+
+
+
+/* ACA ESTAN LOS DIVISORES DE TITULOS */
+
+.divider {
+   display: flex;
+ }
+ .divider::before{
+   content: "";
+   flex: 1;
+ }
+
+ .divider::after{
+     content: "";
+     flex: 1;
+}
+
+
+.gradient {
+   margin: 1em 0;
+   height: 2em;
+   line-height: 2em;
+   color: white;
+   background: black;
+} 
+
+.gradient:before {
+     background: linear-gradient(to right, white, black);
+}
+   
+.gradientafter {
+     background: linear-gradient(to left, white, black);
+}
+ 
