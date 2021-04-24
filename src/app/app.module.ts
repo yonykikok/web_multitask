@@ -151,9 +151,9 @@ import { GenerarReparacionComponent } from './componentesEmpleado/generar-repara
     ProductToSellCardComponent,
     ListaDePersonalComponent,
     NgMultitaskFilesDirective,
-
+    GenerarReparacionComponent,
     SubirImagenesComponentComponent,
-
+    ChatPermutaComponent,
     FormAltaProductoComponent,
 
     UsuarioComponent,

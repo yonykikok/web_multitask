@@ -15,3 +15,18 @@ p{
     text-align: right; 
     background-color: lightgray;
 }
+
+.divContainer{
+    background-color: rgba(0, 0, 0, 0.63);
+    padding: 55px 10px 25px 10px;
+    border-radius: 10px;
+    height: 40vw;
+    max-width: 40vw;
+}
+.divContainer::before{
+    content: '';
+    background-color: rgba(0, 0, 0, 0.815);
+    border-radius: 10px;
+    height: 40vw;
+    max-width: 40vw;
+}

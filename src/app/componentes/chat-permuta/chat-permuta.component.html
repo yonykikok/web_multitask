@@ -1,4 +1,4 @@
-<div style="display: block;">
+<div class="divContainer" style="display: block;">
     <div class="divHistorialMensajes" *ngIf="oferta.mensajes">
         <div *ngFor="let mensaje of oferta.mensajes">
             <p *ngIf="mensaje.idEmisor==user.id" class="mensajes mensajesEnviados">
