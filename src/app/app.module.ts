@@ -132,6 +132,7 @@ import { ChartsModule } from 'ng2-charts';
 import { VisualizarOfertaCompletaComponent } from './componentes/visualizar-oferta-completa/visualizar-oferta-completa.component';
 import { VerOfertasRealizadasComponent } from './componentesCliente/ver-ofertas-realizadas/ver-ofertas-realizadas.component';
 import { ChatPermutaComponent } from './componentes/chat-permuta/chat-permuta.component';
+import { GenerarReparacionComponent } from './componentesEmpleado/generar-reparacion/generar-reparacion.component';
 
 
 @NgModule({
@@ -172,7 +173,6 @@ import { ChatPermutaComponent } from './componentes/chat-permuta/chat-permuta.co
     EstadisticasAdminComponent,
     VisualizarOfertaCompletaComponent,
     VerOfertasRealizadasComponent,
-    ChatPermutaComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],

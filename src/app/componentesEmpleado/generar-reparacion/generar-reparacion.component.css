@@ -1,0 +1,170 @@
+
+@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
+@import url(https://fonts.googleapis.com/css?family=Bitter:400,700);
+
+html, body{
+  min-height: 100%;
+  font-family: 'Bitter', serif;
+  background: grey;
+}
+
+h1{
+  color: #ccc;
+  font-size: 2.5em;
+  margin-bottom: .5em;
+  text-align: center;
+  text-shadow: 0.0625em 0.0625em 0.0625em #666;
+}
+h2{
+  text-align: center;
+  font-size: 1.2em;
+  color: #ccc;
+  margin-bottom: 2em
+}
+
+a.author {
+  text-decoration: none;
+  color: darkseagreen;
+}
+
+#page {
+  width: 90%;
+  height: 100%;
+  background: #eeebcf;
+  padding: 20px 20px 20px 20px;
+  margin-left: 4%;
+  -webkit-box-shadow: -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
+  -moz-box-shadow:    -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
+  box-shadow:         -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
+  border: 3px dashed rgba(50, 50, 50, 0.83);
+}
+
+
+/* Contact Form */
+#contact-form {
+   font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;
+   font-size: 16px;
+   width: 100%;
+}
+
+
+.field-left {
+   width: 50%;
+   display: inline-block;
+   float: left;
+}
+
+.field-right {
+   width: 50%;
+   display: inline-block;
+}
+
+.form-title {
+   margin-bottom:10px;
+   color: #6B6B6B;
+   text-shadow: #fdf2e4 0 1px 0;
+}
+
+.form-field {
+   border: 1px solid #a39584;
+   background: #f3f3f3;
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+   color: #C4C4C4;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+   padding: 8px;
+   margin-bottom: 20px;
+   width: 90%;
+}
+.form-field:focus {
+   background: #fff;
+   color: #725129;
+}
+
+.form-message {
+   width: 95%;
+}
+
+.buttons-container {
+   margin: 8px 0;
+   //text-align: center;
+}
+
+.buttons {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+	background-color:#f9f9f9;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.buttons:hover {
+	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+	background-color:#e9e9e9;
+}
+.buttons:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+
+/* ACA ESTAN LOS DIVISORES DE TITULOS */
+
+.divider {
+   display: flex;
+ }
+ .divider::before{
+   content: "";
+   flex: 1;
+ }
+
+ .divider::after{
+     content: "";
+     flex: 1;
+}
+
+
+.gradient {
+   margin: 1em 0;
+   height: 2em;
+   line-height: 2em;
+   color: white;
+   background: black;
+} 
+
+.gradient:before {
+     background: linear-gradient(to right, white, black);
+}
+   
+.gradientafter {
+     background: linear-gradient(to left, white, black);
+}
+ 
