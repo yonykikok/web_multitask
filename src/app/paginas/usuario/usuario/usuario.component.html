@@ -116,6 +116,7 @@
             <div *ngIf="boolPubliciones == true" style="text-align: center;">
                 <app-publicaciones-cliente [criterioDeFiltrado]="'pendiente'" [tituloSector]="'Mis publicaciones pendientes de aprobacion'"></app-publicaciones-cliente>
                 <app-publicaciones-cliente [criterioDeFiltrado]="'aceptado'" [tituloSector]="'Mis publicaciones activas'"></app-publicaciones-cliente>
+                <app-publicaciones-cliente [criterioDeFiltrado]="'pausado'" [tituloSector]="'Mis publicaciones pausadas'"></app-publicaciones-cliente>
                 <app-publicaciones-cliente [criterioDeFiltrado]="'permutaPendiente'" [tituloSector]="'Mis publicaciones con permuta pendiente'"></app-publicaciones-cliente>
                 <app-publicaciones-cliente [criterioDeFiltrado]="'vendido'" [tituloSector]="'Mis publicaciones vendidas'"></app-publicaciones-cliente>
                 <app-publicaciones-cliente [criterioDeFiltrado]="'rechazado'" [tituloSector]="'Mis publicaciones rechazadas'"></app-publicaciones-cliente>

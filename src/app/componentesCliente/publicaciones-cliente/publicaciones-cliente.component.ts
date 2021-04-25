@@ -76,4 +76,17 @@ export class PublicacionesClienteComponent implements OnInit {
 
   }
 
+  pausar(publicacion, pausa) {
+    let estado = "";
+    if(pausa){
+      estado = 'pausado'
+    }else{
+      estado = 'aceptado'
+    }
+    publicacion.estadoPublicacion = estado;
+    this.dataBase.actualizar('publicaciones', publicacion, publicacion.id);
+    this.misPublicaciones = this.obtenerMisPublicaciones();
+  }
+
+
 }
