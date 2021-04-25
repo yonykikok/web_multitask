@@ -7,28 +7,52 @@
 
 <div id="page">
 
-    <h2 class="divider gradient" contenteditable> FACTURA </h2>
 
-    FECHA : {{reparacionJSON.fecha}}
+    <div class="field-left">
 
-    <form [formGroup]="consultaForm" id="contact-form">
+    </div>
 
+    <div class="field-right">
 
-        <div style="text-align: center;" class="form-title">DNI Cliente <span style="color: grey;"> (De no encontrarse
-                en la base de datos, se deberá crear una cuenta)</span></div>
-        <mat-icon *ngIf="consultaForm.controls.DNIValidado.invalid">check_box_outline_blank</mat-icon>
-        <mat-icon *ngIf="!consultaForm.controls.DNIValidado.invalid">check_box</mat-icon>
-        <textarea rows="1" [(ngModel)]="reparacionJSON.DNI" placeholder="Ingrese su DNI"
-        formControlName="DNIValidado" class="form-field form-message"></textarea>
+        <div class = "miniPageRight">
+            Numero de factura:
+            <br>
+            FECHA : {{reparacionJSON.fecha}}
+        </div>
+
+    </div>
+
 
 
         
-
-        <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
-            (click)="registrarReparacionBD">Verificar existencia</button>
+    <form [formGroup]="consultaForm" id="contact-form">
 
 
-            <h2 class="divider gradient" contenteditable> Detalles cliente </h2>
+        <h2 class="divider gradient"> FACTURA </h2>
+
+
+
+
+        <div style="text-align: center;" class="form-title">DNI Cliente <span style="color: grey;"> (De no encontrarse en la base de datos, se deberá crear una cuenta)</span></div>
+        <mat-icon *ngIf="consultaForm.controls.DNIValidado.invalid">check_box_outline_blank</mat-icon>
+        <mat-icon *ngIf="!consultaForm.controls.DNIValidado.invalid">check_box</mat-icon>
+        
+
+        <input *ngIf="DNIExiste == false" type="text" [(ngModel)]="reparacionJSON.DNI" placeholder="Ingrese su DNI"
+        formControlName="DNIValidado" class="form-field form-message">
+
+
+        <input *ngIf="DNIExiste == true"type="text" [(ngModel)]="reparacionJSON.DNI" placeholder="Ingrese su DNI"
+        formControlName="DNIValidado" class="form-field form-message" disabled>
+
+        
+
+        <button [disabled]="consultaForm.controls.DNIValidado.invalid" type="submit" mat-raised-button color="primary" class="buttons"
+            (click)="VerificarExistenciaUsuario()">Verificar existencia</button>
+
+            <div *ngIf="DNIExiste == true">
+
+            <h2 class="divider gradient" > Detalles cliente </h2>
         
              <div class="field-left">
 
@@ -63,7 +87,18 @@
         </div>
 
 
-        <h2 class="divider gradient" contenteditable> Detalles equipo </h2>
+        <h2 class="divider gradient"> Detalles equipo </h2>
+
+
+        <mat-form-field appearance="fill" style="width: 100%; padding: 20px 20px 20px;">
+            <mat-label>Tipo de disposito</mat-label>
+            <mat-select [(value)]="reparacionJSON.tipoDispositivo">
+              <mat-option>Seleccione</mat-option>
+              <mat-option value="option1">Celular</mat-option>
+              <mat-option value="option2">Tablet</mat-option>
+              <mat-option value="option3">Otro</mat-option>
+            </mat-select>
+          </mat-form-field>
 
 
         <div class="field-left">
@@ -92,7 +127,7 @@
 
 
 
-            <h2 class="divider gradient" contenteditable> Detalles Facturacion </h2>
+            <h2 class="divider gradient"> Detalles Facturacion </h2>
 
 
         <div class="field-left">
@@ -114,11 +149,14 @@
 
 
         <div class="buttons-container">
-            <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
+            <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="buttons"
                 (click)="registrarReparacionBD()">REGISTRAR REPARACIÓN</button>
         </div>
 
+        </div>
 
     </form>
+
+
 
 </div>

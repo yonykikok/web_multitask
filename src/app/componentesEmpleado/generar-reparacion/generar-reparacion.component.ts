@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 
+// ANGULAR FIRESTORE.
+import { AngularFirestore } from '@angular/fire/firestore';
 // FIREBASE:
 import * as firebase from 'firebase'
 // FIREBASE STORAGE
@@ -9,6 +11,7 @@ import { AngularFireStorage } from "@angular/fire/storage"
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // SERVICIO DATABASE.
 import { DatabaseService } from "../../servicios/database.service"
+import { ToastService } from 'src/app/servicios/toast.service';
 
 @Component({
   selector: 'app-generar-reparacion',
@@ -18,6 +21,8 @@ import { DatabaseService } from "../../servicios/database.service"
 export class GenerarReparacionComponent implements OnInit {
 
   consultaForm: FormGroup;
+  DNIExiste;
+  numeroFactura : number;
 
 
   reparacionJSON = {
@@ -26,22 +31,27 @@ export class GenerarReparacionComponent implements OnInit {
     nombre: "",
     apellido: "",
     correo: "",
-    telefono: "",
-    marcaYModelo: "",
-    observaciones: "",
-    trabajoARealizar: "",
-    precio: "",
-    sena: "",
+    telefono:"",
+    marcaYModelo:"",
+    observaciones:"",
+    trabajoARealizar:"",
+    tipoDispositivo:"",
+    precio:"",
+    sena:"",
     estado:'enProceso'
   };
 
 
   constructor(private formBuilder: FormBuilder,
 
-    private dataBase: DatabaseService,
-    private st: AngularFireStorage,
+    private dataBase : DatabaseService,
+    private st : AngularFireStorage,
+    private firestore : AngularFirestore,
+    private toast : ToastService,
 
-  ) {
+    ) {
+
+    this.DNIExiste = false;
 
     this.consultaForm = this.formBuilder.group({
 
@@ -76,31 +86,52 @@ export class GenerarReparacionComponent implements OnInit {
   }
 
 
-  VerificarExistenciaUsuario() {
-
+  VerificarExistenciaUsuario()
+  {
+    this.firestore.collection("usuarios").get().subscribe((querySnapShot) => { querySnapShot.forEach((doc) => {
+      
+      if(doc.data()['DNI'] == this.reparacionJSON.DNI && doc.data()['tipo'] == 'cliente')
+      {
+       this.toast.snackBarMensaje("El DNI existe. La factura podrá ser generada.", "Aceptar", 3000);
+       this.reparacionJSON.nombre = doc.data()['nombre'];
+       this.reparacionJSON.apellido = doc.data()['apellido'];
+       this.reparacionJSON.correo = doc.data()['correo'];
+       this.reparacionJSON.telefono = doc.data()['numero'];
+       this.DNIExiste=true;
+      }
+  
+      })
+    })
   }
 
 
 
   registrarReparacionBD() {
 
-    this.dataBase.crear('reparaciones', this.reparacionJSON)
-
-      .then(resultado => { console.log("Consulta enviada con éxito"); this.vaciarCampos() });
+    this.dataBase.crear('reparaciones',this.reparacionJSON)
+  
+    .then(resultado => 
+    { 
+      this.toast.snackBarMensaje("La factura de ha generado con éxito!", "Aceptar", 3000);
+      this.vaciarCampos();
+    }
+    );
   }
 
 
-  vaciarCampos() {
-    this.reparacionJSON.DNI = "";
-    this.reparacionJSON.nombre = "";
-    this.reparacionJSON.apellido = "";
-    this.reparacionJSON.correo = "";
-    this.reparacionJSON.telefono = "";
-    this.reparacionJSON.marcaYModelo = "";
-    this.reparacionJSON.observaciones = "";
-    this.reparacionJSON.trabajoARealizar = "";
-    this.reparacionJSON.precio = "";
-    this.reparacionJSON.sena = "";
+
+  vaciarCampos()
+  {
+    this.reparacionJSON.DNI ="";
+    this.reparacionJSON.nombre ="";
+    this.reparacionJSON.apellido ="";
+    this.reparacionJSON.correo ="";
+    this.reparacionJSON.telefono ="";
+    this.reparacionJSON.marcaYModelo ="";
+    this.reparacionJSON.observaciones ="";    
+    this.reparacionJSON.trabajoARealizar ="";
+    this.reparacionJSON.precio ="";
+    this.reparacionJSON.sena ="";
   }
 
 
