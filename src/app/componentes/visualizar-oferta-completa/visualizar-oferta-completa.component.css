@@ -1,3 +1,17 @@
 app-product-to-sell-card{
    transform: scale(0.2);
 }
+.card{
+   box-shadow: 0 0 10px rgb(151, 219, 241) !important;
+}
+h5{
+   cursor: pointer;
+}
+h5:active{
+   transform: scale(0.9);
+}
+.simboloMas{
+   color: green;
+   font-weight: 400;
+   font-size: 30px;
+}

@@ -31,7 +31,8 @@ export class GenerarReparacionComponent implements OnInit {
     observaciones:"",
     trabajoARealizar:"",
     precio:"",
-    sena:""
+    sena:"",
+    estado:"enProceso"
   };
 
   

@@ -12,7 +12,7 @@
                 <div mat-dialog-actions>
 
                     <button *ngIf="esVistaCompleta" class="btnAcciones" mat-raised-button color="primary">Comprar ahora</button>
-                    <button *ngIf="esVistaCompleta" class="btnAcciones" mat-stroked-button color="accent"  [mat-dialog-close]="'permutar'">Permutar</button>
+                    <button *ngIf="esVistaCompleta" class="btnAcciones" mat-stroked-button color="accent"  [mat-dialog-close]="'permutar'" (click)="scrolear()">Permutar</button>
                 </div>
                 
                 <button *ngIf="!esVistaCompleta" class="btnAcciones" mat-raised-button color="primary" disabled >Comprar ahora</button>
@@ -38,7 +38,7 @@
         
         
     </mat-dialog-content>
-    <mat-dialog-actions align="end" *ngIf="!esVistaCompleta">
+    <mat-dialog-actions align="end" *ngIf="!esSoloVista && !esVistaCompleta">
         <button mat-button [mat-dialog-close]="'rechazado'">Rechazar</button>
         <button mat-button [mat-dialog-close]="'aceptado'" cdkFocusInitial>Aceptar</button>
     </mat-dialog-actions>

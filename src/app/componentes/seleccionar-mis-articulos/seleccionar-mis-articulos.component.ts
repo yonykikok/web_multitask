@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Inject, Input, OnInit, EventEmitter, Output, OnChanges } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
@@ -12,41 +12,41 @@ export class SeleccionarMisArticulosComponent implements OnInit {
   @Input() publicacionObjetivo;
    myListaDePublicaciones= [];
   listaOferta = [];
-  precioActual=0;
+  valorAcumulado=0;
   contador=0;
   @Output() cancelarEvent:EventEmitter<any>=new EventEmitter<any>();
   // @Output() enviarOfertaEvent:EventEmitter<any>=new EventEmitter<any>();
 
-  calcularValorActual(){
+  calcularvalorAcumuladoActual(){
     let retorno=0;
     this.listaOferta.forEach(element => {
       retorno+= element.precio;
-      console.log("calculando "+retorno);
 
     });
     return retorno;
   }
   drop(event: CdkDragDrop<string[]>) {
-    let valorActual=0;
+    let productoArrastrado=event.previousContainer.data[event.previousIndex];
+    let valorAcumulado=0;
     if(event.previousContainer.id[event.previousContainer.id.length-1]=="0"){//mueve de disponible a ofrecer
-      valorActual =this.calcularValorActual()+event.previousContainer.data[event.previousIndex]['precio'];
+      valorAcumulado =this.calcularvalorAcumuladoActual()+productoArrastrado['precio'];
     // console.log(event.previousContainer.id[event.previousContainer.id.length-1]);
-    console.log("SUMA");
     }else{//de ofrecer vuevle a disponible
-    console.log("RESTA");
-    valorActual =this.calcularValorActual()-event.previousContainer.data[event.previousIndex]['precio'];
+      valorAcumulado =this.calcularvalorAcumuladoActual()-productoArrastrado['precio'];
     }
 
-    console.log(valorActual);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      if(valorActual<=this.publicacionObjetivo.precio){
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-          this.precioActual=this.calcularValorActual();
+        if(valorAcumulado<=this.publicacionObjetivo.precio){//tiene dinero a favor!      
+          this.valorAcumulado=this.calcularvalorAcumuladoActual();
+        }
+        else{//tiene dinero en contra
+          this.valorAcumulado=this.calcularvalorAcumuladoActual();
         }
     }
   }
@@ -73,7 +73,7 @@ export class SeleccionarMisArticulosComponent implements OnInit {
           let oferta={
             idUserQueOferto:this.authService.user['id'],
             listaDeProductos:this.listaOferta,
-            efectivo:(this.publicacionObjetivo.precio-this.precioActual),
+            efectivo:this.publicacionObjetivo.precio-this.valorAcumulado,
             estadoOferta:"pendiente"
           };
 
@@ -82,7 +82,9 @@ export class SeleccionarMisArticulosComponent implements OnInit {
           }
           listaOfertasExistentes.push(oferta);
           this.publicacionObjetivo.listaDeOfertas=listaOfertasExistentes;
-        
+          console.log("PRECIO PUB",this.publicacionObjetivo.precio);
+          console.log("Valos acumulado",this.valorAcumulado);
+          console.log("OFERTA",oferta.efectivo);
           this.dataBase.actualizar('publicaciones',this.publicacionObjetivo,this.publicacionObjetivo.id).then(()=>{
             alert("Oferta enviada con exito");
           }).catch(()=>{
@@ -92,10 +94,28 @@ export class SeleccionarMisArticulosComponent implements OnInit {
         
       }
     }
+  //   let scrollToTop = window.setInterval(() => {
+  //     let pos = window.pageYOffset;
+  //     if (pos > 0) {
+  //         window.scrollTo(0, pos - 20); // how far to scroll on each step
+  //     } else {
+  //         window.clearInterval(scrollToTop);
+  //     }
+  // }, 16);
+  scrollToElement(id){
+    let element = document.getElementById(id);
+    if (element != null) {
+      scroll({
+        top: element.offsetTop,
+        behavior: "smooth"
+      });
+    }
+  }
   ngOnInit(): void {
     let contador=0;
     this.authService.buscarUsuarioLogueado();
     this.dataBase.obtenerTodos('publicaciones').subscribe((res)=>{
+
       // this.user=this.authService.user;
       if(contador==0)
       {

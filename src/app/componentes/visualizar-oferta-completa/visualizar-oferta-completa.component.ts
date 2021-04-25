@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit, Input} from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
+import { DetalladoPublicacionComponent } from '../detallado-publicacion/detallado-publicacion.component';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
 
   @Input() listaDeOfertas;
   ampliarOferta=false;
-  constructor( private dialogRef: MatDialogRef<VisualizarOfertaCompletaComponent>,
+  constructor(public dialog: MatDialog, private dialogRef: MatDialogRef<VisualizarOfertaCompletaComponent>,
     @Inject(MAT_DIALOG_DATA) data, private authService:AuthService, private dataBase: DatabaseService,) { 
       this.listaDeOfertas = data.listaDeOfertas;
       this.publicacionOriginal = data.publicacionOriginal;
@@ -65,6 +66,18 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
     })    
   }
 
+
+  openDialog(publicacion) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data={
+      publicacion:publicacion,
+      esSoloVista:true
+    }
+    const dialogRef = this.dialog.open(DetalladoPublicacionComponent,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 
 
 }

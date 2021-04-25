@@ -10,11 +10,13 @@ export class DetalladoPublicacionComponent implements OnInit {
 
   publicacion;
   esVistaCompleta;
+  esSoloVista;
   user;
   constructor( private dialogRef: MatDialogRef<DetalladoPublicacionComponent>,
     @Inject(MAT_DIALOG_DATA) data, private authService:AuthService) { 
       this.publicacion = data.publicacion;
       this.esVistaCompleta=data.esVistaCompleta;
+      this.esSoloVista=data.esSoloVista;
     }
     
     ngOnInit(): void {
@@ -32,5 +34,22 @@ export class DetalladoPublicacionComponent implements OnInit {
   }
   mostrarListaDeMisPublicaciones(){
       
+  }
+  scrollToElement(id){
+    let element = document.getElementById(id);
+    if (element != null) {
+      scroll({
+        top: element.offsetTop,
+        behavior: "smooth"
+      });
+    }
+  }
+  scrolear()
+  {
+    setTimeout(() => {
+      
+      this.scrollToElement('divContenedor');
+    }, 500);
+
   }
 }

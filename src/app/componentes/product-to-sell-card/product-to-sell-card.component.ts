@@ -26,7 +26,6 @@ export class ProductToSellCardComponent implements OnInit {
     const dialogRef = this.dialog.open(DetalladoPublicacionComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     
       switch(result){
         case 'permutar':

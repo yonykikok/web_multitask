@@ -68,11 +68,12 @@ export class TiendaComponent implements OnInit {
     this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         //if (doc.data()['tipo'] != tipoUsuario) 
-        listaPublicaciones.push(doc.data());
+        let publicacion=doc.data();
+        publicacion['id']=doc.id;
+        listaPublicaciones.push(publicacion);
 
       })
     })
-    console.log(listaPublicaciones);
     return listaPublicaciones;
   }
 
