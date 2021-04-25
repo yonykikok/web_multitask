@@ -42,6 +42,7 @@ export class ReparacionEmpleadoComponent implements OnInit {
   cambiarEstado(reparacion, estado) {
     console.log(reparacion);
     reparacion.estadoPublicacion = estado;
+//desactivado porque todavia no tiene la referencia
     // this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
     // this.listaDeReparaciones = this.obtenerReparaciones();
   }
