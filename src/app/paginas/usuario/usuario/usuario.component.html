@@ -13,10 +13,10 @@
                     <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
                     <button mat-stroked-button color="accent">Editar datos</button>
                 </div>
-    
+
             </div>
         </div>
-    
+
         <!-- ADMINISTRADOR -->
         <div *ngIf="user.tipo == 'administrador'">
             <h1>Panel de Control Administrador</h1>
@@ -29,51 +29,52 @@
                     <button mat-button (click)="mostrarEstadisticas()"> Ver Estadisticas</button>
                 </mat-toolbar-row>
             </mat-toolbar>
-    
+
             <div *ngIf="boolRegistroCliente == true">
                 <h2>Registrar nuevo Cliente</h2>
                 <app-registro></app-registro>
             </div>
-    
+
             <div *ngIf="boolRegistroEmpleado == true">
                 <h2>Registrar nuevo Empleado</h2>
                 <app-registro-empleado></app-registro-empleado>
             </div>
-    
+
             <div *ngIf="booEstadisticas == true">
                 <h2>Estadisticas</h2>
                 <app-estadisticas-admin></app-estadisticas-admin>
             </div>
-    
+
             <div *ngIf="boolAdministrarPublicaciones == true">
                 <h2>Publicaciones Pendientes</h2>
                 <app-revisar-publicaciones-pendientes></app-revisar-publicaciones-pendientes>
             </div>
-    
+
             <div *ngIf="boolListadoCuentas == true">
                 <h2>Listado de Cuentas</h2>
                 <app-lista-de-personal [pedido]="'admin'"></app-lista-de-personal>
             </div>
         </div>
-    
-    <!-- EMPLEADO -->
+
+        <!-- EMPLEADO -->
         <div *ngIf="user.tipo == 'empleado'">
             <h1>Panel de Control Empleado</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
                     <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
                     <button mat-button (click)="mostrarPublicacionesPendientes()"> Publicaciones Pendientes</button>
-                    <button mat-button (click)="mostrarGenerarReparacion()"> Generar reparación </button>
+                    <button mat-button (click)="mostrarGenerarReparacion()"> Generar Reparación </button>
+                    <button mat-button (click)="mostrarReparacionesPendientes()"> Reparaciones Pendientes</button>
                     <button mat-button (click)="mostrarListadoCuentas()"> Ver Cuentas Clientes</button>
                     <button mat-button (click)="mostrarResponderConsultas()"> Responder Consultas </button>
                 </mat-toolbar-row>
             </mat-toolbar>
-    
+
             <div *ngIf="boolRegistroCliente == true">
                 <h2>Registrar nuevo Cliente</h2>
                 <app-registro></app-registro>
             </div>
-    
+
             <div *ngIf="boolAdministrarPublicaciones == true">
                 <h2>Publicaciones Pendientes</h2>
                 <app-revisar-publicaciones-pendientes></app-revisar-publicaciones-pendientes>
@@ -83,18 +84,23 @@
                 <h2>Formulario generar reparacion</h2>
                 <app-generar-reparacion></app-generar-reparacion>
             </div>
-    
+
+            <div *ngIf="boolReparacionesPendientes == true">
+                <h2>Reparaciones Pendientes</h2>
+                <app-reparacion-empleado></app-reparacion-empleado>
+            </div>
+
             <div *ngIf="boolListadoCuentas == true">
                 <h2>Listado de Clientes</h2>
                 <app-lista-de-personal [pedido]="'empleado'"></app-lista-de-personal>
             </div>
-    
+
             <div *ngIf="boolResponderConsultas == true">
                 <h2>Consultas Pendientes</h2>
                 <app-responder-consultas></app-responder-consultas>
             </div>
         </div>
-    
+
         <!-- CLIENTE Y ST -->
         <div *ngIf="user.tipo == 'cliente' || user.tipo == 'st'">
             <h1>Panel de Control Empleado</h1>
@@ -107,25 +113,32 @@
                     <button mat-button (click)="mostrarAltaPublicacion()"> Publicar</button>
                 </mat-toolbar-row>
             </mat-toolbar>
-    
+
             <div *ngIf="boolServicio == true">
                 <h2>Informacion sobre mis Reparaciones</h2>
                 <app-reparaciones-cliente></app-reparaciones-cliente>
             </div>
-    
+
             <div *ngIf="boolPubliciones == true" style="text-align: center;">
-                <app-publicaciones-cliente [criterioDeFiltrado]="'pendiente'" [tituloSector]="'Mis publicaciones pendientes de aprobacion'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'aceptado'" [tituloSector]="'Mis publicaciones activas'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'permutaPendiente'" [tituloSector]="'Mis publicaciones con permuta pendiente'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'vendido'" [tituloSector]="'Mis publicaciones vendidas'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'rechazado'" [tituloSector]="'Mis publicaciones rechazadas'"></app-publicaciones-cliente>
+                <app-publicaciones-cliente [criterioDeFiltrado]="'pendiente'"
+                    [tituloSector]="'Mis publicaciones pendientes de aprobacion'"></app-publicaciones-cliente>
+                <app-publicaciones-cliente [criterioDeFiltrado]="'aceptado'"
+                    [tituloSector]="'Mis publicaciones activas'"></app-publicaciones-cliente>
+                <app-publicaciones-cliente [criterioDeFiltrado]="'pausado'"
+                    [tituloSector]="'Mis publicaciones pausadas'"></app-publicaciones-cliente>
+                <app-publicaciones-cliente [criterioDeFiltrado]="'permutaPendiente'"
+                    [tituloSector]="'Mis publicaciones con permuta pendiente'"></app-publicaciones-cliente>
+                <app-publicaciones-cliente [criterioDeFiltrado]="'vendido'"
+                    [tituloSector]="'Mis publicaciones vendidas'"></app-publicaciones-cliente>
+                <app-publicaciones-cliente [criterioDeFiltrado]="'rechazado'"
+                    [tituloSector]="'Mis publicaciones rechazadas'"></app-publicaciones-cliente>
             </div>
 
 
             <div *ngIf="boolOfertasRealizadas == true">
                 <app-ver-ofertas-realizadas></app-ver-ofertas-realizadas>
             </div>
-    
+
 
             <div *ngIf="boolResenias == true">
                 <h2>Mis Reseñas Pasadas</h2>
@@ -136,7 +149,7 @@
                 <h2>Publicar Articulo</h2>
                 <app-form-alta-producto></app-form-alta-producto>
             </div>
-    
+
             <!-- <div *ngIf="boolConsultas == true">
                 <h2>Mis Consultas</h2>
     

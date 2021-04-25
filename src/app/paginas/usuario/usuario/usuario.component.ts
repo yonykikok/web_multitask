@@ -25,6 +25,7 @@ export class UsuarioComponent implements OnInit {
   // EMPLEADO
   boolResponderConsultas = false;
   boolGenerarReparacion = false;
+  boolReparacionesPendientes = false;
 
   //CLIENTE Y ST
   boolServicio = false;
@@ -102,6 +103,7 @@ export class UsuarioComponent implements OnInit {
     this.boolGenerarReparacion = false;
     this.boolListadoCuentas = false;
     this.boolAdministrarPublicaciones = false;   
+    this.boolReparacionesPendientes = false;
   }
 
 
@@ -112,6 +114,16 @@ export class UsuarioComponent implements OnInit {
     this.boolGenerarReparacion = true;
     this.boolListadoCuentas = false;
     this.boolAdministrarPublicaciones = false;  
+    this.boolReparacionesPendientes = false;
+  }
+
+  mostrarReparacionesPendientes(){
+    this.boolResponderConsultas = false;
+    this.boolRegistroCliente = false;
+    this.boolGenerarReparacion = false;
+    this.boolListadoCuentas = false;
+    this.boolAdministrarPublicaciones = false;  
+    this.boolReparacionesPendientes = true;
   }
 
 

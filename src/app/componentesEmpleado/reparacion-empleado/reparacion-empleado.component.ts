@@ -5,11 +5,12 @@ import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
 
 @Component({
-  selector: 'app-reparaciones-cliente',
-  templateUrl: './reparaciones-cliente.component.html',
-  styleUrls: ['./reparaciones-cliente.component.css']
+  selector: 'app-reparacion-empleado',
+  templateUrl: './reparacion-empleado.component.html',
+  styleUrls: ['./reparacion-empleado.component.css']
 })
-export class ReparacionesClienteComponent implements OnInit {
+export class ReparacionEmpleadoComponent implements OnInit {
+
   listaDeReparaciones: any[] = [];
   displayedColumns: string[] = ['fecha', 'marca', 'estado', 'accion'];
 
@@ -30,8 +31,7 @@ export class ReparacionesClienteComponent implements OnInit {
     this.firestore.collection("reparaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         reparacion = doc.data();
-        console.log(this.authService.user['dni']);
-        if (reparacion.DNI == this.authService.user['dni']) {
+        if(reparacion.estado == 'enProceso'){
           this.listaDeReparaciones.push(reparacion);
         }
       })
@@ -39,8 +39,12 @@ export class ReparacionesClienteComponent implements OnInit {
     return this.listaDeReparaciones;
   }
 
-  pagar(){
-    
+  cambiarEstado(reparacion, estado) {
+    console.log(reparacion);
+    reparacion.estadoPublicacion = estado;
+//desactivado porque todavia no tiene la referencia
+    // this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
+    // this.listaDeReparaciones = this.obtenerReparaciones();
   }
 
 }
