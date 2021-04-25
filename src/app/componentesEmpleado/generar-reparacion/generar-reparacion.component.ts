@@ -26,6 +26,7 @@ export class GenerarReparacionComponent implements OnInit {
 
 
   reparacionJSON = {
+    idUsuario:"",
     fecha: new Date().toLocaleDateString(),
     DNI: "",
     nombre: "",
@@ -97,6 +98,7 @@ export class GenerarReparacionComponent implements OnInit {
        this.reparacionJSON.apellido = doc.data()['apellido'];
        this.reparacionJSON.correo = doc.data()['correo'];
        this.reparacionJSON.telefono = doc.data()['numero'];
+       this.reparacionJSON.idUsuario = doc.id;
        this.DNIExiste=true;
       }
   
@@ -106,8 +108,8 @@ export class GenerarReparacionComponent implements OnInit {
 
 
 
-  registrarReparacionBD() {
-
+  registrarReparacionBD() 
+    {
     this.dataBase.crear('reparaciones',this.reparacionJSON)
   
     .then(resultado => 
@@ -117,6 +119,7 @@ export class GenerarReparacionComponent implements OnInit {
     }
     );
   }
+
 
 
 
