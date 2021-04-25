@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+    font-family: 'Anton', sans-serif;
+    font-size: 600px;
+  }
+  
+/* button{
+  transform: scale(0.8);
+    margin: 0 10px 0 10px;
+} */
+img{
+    max-width: 50px;
+    max-height: 50px;
+    width: auto; 
+    height: auto; 
+    border-radius: 10px;
+    border: 2px solid var(--colorPrincipal);
+    margin: 0 5px 0 5px;
+}
+h2{
+  margin-top: 20px;
+}

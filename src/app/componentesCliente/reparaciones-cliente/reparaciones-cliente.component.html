@@ -1,1 +1,35 @@
-<p>reparaciones-cliente works!</p>
+<div *ngIf="listaDeReparaciones && listaDeReparaciones.length != 0" style="text-align: center;">
+    <table mat-table [dataSource]="this.listaDeReparaciones" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="marca">
+            <th mat-header-cell *matHeaderCellDef> Marca y Modelo </th>
+            <td mat-cell *matCellDef="let element"> {{element.marcaYModelo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element">
+                <!-- <img *ngFor="let foto of element.fotos" class="imgMensaje" src="{{foto}}" alt=""> -->
+                {{element.estado}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="accion">
+            <th mat-header-cell *matHeaderCellDef> Accion </th>
+            <td mat-cell *matCellDef="let element" justify="end">
+                <div class="example-button-row">
+                    <button mat-fab color="primary" (click)="pagar()" [disabled]="element.estado == 'enProceso'">
+                        <mat-icon>Pagar</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

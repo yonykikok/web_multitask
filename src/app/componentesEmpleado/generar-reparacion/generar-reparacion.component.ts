@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 // FIREBASE:
 import * as firebase from 'firebase'
 // FIREBASE STORAGE
-import {AngularFireStorage} from "@angular/fire/storage"
+import { AngularFireStorage } from "@angular/fire/storage"
 // REGISTRO FORMBUILDER.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // SERVICIO DATABASE.
@@ -21,26 +21,27 @@ export class GenerarReparacionComponent implements OnInit {
 
 
   reparacionJSON = {
-    fecha : new Date().toLocaleDateString(),
-    DNI:"",
-    nombre : "",
+    fecha: new Date().toLocaleDateString(),
+    DNI: "",
+    nombre: "",
     apellido: "",
     correo: "",
-    telefono:"",
-    marcaYModelo:"",
-    observaciones:"",
-    trabajoARealizar:"",
-    precio:"",
-    sena:""
+    telefono: "",
+    marcaYModelo: "",
+    observaciones: "",
+    trabajoARealizar: "",
+    precio: "",
+    sena: "",
+    estado:'enProceso'
   };
 
-  
+
   constructor(private formBuilder: FormBuilder,
 
-    private dataBase : DatabaseService,
-    private st : AngularFireStorage,
-    
-    ) {
+    private dataBase: DatabaseService,
+    private st: AngularFireStorage,
+
+  ) {
 
     this.consultaForm = this.formBuilder.group({
 
@@ -66,44 +67,40 @@ export class GenerarReparacionComponent implements OnInit {
 
 
 
-   });
-  
- }
+    });
+
+  }
 
   ngOnInit(): void {
 
   }
 
 
-  VerificarExistenciaUsuario()
-  {
-    
+  VerificarExistenciaUsuario() {
+
   }
 
 
 
-  registrarReparacionBD()
-  {
+  registrarReparacionBD() {
 
-    this.dataBase.crear('reparaciones',this.reparacionJSON)
-  
-    .then(resultado => 
-      { console.log("Consulta enviada con éxito") ; this.vaciarCampos()});
+    this.dataBase.crear('reparaciones', this.reparacionJSON)
+
+      .then(resultado => { console.log("Consulta enviada con éxito"); this.vaciarCampos() });
   }
 
 
-  vaciarCampos()
-  {
-    this.reparacionJSON.DNI ="";
-    this.reparacionJSON.nombre ="";
-    this.reparacionJSON.apellido ="";
-    this.reparacionJSON.correo ="";
-    this.reparacionJSON.telefono ="";
-    this.reparacionJSON.marcaYModelo ="";
-    this.reparacionJSON.observaciones ="";    
-    this.reparacionJSON.trabajoARealizar ="";
-    this.reparacionJSON.precio ="";
-    this.reparacionJSON.sena ="";
+  vaciarCampos() {
+    this.reparacionJSON.DNI = "";
+    this.reparacionJSON.nombre = "";
+    this.reparacionJSON.apellido = "";
+    this.reparacionJSON.correo = "";
+    this.reparacionJSON.telefono = "";
+    this.reparacionJSON.marcaYModelo = "";
+    this.reparacionJSON.observaciones = "";
+    this.reparacionJSON.trabajoARealizar = "";
+    this.reparacionJSON.precio = "";
+    this.reparacionJSON.sena = "";
   }
 
 
