@@ -133,6 +133,7 @@ import { VisualizarOfertaCompletaComponent } from './componentes/visualizar-ofer
 import { VerOfertasRealizadasComponent } from './componentesCliente/ver-ofertas-realizadas/ver-ofertas-realizadas.component';
 import { ChatPermutaComponent } from './componentes/chat-permuta/chat-permuta.component';
 import { GenerarReparacionComponent } from './componentesEmpleado/generar-reparacion/generar-reparacion.component';
+import { ReparacionEmpleadoComponent } from './componentesEmpleado/reparacion-empleado/reparacion-empleado.component';
 
 
 @NgModule({
@@ -173,6 +174,7 @@ import { GenerarReparacionComponent } from './componentesEmpleado/generar-repara
     EstadisticasAdminComponent,
     VisualizarOfertaCompletaComponent,
     VerOfertasRealizadasComponent,
+    ReparacionEmpleadoComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],
