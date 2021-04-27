@@ -13,6 +13,7 @@ button{
 
 
 .mat-toolbar-row{
+  height: auto;
   display: flex;
   justify-content: center;
   flex-direction: row;

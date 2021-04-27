@@ -34,10 +34,13 @@ export class VerOfertasRealizadasComponent implements OnInit {
       querySnapShot.forEach((doc) => {
         let permuta=doc.data();
         permuta['id']=doc.id;
-        if(permuta['idUserQueOferto']==this.authService.user['id']){
+        console.log("Mi ID", this.authService.user);
+        console.log("ID PUBLICO", permuta['idUserQueOferto']);
+        
+        if(permuta['idUserQuePublico']==this.authService.user['id']){//soy el que recibe la oferta!
           this.misOfertasAceptadas.push(permuta);
         }
-        else if(permuta['idUserQuePublico']==this.authService.user['id'])
+        else if(permuta['idUserQueOferto']==this.authService.user['id'])//soy el que ofrece!
         {
           this.misPermutasOfrecidas.push(permuta);
         }
