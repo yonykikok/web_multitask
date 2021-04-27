@@ -75,7 +75,7 @@ export class GenerarReparacionComponent implements OnInit {
       precioValidado: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
 
       senaValidada: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
-
+ 
 
 
     });
@@ -91,20 +91,19 @@ export class GenerarReparacionComponent implements OnInit {
   {
     this.firestore.collection("usuarios").get().subscribe((querySnapShot) => { querySnapShot.forEach((doc) => {
       
-      if(doc.data()['DNI'] == this.reparacionJSON.DNI && doc.data()['tipo'] == 'cliente')
-      {
-       this.toast.snackBarMensaje("El DNI existe. La factura podrá ser generada.", "Aceptar", 3000);
-       this.reparacionJSON.nombre = doc.data()['nombre'];
-       this.reparacionJSON.apellido = doc.data()['apellido'];
-       this.reparacionJSON.correo = doc.data()['correo'];
-       this.reparacionJSON.telefono = doc.data()['numero'];
-       this.reparacionJSON.idUsuario = doc.id;
-       this.DNIExiste=true;
-      }
-  
+        if(doc.data()['DNI'] == this.reparacionJSON.DNI && doc.data()['tipo'] == 'cliente')
+          {
+          this.toast.snackBarMensaje("El DNI existe. La factura podrá ser generada.", "Aceptar", 3000);
+          this.reparacionJSON.nombre = doc.data()['nombre'];
+          this.reparacionJSON.apellido = doc.data()['apellido'];
+          this.reparacionJSON.correo = doc.data()['correo'];
+          this.reparacionJSON.telefono = doc.data()['numero'];
+          this.reparacionJSON.idUsuario = doc.id;
+          this.DNIExiste=true;
+          }
+        })
       })
-    })
-  }
+    }
 
 
 

@@ -1,19 +1,39 @@
-button{
-    width: 100%;
-}
-
-
 /*
-.mat-toolbar-row, .mat-toolbar-single-row {
-  display: flex;
-  box-sizing: border-box;
-  padding: 0 16px;
+button{
   width: 100%;
-  flex-direction: column;
-  align-items: center;
-  white-space: nowrap;
 }
 */
+
+/* A PARTIR DE ACÁ, MODIFIQUÉ RESPONSIVE TOOLBAR */
+
+button{
+    width: 200px;
+    padding: 10px 0 10px 0;
+}
+
+
+.mat-toolbar-row{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.mat-toolbar-single-row{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+.mat-toolbar-multiple-rows
+{
+  display: flex;
+  justify-content: center;
+}
+
+/* FIN */
 
 /*
 de aca es para la imagen y perfil
