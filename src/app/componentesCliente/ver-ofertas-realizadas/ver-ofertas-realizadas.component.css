@@ -1,0 +1,41 @@
+.divContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 2px solid lightblue;
+  flex-wrap: wrap;
+}
+.divSeparador {
+  text-align: center;
+  margin: 5px;
+  margin:20px 0 20px 0;
+}
+
+img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.divImagenes {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.ocultar {
+    display: none;
+  }
+.mostrar {
+  display: inline;
+}
+@media (max-width: 820px) {
+    .divSeparador{
+       width: 100%;
+    }
+  .ocultar {
+    display: inline;
+  }
+  .mostrar {
+    display: none;
+  }
+}

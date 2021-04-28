@@ -1,29 +1,27 @@
-<!-- <div *ngFor="let oferta of misOfertasAceptadas">
-            <h3>efectivo a favor: {{oferta.ofertaAceptada.efectivo|currency}}</h3>
-        </div> -->
-<div style="display: flex; justify-content: space-evenly; align-items: top; border: 2px solid lightblue;"
-    *ngFor="let oferta of misPermutasOfrecidas">
-    <div style=" text-align: center; margin: 5px;">
+<div class="divContainer" *ngFor="let oferta of misPermutasOfrecidas">
+    <div class="divSeparador">
         <h2>OFRECISTE </h2>
         <p style="color: lightcoral;">pagar {{oferta.ofertaAceptada.efectivo|currency}} en efectivo.</p>
         <div *ngFor="let producto of oferta.ofertaAceptada.listaDeProductos">
             <h5 style="color: green;">+</h5>
-            <p>tu "{{producto.titulo}}" publicado</p>
+            <p>tu "<b style="cursor: pointer;" (click)="expandirVista(producto)">{{producto.titulo}}</b>" publicado</p>
         </div>
     </div>
-    <div style="text-align: center; margin: 5px;">
+    <div class="divSeparador ">
         <h2>POR </h2>
         <p>
-            <span style="font-size: 300%;" class="material-icons">
+            <span style="font-size: 300%;" class="material-icons mostrar">
                 east
+            </span>
+            <span style="font-size: 300%;" class="material-icons ocultar">
+                south
             </span>
         </p>
     </div>
-    <div style="text-align: center; margin: 5px;">
+    <div class="divSeparador" style="cursor: pointer;" (click)="expandirVista(oferta.publicacionOfertada)">
         <h2>{{oferta.publicacionOfertada.titulo}}</h2>
-        <div style="display: flex; justify-content: space-evenly; ">
-            <img *ngFor="let foto of oferta.publicacionOfertada.fotos" style="width: 120px; height: 120px;"
-                src="{{foto}}">
+        <div class="divImagenes">
+            <img *ngFor="let foto of oferta.publicacionOfertada.fotos" src="{{foto}}">
         </div>
         <h4 style="margin: 5px;">de</h4>
         <h2 style="color: green;">{{oferta.publicacionOfertada.precio|currency}}</h2>

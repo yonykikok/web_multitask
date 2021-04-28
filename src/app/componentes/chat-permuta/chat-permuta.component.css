@@ -11,22 +11,34 @@ p{
     background-color: lightgreen;
 }
 .mensajesRecibidos{
-
     text-align: right; 
     background-color: lightgray;
 }
 
 .divContainer{
-    background-color: rgba(0, 0, 0, 0.63);
-    padding: 55px 10px 25px 10px;
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    background-image: url("../../../assets/images/whatsappBackground.jfif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 30px 30px 25px 30px;
     border-radius: 10px;
-    height: 40vw;
-    max-width: 40vw;
+    min-height: 60vh;
 }
 .divContainer::before{
-    content: '';
+    /* content: '';
     background-color: rgba(0, 0, 0, 0.815);
     border-radius: 10px;
     height: 40vw;
-    max-width: 40vw;
+    max-width: 40vw; */
 }
+.divHistorialMensajes{
+    width: 100%;
+}
+.divInput
+{
+    width: 100%;
+
+}
+

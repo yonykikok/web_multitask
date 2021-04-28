@@ -7,8 +7,8 @@
             </div>
             <p>{{publicacionObjetivo.precio|currency}}</p>
         </div>
-        <div style="text-align: center;" *ngIf="valorAcumulado!=publicacionObjetivo.precio && valorAcumulado<0">
-            <p style=" font-size: 18px;"> Te queda <b style="color: green;">{{valorAcumulado *-1|currency}}</b> a favor.
+        <div style="text-align: center;" *ngIf="valorAcumulado!=publicacionObjetivo.precio && valorAcumulado>publicacionObjetivo.precio">
+            <p style=" font-size: 18px;"> Te queda <b style="color: green;">{{(publicacionObjetivo.precio-valorAcumulado)*-1 |currency}}</b> a favor.
             </p>
             <label style="color:red">Pero, puede que <b>el vendedor no tenga
                     dinero para ofrecerte.</b></label>
@@ -16,9 +16,9 @@
         <div style="text-align: center;" *ngIf="valorAcumulado==publicacionObjetivo.precio">
             <p style=" font-size: 18px;"><b style="color: green;"> OFERTA IDEAL!</b> </p>
         </div>
-        <div *ngIf="valorAcumulado!=publicacionObjetivo.precio && valorAcumulado>0">
+        <div *ngIf="valorAcumulado!=publicacionObjetivo.precio && valorAcumulado<publicacionObjetivo.precio && listaOferta.length>0">
             <p style="text-align: center; font-size: 18px;"> Tendrias que abonar
-                <b style="color: red;">{{(valorAcumulado - publicacionObjetivo.precio)*-1|currency}}</b> en efectivo.
+                <b style="color: red;">{{publicacionObjetivo.precio - valorAcumulado|currency}}</b> en efectivo.
             </p>
         </div>
         <!-- <h1 style="text-align: center;"> {{valorAcumulado|currency}}</h1> -->
@@ -61,7 +61,7 @@
 
     <div class="divBotones">
         <button mat-raised-button color="secondary" (click)="enviarEvento('cancelar')">Cancelar</button>
-        <button mat-raised-button color="primary" (click)="enviarEvento('enviarOferta')">Enviar Oferta</button>
+        <button mat-raised-button color="primary" (click)="enviarEvento('enviarOferta')" [disabled]='listaOferta.length<=0'>Enviar Oferta</button>
 
     </div>
 </div>

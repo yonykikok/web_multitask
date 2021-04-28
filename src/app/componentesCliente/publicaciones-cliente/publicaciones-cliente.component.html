@@ -1,4 +1,4 @@
-<div *ngIf="misPublicaciones && misPublicaciones.length != 0" style="text-align: center;">
+<div *ngIf="misPublicaciones && misPublicaciones.length > 0" style="text-align: center;">
     <h2>{{this.tituloSector}}</h2>
     <table mat-table [dataSource]="this.misPublicaciones" class="mat-elevation-z8">
 
@@ -25,17 +25,24 @@
             <td mat-cell *matCellDef="let element" justify="end">
                 <div class="example-button-row">
                     <button mat-fab color="accent" (click)="openDialog(element)"
-                        *ngIf="element.listaDeOfertas && element.estadoPublicacion!='permutaPendiente'">
+                        *ngIf="element.listaDeOfertas  && element.estadoPublicacion!='permutaPendiente'">
                         <span>{{element.listaDeOfertas.length}}</span>
                     </button>
                     <button mat-raised-button
                         *ngIf="element.listaDeOfertas && element.estadoPublicacion=='permutaPendiente'" disabled>
                         <span>Pendiente de permuta</span>
                     </button>
-                    <button mat-raised-button *ngIf="element.estadoPublicacion == 'aceptado'" (click)="pausar(element, 1)">
+                    <button mat-raised-button
+                        *ngIf="element.listaDeOfertas && element.estadoPublicacion=='permutaPendiente'" 
+                        (click)="cancelarPermuta(element)">
+                        <span>Cancelar</span>
+                    </button>
+                    <button mat-raised-button *ngIf="element.estadoPublicacion == 'aceptado'"
+                        (click)="pausar(element, 1)">
                         <span>Pausar</span>
                     </button>
-                    <button mat-raised-button *ngIf="element.estadoPublicacion == 'pausado'" (click)="pausar(element, 0)">
+                    <button mat-raised-button *ngIf="element.estadoPublicacion == 'pausado'"
+                        (click)="pausar(element, 0)">
                         <span>Despausar</span>
                     </button>
                 </div>

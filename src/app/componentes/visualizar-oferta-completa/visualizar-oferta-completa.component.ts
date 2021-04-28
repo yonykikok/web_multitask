@@ -40,14 +40,33 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
       }
      });  
      
-     
-
-     console.log("PUBLICACION: ",publicacion);
-     console.log("PERMUTA: ",permuta);
      return permuta;
   }
-  aceptarORechazarOferta(oferta,estado)
-  
+
+
+
+  aceptarOferta(oferta){
+    this.publicacionOriginal.listaDeOfertas.forEach(auxOferta => {
+
+      if(auxOferta===oferta){
+          auxOferta.estadoOferta = 'aceptadaParaPermutar';
+            this.publicacionOriginal.estadoPublicacion="permutaPendiente";
+            this.dataBase.crear('permutas',this.generarObjetoPermuta(this.publicacionOriginal)).then((res)=>{
+              auxOferta['id']=res.id;
+              this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
+                alert("Oferta actualizada con exito");
+              }).catch(()=>{
+                alert("NO SE PUDO ENVIAR LA OFERTA!");
+              })  
+          });           
+        }
+      });     
+   }
+
+
+
+
+  aceptarORechazarOferta(oferta,estado)  
   {  
     this.publicacionOriginal.listaDeOfertas.forEach(auxOferta => {
 
@@ -55,15 +74,18 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
         auxOferta.estadoOferta = estado;
         if(estado==='aceptadaParaPermutar'){
           this.publicacionOriginal.estadoPublicacion="permutaPendiente";
-          this.dataBase.crear('permutas',this.generarObjetoPermuta(this.publicacionOriginal));
+          this.dataBase.crear('permutas',this.generarObjetoPermuta(this.publicacionOriginal)).then((res)=>{
+            auxOferta['id']=res.id;
+            this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
+              alert("Oferta actualizada con exito");
+            }).catch(()=>{
+              alert("NO SE PUDO ENVIAR LA OFERTA!");
+            })  
+          }); 
         }
       }
     });     
-    this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
-      alert("Oferta actualizada con exito");
-    }).catch(()=>{
-      alert("NO SE PUDO ENVIAR LA OFERTA!");
-    })    
+     
   }
 
 

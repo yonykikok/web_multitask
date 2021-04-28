@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ChatPermutaComponent } from 'src/app/componentes/chat-permuta/chat-permuta.component';
+import { DetalladoPublicacionComponent } from 'src/app/componentes/detallado-publicacion/detallado-publicacion.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
 
@@ -22,6 +23,22 @@ export class VerOfertasRealizadasComponent implements OnInit {
       oferta:oferta,
     }
     const dialogRef = this.dialog.open(ChatPermutaComponent,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    
+     
+    });
+  }
+  expandirVista(publicacion){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data={
+      publicacion:publicacion,
+      esSoloVista:true
+    }
+    
+
+    const dialogRef = this.dialog.open(DetalladoPublicacionComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
