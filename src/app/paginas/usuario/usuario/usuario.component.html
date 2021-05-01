@@ -108,7 +108,8 @@
                 <mat-toolbar-row>
                     <button mat-button (click)="mostrarServicio()"> Mis Reparaciones </button>
                     <button mat-button (click)="mostrarPublicaciones()"> Mis Publicaciones</button>
-                    <button mat-button (click)="mostrarOfertasRealizadas()"> Mis ofertas realizadas</button>
+                    <!-- <button mat-button (click)="mostrarOfertasRealizadas()"> Mis permutas</button> -->
+                    <button mat-button (click)="mostrar('boolFormMisPermutas')"> Mis permutas</button>
                     <button mat-button (click)="mostrarResenias()"> Mis Reseñas</button>
                     <button mat-button (click)="mostrarAltaPublicacion()"> Publicar</button>
                 </mat-toolbar-row>
@@ -148,6 +149,10 @@
             <div *ngIf="boolFormPublicar == true">
                 <h2>Publicar Articulo</h2>
                 <app-form-alta-producto></app-form-alta-producto>
+            </div>
+            <div *ngIf="boolFormMisPermutas == true">
+                <h2>Mis permutas</h2>
+                <app-mis-permutas></app-mis-permutas>
             </div>
 
             <!-- <div *ngIf="boolConsultas == true">

@@ -33,6 +33,7 @@ export class UsuarioComponent implements OnInit {
   boolResenias = false;
   boolConsultas = false;
   boolFormPublicar=false;
+  boolFormMisPermutas=false;
   boolOfertasRealizadas=false;
 
   constructor(private authService: AuthService) { }
@@ -149,7 +150,7 @@ export class UsuarioComponent implements OnInit {
     this.boolFormPublicar = false;
   }
 
-
+  
   mostrarOfertasRealizadas()
   {
     this.boolServicio = false;
@@ -188,6 +189,10 @@ export class UsuarioComponent implements OnInit {
     this.boolResenias = false;
     this.boolConsultas = false;
     this.boolFormPublicar = true;
+  }
+  mostrar(variable){
+    this[variable]=true;
+
   }
 
  
