@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnChanges, OnInit, EventEmitter, Output } fro
 
 // FIRESTORE
 import { AngularFirestore } from "@angular/fire/firestore";
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators, FormGroup} from '@angular/forms';
 
 import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
 import { Observable, Subject } from 'rxjs';
@@ -17,6 +17,10 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class HomeComponent implements OnInit, OnChanges {
 
   //test
+
+
+  testGroupTarjetaForm: FormGroup;
+
   esDorso;
   datosTarjetaTest = {
     fechaVto: "00-00",
@@ -41,6 +45,7 @@ export class HomeComponent implements OnInit, OnChanges {
   pinMask = [/\d/, /\d/, /\d/];
 
 
+
   //obtenerUsuario
 
 
@@ -57,9 +62,136 @@ export class HomeComponent implements OnInit, OnChanges {
   // HARDCODEADO PARA VER EL TIPO DE USUARIO
   tipoUsuario = 'administrador';
 
-  constructor(private firestore: AngularFirestore, private authService: AuthService,
+  constructor(private firestore: AngularFirestore, 
+    private authService: AuthService,
     private _formBuilder: FormBuilder,
-  ) { }
+  ) { 
+
+
+    // pasar esto tambien, de la tarjeta.
+
+    this.testGroupTarjetaForm = this._formBuilder.group({
+
+      //numeroValidado: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16), Validators.pattern('^[0-9-_]{16}$')]],
+
+      numeroValidado: ['', [Validators.required]],
+
+      pinValidado: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+
+      nombreValidado: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z ]{4,20}$')]],
+
+      apellidoValidado: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z ]{4,20}$')]],
+
+      fechaValidada: ['', [Validators.required]],
+
+
+   });
+
+
+  }
+
+
+
+  public mostrarErrorRegistro(control: string): string {
+
+    let retorno = '';
+    switch (control) {
+
+      case 'numeroValidado':
+
+            if (this.testGroupTarjetaForm.controls.numeroValidado.hasError('required')) 
+            {
+              retorno = 'Debe ingresar un numero.';
+            } 
+            
+            
+            if (this.testGroupTarjetaForm.controls.numeroValidado.hasError('pattern')) 
+            {
+              retorno = 'Error con el formato del numero.';
+            }
+
+            if (this.testGroupTarjetaForm.controls.numeroValidado.hasError('minLength')) 
+            {
+              retorno = 'El numero debe contener minimo 16 digitos.';
+            }
+
+            if (this.testGroupTarjetaForm.controls.numeroValidado.hasError('maxLength')) 
+            {
+              retorno = 'El numero debe contener maximo 16 digitos.';
+            }
+
+        break;
+
+
+        case 'pinValidado':
+
+          if (this.testGroupTarjetaForm.controls.pinValidado.hasError('required')) 
+          {
+            retorno = 'Debe ingresar un PIN.';
+          } 
+          
+          if (this.testGroupTarjetaForm.controls.pinValidado.hasError('minLength')) 
+          {
+            retorno = 'El PIN debe contener minimo 16 digitos.';
+          }
+
+          if (this.testGroupTarjetaForm.controls.pinValidado.hasError('maxLength')) 
+          {
+            retorno = 'El PIN debe contener maximo 16 digitos.';
+          }
+    
+        break;
+    
+      
+        case 'nombreValidado':
+
+            if (this.testGroupTarjetaForm.controls.nombreValidado.hasError('required')) 
+            {
+              retorno = 'Debe ingresar su nombre.';
+            } 
+            
+            if (this.testGroupTarjetaForm.controls.nombreValidado.hasError('pattern')) 
+            {
+              retorno = 'Error con el formato del nombre.';
+            }
+
+        break;
+
+
+
+        case 'apellidoValidado':
+
+            if (this.testGroupTarjetaForm.controls.apellidoValidado.hasError('required')) 
+            {
+              retorno = 'Debe ingresar su apellido';
+            } 
+            
+            if (this.testGroupTarjetaForm.controls.apellidoValidado.hasError('pattern')) 
+            {
+              retorno = 'Error con el formato del apellido';
+            }
+
+        break;
+
+
+        case 'fechaValidada':
+
+            if (this.testGroupTarjetaForm.controls.fechaValidada.hasError('required')) 
+            {
+              retorno = 'Debe ingresar la fecha de expiracion';
+            } 
+            
+        break;
+
+
+    }
+
+    return retorno;
+  }
+
+
+
+
 
   convertirStringEn4ArraysDeChars(textoIngresado) {
     let auxNumeroDeTarjetaArray = [];

@@ -1,24 +1,74 @@
 <app-formulario-de-pago [datosTarjeta]="datosTarjetaTest" [esDorso]="esDorso"> </app-formulario-de-pago>
-<div style="display: block;">
-    <mat-form-field class="example-full-width">
-        <input (focus)="esDorso=false" (keyup)="onChangeNumTarjeta($event)" matInput
-            [textMask]="{mask: creditNumberMask}" placeholder="0000-0000-0000-0000">
-    </mat-form-field>
-    <mat-form-field>
-        <input (focus)="esDorso=false" (keyup)="onChangeFechaVto($event)" matInput [textMask]="{mask: dateMask}"
-            placeholder="00/00">
-    </mat-form-field>
-    <mat-form-field>
-        <input (focus)="esDorso=true" (keyup)="onChangePin($event)" matInput [textMask]="{mask: pinMask}"
-            placeholder="000">
-    </mat-form-field>
-    <mat-form-field>
-        <input (focus)="esDorso=false" (keyup)="onChangeNombre($event)" matInput>
-    </mat-form-field>
-    <mat-form-field>
-        <input (focus)="esDorso=false" (keyup)="onChangeApelldio($event)" matInput>
-    </mat-form-field>
-</div>
+<form [formGroup]="testGroupTarjetaForm">
+
+    <div style="display: block;">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Numero de tarjeta</mat-label>
+
+            <input matInput (focus)="esDorso=false" (keyup)="onChangeNumTarjeta($event)" 
+            [textMask]="{mask: creditNumberMask}" placeholder="0000-0000-0000-0000" formControlName="numeroValidado">
+
+            <mat-error *ngIf="testGroupTarjetaForm.controls.numeroValidado.invalid">{{mostrarErrorRegistro('numeroValidado')}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+
+            <input matInput (focus)="esDorso=false" (keyup)="onChangeNombre($event)" 
+            placeholder="Nombre" formControlName="nombreValidado">
+
+            <mat-error *ngIf="testGroupTarjetaForm.controls.nombreValidado.invalid">{{mostrarErrorRegistro('nombreValidado')}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+
+            <input matInput (focus)="esDorso=false" (keyup)="onChangeApelldio($event)" 
+            placeholder="Apellido" formControlName="apellidoValidado">
+
+            <mat-error *ngIf="testGroupTarjetaForm.controls.apellidoValidado.invalid">{{mostrarErrorRegistro('apellidoValidado')}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha expiracion</mat-label>
+
+            <input matInput (focus)="esDorso=false" (keyup)="onChangeFechaVto($event)" 
+            [textMask]="{mask: dateMask}" placeholder="00/00" formControlName="fechaValidada">
+
+            <mat-error *ngIf="testGroupTarjetaForm.controls.fechaValidada.invalid">{{mostrarErrorRegistro('fechaValidada')}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>PIN</mat-label>
+
+            <input matInput (focus)="esDorso=true" (keyup)="onChangePin($event)"
+            [textMask]="{mask: pinMask}" placeholder="000" formControlName="pinValidado">
+
+            <mat-error *ngIf="testGroupTarjetaForm.controls.pinValidado.invalid">{{mostrarErrorRegistro('pinValidado')}}</mat-error>
+        </mat-form-field>
+
+    </div>
+
+
+    <div class="btnContainer">
+        <button [disabled]="!testGroupTarjetaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin">Aceptar (no hago nada, estoy aca de pinta)</button>
+    </div>
+
+
+</form>
+
+
+
+
+
+
+
+
 <!-- <input pattern="[0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[" > -->
 
 <!-- <app-spinner *ngIf="mostrarSpinner"></app-spinner> -->
