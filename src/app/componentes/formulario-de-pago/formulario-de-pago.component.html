@@ -1,0 +1,34 @@
+<div class="divCreaditCardContainer" style="position: absolute; left: 30%; top:30%">
+    <div id="divCreditCard" class="divCreditCard {{datosTarjeta.tipoTarjeta}} " *ngIf="!esDorso">
+        <img class="imgLogo" *ngIf="datosTarjeta.tipoTarjeta=='MasterCard'" src="../../../assets/images/masterCard.png"
+            alt="logo MasterCard">
+        <img class="imgLogo" *ngIf="datosTarjeta.tipoTarjeta=='Visa'" src="../../../assets/images/visa.png"
+            alt="logo Visa">
+        <div class="divNumeroDeTarjeta">
+
+            <div *ngFor="let fraccionNumTarjeta of datosTarjeta.numeroDeTarjetaArray">
+                <label class="digitoTarjeta" *ngFor="let digito of fraccionNumTarjeta"><b>{{digito}}</b></label>
+            </div>
+
+        </div>
+
+        <div class="divNombre">
+            <label class="labelNombre">{{datosTarjeta.nombre|uppercase }}</label>
+            <label class="labelNombre">{{datosTarjeta.apellido|uppercase }}</label>
+        </div>
+        <div class="labelFechaVencimiento">
+            <label>VTO: {{datosTarjeta.fechaVto}}</label>
+        </div>
+    </div>
+    <!-- DORSO -->
+    <div id="divDorsoCreditCard" class="divCreditCard {{datosTarjeta.tipoTarjeta}}" *ngIf="esDorso">
+        <div class="divNumeroDeTarjeta">
+            <div class="divBandaMagnetica"> </div>
+            <div class="divPin">
+                <p class="labelPin">{{datosTarjeta.pin}}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <input pattern="[0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}"> -->

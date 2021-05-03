@@ -1,14 +1,18 @@
 <div class="divContainer" style="display: block;">
     <div class="divHistorialMensajes" *ngIf="oferta.mensajes">
         <div *ngFor="let mensaje of oferta.mensajes">
-            <p *ngIf="mensaje.idEmisor==user.id" class="mensajes mensajesEnviados">
-                <span style="font-size: 8px; display: block;">{{mensaje.fechaDeEnvio | date: 'dd/MM/yyyy'}}</span>
-                {{mensaje.mensaje}}
-            </p>
-            <p *ngIf="mensaje.idEmisor!=user.id" class="mensajes mensajesRecibidos">
-                <span style="font-size: 8px; display: block;">{{mensaje.fechaDeEnvio | date: 'dd/MM/yyyy'}}</span>
-                {{mensaje.mensaje}}
-            </p>
+            <div class="teste"  style="min-width: 100%;">
+                <p *ngIf="mensaje.idEmisor==user.id" class="mensajes mensajesEnviados">
+                    <span style="font-size: 8px; display: block;">{{mensaje.fechaDeEnvio | date: 'dd/MM/yyyy'}}</span>
+                    {{mensaje.mensaje}}
+                </p>
+            </div>
+            <div  class="teste" style="min-width: 100%;">
+                <p *ngIf="mensaje.idEmisor!=user.id" class="mensajes mensajesRecibidos">
+                    <span style="font-size: 8px; display: block;">{{mensaje.fechaDeEnvio | date: 'dd/MM/yyyy'}}</span>
+                    {{mensaje.mensaje}}
+                </p>
+            </div>
         </div>
     </div>
     <div class="divInput">

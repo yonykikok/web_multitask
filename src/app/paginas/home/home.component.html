@@ -1,18 +1,69 @@
-<app-header [userIsLogged]="userIsLogged" (ingresarEventClick)="mostrarFormLogin=true"></app-header>
-<!-- <app-spinner></app-spinner> -->
-<app-login  *ngIf="mostrarFormLogin" id="login" (ingresarEventClick)="userIsLogged=true" (ingresarEventClick)="mostrarFormLogin=false" (cancelLoginEventClick)="mostrarFormLogin=false"></app-login>
-<!-- <app-form-alta-producto></app-form-alta-producto> -->
+<app-formulario-de-pago [datosTarjeta]="datosTarjetaTest" [esDorso]="esDorso"> </app-formulario-de-pago>
+<div style="display: block;">
+    <mat-form-field class="example-full-width">
+        <input (focus)="esDorso=false" (keyup)="onChangeNumTarjeta($event)" matInput
+            [textMask]="{mask: creditNumberMask}" placeholder="0000-0000-0000-0000">
+    </mat-form-field>
+    <mat-form-field>
+        <input (focus)="esDorso=false" (keyup)="onChangeFechaVto($event)" matInput [textMask]="{mask: dateMask}"
+            placeholder="00/00">
+    </mat-form-field>
+    <mat-form-field>
+        <input (focus)="esDorso=true" (keyup)="onChangePin($event)" matInput [textMask]="{mask: pinMask}"
+            placeholder="000">
+    </mat-form-field>
+    <mat-form-field>
+        <input (focus)="esDorso=false" (keyup)="onChangeNombre($event)" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <input (focus)="esDorso=false" (keyup)="onChangeApelldio($event)" matInput>
+    </mat-form-field>
+</div>
+<!-- <input pattern="[0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[" > -->
+
+<!-- <app-spinner *ngIf="mostrarSpinner"></app-spinner> -->
+<!-- <mat-vertical-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="numeroTarjetaFormGroup">
+        <form [formGroup]="numeroTarjetaFormGroup">
+            <ng-template matStepLabel>Ingrese el titulo de la publicacion</ng-template>
+            <mat-form-field>
+                <mat-label>Titulo</mat-label>
+                <input matInput placeholder="1234 1234 1234 1234" formControlName="numeroTarjeta" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+   
+
+    <mat-step>
+        <ng-template matStepLabel>Finalizar</ng-template>
+        <p>Finalizaste la publicacion.</p>
+        <div>
+            <button mat-button (click)="stepper.reset()">Empezar de nuevo</button>
+            <button mat-button matStepperPrevious>Volver</button>
+            <button mat-stroked-button color="accent" >Publicar</button>
+        </div>
+    </mat-step>
+</mat-vertical-stepper> -->
+
+
+
+
+
+
+<!-- <app-header [userIsLogged]="userIsLogged" (ingresarEventClick)="mostrarFormLogin=true"></app-header>
+<app-login *ngIf="mostrarFormLogin" id="login" (ingresarEventClick)="userIsLogged=true"
+    (ingresarEventClick)="mostrarFormLogin=false" (cancelLoginEventClick)="mostrarFormLogin=false"></app-login>
 <app-carousel></app-carousel>
-<!-- <app-horario-de-apertura></app-horario-de-apertura> -->
 <app-nuestros-servicios id="appServicios"></app-nuestros-servicios>
 
 <app-story-wrap (ingresarEventClick)="mostrarFormLogin=true" id="appHistoryWrapper"></app-story-wrap>
 
-<!-- <app-maps></app-maps>-->
-
 <app-realizar-consulta-anonima id="appConsultaAnonima"> </app-realizar-consulta-anonima>
 
 <footer>
-    <small>All content &copy; Multitask. All rights reserved.</small> 
+    <small>All content &copy; Multitask. All rights reserved.</small>
     Contacto: +15 12345678 - Mailejempo@gmail.com - Direccion 573
-</footer>
+</footer> -->

@@ -1,21 +1,22 @@
 p{
     display: block;
-    width: 100%;
+    min-width: 51%;
 }
 .mensajes{    
     border-radius: 5px;
     padding: 8px;
 }
 .mensajesEnviados{
-    text-align: left; 
+    float: left;
     background-color: lightgreen;
 }
 .mensajesRecibidos{
-    text-align: right; 
+    float: right;
     background-color: lightgray;
 }
 
 .divContainer{
+    max-width: 50vh;
     display: flex !important;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -26,13 +27,7 @@ p{
     border-radius: 10px;
     min-height: 60vh;
 }
-.divContainer::before{
-    /* content: '';
-    background-color: rgba(0, 0, 0, 0.815);
-    border-radius: 10px;
-    height: 40vw;
-    max-width: 40vw; */
-}
+
 .divHistorialMensajes{
     width: 100%;
 }

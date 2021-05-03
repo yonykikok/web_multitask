@@ -1,0 +1,80 @@
+<!-- OFERTAS QUE ME HICIERON. -->
+<div class="divContainer" *ngFor="let oferta of misOfertasAceptadas">
+    <div class="divSeparador">
+        <h3>TE OFRECIERON </h3>
+        <p style="color: lightcoral;">pagar {{oferta.ofertaAceptada.efectivo|currency}} en efectivo.</p>
+        <div *ngFor="let producto of oferta.ofertaAceptada.listaDeProductos">
+            <h5 style="color: green;">+</h5>
+            <p>un "<b style="cursor: pointer;" (click)="expandirVista(producto)">{{producto.titulo}}</b>"</p>
+        </div>
+    </div>
+    <div class="divSeparador ">
+        <h3>POR TU </h3>
+        <p>
+            <span style="font-size: 300%;" class="material-icons mostrar">
+                east
+            </span>
+            <span style="font-size: 300%;" class="material-icons ocultar">
+                south
+            </span>
+        </p>
+    </div>
+
+    <div class="divSeparador" style="cursor: pointer;" (click)="expandirVista(oferta.publicacionOfertada)">
+        <h3>{{oferta.publicacionOfertada.titulo}}</h3>
+        <div class="divImagenes">
+            <img *ngFor="let foto of oferta.publicacionOfertada.fotos" src="{{foto}}">
+        </div>
+        <h4 style="margin: 2px;">de</h4>
+        <h3 style="color: green;">{{oferta.publicacionOfertada.precio|currency}}</h3>
+    </div>
+
+
+    <div style="float: right; bottom: 0;">
+        <button  mat-fab color="transparent" (click)="openDialog(oferta)">
+            <span class="material-icons">
+                forward_to_inbox
+            </span>
+        </button>
+    </div>
+
+
+</div>
+
+<!-- MIS OFERTAS HACIA OTROS USUARIOS -->
+<div class="divContainer" *ngFor="let oferta of misPermutasOfrecidas">
+    <div class="divSeparador">
+        <h3>OFRECISTE </h3>
+        <p style="color: lightcoral;">pagar {{oferta.ofertaAceptada.efectivo|currency}} en efectivo.</p>
+        <div *ngFor="let producto of oferta.ofertaAceptada.listaDeProductos">
+            <h5 style="color: green;">+</h5>
+            <p>tu "<b style="cursor: pointer;" (click)="expandirVista(producto)">{{producto.titulo}}</b>" publicado</p>
+        </div>
+    </div>
+    <div class="divSeparador ">
+        <h3>POR </h3>
+        <p>
+            <span style="font-size: 300%;" class="material-icons mostrar">
+                east
+            </span>
+            <span style="font-size: 300%;" class="material-icons ocultar">
+                south
+            </span>
+        </p>
+    </div>
+    <div class="divSeparador" style="cursor: pointer;" (click)="expandirVista(oferta.publicacionOfertada)">
+        <h3>{{oferta.publicacionOfertada.titulo}}</h3>
+        <div class="divImagenes">
+            <img *ngFor="let foto of oferta.publicacionOfertada.fotos" src="{{foto}}">
+        </div>
+        <h4 style="margin: 2px;">de</h4>
+        <h3 style="color: green;">{{oferta.publicacionOfertada.precio|currency}}</h3>
+    </div>
+    <div style="float: right; bottom: 0;">
+        <button mat-fab  (click)="openDialog(oferta)">
+            <span class="material-icons">
+                forward_to_inbox
+            </span>
+        </button>
+    </div>
+</div>

@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 
 export class UsuarioComponent implements OnInit {
- 
+
   user: Usuario;
   currentUser$: Observable<Usuario>;
   pedido = "";
@@ -21,7 +21,7 @@ export class UsuarioComponent implements OnInit {
   boolListadoCuentas = false;
   booEstadisticas = false;
   boolAdministrarPublicaciones = false;
-  
+
   // EMPLEADO
   boolResponderConsultas = false;
   boolGenerarReparacion = false;
@@ -32,9 +32,9 @@ export class UsuarioComponent implements OnInit {
   boolPubliciones = false;
   boolResenias = false;
   boolConsultas = false;
-  boolFormPublicar=false;
-  boolFormMisPermutas=false;
-  boolOfertasRealizadas=false;
+  boolFormPublicar = false;
+  boolFormMisPermutas = false;
+  boolOfertasRealizadas = false;
 
   constructor(private authService: AuthService) { }
 
@@ -46,155 +46,34 @@ export class UsuarioComponent implements OnInit {
     this.authService.actualizarUsuario();
   }
 
-  //ADMIN
-  mostrarRegistroCliente() {
-    this.boolRegistroCliente = true;
+  mostrar(variable) {
+    this.reiniciarEstadosAFalse();
+    this[variable] = true;
+  }
+
+
+  reiniciarEstadosAFalse() {
+    //ADMIN
+    this.boolRegistroCliente = false;
     this.boolRegistroEmpleado = false;
-    this.boolGenerarReparacion = false;
     this.boolListadoCuentas = false;
     this.booEstadisticas = false;
     this.boolAdministrarPublicaciones = false;
-    this.boolResponderConsultas = false;
-  }
 
-  mostrarRegistroEmpleado() {
-    this.boolRegistroCliente = false;
-    this.boolRegistroEmpleado = true;
-    this.boolListadoCuentas = false;
-    this.booEstadisticas = false;
-    this.boolAdministrarPublicaciones = false;
-  }
-
-  mostrarListadoCuentas() {
-    this.boolRegistroCliente = false;
-    this.boolRegistroEmpleado = false;
-    this.boolListadoCuentas = true;
-    this.booEstadisticas = false;
-    this.boolAdministrarPublicaciones = false; 
+    // EMPLEADO
     this.boolResponderConsultas = false;
     this.boolGenerarReparacion = false;
-  }
-
-  mostrarPublicacionesPendientes() {
-    this.boolRegistroCliente = false;
-    this.boolRegistroEmpleado = false;
-    this.boolListadoCuentas = false;
-    this.booEstadisticas = false;
-    this.boolGenerarReparacion = false;
-    this.boolAdministrarPublicaciones = true;   
-    this.boolResponderConsultas = false;
-  }
-
-  mostrarEstadisticas() {
-    this.boolRegistroCliente = false;
-    this.boolRegistroEmpleado = false;
-    this.boolListadoCuentas = false;
-    this.booEstadisticas = true;
-    this.boolAdministrarPublicaciones = false;   
-  }
-
-
-
-
-
-  // EMPLEADO
-  mostrarResponderConsultas() {
-    this.boolResponderConsultas = true;
-    this.boolRegistroCliente = false;
-    this.boolGenerarReparacion = false;
-    this.boolListadoCuentas = false;
-    this.boolAdministrarPublicaciones = false;   
     this.boolReparacionesPendientes = false;
-  }
 
-
-  mostrarGenerarReparacion()
-  {
-    this.boolResponderConsultas = false;
-    this.boolRegistroCliente = false;
-    this.boolGenerarReparacion = true;
-    this.boolListadoCuentas = false;
-    this.boolAdministrarPublicaciones = false;  
-    this.boolReparacionesPendientes = false;
-  }
-
-  mostrarReparacionesPendientes(){
-    this.boolResponderConsultas = false;
-    this.boolRegistroCliente = false;
-    this.boolGenerarReparacion = false;
-    this.boolListadoCuentas = false;
-    this.boolAdministrarPublicaciones = false;  
-    this.boolReparacionesPendientes = true;
-  }
-
-
-
-
-
-  // CLIENTE Y ST
-  mostrarServicio(){
-    this.boolServicio = true;
+    //CLIENTE Y ST
+    this.boolServicio = false;
     this.boolPubliciones = false;
-    this.boolOfertasRealizadas = false;
     this.boolResenias = false;
     this.boolConsultas = false;
     this.boolFormPublicar = false;
-  }
-
-  mostrarPublicaciones(){
-    this.boolServicio = false;
-    this.boolPubliciones = true;
+    this.boolFormMisPermutas = false;
     this.boolOfertasRealizadas = false;
-    this.boolResenias = false;
-    this.boolConsultas = false;
-    this.boolFormPublicar = false;
   }
 
-  
-  mostrarOfertasRealizadas()
-  {
-    this.boolServicio = false;
-    this.boolPubliciones = false;
-    this.boolOfertasRealizadas = true;
-    this.boolResenias = false;
-    this.boolConsultas = false;
-    this.boolFormPublicar = false;
-  }
-
-
-  mostrarResenias(){
-    this.boolServicio = false;
-    this.boolPubliciones = false;
-    this.boolOfertasRealizadas = false;
-    this.boolResenias = true;
-    this.boolConsultas = false;
-    this.boolFormPublicar = false;
-  }
-
-  mostrarConsultas(){
-    this.boolServicio = false;
-    this.boolPubliciones = false;
-    this.boolOfertasRealizadas = false;
-    this.boolResenias = false;
-    this.boolConsultas = true;
-    this.boolFormPublicar = false;
-  }
-
-
-  mostrarAltaPublicacion()
-  {
-    this.boolServicio = false;
-    this.boolPubliciones = false;
-    this.boolOfertasRealizadas = false;
-    this.boolResenias = false;
-    this.boolConsultas = false;
-    this.boolFormPublicar = true;
-  }
-  mostrar(variable){
-    this[variable]=true;
-
-  }
-
- 
 
 }

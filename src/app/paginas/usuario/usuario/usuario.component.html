@@ -22,11 +22,11 @@
             <h1>Panel de Control Administrador</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
-                    <button mat-button (click)="mostrarRegistroEmpleado()"> Resgistrar Empleado</button>
-                    <button mat-button (click)="mostrarListadoCuentas()"> Ver Todas las Cuentas</button>
-                    <button mat-button (click)="mostrarPublicacionesPendientes()"> Publicaciones Pendientes</button>
-                    <button mat-button (click)="mostrarEstadisticas()"> Ver Estadisticas</button>
+                    <button mat-button (click)="mostrar('boolRegistroCliente')"> Registrar Cliente </button>
+                    <button mat-button (click)="mostrar('boolRegistroEmpleado')"> Resgistrar Empleado</button>
+                    <button mat-button (click)="mostrar('boolListadoCuentas')"> Ver Todas las Cuentas</button>
+                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')"> Publicaciones Pendientes</button>
+                    <button mat-button (click)="mostrar('booEstadisticas')"> Ver Estadisticas</button>
                 </mat-toolbar-row>
             </mat-toolbar>
 
@@ -61,12 +61,12 @@
             <h1>Panel de Control Empleado</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrarRegistroCliente()"> Registrar Cliente </button>
-                    <button mat-button (click)="mostrarPublicacionesPendientes()"> Publicaciones Pendientes</button>
-                    <button mat-button (click)="mostrarGenerarReparacion()"> Generar Reparación </button>
-                    <button mat-button (click)="mostrarReparacionesPendientes()"> Reparaciones Pendientes</button>
-                    <button mat-button (click)="mostrarListadoCuentas()"> Ver Cuentas Clientes</button>
-                    <button mat-button (click)="mostrarResponderConsultas()"> Responder Consultas </button>
+                    <button mat-button (click)="mostrar('boolRegistroCliente')"> Registrar Cliente </button>
+                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')"> Publicaciones Pendientes</button>
+                    <button mat-button (click)="mostrar('boolGenerarReparacion')"> Generar Reparación </button>
+                    <button mat-button (click)="mostrar('boolReparacionesPendientes')"> Reparaciones Pendientes</button>
+                    <button mat-button (click)="mostrar('boolListadoCuentas')"> Ver Cuentas Clientes</button>
+                    <button mat-button (click)="mostrar('boolResponderConsultas')"> Responder Consultas </button>
                 </mat-toolbar-row>
             </mat-toolbar>
 
@@ -106,12 +106,12 @@
             <h1>Panel de Control Empleado</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrarServicio()"> Mis Reparaciones </button>
-                    <button mat-button (click)="mostrarPublicaciones()"> Mis Publicaciones</button>
+                    <button mat-button (click)="mostrar('boolServicio')"> Mis Reparaciones </button>
+                    <button mat-button (click)="mostrar('boolPubliciones')"> Mis Publicaciones</button>
                     <!-- <button mat-button (click)="mostrarOfertasRealizadas()"> Mis permutas</button> -->
                     <button mat-button (click)="mostrar('boolFormMisPermutas')"> Mis permutas</button>
-                    <button mat-button (click)="mostrarResenias()"> Mis Reseñas</button>
-                    <button mat-button (click)="mostrarAltaPublicacion()"> Publicar</button>
+                    <button mat-button (click)="mostrar('boolResenias')"> Mis Reseñas</button>
+                    <button mat-button (click)="mostrar('boolFormPublicar')"> Publicar</button>
                 </mat-toolbar-row>
             </mat-toolbar>
 
@@ -137,7 +137,7 @@
 
 
             <div *ngIf="boolOfertasRealizadas == true">
-                <app-ver-ofertas-realizadas></app-ver-ofertas-realizadas>
+                <app-ver-ofertas></app-ver-ofertas>
             </div>
 
 
@@ -150,7 +150,7 @@
                 <h2>Publicar Articulo</h2>
                 <app-form-alta-producto></app-form-alta-producto>
             </div>
-            <div *ngIf="boolFormMisPermutas == true">
+            <div *ngIf="boolFormMisPermutas == true" style="text-align: center;">
                 <h2>Mis permutas</h2>
                 <app-mis-permutas></app-mis-permutas>
             </div>

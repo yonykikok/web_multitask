@@ -130,12 +130,13 @@ import { EstadisticasAdminComponent } from './componentesAdmin/estadisticas-admi
 
 import { ChartsModule } from 'ng2-charts';
 import { VisualizarOfertaCompletaComponent } from './componentes/visualizar-oferta-completa/visualizar-oferta-completa.component';
-import { VerOfertasRealizadasComponent } from './componentesCliente/ver-ofertas-realizadas/ver-ofertas-realizadas.component';
+import { VerOfertasComponent } from './componentesCliente/ver-ofertas/ver-ofertas.component';
 import { ChatPermutaComponent } from './componentes/chat-permuta/chat-permuta.component';
 import { GenerarReparacionComponent } from './componentesEmpleado/generar-reparacion/generar-reparacion.component';
 import { ReparacionEmpleadoComponent } from './componentesEmpleado/reparacion-empleado/reparacion-empleado.component';
 import { MisPermutasComponent } from './componentesCliente/mis-permutas/mis-permutas.component';
-
+import { FormularioDePagoComponent } from './componentes/formulario-de-pago/formulario-de-pago.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -174,9 +175,10 @@ import { MisPermutasComponent } from './componentesCliente/mis-permutas/mis-perm
     SeleccionarMisArticulosComponent,
     EstadisticasAdminComponent,
     VisualizarOfertaCompletaComponent,
-    VerOfertasRealizadasComponent,
+    VerOfertasComponent,
     ReparacionEmpleadoComponent,
     MisPermutasComponent,
+    FormularioDePagoComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],
@@ -200,6 +202,7 @@ import { MisPermutasComponent } from './componentesCliente/mis-permutas/mis-perm
     MatSortModule,
     BrowserAnimationsModule,
     MatInputModule,
+    TextMaskModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatFormFieldModule,

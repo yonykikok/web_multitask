@@ -11,7 +11,7 @@
                 <p class="precio">{{publicacion.precio|currency}}</p>
                 <div mat-dialog-actions>
 
-                    <button *ngIf="esVistaCompleta" class="btnAcciones" mat-raised-button color="primary">Comprar ahora</button>
+                    <button *ngIf="esVistaCompleta" class="btnAcciones" mat-raised-button color="primary" [mat-dialog-close]="'comprar'">Comprar ahora</button>
                     <button *ngIf="esVistaCompleta" class="btnAcciones" mat-stroked-button color="accent"  [mat-dialog-close]="'permutar'" (click)="scrolear()">Permutar</button>
                 </div>
                 

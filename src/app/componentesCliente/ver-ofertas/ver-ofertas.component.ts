@@ -7,11 +7,11 @@ import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
 
 @Component({
-  selector: 'app-ver-ofertas-realizadas',
-  templateUrl: './ver-ofertas-realizadas.component.html',
-  styleUrls: ['./ver-ofertas-realizadas.component.css']
+  selector: 'app-ver-ofertas',
+  templateUrl: './ver-ofertas.component.html',
+  styleUrls: ['./ver-ofertas.component.css']
 })
-export class VerOfertasRealizadasComponent implements OnInit {
+export class VerOfertasComponent implements OnInit {
 
   misOfertasAceptadas=[];
   misPermutasOfrecidas=[];

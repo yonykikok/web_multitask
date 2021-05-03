@@ -15,7 +15,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class TiendaComponent implements OnInit {
   publicacionObjetivo;
-  mostrarMiListaDeproductos=false;
+  mostrarMiListaDeproductos = false;
   mostrarFormularioPublicar = false;
   mostrar;
   user: Usuario;
@@ -30,9 +30,9 @@ export class TiendaComponent implements OnInit {
       textoABuscar: ['', [Validators.required]]
     });
   }
-  mostrarListaDeProductos(publicacionObjetivo){
-      this.publicacionObjetivo=publicacionObjetivo;
-      this.mostrarMiListaDeproductos=true;
+  mostrarListaDeProductos(publicacionObjetivo) {
+    this.publicacionObjetivo = publicacionObjetivo;
+    this.mostrarMiListaDeproductos = true;
   }
   buscarCoincidencias() {
     let textoABuscar = this.inputSearch.controls['textoABuscar'].value.toLocaleLowerCase();
@@ -60,7 +60,7 @@ export class TiendaComponent implements OnInit {
 
 
   }
- 
+
 
   // Esta funcion carga las publicaciones de la base de datos. Incoporar estado.
   cargarPublicacionesActivas(): any {
@@ -68,8 +68,8 @@ export class TiendaComponent implements OnInit {
     this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         //if (doc.data()['tipo'] != tipoUsuario) 
-        let publicacion=doc.data();
-        publicacion['id']=doc.id;
+        let publicacion = doc.data();
+        publicacion['id'] = doc.id;
         listaPublicaciones.push(publicacion);
 
       })
@@ -78,7 +78,9 @@ export class TiendaComponent implements OnInit {
   }
 
 
-
+  mostrarFormDePago(publicacion) {
+    console.log(publicacion);
+  }
 
 }
 

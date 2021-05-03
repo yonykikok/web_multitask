@@ -1,0 +1,137 @@
+.divCreditCard {
+  backface-visibility: hidden;
+  width: 300px;
+  height: 180px;
+  border-radius: 10px;
+  /* background-image: linear-gradient(#3d98ea, #b3cdff); */
+  background-color: #c5c5c5;
+  z-index: 1;
+  box-shadow: 0 0 10px 2px #000000a3;
+}
+.divCreditCard::before {
+  content: "";
+  position: absolute;
+  width: 48px;
+  height: 30px;
+  background-color: #eca2ad;
+  z-index: 1;
+  left: 40px;
+  top: 30px;
+  border-radius: 3px;
+}
+.Visa {
+  background-image: linear-gradient(#483dea, #fddf72);
+}
+.MasterCard {
+  background-image: linear-gradient(#ff0c00, #ffc94f);
+}
+.divCreditCard::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 19px;
+  background-color: #eeecb4;
+  z-index: 2;
+  left: 40px;
+  top: 35px;
+  border-radius: 2px;
+}
+
+.divNumeroDeTarjeta {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  height: 50%;
+}
+.divNumeroDeTarjeta div {
+  width: 20%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.divNombre {
+  width: 80%;
+  height: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.divNombre label {
+  font-weight: 600;
+  color: rgb(20 20 20 / 53%);
+}
+.imgLogo {
+  position: absolute;
+  width: 40px;
+  left: 240px;
+  height: 40px;
+  object-fit: contain;
+  top: 10px;
+}
+
+.girar {
+  transform: rotateY(180deg);
+  transition: 2s;
+}
+.divBandaMagnetica {
+  width: 300px !important;
+  z-index: 3;
+  top: 30px;
+  position: absolute;
+  background-color: black;
+  height: 40px;
+}
+.divPin {
+  display: inline !important;
+  width: 270px !important;
+  z-index: 3;
+  top: 90px;
+  position: absolute;
+  background-color: rgb(255 255 255);
+  height: 25px;
+  border-radius: 10px;
+}
+.divPin .labelPin {
+  position: relative;
+  float: right;
+  background-color: none;
+}
+
+.divDorsoCreditCard {
+  transform: rotateY(90deg);
+  backface-visibility: hidden;
+  z-index: 3;
+}
+
+.labelPin::before {
+  content: "";
+  animation-name: senialar;
+  animation-duration: 1s;
+  border-radius: 100%;
+  border: 1px solid blue;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: -7px;
+  top: -7px;
+}
+.labelFechaVencimiento {
+  width: 70px;
+  position: absolute;
+  left: 222px;
+  top: 155px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.digitoTarjeta {
+  width: 0px;
+  height: 0px;
+  text-shadow: -1px 3px 3px white;
+  border-radius: 100%;
+  background-color: rgb(242 235 235);
+}
+@keyframes senialar {
+  from {
+    left: 40px;
+    padding: 100px;
+  }
+}

@@ -1,5 +1,5 @@
 <app-spinner *ngIf="mostrarSpinner"></app-spinner>
-<mat-vertical-stepper [linear]="true" #stepper>
+<mat-vertical-stepper  [linear]="true" #stepper>
     <mat-step [stepControl]="tituloFormGroup">
         <form [formGroup]="tituloFormGroup">
             <ng-template matStepLabel>Ingrese el titulo de la publicacion</ng-template>

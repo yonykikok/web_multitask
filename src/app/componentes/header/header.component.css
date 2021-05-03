@@ -1,6 +1,9 @@
 
 mat-toolbar{
     border-bottom: 2px solid #BDBDBD;
+    /* position: fixed;
+    top: 0;
+    z-index: 12; */
 }
 html,body{
     scroll-behavior: smooth;
