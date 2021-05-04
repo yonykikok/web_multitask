@@ -7,6 +7,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, timer } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { FormularioDePagoComponent } from 'src/app/componentes/formulario-de-pago/formulario-de-pago.component';
 
 @Component({
   selector: 'app-tienda',
@@ -24,7 +26,10 @@ export class TiendaComponent implements OnInit {
   listadoDePublicacionesAMostrar = [];
   inputSearch;
 
-  constructor(private authService: AuthService, private firestore: AngularFirestore,
+  constructor(
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private firestore: AngularFirestore,
     private formBuilder: FormBuilder) {
     this.inputSearch = this.formBuilder.group({
       textoABuscar: ['', [Validators.required]]
@@ -78,8 +83,32 @@ export class TiendaComponent implements OnInit {
   }
 
 
+
+
   mostrarFormDePago(publicacion) {
-    console.log(publicacion);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      // publicacion: publicacion,
+      width:'100vw',
+      height:'100vh',
+      margin:'0'
+    }
+    const dialogRef = this.dialog.open(FormularioDePagoComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+            alert("COMPRO!");
+
+      switch (result) {
+        case 'permutar':
+          // this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
+          break;
+        case 'comprar':
+          break;
+        default:
+          //no hacemos nada!
+          break;
+      }
+    });
   }
 
 }

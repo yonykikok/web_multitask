@@ -1,34 +1,77 @@
-<div class="divCreaditCardContainer" style="position: absolute; left: 30%; top:30%">
-    <div id="divCreditCard" class="divCreditCard {{datosTarjeta.tipoTarjeta}} " *ngIf="!esDorso">
-        <img class="imgLogo" *ngIf="datosTarjeta.tipoTarjeta=='MasterCard'" src="../../../assets/images/masterCard.png"
-            alt="logo MasterCard">
-        <img class="imgLogo" *ngIf="datosTarjeta.tipoTarjeta=='Visa'" src="../../../assets/images/visa.png"
-            alt="logo Visa">
-        <div class="divNumeroDeTarjeta">
+<div class="formularioDePagoContainer">
+    <div>        
+        <app-credit-card [datosTarjeta]="datosTarjetaTest" [esDorso]="esDorso"></app-credit-card>
+    </div>
+    <div class="divFormulario">
+        <form [formGroup]="testGroupTarjetaForm">
 
-            <div *ngFor="let fraccionNumTarjeta of datosTarjeta.numeroDeTarjetaArray">
-                <label class="digitoTarjeta" *ngFor="let digito of fraccionNumTarjeta"><b>{{digito}}</b></label>
+            <div style="display: block;">
+
+                <mat-form-field >
+                    <mat-label>Numero de tarjeta</mat-label>
+
+                    <input matInput (focus)="esDorso=false" (keyup)="onChangeNumTarjeta($event)"
+                        [textMask]="{mask: creditNumberMask}" placeholder="0000-0000-0000-0000"
+                        formControlName="numeroValidado">
+
+                    <mat-error *ngIf="testGroupTarjetaForm.controls.numeroValidado.invalid">
+                        {{mostrarErrorRegistro('numeroValidado')}}</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+
+                    <input matInput (focus)="esDorso=false" (keyup)="onChangeNombre($event)" placeholder="Nombre"
+                        formControlName="nombreValidado">
+
+                    <mat-error *ngIf="testGroupTarjetaForm.controls.nombreValidado.invalid">
+                        {{mostrarErrorRegistro('nombreValidado')}}</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field >
+                    <mat-label>Apellido</mat-label>
+
+                    <input matInput (focus)="esDorso=false" (keyup)="onChangeApelldio($event)" placeholder="Apellido"
+                        formControlName="apellidoValidado">
+
+                    <mat-error *ngIf="testGroupTarjetaForm.controls.apellidoValidado.invalid">
+                        {{mostrarErrorRegistro('apellidoValidado')}}</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field >
+                    <mat-label>Fecha expiracion</mat-label>
+
+                    <input matInput (focus)="esDorso=false" (keyup)="onChangeFechaVto($event)"
+                        [textMask]="{mask: dateMask}" placeholder="00/00" formControlName="fechaValidada">
+
+                    <mat-error *ngIf="testGroupTarjetaForm.controls.fechaValidada.invalid">
+                        {{mostrarErrorRegistro('fechaValidada')}}</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field >
+                    <mat-label>PIN</mat-label>
+
+                    <input matInput (focus)="esDorso=true" (keyup)="onChangePin($event)" [textMask]="{mask: pinMask}"
+                        placeholder="000" formControlName="pinValidado">
+
+                    <mat-error *ngIf="testGroupTarjetaForm.controls.pinValidado.invalid">
+                        {{mostrarErrorRegistro('pinValidado')}}
+                    </mat-error>
+                </mat-form-field>
+
             </div>
 
-        </div>
 
-        <div class="divNombre">
-            <label class="labelNombre">{{datosTarjeta.nombre|uppercase }}</label>
-            <label class="labelNombre">{{datosTarjeta.apellido|uppercase }}</label>
-        </div>
-        <div class="labelFechaVencimiento">
-            <label>VTO: {{datosTarjeta.fechaVto}}</label>
-        </div>
-    </div>
-    <!-- DORSO -->
-    <div id="divDorsoCreditCard" class="divCreditCard {{datosTarjeta.tipoTarjeta}}" *ngIf="esDorso">
-        <div class="divNumeroDeTarjeta">
-            <div class="divBandaMagnetica"> </div>
-            <div class="divPin">
-                <p class="labelPin">{{datosTarjeta.pin}}</p>
+            <div class="btnContainer">
+                <button [disabled]="!testGroupTarjetaForm.valid" type="submit" mat-raised-button color="primary"
+                    class="btnLogin">Aceptar (no hago nada, estoy aca de pinta)</button>
             </div>
-        </div>
 
+
+        </form>
     </div>
-
-    <!-- <input pattern="[0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}"> -->
+</div>

@@ -137,6 +137,7 @@ import { ReparacionEmpleadoComponent } from './componentesEmpleado/reparacion-em
 import { MisPermutasComponent } from './componentesCliente/mis-permutas/mis-permutas.component';
 import { FormularioDePagoComponent } from './componentes/formulario-de-pago/formulario-de-pago.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { CreditCardComponent } from './componentes/credit-card/credit-card.component';
 
 @NgModule({
   declarations: [
@@ -179,6 +180,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     ReparacionEmpleadoComponent,
     MisPermutasComponent,
     FormularioDePagoComponent,
+    CreditCardComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],

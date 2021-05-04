@@ -15,10 +15,7 @@
   </div>
   <!-- Fin buscador -->
 
-  <button class="btn btn-primary"
-    (click)="mostrarFormularioPublicar=!mostrarFormularioPublicar">Publicar</button>
-    <!-- hy que acomodarlo -->
-  <!-- <app-form-alta-producto *ngIf="mostrarFormularioPublicar"></app-form-alta-producto> -->
+  <button class="btn btn-primary" (click)="mostrarFormularioPublicar=!mostrarFormularioPublicar">Publicar</button>
 
   <a href="/usuario" class="divAvatarUsuario">
     <div class="divPerfilUsuario" *ngIf="user">
@@ -42,14 +39,13 @@
 
 <app-carousel></app-carousel>
 
-
-
-
-<app-seleccionar-mis-articulos *ngIf="mostrarMiListaDeproductos" [publicacionObjetivo]="publicacionObjetivo" (cancelarEvent)="mostrarMiListaDeproductos=false"></app-seleccionar-mis-articulos>
+<app-seleccionar-mis-articulos *ngIf="mostrarMiListaDeproductos" [publicacionObjetivo]="publicacionObjetivo"
+  (cancelarEvent)="mostrarMiListaDeproductos=false"></app-seleccionar-mis-articulos>
 <div class="divCardsContainer">
 
   <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
-    <app-product-to-sell-card [publicacion]="publicacion" (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)"></app-product-to-sell-card>
+    <app-product-to-sell-card [publicacion]="publicacion" (comprarClickEvent)="mostrarFormDePago($event)"
+      (permutarClickEvent)="mostrarListaDeProductos($event)"></app-product-to-sell-card>
   </div>
 
 </div>
