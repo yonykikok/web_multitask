@@ -12,7 +12,7 @@ export class FormularioDePagoComponent implements OnInit {
 
 
   testGroupTarjetaForm: FormGroup
-
+  yoQuiero = false;
   esDorso;
   datosTarjetaTest = {
     fechaVto: "00-00",
@@ -191,11 +191,14 @@ export class FormularioDePagoComponent implements OnInit {
   }
   onChangeNumTarjeta(event: KeyboardEvent) { // with type info
     let textoIngresado = (event.target as HTMLInputElement).value;
-    if (textoIngresado == '')
+    if (textoIngresado == '') {
       textoIngresado = "0000-0000-0000-0000";
+    }
     this.datosTarjetaTest.numeroDeTarjetaArray = this.convertirStringEn4ArraysDeChars(textoIngresado);
 
     this.obtenerTipoDeTarjeta(this.datosTarjetaTest.numeroDeTarjetaArray[0][0])
+
+
 
   }
   onChangeNombre(event: KeyboardEvent) {
@@ -220,13 +223,16 @@ export class FormularioDePagoComponent implements OnInit {
     switch (primerDijito) {
       case '4':
         this.datosTarjetaTest.tipoTarjeta = "Visa";
-        break;
+          this.yoQuiero = false;
+          break;
       case '2':
       case '5':
-        this.datosTarjetaTest.tipoTarjeta = "MasterCard";
+          this.yoQuiero = false;
+          this.datosTarjetaTest.tipoTarjeta = "MasterCard";
         break;
-      default:
-        this.datosTarjetaTest.tipoTarjeta = "";
+        default:
+          this.datosTarjetaTest.tipoTarjeta = "";
+          this.yoQuiero = true;
         break;
     }
   }

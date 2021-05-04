@@ -7,8 +7,8 @@
   width: 300px;
   height: 180px;
   border-radius: 10px;
-  /* background-image: linear-gradient(#3d98ea, #b3cdff); */
-  background-color: #c5c5c5;
+  background-image: radial-gradient(circle, #7c7c7c, #5d5d5d, #383838);
+  /* background-color: #c5c5c5; */
   z-index: 1;
   box-shadow: 0 0 10px 2px #000000a3;
 }
@@ -24,10 +24,12 @@
   border-radius: 3px;
 }
 .Visa {
-  background-image: linear-gradient(#483dea, #fddf72);
+  transition: 3s;
+  background-image: linear-gradient(#8077fe, #ffe68c);
 }
 .MasterCard {
-  background-image: linear-gradient(#ff0c00, #ffc94f);
+  transition: 3s;
+  background-image: linear-gradient(#ed5952, #f6cc6f);
 }
 .divCreditCard::after {
   content: "";

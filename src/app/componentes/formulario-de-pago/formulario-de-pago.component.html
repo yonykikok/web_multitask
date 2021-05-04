@@ -1,13 +1,18 @@
 <div class="formularioDePagoContainer">
-    <div>        
+    <div>
         <app-credit-card [datosTarjeta]="datosTarjetaTest" [esDorso]="esDorso"></app-credit-card>
+    </div>
+    <div style="width: 100%; text-align: center;">
+        <h2>Ingrese los datos de su tarjeta</h2>
+        <label *ngIf="yoQuiero" style="color: red; font-size: 12px;"> Por el momento no operamos con esta tarjeta.
+        </label>
     </div>
     <div class="divFormulario">
         <form [formGroup]="testGroupTarjetaForm">
 
             <div style="display: block;">
 
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>Numero de tarjeta</mat-label>
 
                     <input matInput (focus)="esDorso=false" (keyup)="onChangeNumTarjeta($event)"
@@ -16,6 +21,9 @@
 
                     <mat-error *ngIf="testGroupTarjetaForm.controls.numeroValidado.invalid">
                         {{mostrarErrorRegistro('numeroValidado')}}</mat-error>
+
+
+                    <!--  -->
                 </mat-form-field>
 
 
@@ -30,7 +38,7 @@
                 </mat-form-field>
 
 
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>Apellido</mat-label>
 
                     <input matInput (focus)="esDorso=false" (keyup)="onChangeApelldio($event)" placeholder="Apellido"
@@ -41,7 +49,7 @@
                 </mat-form-field>
 
 
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>Fecha expiracion</mat-label>
 
                     <input matInput (focus)="esDorso=false" (keyup)="onChangeFechaVto($event)"
@@ -52,7 +60,7 @@
                 </mat-form-field>
 
 
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>PIN</mat-label>
 
                     <input matInput (focus)="esDorso=true" (keyup)="onChangePin($event)" [textMask]="{mask: pinMask}"
