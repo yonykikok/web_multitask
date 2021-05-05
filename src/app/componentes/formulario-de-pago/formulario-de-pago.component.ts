@@ -50,9 +50,9 @@ export class FormularioDePagoComponent implements OnInit {
 
       //numeroValidado: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16), Validators.pattern('^[0-9-_]{16}$')]],
 
-      numeroValidado: ['', [Validators.required]],
+      numeroValidado: ['', [Validators.required, Validators.pattern('^[0-9]{4}[-]{1}[0-9]{4}[-]{1}[0-9]{4}[-]{1}[0-9]{4}$')]],
 
-      pinValidado: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+      pinValidado: ['', [Validators.required, Validators.pattern('^[0-9]{3}$')]],
 
       nombreValidado: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z ]{4,20}$')]],
 
@@ -104,12 +104,8 @@ export class FormularioDePagoComponent implements OnInit {
           retorno = 'Debe ingresar un PIN.';
         }
 
-        if (this.testGroupTarjetaForm.controls.pinValidado.hasError('minLength')) {
-          retorno = 'El PIN debe contener minimo 16 digitos.';
-        }
-
-        if (this.testGroupTarjetaForm.controls.pinValidado.hasError('maxLength')) {
-          retorno = 'El PIN debe contener maximo 16 digitos.';
+        if (this.testGroupTarjetaForm.controls.pinValidado.hasError('pattern')) {
+          retorno = 'Hay un error con el formato del PIN';
         }
 
         break;
