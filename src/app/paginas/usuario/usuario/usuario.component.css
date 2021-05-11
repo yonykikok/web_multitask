@@ -4,6 +4,35 @@ button{
 }
 */
 
+
+
+/* LO DE ACÁ ES PARA HACER LA LISTA DE NOTIFICACIONES */
+
+.casiTodoCompleto{
+    z-index: 9999999 !important;
+    width: 50%;
+    height: 50%; 
+    position: absolute !important;
+    top: 0;
+    left: 0;
+}
+
+.box {
+  background-color: white;
+  width: 100%;
+  border: 2px dashed;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth; /* <--- */
+}
+
+#boxChild {
+  margin: 600px 0 300px;
+  width: 100%;
+  height: 100%;
+  background: green;
+}
+
 /* A PARTIR DE ACÁ, MODIFIQUÉ RESPONSIVE TOOLBAR */
 
 button{

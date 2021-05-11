@@ -1,6 +1,37 @@
 <body>
     <div *ngIf="user">
 
+
+        <!-- TAB PARA VER NOTIFICACIONES -->
+        <div class="casiTodoCompleto" *ngIf="mostrarDivNotificaciones == true" >
+
+            <div class='box'>
+    
+              <div class='boxChild'>
+    
+                <tr *ngFor="let item of notificacioens ; let indice=index">
+                    <td>
+            
+                        <mat-list>
+                            <mat-list-item> 
+                            Notificacion {{indice+1}} es: {{item}}
+                            </mat-list-item>
+                        </mat-list>
+              
+                    </td>
+                </tr>
+    
+              </div>
+
+            <button  (click)="mostrarDivNotificaciones = false" *ngIf="mostrarDivNotificaciones == true" > Cerrar notificaciones </button>
+            </div>
+    
+    
+      </div>
+
+
+
+
         <!-- DATOS -->
         <div has-header="true">
             <div id="profile-bg"></div>
@@ -11,7 +42,10 @@
                     <span id="descripcionPerfil"> Correo: {{user.correo}} </span>
                     <br>
                     <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
-                    <button mat-stroked-button color="accent">Editar datos</button>
+                    <br>
+                    <button mat-button color="warn">Editar datos</button>
+                     <!-- ESTO ES SOLO PARA MOSTRAR LA LISTA DE NOTIFICACIONES-->
+                    <button mat-button color="warn"(click)="mostrarDivNotificaciones = true" *ngIf="mostrarDivNotificaciones == false" > <mat-icon>accessible</mat-icon> Mostrar notificaciones </button>
                 </div>
 
             </div>
@@ -22,11 +56,11 @@
             <h1>Panel de Control Administrador</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrar('boolRegistroCliente')"> Registrar Cliente </button>
-                    <button mat-button (click)="mostrar('boolRegistroEmpleado')"> Resgistrar Empleado</button>
-                    <button mat-button (click)="mostrar('boolListadoCuentas')"> Ver Todas las Cuentas</button>
-                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')"> Publicaciones Pendientes</button>
-                    <button mat-button (click)="mostrar('booEstadisticas')"> Ver Estadisticas</button>
+                    <button mat-button (click)="mostrar('boolRegistroCliente')"> <mat-icon>account_circle</mat-icon> Registrar Cliente </button>
+                    <button mat-button (click)="mostrar('boolRegistroEmpleado')"> <mat-icon>account_circle</mat-icon> Resgistrar Empleado</button>
+                    <button mat-button (click)="mostrar('boolListadoCuentas')"> <mat-icon>all_out</mat-icon> Ver Todas las Cuentas</button>
+                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')"> <mat-icon>announcement</mat-icon> Publicaciones Pendientes</button>
+                    <button mat-button (click)="mostrar('booEstadisticas')"> <mat-icon>trending_up</mat-icon> Ver Estadisticas</button>
                 </mat-toolbar-row>
             </mat-toolbar>
 
@@ -61,12 +95,12 @@
             <h1>Panel de Control Empleado</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrar('boolRegistroCliente')"> Registrar Cliente </button>
-                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')"> Publicaciones Pendientes</button>
-                    <button mat-button (click)="mostrar('boolGenerarReparacion')"> Generar Reparación </button>
-                    <button mat-button (click)="mostrar('boolReparacionesPendientes')"> Reparaciones Pendientes</button>
-                    <button mat-button (click)="mostrar('boolListadoCuentas')"> Ver Cuentas Clientes</button>
-                    <button mat-button (click)="mostrar('boolResponderConsultas')"> Responder Consultas </button>
+                    <button mat-button (click)="mostrar('boolRegistroCliente')"> <mat-icon>account_circle</mat-icon> Registrar Cliente </button>
+                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')"> <mat-icon>announcement</mat-icon> Publicaciones Pendientes</button>
+                    <button mat-button (click)="mostrar('boolGenerarReparacion')"> <mat-icon>receipt</mat-icon> Generar Reparación </button>
+                    <button mat-button (click)="mostrar('boolReparacionesPendientes')"> <mat-icon>access_time</mat-icon> Reparaciones Pendientes</button>
+                    <button mat-button (click)="mostrar('boolListadoCuentas')"> <mat-icon>all_out</mat-icon> Ver Cuentas Clientes</button>
+                    <button mat-button (click)="mostrar('boolResponderConsultas')"> <mat-icon> textsms</mat-icon> Responder Consultas </button>
                 </mat-toolbar-row>
             </mat-toolbar>
 
@@ -106,12 +140,11 @@
             <h1>Panel de Control Empleado</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrar('boolServicio')"> Mis Reparaciones </button>
-                    <button mat-button (click)="mostrar('boolPubliciones')"> Mis Publicaciones</button>
-                    <!-- <button mat-button (click)="mostrarOfertasRealizadas()"> Mis permutas</button> -->
-                    <button mat-button (click)="mostrar('boolFormMisPermutas')"> Mis permutas</button>
-                    <button mat-button (click)="mostrar('boolResenias')"> Mis Reseñas</button>
-                    <button mat-button (click)="mostrar('boolFormPublicar')"> Publicar</button>
+                    <button mat-button (click)="mostrar('boolServicio')"> <mat-icon>build</mat-icon> Mis Reparaciones </button>
+                    <button mat-button (click)="mostrar('boolPubliciones')"> <mat-icon>list</mat-icon> Mis Publicaciones</button>
+                    <button mat-button (click)="mostrar('boolFormMisPermutas')"> <mat-icon>list</mat-icon> Mis permutas</button>
+                    <button mat-button (click)="mostrar('boolResenias')"> <mat-icon>info</mat-icon> Mis Reseñas</button>
+                    <button mat-button (click)="mostrar('boolFormPublicar')"> <mat-icon>add_box</mat-icon> Publicar</button>
                 </mat-toolbar-row>
             </mat-toolbar>
 

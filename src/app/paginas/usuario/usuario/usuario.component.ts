@@ -14,6 +14,8 @@ export class UsuarioComponent implements OnInit {
   user: Usuario;
   currentUser$: Observable<Usuario>;
   pedido = "";
+  mostrarDivNotificaciones = false;
+  notificacioens = ["compro tal cosa", "vendio tal cosa", "permuto tal cosa"];
 
   //ADMIN
   boolRegistroCliente = false;
