@@ -32,6 +32,7 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit(): void {
+     
     if (this.publicacion.idUserQuePublico == this.authService.user['id']) {
       this.esMiPublicacion = true;
     }

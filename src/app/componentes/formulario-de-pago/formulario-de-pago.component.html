@@ -1,4 +1,19 @@
 <div class="formularioDePagoContainer">
+    <div *ngIf="mostrarFormularioCuotas">
+        <div class="formularioDeCuotas">
+            <select name="cuotas" id="cuotas" (change)="calcularCuotas()">
+                <option value="1">1 cuotas</option>
+                <option value="3">3 cuotas <label style="font-size:12px; color: green;">(sin interes)</label></option>
+                <option value="6">6 cuotas </option>
+                <option value="12">12 cuotas</option>
+                <option value="18">18 cuotas</option>
+            </select>
+        </div>
+        <h2>{{publicacionObjetivo.precioEnCuotas}}</h2>
+        <p *ngIf=" this.publicacionObjetivo.cantidadDeCuotas && this.publicacionObjetivo.cantidadDeCuotas>1">
+            {{this.publicacionObjetivo.cantidadDeCuotas}} Cuotas de:
+            {{publicacionObjetivo.precioEnCuotas/this.publicacionObjetivo.cantidadDeCuotas|currency}}</p>
+    </div>
     <div>
         <app-credit-card [datosTarjeta]="datosTarjetaTest" [esDorso]="esDorso"></app-credit-card>
     </div>
@@ -73,10 +88,10 @@
 
             </div>
 
-
+            <!-- [mat-dialog-close]="datosTarjetaTest" -->
             <div class="btnContainer">
                 <button [disabled]="!testGroupTarjetaForm.valid" type="submit" mat-raised-button color="primary"
-                    class="btnLogin">Aceptar (no hago nada, estoy aca de pinta)</button>
+                    class="btnLogin" (click)="procesarPagos()">Aceptar (no hago nada, estoy aca de pinta)</button>
             </div>
 
 

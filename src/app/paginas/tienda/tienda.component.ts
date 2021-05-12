@@ -51,7 +51,7 @@ export class TiendaComponent implements OnInit {
     this.listadoDePublicacionesAMostrar = listaAuxiliar;
   }
   ngOnInit(): void {
-
+  
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
       this.user = usuarios;
@@ -88,18 +88,20 @@ export class TiendaComponent implements OnInit {
   mostrarFormDePago(publicacion) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      // publicacion: publicacion,
+      publicacion: publicacion,
       width:'100vw',
       height:'100vh',
-      margin:'0'
+      margin:'0',
+      overflow:'scroll'
     }
     const dialogRef = this.dialog.open(FormularioDePagoComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
             alert("COMPRO!");
+            console.log(result);
 
       switch (result) {
-        case 'permutar':
+        case 'confirmarCompra':
           // this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
           break;
         case 'comprar':
