@@ -1,0 +1,151 @@
+/**
+ * Chat Interface.
+ *
+ * Practice markup/styles with Divan Raj's 'Chat and Notification - ZAD App iOS' shot on Dribbble:
+ * https://dribbble.com/shots/3337875-Chat-and-Notification-ZAD-App-iOS
+ */
+
+/** Variables */
+:root {
+    --header-height: 4.5rem;
+  
+  }
+  
+  /** Global styles */
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  html {
+    background: #f3f3f3;
+    color: #5b5b5b;
+    font-family: Montserrat, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+  main {
+    margin-top: var(--header-height);
+  }
+  
+  /** Header styles */
+  header[role=banner] {
+    background: #fff;
+    box-shadow: 0 .25rem .5rem rgba(0, 0, 0, .1);
+    color: #3c3c3c;
+    display: flex;
+    line-height: var(--header-height);
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  header[role=banner] a[rel=home] {
+    color: inherit;
+    display: inline-block;
+    font-weight: 500;
+    line-height: inherit;
+    padding: 0 1.5rem;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+  header[role=banner] .button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+    line-height: inherit;
+    padding: 0 1.25rem;
+  }
+  header[role=banner] .material-icons {
+    line-height: inherit;
+    vertical-align: bottom;
+  }
+  
+  /** TODO: Style search form */
+  header[role=banner] form {
+    display: none;
+  }
+  
+  /** Controls */
+  .controls {
+    align-items: center;
+    display: flex;
+    padding: 0 1.25rem;
+  }
+  .controls-message {
+    color: #939393;
+    flex-grow: 2;
+    font-weight: 500;
+  }
+  .controls button {
+    background: none;
+    border: none;
+    color: #a2a2a2;
+    cursor: pointer;
+    display: inline-block;
+    padding: 1rem;
+  }
+  .controls button:active,
+  .controls button:focus,
+  .controls button:hover {
+    color: #333;
+  }
+  
+  /** Notification list */
+  .notification-list {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    margin: 0 1.25rem;
+  }
+  
+  /** Notification */
+  .notification {
+    align-items: center;
+    background: #fff;
+    border-bottom: thin solid #e7e7e7;
+    display: flex;
+    font-weight: 500;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    position: relative;
+  }
+  .notification-avatar {
+    border-radius: 50%;
+    display: block;
+    height: 4.5rem;
+    margin-right: 1.5rem;
+    width: 4.5rem;
+  }
+  .notification-avatar-yellow {
+    background: #edb358;
+  }
+  .notification-avatar-purple {
+    background: #8073e5;
+  }
+  .notification-content {
+    flex-grow: 2;
+  }
+  .notification-title {
+    font-size: 120%;
+    font-weight: inherit;
+    line-height: 1;
+    margin: 0 0 .5rem;
+  }
+  .notification-meta {
+    color: #939393;
+    margin: 0;
+  }
+  .notification-time {
+    color: #939393;
+  }
+  .notification-time abbr {
+    text-decoration: none;
+  }
+  
+  /** Alternative background */
+  .notification-alt {
+    background: #f7f7f7;
+  }

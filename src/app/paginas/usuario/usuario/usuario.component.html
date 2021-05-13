@@ -8,35 +8,6 @@
     <div *ngIf="user">
 
 
-        <!-- TAB PARA VER NOTIFICACIONES -->
-        <div class="casiTodoCompleto" *ngIf="mostrarDivNotificaciones == true" >
-
-            <div class='box'>
-    
-              <div class='boxChild'>
-    
-                <tr *ngFor="let item of notificacioens ; let indice=index">
-                    <td>
-            
-                        <mat-list>
-                            <mat-list-item> 
-                            Notificacion {{indice+1}} es: {{item}}
-                            </mat-list-item>
-                        </mat-list>
-              
-                    </td>
-                </tr>
-    
-              </div>
-
-            <button  (click)="mostrarDivNotificaciones = false" *ngIf="mostrarDivNotificaciones == true" > Cerrar notificaciones </button>
-            </div>
-    
-    
-      </div>
-
-
-
 
         <!-- DATOS -->
         <div has-header="true">
@@ -51,11 +22,13 @@
                     <br>
                     <button mat-button color="warn">Editar datos</button>
                      <!-- ESTO ES SOLO PARA MOSTRAR LA LISTA DE NOTIFICACIONES-->
-                    <button mat-button color="warn"(click)="mostrarDivNotificaciones = true" *ngIf="mostrarDivNotificaciones == false" > <mat-icon>accessible</mat-icon> Mostrar notificaciones </button>
+                    <button mat-button color="warn" (click)="mostrar('boolNotificaciones')"> <mat-icon>accessible</mat-icon> Mostrar notificaciones </button>
                 </div>
 
             </div>
         </div>
+
+
 
         <!-- ADMINISTRADOR -->
         <div *ngIf="user.tipo == 'administrador'">
@@ -94,6 +67,12 @@
                 <h2>Listado de Cuentas</h2>
                 <app-lista-de-personal [pedido]="'admin'"></app-lista-de-personal>
             </div>
+
+            <div *ngIf="boolNotificaciones == true">
+                <app-notificaciones> </app-notificaciones>
+            </div>
+
+
         </div>
 
         <!-- EMPLEADO -->
@@ -139,6 +118,12 @@
                 <h2>Consultas Pendientes</h2>
                 <app-responder-consultas></app-responder-consultas>
             </div>
+
+
+            <div *ngIf="boolNotificaciones == true">
+                <app-notificaciones> </app-notificaciones>
+            </div>
+
         </div>
 
         <!-- CLIENTE Y ST -->
@@ -194,10 +179,10 @@
                 <app-mis-permutas></app-mis-permutas>
             </div>
 
-            <!-- <div *ngIf="boolConsultas == true">
-                <h2>Mis Consultas</h2>
-    
-            </div> -->
+            <div *ngIf="boolNotificaciones == true">
+                <app-notificaciones> </app-notificaciones>
+            </div>
+
         </div>
         <!-- el boton para sublir publicaciones lo movi a la pag de tienda -s-->
     </div>

@@ -38,6 +38,9 @@ export class UsuarioComponent implements OnInit {
   boolFormMisPermutas = false;
   boolOfertasRealizadas = false;
 
+  // Todos
+  boolNotificaciones = false;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -75,6 +78,11 @@ export class UsuarioComponent implements OnInit {
     this.boolFormPublicar = false;
     this.boolFormMisPermutas = false;
     this.boolOfertasRealizadas = false;
+
+    // todo
+
+    this.boolNotificaciones = false;
+
   }
 
 
