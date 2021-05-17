@@ -138,6 +138,7 @@ import { MisPermutasComponent } from './componentesCliente/mis-permutas/mis-perm
 import { FormularioDePagoComponent } from './componentes/formulario-de-pago/formulario-de-pago.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { CreditCardComponent } from './componentes/credit-card/credit-card.component';
+import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
 
 @NgModule({
   declarations: [
@@ -181,6 +182,7 @@ import { CreditCardComponent } from './componentes/credit-card/credit-card.compo
     MisPermutasComponent,
     FormularioDePagoComponent,
     CreditCardComponent,
+    NotificacionesComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],

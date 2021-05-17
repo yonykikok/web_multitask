@@ -61,6 +61,8 @@
             </div>
         </div>
 
+
+
         <!-- ADMINISTRADOR -->
         <div *ngIf="user.tipo == 'administrador'">
             <h1>Panel de Control Administrador</h1>
@@ -108,6 +110,12 @@
                 <h2>Listado de Cuentas</h2>
                 <app-lista-de-personal [pedido]="'admin'"></app-lista-de-personal>
             </div>
+
+            <div *ngIf="boolNotificaciones == true">
+                <app-notificaciones> </app-notificaciones>
+            </div>
+
+
         </div>
 
         <!-- EMPLEADO -->
@@ -165,6 +173,12 @@
                 <h2>Consultas Pendientes</h2>
                 <app-responder-consultas></app-responder-consultas>
             </div>
+
+
+            <div *ngIf="boolNotificaciones == true">
+                <app-notificaciones> </app-notificaciones>
+            </div>
+
         </div>
 
         <!-- CLIENTE Y ST -->
@@ -241,10 +255,10 @@
                 <app-mis-permutas></app-mis-permutas>
             </div>
 
-            <!-- <div *ngIf="boolConsultas == true">
-                <h2>Mis Consultas</h2>
-    
-            </div> -->
+            <div *ngIf="boolNotificaciones == true">
+                <app-notificaciones> </app-notificaciones>
+            </div>
+
         </div>
         <!-- el boton para sublir publicaciones lo movi a la pag de tienda -s-->
     </div>
