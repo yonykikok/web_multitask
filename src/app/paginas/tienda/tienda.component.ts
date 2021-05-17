@@ -9,6 +9,7 @@ import { delay } from 'rxjs/operators';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FormularioDePagoComponent } from 'src/app/componentes/formulario-de-pago/formulario-de-pago.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tienda',
@@ -16,9 +17,12 @@ import { FormularioDePagoComponent } from 'src/app/componentes/formulario-de-pag
   styleUrls: ['./tienda.component.css']
 })
 export class TiendaComponent implements OnInit {
+  desplegarMenu = false;
+
+
+  mostrarSpinner = false;
   publicacionObjetivo;
   mostrarMiListaDeproductos = false;
-  mostrarFormularioPublicar = false;
   mostrar;
   user: Usuario;
   currentUser$: Observable<Usuario>;
@@ -27,6 +31,7 @@ export class TiendaComponent implements OnInit {
   inputSearch;
 
   constructor(
+    private router: Router,
     public dialog: MatDialog,
     private authService: AuthService,
     private firestore: AngularFirestore,
@@ -35,6 +40,15 @@ export class TiendaComponent implements OnInit {
       textoABuscar: ['', [Validators.required]]
     });
   }
+  toggleDesplegarMenu() {
+    this.desplegarMenu = !this.desplegarMenu;
+    console.log(this.desplegarMenu);
+  }
+  cerrarCesion() {
+    this.router.navigateByUrl('/');
+    // localStorage.clear();
+    // this.authService.isLogged=false;
+  }
   mostrarListaDeProductos(publicacionObjetivo) {
     this.publicacionObjetivo = publicacionObjetivo;
     this.mostrarMiListaDeproductos = true;
@@ -42,7 +56,7 @@ export class TiendaComponent implements OnInit {
   buscarCoincidencias() {
     let textoABuscar = this.inputSearch.controls['textoABuscar'].value.toLocaleLowerCase();
     let listaAuxiliar = [];
-
+    
     this.listadoDePublicaciones.forEach((publicacion) => {
       if (publicacion.descripcion.toLocaleLowerCase().includes(textoABuscar) || publicacion.titulo.toLocaleLowerCase().includes(textoABuscar)) {
         listaAuxiliar.push(publicacion);
@@ -51,7 +65,7 @@ export class TiendaComponent implements OnInit {
     this.listadoDePublicacionesAMostrar = listaAuxiliar;
   }
   ngOnInit(): void {
-  
+
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
       this.user = usuarios;
@@ -69,6 +83,7 @@ export class TiendaComponent implements OnInit {
 
   // Esta funcion carga las publicaciones de la base de datos. Incoporar estado.
   cargarPublicacionesActivas(): any {
+    this.mostrarSpinner = true;
     var listaPublicaciones = [];
     this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
@@ -76,6 +91,7 @@ export class TiendaComponent implements OnInit {
         let publicacion = doc.data();
         publicacion['id'] = doc.id;
         listaPublicaciones.push(publicacion);
+        this.mostrarSpinner = false;
 
       })
     })
@@ -89,16 +105,16 @@ export class TiendaComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       publicacion: publicacion,
-      width:'100vw',
-      height:'100vh',
-      margin:'0',
-      overflow:'scroll'
+      width: '100vw',
+      height: '100vh',
+      margin: '0',
+      overflow: 'scroll'
     }
     const dialogRef = this.dialog.open(FormularioDePagoComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-            alert("COMPRO!");
-            console.log(result);
+      alert("COMPRO!");
+      console.log(result);
 
       switch (result) {
         case 'confirmarCompra':

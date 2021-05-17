@@ -8,6 +8,12 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 :root {
   --colorPrincipal: #3eace3;
   --colorSecundario: white;

@@ -1,9 +1,45 @@
+<div class="tiendaContainer" style="width: 100%; overflow: hidden;">
+  <app-spinner *ngIf="mostrarSpinner"></app-spinner>
 
-<mat-toolbar>
-  <span class="material-icons"> store </span>
-  <span class="mobileNotVisible">Tienda</span>
-  <!-- Inicio buscador -->
-  <div class="input-group inputSearch displayNoneInPhone" [formGroup]="inputSearch">
+  <mat-toolbar>
+    <span class="material-icons"> store </span>
+    <span class="mobileNotVisible">Tienda</span>
+    <!-- Inicio buscador -->
+    <div class="input-group inputSearch displayNoneInPhone" [formGroup]="inputSearch">
+      <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()"
+        placeholder="Escribe lo que quieras buscar.">
+      <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2">
+          <span class="material-icons" style="padding: 0 10px;">
+            search
+          </span>
+        </span>
+      </div>
+    </div>
+    <!-- Fin buscador -->
+
+    <a (click)="toggleDesplegarMenu()" class="divAvatarUsuario">
+      <div class="divPerfilUsuario" *ngIf="user">
+        <p class="pNombreUsuario">{{user.nombre}}</p>
+        <img class="imgFotoDePerfil" src="{{user.foto}}" alt="Foto de perfil">
+      </div>
+      <div class="divMenuOptions" *ngIf="desplegarMenu">
+        <a [routerLink]="['/usuario']">Panel</a>
+        <a >Mis favoritos</a>
+        <a (click)="cerrarCesion()">Salir</a>
+      </div>
+    </a>
+
+
+    <!-- <a href="/usuario" class="divAvatarUsuario">
+    <div class="divPerfilUsuario" *ngIf="user">
+      <p class="pNombreUsuario">{{user.nombre}}</p>
+      <img class="imgFotoDePerfil" src="{{user.foto}}" alt="Foto de perfil">
+    </div>
+  </a> -->
+  </mat-toolbar>
+
+  <div class="input-group inputSearch displayInPhone" [formGroup]="inputSearch">
     <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()"
       placeholder="Escribe lo que quieras buscar.">
     <div class="input-group-append">
@@ -14,39 +50,18 @@
       </span>
     </div>
   </div>
-  <!-- Fin buscador -->
 
-  <button class="btn btn-primary" (click)="mostrarFormularioPublicar=!mostrarFormularioPublicar">Publicar</button>
+  <!-- <app-carousel></app-carousel> -->
 
-  <a href="/usuario" class="divAvatarUsuario">
-    <div class="divPerfilUsuario" *ngIf="user">
-      <p class="pNombreUsuario">{{user.nombre}}</p>
-      <img class="imgFotoDePerfil" src="{{user.foto}}" alt="Foto de perfil">
+  <app-seleccionar-mis-articulos *ngIf="mostrarMiListaDeproductos" [publicacionObjetivo]="publicacionObjetivo"
+    (cancelarEvent)="mostrarMiListaDeproductos=false"></app-seleccionar-mis-articulos>
+  <div class="divCardsContainer">
+
+    <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
+      <app-product-to-sell-card [publicacion]="publicacion" (comprarClickEvent)="mostrarFormDePago($event)"
+        (permutarClickEvent)="mostrarListaDeProductos($event)"></app-product-to-sell-card>
     </div>
-  </a>
-</mat-toolbar>
+    <mat-icon class="botonFlotante" title="Publicar articulo" [routerLink]="['/testeo3']">add_to_queue</mat-icon>
 
-<div class="input-group inputSearch displayInPhone" [formGroup]="inputSearch">
-  <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()"
-    placeholder="Escribe lo que quieras buscar.">
-  <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2">
-      <span class="material-icons">
-        search
-      </span>
-    </span>
   </div>
-</div>
-
-<app-carousel></app-carousel>
-
-<app-seleccionar-mis-articulos *ngIf="mostrarMiListaDeproductos" [publicacionObjetivo]="publicacionObjetivo"
-  (cancelarEvent)="mostrarMiListaDeproductos=false"></app-seleccionar-mis-articulos>
-<div class="divCardsContainer">
-
-  <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
-    <app-product-to-sell-card [publicacion]="publicacion" (comprarClickEvent)="mostrarFormDePago($event)"
-      (permutarClickEvent)="mostrarListaDeProductos($event)"></app-product-to-sell-card>
-  </div>
-
 </div>

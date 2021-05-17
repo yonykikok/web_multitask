@@ -2,6 +2,73 @@
   margin: 0;
   padding: 0;
 }
+
+
+
+mat-toolbar{
+  box-shadow: 0 0 10px 0 #5a5a5a;
+  height: 64px !important;
+  margin-bottom: 20px;
+}
+.botonFlotante:hover{
+  box-shadow: 0 0 10px 2px #727272;
+  transition: 0.5s;
+  /* background-color: lightpink; */
+
+}
+.botonFlotante:active{
+  transform: scale(0.95);
+}
+.divMenuOptions a:hover{  
+  background-color: rgba(128, 128, 128, 0.644);
+}
+.divMenuOptions a:hover:last-child{  
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.divMenuOptions a{  
+  font-size: 14px;
+  text-decoration: none;
+  color: #007bff;
+  background-color: transparent;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 3px auto;
+  width: 100%;
+}
+.divMenuOptions{
+  position: absolute;
+  right: 0;
+  top: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: 2;
+  background-color: rgb(245 245 245);
+  padding: 0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.botonFlotante{
+  cursor: pointer;
+  position: fixed;
+  border: none;
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  box-shadow: 0 0 10px 0 #909090;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  color: white;
+  background-color: #047eff;  
+  bottom: 21px;
+  right:23px;
+}
 .divAvatarUsuario{
   display: flex;
   justify-content: center;

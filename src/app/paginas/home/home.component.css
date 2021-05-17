@@ -2,4 +2,8 @@ footer {
     background-color: #000000;
     color: rgba(255, 255, 255, 0.6);
     padding: 2%;
+    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }

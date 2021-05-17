@@ -1,6 +1,6 @@
 <header class="fixed-header" role="banner">
 
-    <h1 style = "text-align: center"> MULTITASK </h1>
+    <h1 style="text-align: center"> MULTITASK </h1>
 
 </header>
 
@@ -9,31 +9,32 @@
 
 
         <!-- TAB PARA VER NOTIFICACIONES -->
-        <div class="casiTodoCompleto" *ngIf="mostrarDivNotificaciones == true" >
+        <div class="casiTodoCompleto" *ngIf="mostrarDivNotificaciones == true">
 
             <div class='box'>
-    
-              <div class='boxChild'>
-    
-                <tr *ngFor="let item of notificacioens ; let indice=index">
-                    <td>
-            
-                        <mat-list>
-                            <mat-list-item> 
-                            Notificacion {{indice+1}} es: {{item}}
-                            </mat-list-item>
-                        </mat-list>
-              
-                    </td>
-                </tr>
-    
-              </div>
 
-            <button  (click)="mostrarDivNotificaciones = false" *ngIf="mostrarDivNotificaciones == true" > Cerrar notificaciones </button>
+                <div class='boxChild'>
+
+                    <tr *ngFor="let item of notificacioens ; let indice=index">
+                        <td>
+
+                            <mat-list>
+                                <mat-list-item>
+                                    Notificacion {{indice+1}} es: {{item}}
+                                </mat-list-item>
+                            </mat-list>
+
+                        </td>
+                    </tr>
+
+                </div>
+
+                <button (click)="mostrarDivNotificaciones = false" *ngIf="mostrarDivNotificaciones == true"> Cerrar
+                    notificaciones </button>
             </div>
-    
-    
-      </div>
+
+
+        </div>
 
 
 
@@ -50,8 +51,11 @@
                     <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
                     <br>
                     <button mat-button color="warn">Editar datos</button>
-                     <!-- ESTO ES SOLO PARA MOSTRAR LA LISTA DE NOTIFICACIONES-->
-                    <button mat-button color="warn"(click)="mostrarDivNotificaciones = true" *ngIf="mostrarDivNotificaciones == false" > <mat-icon>accessible</mat-icon> Mostrar notificaciones </button>
+                    <!-- ESTO ES SOLO PARA MOSTRAR LA LISTA DE NOTIFICACIONES-->
+                    <button mat-button color="warn" (click)="mostrarDivNotificaciones = true"
+                        *ngIf="mostrarDivNotificaciones == false">
+                        <mat-icon>accessible</mat-icon> Mostrar notificaciones
+                    </button>
                 </div>
 
             </div>
@@ -62,11 +66,21 @@
             <h1>Panel de Control Administrador</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrar('boolRegistroCliente')"> <mat-icon>account_circle</mat-icon> Registrar Cliente </button>
-                    <button mat-button (click)="mostrar('boolRegistroEmpleado')"> <mat-icon>account_circle</mat-icon> Resgistrar Empleado</button>
-                    <button mat-button (click)="mostrar('boolListadoCuentas')"> <mat-icon>all_out</mat-icon> Ver Todas las Cuentas</button>
-                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')"> <mat-icon>announcement</mat-icon> Publicaciones Pendientes</button>
-                    <button mat-button (click)="mostrar('booEstadisticas')"> <mat-icon>trending_up</mat-icon> Ver Estadisticas</button>
+                    <button mat-button (click)="mostrar('boolRegistroCliente')">
+                        <mat-icon>account_circle</mat-icon> Registrar Cliente
+                    </button>
+                    <button mat-button (click)="mostrar('boolRegistroEmpleado')">
+                        <mat-icon>account_circle</mat-icon> Resgistrar Empleado
+                    </button>
+                    <button mat-button (click)="mostrar('boolListadoCuentas')">
+                        <mat-icon>all_out</mat-icon> Ver Todas las Cuentas
+                    </button>
+                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')">
+                        <mat-icon>announcement</mat-icon> Publicaciones Pendientes
+                    </button>
+                    <button mat-button (click)="mostrar('booEstadisticas')">
+                        <mat-icon>trending_up</mat-icon> Ver Estadisticas
+                    </button>
                 </mat-toolbar-row>
             </mat-toolbar>
 
@@ -101,12 +115,24 @@
             <h1>Panel de Control Empleado</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrar('boolRegistroCliente')"> <mat-icon>account_circle</mat-icon> Registrar Cliente </button>
-                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')"> <mat-icon>announcement</mat-icon> Publicaciones Pendientes</button>
-                    <button mat-button (click)="mostrar('boolGenerarReparacion')"> <mat-icon>receipt</mat-icon> Generar Reparación </button>
-                    <button mat-button (click)="mostrar('boolReparacionesPendientes')"> <mat-icon>access_time</mat-icon> Reparaciones Pendientes</button>
-                    <button mat-button (click)="mostrar('boolListadoCuentas')"> <mat-icon>all_out</mat-icon> Ver Cuentas Clientes</button>
-                    <button mat-button (click)="mostrar('boolResponderConsultas')"> <mat-icon> textsms</mat-icon> Responder Consultas </button>
+                    <button mat-button (click)="mostrar('boolRegistroCliente')">
+                        <mat-icon>account_circle</mat-icon> Registrar Cliente
+                    </button>
+                    <button mat-button (click)="mostrar('boolAdministrarPublicaciones')">
+                        <mat-icon>announcement</mat-icon> Publicaciones Pendientes
+                    </button>
+                    <button mat-button (click)="mostrar('boolGenerarReparacion')">
+                        <mat-icon>receipt</mat-icon> Generar Reparación
+                    </button>
+                    <button mat-button (click)="mostrar('boolReparacionesPendientes')">
+                        <mat-icon>access_time</mat-icon> Reparaciones Pendientes
+                    </button>
+                    <button mat-button (click)="mostrar('boolListadoCuentas')">
+                        <mat-icon>all_out</mat-icon> Ver Cuentas Clientes
+                    </button>
+                    <button mat-button (click)="mostrar('boolResponderConsultas')">
+                        <mat-icon> textsms</mat-icon> Responder Consultas
+                    </button>
                 </mat-toolbar-row>
             </mat-toolbar>
 
@@ -146,31 +172,52 @@
             <h1>Panel de Control Empleado</h1>
             <mat-toolbar color="primary">
                 <mat-toolbar-row>
-                    <button mat-button (click)="mostrar('boolServicio')"> <mat-icon>build</mat-icon> Mis Reparaciones </button>
-                    <button mat-button (click)="mostrar('boolPubliciones')"> <mat-icon>list</mat-icon> Mis Publicaciones</button>
-                    <button mat-button (click)="mostrar('boolFormMisPermutas')"> <mat-icon>list</mat-icon> Mis permutas</button>
-                    <button mat-button (click)="mostrar('boolResenias')"> <mat-icon>info</mat-icon> Mis Reseñas</button>
-                    <button mat-button (click)="mostrar('boolFormPublicar')"> <mat-icon>add_box</mat-icon> Publicar</button>
+                    <button mat-button (click)="mostrar('boolServicio')">
+                        <mat-icon>build</mat-icon> Mis Reparaciones
+                    </button>
+                    <button mat-button (click)="mostrar('boolPubliciones')">
+                        <mat-icon>list</mat-icon> Mis Publicaciones
+                    </button>
+                    <button mat-button (click)="mostrar('boolFormMisPermutas')">
+                        <mat-icon>list</mat-icon> Mis permutas
+                    </button>
+                    <button mat-button (click)="mostrar('boolResenias')">
+                        <mat-icon>info</mat-icon> Mis Reseñas
+                    </button>
+                    <button mat-button (click)="mostrar('boolFormPublicar')">
+                        <mat-icon>add_box</mat-icon> Publicar
+                    </button>
                 </mat-toolbar-row>
             </mat-toolbar>
+
 
             <div *ngIf="boolServicio == true">
                 <h2>Informacion sobre mis Reparaciones</h2>
                 <app-reparaciones-cliente></app-reparaciones-cliente>
             </div>
 
-            <div *ngIf="boolPubliciones == true" style="text-align: center;">
-                <app-publicaciones-cliente [criterioDeFiltrado]="'pendiente'"
+            <div *ngIf="boolPubliciones == true" style="text-align: center; margin-bottom: 10%;">
+                <select id="selectPublicaciones" (change)="cambiarSeleccion()">
+                    <option value="activas">activas</option>
+                    <option value="pendientes">pendientes</option>
+                    <option value="pausadas">pausadas</option>
+                    <option value="permutaPendiente">permutaPendiente</option>
+                    <option value="rechazadas">rechazadas</option>
+                    <option value="vendidas">vendidas</option>
+
+                </select>
+                <app-publicaciones-cliente *ngIf="selectPublicaciones=='pendiente'" [criterioDeFiltrado]="'pendiente'"
                     [tituloSector]="'Mis publicaciones pendientes de aprobacion'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'aceptado'"
+                <app-publicaciones-cliente *ngIf="selectPublicaciones=='activas'" [criterioDeFiltrado]="'aceptado'"
                     [tituloSector]="'Mis publicaciones activas'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'pausado'"
+                <app-publicaciones-cliente *ngIf="selectPublicaciones=='pausadas'" [criterioDeFiltrado]="'pausado'"
                     [tituloSector]="'Mis publicaciones pausadas'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'permutaPendiente'"
+                <app-publicaciones-cliente *ngIf="selectPublicaciones=='permutaPendiente'"
+                    [criterioDeFiltrado]="'permutaPendiente'"
                     [tituloSector]="'Mis publicaciones con permuta pendiente'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'vendido'"
+                <app-publicaciones-cliente *ngIf="selectPublicaciones=='vendidas'" [criterioDeFiltrado]="'vendido'"
                     [tituloSector]="'Mis publicaciones vendidas'"></app-publicaciones-cliente>
-                <app-publicaciones-cliente [criterioDeFiltrado]="'rechazado'"
+                <app-publicaciones-cliente *ngIf="selectPublicaciones=='rechazadas'" [criterioDeFiltrado]="'rechazado'"
                     [tituloSector]="'Mis publicaciones rechazadas'"></app-publicaciones-cliente>
             </div>
 

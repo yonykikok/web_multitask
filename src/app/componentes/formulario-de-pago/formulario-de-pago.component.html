@@ -1,4 +1,10 @@
 <div class="formularioDePagoContainer">
+  <!-- CREDIT CARD -->
+    <div>
+        <app-credit-card [datosTarjeta]="datosTarjetaTest" [esDorso]="esDorso"></app-credit-card>
+    </div>
+    <!-- FIN CREDIT CARD -->
+    <!-- FORMULARIO CUOTAS -->
     <div *ngIf="mostrarFormularioCuotas">
         <div class="formularioDeCuotas">
             <select name="cuotas" id="cuotas" (change)="calcularCuotas()">
@@ -9,14 +15,12 @@
                 <option value="18">18 cuotas</option>
             </select>
         </div>
-        <h2>{{publicacionObjetivo.precioEnCuotas}}</h2>
-        <p *ngIf=" this.publicacionObjetivo.cantidadDeCuotas && this.publicacionObjetivo.cantidadDeCuotas>1">
-            {{this.publicacionObjetivo.cantidadDeCuotas}} Cuotas de:
-            {{publicacionObjetivo.precioEnCuotas/this.publicacionObjetivo.cantidadDeCuotas|currency}}</p>
+        <h2>{{compra.precioEnCuotas|currency}}</h2>
+        <p *ngIf=" this.compra.cantidadDeCuotas && this.compra.cantidadDeCuotas>1">
+            {{compra.cantidadDeCuotas}} Cuotas de:
+            {{compra.precioEnCuotas/compra.cantidadDeCuotas|currency}}</p>
     </div>
-    <div>
-        <app-credit-card [datosTarjeta]="datosTarjetaTest" [esDorso]="esDorso"></app-credit-card>
-    </div>
+  <!-- FIN FORMULARIO CUOTAS -->
     <div style="width: 100%; text-align: center;">
         <h2>Ingrese los datos de su tarjeta</h2>
         <label *ngIf="yoQuiero" style="color: red; font-size: 12px;"> Por el momento no operamos con esta tarjeta.
@@ -90,11 +94,31 @@
 
             <!-- [mat-dialog-close]="datosTarjetaTest" -->
             <div class="btnContainer">
-                <button [disabled]="!testGroupTarjetaForm.valid" type="submit" mat-raised-button color="primary"
-                    class="btnLogin" (click)="procesarPagos()">Aceptar (no hago nada, estoy aca de pinta)</button>
+                <button *ngIf="step==1" [disabled]="!testGroupTarjetaForm.valid" type="submit" mat-raised-button
+                    color="primary" class="btnLogin" (click)="procesarInformacionDePago()"
+                    >Continuar</button>
+                <button *ngIf="step==2" [disabled]="!testGroupTarjetaForm.valid" type="submit" mat-raised-button
+                    color="primary" class="btnLogin" (click)="mostrarDialog()">Procesar pago</button>
             </div>
-
-
         </form>
+    </div>
+    <!-- FORM DE CONFIRMACION DE LA COMRA -->
+    <div class="dialogContainer" *ngIf="mostrarDialogConfirmacion" (click)="mostrarDialogConfirmacion=false">
+        <div class="confirmDialog" (click)="detenerPropagacion($event)">
+            <h2>Confirmar compra</h2>
+            <ol>
+                <li *ngIf="compra.tipoSaldo=='Debito'">Monto total: {{publicacionObjetivo.precio|currency}}</li>
+                <li *ngIf="compra.tipoSaldo=='Debito'">Debera pagar {{publicacionObjetivo.precio|currency}} en un solo
+                    pago.</li>
+                <li *ngIf="compra.tipoSaldo=='Credito'">Monto total: {{compra.precioEnCuotas|currency}}</li>
+                <li *ngIf="compra.tipoSaldo=='Credito'">En {{compra.cantidadDeCuotas}} cuotas de:
+                    {{compra.precioPorCuota|currency}}</li>
+            </ol>
+            <div class="divActionButtons">
+
+                <button mat-raised-button color="primary" (click)="efectuarCompra()">Confirmar</button>
+                <button mat-stroked-button color="warn" (click)="mostrarDialogConfirmacion=false"> Cancelar</button>
+            </div>
+        </div>
     </div>
 </div>

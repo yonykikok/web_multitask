@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { HomeComponent } from 'src/app/paginas/home/home.component';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
 @Component({
   selector: 'app-formulario-de-pago',
@@ -12,6 +13,15 @@ import { DatabaseService } from 'src/app/servicios/database.service';
 })
 export class FormularioDePagoComponent implements OnInit {
   //test
+  step = 1;
+  mostrarDialogConfirmacion = false;
+  compra = {
+    tipoSaldo: "",
+    cantidadDeCuotas: 1,
+    precioPorCuota: 0,
+    precioEnCuotas: 0,
+
+  };
   mostrarFormularioCuotas = false;
   publicacionObjetivo;
   tarjetas = [];
@@ -22,11 +32,11 @@ export class FormularioDePagoComponent implements OnInit {
     fechaVto: "00-00",
     nombre: "",
     apellido: "",
-    tipoSaldo: "Credito",
-    saldoEnCuotas: 75000,
-    saldoDisponibleEnCuotas: 250000,
-    saldoContado: 35000,
-    saldoDisponibleContado: 15000,
+    tipoSaldo: "",
+    saldoEnCuotas: 0,
+    saldoDisponibleEnCuotas: 0,
+    saldoContado: 0,
+    saldoDisponibleContado: 0,
     tipoTarjeta: "",
     numeroDeTarjetaArray: [
       ["0", "0", "0", "0"],
@@ -35,7 +45,7 @@ export class FormularioDePagoComponent implements OnInit {
       ["0", "0", "0", "0"]
     ],
     numeroDeTarjetaString: "0000-0000-0000-0000",
-    pin: "401"
+    pin: "000"
   }
   creditNumberMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   dateMask = [/\d/, /\d/, '/', /\d/, /\d/];
@@ -45,8 +55,9 @@ export class FormularioDePagoComponent implements OnInit {
 
   //obtenerUsuario
 
-  //fin test
+  //fin tes
   constructor(
+    private authService: AuthService,
     private dialogRef: MatDialogRef<FormularioDePagoComponent>,
     @Inject(MAT_DIALOG_DATA) data,
     private _formBuilder: FormBuilder, private dataBase: DatabaseService,
@@ -74,6 +85,8 @@ export class FormularioDePagoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.compra['producto'] = { ...this.publicacionObjetivo };
+
     this.firestore.collection("tarjetas").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         //if (doc.data()['tipo'] != tipoUsuario) 
@@ -81,7 +94,6 @@ export class FormularioDePagoComponent implements OnInit {
         tarjeta['id'] = doc.id;
         this.tarjetas.push(tarjeta);
       })
-      console.log("Tarjeta ", this.tarjetas);
     })
   }
 
@@ -198,6 +210,7 @@ export class FormularioDePagoComponent implements OnInit {
       textoIngresado = "00/00";
     this.datosTarjetaTest.fechaVto = textoIngresado;
 
+    this.step = 1;
   }
   onChangePin(event: KeyboardEvent) {
     let textoIngresado = (event.target as HTMLInputElement).value;
@@ -205,19 +218,19 @@ export class FormularioDePagoComponent implements OnInit {
       textoIngresado = "000";
     this.datosTarjetaTest.pin = textoIngresado;
 
+    this.step = 1;
   }
   onChangeNumTarjeta(event: KeyboardEvent) { // with type info
+    this.mostrarFormularioCuotas = false;
     let textoIngresado = (event.target as HTMLInputElement).value;
     if (textoIngresado == '') {
       textoIngresado = "0000-0000-0000-0000";
     }
     this.datosTarjetaTest.numeroDeTarjetaString = textoIngresado;
     this.datosTarjetaTest.numeroDeTarjetaArray = this.convertirStringEn4ArraysDeChars(textoIngresado);
-
     this.obtenerTipoDeTarjeta(this.datosTarjetaTest.numeroDeTarjetaArray[0][0])
 
-
-
+    this.step = 1;
   }
   onChangeNombre(event: KeyboardEvent) {
     let textoIngresado = (event.target as HTMLInputElement).value;
@@ -225,6 +238,7 @@ export class FormularioDePagoComponent implements OnInit {
     if (cantidadCaracteresApellido + (event.target as HTMLInputElement).value.length <= 26) {
       this.datosTarjetaTest.nombre = textoIngresado;
     }
+    this.step = 1;
   }
   onChangeApelldio(event: KeyboardEvent) {
     let textoIngresado = (event.target as HTMLInputElement).value;
@@ -233,6 +247,7 @@ export class FormularioDePagoComponent implements OnInit {
       this.datosTarjetaTest.apellido = textoIngresado;
     }
 
+    this.step = 1;
   }
   // [0-9]{4}[-]{1}[0-9]{4}[-]{1}[0-9]{4}[-]{1}[0-9]{4}
   obtenerTipoDeTarjeta(primerDijito) {
@@ -255,48 +270,72 @@ export class FormularioDePagoComponent implements OnInit {
 
   calcularCuotas() {
     let select: HTMLElement = document.getElementById("cuotas");
-    this.publicacionObjetivo['cantidadDeCuotas'] = select['value'];
+    this.compra['cantidadDeCuotas'] = select['value'];
+
     switch (select['value']) {
-      case '1':
-        this.publicacionObjetivo.precioEnCuotas = this.publicacionObjetivo.precio;
-        break;
       case '3':
-        this.publicacionObjetivo.precioEnCuotas = this.publicacionObjetivo.precio;
+        this.compra['precioEnCuotas'] = this.publicacionObjetivo.precio;
         break;
       case '6':
-        this.publicacionObjetivo.precioEnCuotas = this.publicacionObjetivo.precio * 1.20;
+        this.compra['precioEnCuotas'] = this.publicacionObjetivo.precio * 1.20;
         break;
       case '12':
-        this.publicacionObjetivo.precioEnCuotas = this.publicacionObjetivo.precio * 1.45;
+        this.compra['precioEnCuotas'] = this.publicacionObjetivo.precio * 1.45;
         break;
       case '18':
-        this.publicacionObjetivo.precioEnCuotas = this.publicacionObjetivo.precio * 1.95;
+        this.compra['precioEnCuotas'] = this.publicacionObjetivo.precio * 1.95;
         break;
     }
+    this.compra['precioPorCuota'] = (this.compra['precioEnCuotas'] / this.compra['cantidadDeCuotas']);
 
   }
   esUnaTarjetaRegistrada(): boolean {
     let retorno = false;
     this.tarjetas.forEach(tarjeta => {
       if (
-        this.datosTarjetaTest.numeroDeTarjetaString == tarjeta.numeroDeTarjetaString &&
-        this.datosTarjetaTest.pin == tarjeta.pin &&
-        this.datosTarjetaTest.fechaVto == tarjeta.fechaVto &&
+        this.datosTarjetaTest.numeroDeTarjetaString === tarjeta.numeroDeTarjetaString &&
+        this.datosTarjetaTest.pin === tarjeta.pin &&
+        this.datosTarjetaTest.fechaVto === tarjeta.fechaVto &&
         tarjeta.nombre.toLocaleLowerCase().includes(this.datosTarjetaTest.nombre.toLocaleLowerCase()) &&
         tarjeta.apellido.toLocaleLowerCase().includes(this.datosTarjetaTest.apellido.toLocaleLowerCase())
       ) {
-        console.log("SI PERO NO!");
-        this.datosTarjetaTest = tarjeta;
+        this.datosTarjetaTest = { ...tarjeta };
         retorno = true;
-
       }
     });
     return retorno;
   }
-  procesarPagos() {
+  mostrarDialog() {
+    console.log(this.compra);
+    this.mostrarDialogConfirmacion = true
+  }
+
+  efectuarCompra() {
+
+    this.mostrarDialogConfirmacion = false;
+    //Spinner ON
+    this.compra['idComprador'] = this.authService.user['id'];
+    this.compra['idVendedor'] = this.publicacionObjetivo.idUserQuePublico;
+    console.log("Compra!", this.compra);
+
+
+
+
+    // this.dataBase.actualizar('publicaciones',publicacionConCambioDeEstado,idpublicacion)
+    // this.dataBase.crear('compras', this.compra);
+
+  }
+  procesarInformacionDePago() {
+    this.step = 2;
     if (this.esUnaTarjetaRegistrada()) {
       let fechaActual = new Date();
-      // let arrayFechaActual = fechaActual.toLocaleDateString().split('/');
+      this.compra['tipoTarjeta'] = this.datosTarjetaTest.tipoTarjeta;
+      this.compra['tipoSaldo'] = this.datosTarjetaTest.tipoSaldo;
+      this.compra['fechaCompra'] = fechaActual;
+      this.compra['precioEnCuotas'] = this.publicacionObjetivo.precio;
+      this.compra['cantidadDeCuotas'] = 1;
+
+
       let arrayFechaTarjeta = this.datosTarjetaTest.fechaVto.split('/');
       let fechaTarjeta = new Date(arrayFechaTarjeta[0] + "-01-" + arrayFechaTarjeta[1]);
 
@@ -309,25 +348,28 @@ export class FormularioDePagoComponent implements OnInit {
         case "Credito":
           //mostrarFormularioDeCuotas
           this.publicacionObjetivo["precioEnCuotas"] = this.publicacionObjetivo.precio;
-          
           this.mostrarFormularioCuotas = true;
 
           break;
         case "Debito":
           if (this.datosTarjetaTest.saldoContado >= this.publicacionObjetivo.precio) {
-            alert("PODES COMPRARLO");
+            this.mostrarDialog();
           }
           else {
             alert("Monto insuficiente");
           }
           break;
       }
-      console.log(this.publicacionObjetivo);
 
 
+    } else {
+      alert("tarjeta registrada");
     }
 
   }
 
 
+  detenerPropagacion(e) {
+    e.stopPropagation();
+  }
 }

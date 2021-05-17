@@ -3,7 +3,13 @@ button{
   width: 100%;
 }
 */
-
+select{
+  
+  border: none;
+  padding: 5px 10px;
+  background-color: #f5ecec75;
+  border-radius: 20px;
+}
 
 header {
   position: fixed;

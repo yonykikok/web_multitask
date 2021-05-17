@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 
 export class UsuarioComponent implements OnInit {
-
+  selectPublicaciones = "activas";
   user: Usuario;
   currentUser$: Observable<Usuario>;
   pedido = "";
@@ -47,7 +47,10 @@ export class UsuarioComponent implements OnInit {
     });
     this.authService.actualizarUsuario();
   }
-
+  cambiarSeleccion() {
+    this.selectPublicaciones = document.getElementById("selectPublicaciones")['value'];
+    console.log(this.selectPublicaciones);
+  }
   mostrar(variable) {
     this.reiniciarEstadosAFalse();
     this[variable] = true;

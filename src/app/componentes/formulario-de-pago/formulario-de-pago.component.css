@@ -15,3 +15,42 @@ mat-form-field {
 .formularioDeCuotas{
 
 }
+
+.dialogContainer{
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.164);
+  z-index: 999999;
+  position: fixed;
+}
+.confirmDialog{
+  position: fixed;
+  height: 50vh;
+  width: 50vw;
+  background-color: white;
+  box-shadow: 0px 0px 20px 2px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 5%;
+}
+
+.confirmDialog h2{  
+  text-align: center;
+}
+.confirmDialog ol{  
+  width: 100%;
+}
+.confirmDialog .divActionButtons{
+  
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
