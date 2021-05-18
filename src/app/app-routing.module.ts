@@ -29,11 +29,13 @@ import { ListaDePersonalComponent } from './componentesAdmin/lista-de-personal/l
 import { FormAltaProductoComponent } from './componentes/form-alta-producto/form-alta-producto.component';
 import { UsuarioComponent } from './paginas/usuario/usuario/usuario.component';
 import { SeleccionarMisArticulosComponent } from './componentes/seleccionar-mis-articulos/seleccionar-mis-articulos.component';
+import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
 
 
 
 const routes: Routes = [
 
+  { path: 'notificaciones', component: NotificacionesComponent },
 
   { path: 'testeo', component: TiendaComponent },
   { path: 'testeo2', component: SeleccionarMisArticulosComponent },

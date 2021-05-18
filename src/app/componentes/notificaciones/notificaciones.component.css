@@ -1,17 +1,8 @@
-/**
- * Chat Interface.
- *
- * Practice markup/styles with Divan Raj's 'Chat and Notification - ZAD App iOS' shot on Dribbble:
- * https://dribbble.com/shots/3337875-Chat-and-Notification-ZAD-App-iOS
- */
-
-/** Variables */
 :root {
     --header-height: 4.5rem;
   
   }
   
-  /** Global styles */
   *,
   *:before,
   *:after {
