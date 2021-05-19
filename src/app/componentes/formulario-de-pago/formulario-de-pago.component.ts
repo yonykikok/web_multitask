@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { HomeComponent } from 'src/app/paginas/home/home.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
+import { ToastService } from 'src/app/servicios/toast.service';
 @Component({
   selector: 'app-formulario-de-pago',
   templateUrl: './formulario-de-pago.component.html',
@@ -62,6 +63,7 @@ export class FormularioDePagoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data,
     private _formBuilder: FormBuilder, private dataBase: DatabaseService,
     private firestore: AngularFirestore,
+    private toast: ToastService
   ) {
     // pasar esto tambien, de la tarjeta.
     this.publicacionObjetivo = { ...data.publicacion };
@@ -319,10 +321,9 @@ export class FormularioDePagoComponent implements OnInit {
     console.log("Compra!", this.compra);
 
 
-
-
-    // this.dataBase.actualizar('publicaciones',publicacionConCambioDeEstado,idpublicacion)
     // this.dataBase.crear('compras', this.compra);
+    //estado="vendido"
+    // this.dataBase.actualizar('publicaciones',publicacionConCambioDeEstado,idpublicacion);
 
   }
   procesarInformacionDePago() {
@@ -341,6 +342,13 @@ export class FormularioDePagoComponent implements OnInit {
 
       if (fechaActual > fechaTarjeta) {
         alert("tarjeta vencida");
+
+        /*
+        snackWarning
+        snackSuccess
+        snackPrimary
+        snackDanger*/
+        this.toast.snackBarEditable("Esta tarjeta esta vencida!", "Cerrar", 3000, "snackWarning");
         return;
       }
 
@@ -363,7 +371,7 @@ export class FormularioDePagoComponent implements OnInit {
 
 
     } else {
-      alert("tarjeta registrada");
+      alert("tarjeta NO registrada");
     }
 
   }

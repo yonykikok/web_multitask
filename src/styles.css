@@ -9,16 +9,31 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
 ::-webkit-scrollbar {
   width: 0px;
+}
+/* 
+.mat-snack-bar-container {
+  color: red;
+} */
+
+.snackWarning {
+  background-color: #ffc107;
+}
+.snackSuccess {
+  background-color: #28a745;
+}
+.snackInfo {
+  background-color: #17a2b8;
+}
+.snackDanger {
+  background-color: #dc3545;
 }
 
 :root {
   --colorPrincipal: #3eace3;
   --colorSecundario: white;
   --colorDeResaltado: #009688;
-
 }
 
 .dark-primary-color {

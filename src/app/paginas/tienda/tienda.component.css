@@ -78,7 +78,8 @@ mat-toolbar{
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: center; 
+  margin-top: 14vh;
   flex-wrap: wrap;
 }
 
