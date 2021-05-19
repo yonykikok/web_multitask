@@ -112,20 +112,17 @@ export class TiendaComponent implements OnInit {
     }
     const dialogRef = this.dialog.open(FormularioDePagoComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      alert("COMPRO!");
-      console.log(result);
-
-      switch (result) {
-        case 'confirmarCompra':
-          // this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
-          break;
-        case 'comprar':
-          break;
-        default:
-          //no hacemos nada!
-          break;
-      }
+    dialogRef.afterClosed().subscribe(result => {   
+      // switch (result) {
+      //   case 'confirmarCompra':
+      //     this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
+      //     break;
+      //   case 'comprar':
+      //     break;
+      //   default:
+      //     no hacemos nada!
+      //     break;
+      // }
     });
   }
 

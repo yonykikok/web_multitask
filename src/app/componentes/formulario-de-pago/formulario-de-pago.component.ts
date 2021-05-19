@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { ToastService } from 'src/app/servicios/toast.service';
   styleUrls: ['./formulario-de-pago.component.css']
 })
 export class FormularioDePagoComponent implements OnInit {
-  //test
+  mostrarSpinner = false;
   step = 1;
   mostrarDialogConfirmacion = false;
   compra = {
@@ -54,9 +54,6 @@ export class FormularioDePagoComponent implements OnInit {
 
 
 
-  //obtenerUsuario
-
-  //fin tes
   constructor(
     private authService: AuthService,
     private dialogRef: MatDialogRef<FormularioDePagoComponent>,
@@ -65,7 +62,7 @@ export class FormularioDePagoComponent implements OnInit {
     private firestore: AngularFirestore,
     private toast: ToastService
   ) {
-    // pasar esto tambien, de la tarjeta.
+
     this.publicacionObjetivo = { ...data.publicacion };
 
     this.testGroupTarjetaForm = this._formBuilder.group({
@@ -275,6 +272,9 @@ export class FormularioDePagoComponent implements OnInit {
     this.compra['cantidadDeCuotas'] = select['value'];
 
     switch (select['value']) {
+      case '1':
+        this.compra['precioEnCuotas'] = this.publicacionObjetivo.precio;
+        break;
       case '3':
         this.compra['precioEnCuotas'] = this.publicacionObjetivo.precio;
         break;
@@ -307,27 +307,47 @@ export class FormularioDePagoComponent implements OnInit {
     });
     return retorno;
   }
+
+
+
   mostrarDialog() {
-    console.log(this.compra);
     this.mostrarDialogConfirmacion = true
   }
 
-  efectuarCompra() {
 
+  efectuarCompra() {
+    //LAS COMPRAS LAS DIFERENCIAMOS CON 'TIPOSALDO' SIENDO CREDITO O DEBITO
+
+
+    let tarjeta = { ...this.datosTarjetaTest }
+    this.mostrarSpinner = true;
     this.mostrarDialogConfirmacion = false;
     //Spinner ON
     this.compra['idComprador'] = this.authService.user['id'];
     this.compra['idVendedor'] = this.publicacionObjetivo.idUserQuePublico;
-    console.log("Compra!", this.compra);
 
+    this.datosTarjetaTest.saldoContado = (tarjeta.saldoContado - this.publicacionObjetivo.precio);
 
-    // this.dataBase.crear('compras', this.compra);
-    //estado="vendido"
-    // this.dataBase.actualizar('publicaciones',publicacionConCambioDeEstado,idpublicacion);
+    this.publicacionObjetivo['estadoPublicacion'] = "vendido";
+    console.log(this.compra);
+    // this.dataBase.actualizar('publicaciones', this.publicacionObjetivo, this.publicacionObjetivo.id)
+    //   .then((resPublicacion) => {
+    //     return this.dataBase.actualizar('tarjetas', this.datosTarjetaTest, this.datosTarjetaTest['id']);
+    //   }).then(resTarjeta => {
+    //     return this.dataBase.crear('compras', this.compra)
+    //   }).then(resCompra => {
+    //     this.toast.snackBarEditable("Compra realizada con exito", "Cerrar", 3000, "snackSuccess");
+    //     this.dialogRef.close();//cerramos el formulario de pago!
+    //     this.mostrarSpinner=false;
+    //     //ACA FALTA ACTUALIZAR LA TIENDA PARA QUE DESAPARESCA EL PRODUCTO COMPRADO. O REDIRECCIONAR AL USUARIO AL DETALLE DE LA COMPRA!
+
+    //   })
+    //   .catch(err => {
+    //     this.toast.snackBarEditable("ERROR, al efectuar Compra ( " + err.message() + " )", "Cerrar", 3000, "snackDanger");
+    //   });
 
   }
   procesarInformacionDePago() {
-    this.step = 2;
     if (this.esUnaTarjetaRegistrada()) {
       let fechaActual = new Date();
       this.compra['tipoTarjeta'] = this.datosTarjetaTest.tipoTarjeta;
@@ -341,37 +361,34 @@ export class FormularioDePagoComponent implements OnInit {
       let fechaTarjeta = new Date(arrayFechaTarjeta[0] + "-01-" + arrayFechaTarjeta[1]);
 
       if (fechaActual > fechaTarjeta) {
-        alert("tarjeta vencida");
-
-        /*
-        snackWarning
-        snackSuccess
-        snackPrimary
-        snackDanger*/
         this.toast.snackBarEditable("Esta tarjeta esta vencida!", "Cerrar", 3000, "snackWarning");
         return;
       }
-
+      console.log("procesando ", this.datosTarjetaTest);
       switch (this.datosTarjetaTest.tipoSaldo) {
         case "Credito":
           //mostrarFormularioDeCuotas
           this.publicacionObjetivo["precioEnCuotas"] = this.publicacionObjetivo.precio;
-          this.mostrarFormularioCuotas = true;
+          this.mostrarFormularioCuotas = true
+
+          this.mostrarDialog();
+          this.step = 2;
 
           break;
         case "Debito":
           if (this.datosTarjetaTest.saldoContado >= this.publicacionObjetivo.precio) {
             this.mostrarDialog();
+            this.step = 2;
           }
           else {
-            alert("Monto insuficiente");
+            this.toast.snackBarEditable("Monto insuficiente para esta compra", "Cerrar", 3000, "snackWarning");
           }
           break;
       }
 
 
     } else {
-      alert("tarjeta NO registrada");
+      this.toast.snackBarEditable("Tarjeta no registrada!", "Cerrar", 3000, "snackDanger");
     }
 
   }
