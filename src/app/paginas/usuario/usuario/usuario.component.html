@@ -22,10 +22,12 @@
                     <br>
                     <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
                     <br>
-                    <button mat-button color="warn">Editar datos</button>
-                     <!-- ESTO ES SOLO PARA MOSTRAR LA LISTA DE NOTIFICACIONES-->
+                    
+                    <button mat-button color="warn">
+                    <mat-icon>edit</mat-icon>Editar datos</button>
+                   
                     <button mat-button color="warn" (click)="mostrar('boolNotificaciones')"> 
-					<mat-icon>accessible</mat-icon> Mostrar notificaciones </button>
+                    <mat-icon>filter_list</mat-icon> Mostrar notificaciones </button>
                 </div>
 
             </div>

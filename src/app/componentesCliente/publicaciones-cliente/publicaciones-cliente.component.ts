@@ -5,6 +5,7 @@ import { DetalladoPublicacionComponent } from 'src/app/componentes/detallado-pub
 import { VisualizarOfertaCompletaComponent } from 'src/app/componentes/visualizar-oferta-completa/visualizar-oferta-completa.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
+import { GeneradorNotificacionesService } from 'src/app/servicios/generador-notificaciones.service';
 
 @Component({
   selector: 'app-publicaciones-cliente',
@@ -21,7 +22,10 @@ export class PublicacionesClienteComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore,
     private dataBase: DatabaseService, public dialog: MatDialog,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    
+    private genNotificacion : GeneradorNotificacionesService,
+    ) { }
 
   ngOnInit(): void {
     this.misPublicaciones = this.obtenerMisPublicaciones();
@@ -63,6 +67,8 @@ export class PublicacionesClienteComponent implements OnInit {
           this.dataBase.actualizar('publicaciones', publicacion, publicacion.id).then(()=>{
             this.dataBase.eliminar('permutas',oferta.id);
             this.misPublicaciones = this.obtenerMisPublicaciones();
+            this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Has cancelado la permuta por la publicación" + publicacion.titulo);
+
           }).catch(()=>{
             alert("NO SE PUDO CANCELAR LA OFERTA!");
           })
@@ -106,6 +112,9 @@ export class PublicacionesClienteComponent implements OnInit {
     }else{
       estado = 'aceptado'
     }
+
+    this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Ha modificado el estado de la publicación: " + publicacion.titulo);
+
     publicacion.estadoPublicacion = estado;
     this.dataBase.actualizar('publicaciones', publicacion, publicacion.id);
     this.misPublicaciones = this.obtenerMisPublicaciones();

@@ -1,3 +1,40 @@
+
+/* A PARTIR DE ACÁ, MODIFIQUÉ RESPONSIVE TOOLBAR */
+
+
+.mat-toolbar{
+  color: #333;
+}
+
+.mat-toolbar-row{
+height: auto;
+display: flex;
+justify-content: center;
+flex-direction: row;
+flex-wrap: wrap;
+}
+
+.mat-toolbar-single-row{
+display: flex;
+justify-content: center;
+flex-direction: row;
+flex-wrap: wrap;
+}
+
+
+.mat-toolbar-multiple-rows
+{
+display: flex;
+justify-content: center;
+}
+
+/* FIN */
+
+
+
+
+
+
 :root {
     --header-height: 4.5rem;
   
