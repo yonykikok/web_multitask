@@ -14,17 +14,26 @@
         <ng-container matColumnDef="estado">
             <th mat-header-cell *matHeaderCellDef> Estado </th>
             <td mat-cell *matCellDef="let element">
-                <!-- <img *ngFor="let foto of element.fotos" class="imgMensaje" src="{{foto}}" alt=""> -->
-                {{element.estado}}
+                <img *ngIf="element.estado == 'enProceso'" src="../../../assets/images/phone-repair.png" alt="En proceso!">
+                <img *ngIf="element.estado == 'sinSolucion'" src="../../../assets/images/phone-broken.png" alt="Sin Solucion :(">
+                <img *ngIf="element.estado == 'reparado'" src="../../../assets/images/phone-ok.png" alt="Reparado!">
+                <img *ngIf="element.estado == 'cancelado'" src="../../../assets/images/wrong.png" alt="Cancelado!">           
             </td>
         </ng-container>
+
         <ng-container matColumnDef="accion">
             <th mat-header-cell *matHeaderCellDef> Accion </th>
             <td mat-cell *matCellDef="let element" justify="end">
-                <div class="example-button-row">
-                    <button mat-fab color="primary" (click)="pagar()" [disabled]="element.estado == 'enProceso'">
-                        <mat-icon>Pagar</mat-icon>
+                <div *ngIf="element.estado != 'sinSolucion' && element.estado != 'cancelado'" class="button-row">
+                    <button mat-button color="primary" (click)="pagar(element)" [disabled]="element.estado != 'reparado'">
+                        <mat-icon>euro_symbol</mat-icon> Pagar
                     </button>
+                    <button mat-button color="warn" (click)="cancelar(element, 'cancelado')" [disabled]="element.estado != 'enProceso'">
+                        <mat-icon>highlight_off</mat-icon>Cancelar
+                    </button>
+                </div>
+                <div *ngIf="element.estado == 'cancelado' || element.estado == 'sinSolucion'"> 
+                    <p> ¡Lo lamentamos! Debe venir a retirarlo.</p>
                 </div>
             </td>
         </ng-container>

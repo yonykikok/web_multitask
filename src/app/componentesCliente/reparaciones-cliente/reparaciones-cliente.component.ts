@@ -11,7 +11,7 @@ import { DatabaseService } from 'src/app/servicios/database.service';
 })
 export class ReparacionesClienteComponent implements OnInit {
   listaDeReparaciones: any[] = [];
-  displayedColumns: string[] = ['fecha', 'marca', 'estado', 'accion'];
+  displayedColumns: string[] = ['fecha', 'marca','estado', 'accion'];
 
   constructor(
     private firestore: AngularFirestore,
@@ -30,8 +30,9 @@ export class ReparacionesClienteComponent implements OnInit {
     this.firestore.collection("reparaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         reparacion = doc.data();
-        console.log(this.authService.user['dni']);
+        // console.log(this.authService.user['dni']);
         if (reparacion.DNI == this.authService.user['dni']) {
+          reparacion['id']=doc.id;  
           this.listaDeReparaciones.push(reparacion);
         }
       })
@@ -39,8 +40,31 @@ export class ReparacionesClienteComponent implements OnInit {
     return this.listaDeReparaciones;
   }
 
-  pagar(){
-    
+  pagar(reparacion){
+    console.log(reparacion);
+    reparacion.estado = 'pagado';
+    this.listaDeReparaciones.forEach(element => {
+      if (element == reparacion){
+        console.log(element);
+        //CONECTAR PAGAR
+        // this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
+        // this.listaDeReparaciones = this.obtenerReparaciones();
+        return;
+      }
+    });
+  }
+
+  cancelar(reparacion, estado){
+    console.log(reparacion);
+    reparacion.estado = estado;
+    this.listaDeReparaciones.forEach(element => {
+      if (element == reparacion){
+        // console.log(element);
+        this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
+        this.listaDeReparaciones = this.obtenerReparaciones();
+        return;
+      }
+    });
   }
 
 }

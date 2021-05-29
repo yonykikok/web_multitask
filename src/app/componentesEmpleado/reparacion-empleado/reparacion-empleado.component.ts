@@ -12,7 +12,7 @@ import { DatabaseService } from 'src/app/servicios/database.service';
 export class ReparacionEmpleadoComponent implements OnInit {
 
   listaDeReparaciones: any[] = [];
-  displayedColumns: string[] = ['fecha', 'marca', 'estado', 'accion'];
+  displayedColumns: string[] = ['fecha', 'marca', 'observaciones', "correo", 'accion'];
 
   constructor(
     private firestore: AngularFirestore,
@@ -31,7 +31,9 @@ export class ReparacionEmpleadoComponent implements OnInit {
     this.firestore.collection("reparaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         reparacion = doc.data();
+        // reparacion.id = 
         if(reparacion.estado == 'enProceso'){
+          reparacion['id']=doc.id;  
           this.listaDeReparaciones.push(reparacion);
         }
       })
@@ -40,11 +42,15 @@ export class ReparacionEmpleadoComponent implements OnInit {
   }
 
   cambiarEstado(reparacion, estado) {
-    console.log(reparacion);
-    reparacion.estadoPublicacion = estado;
-//desactivado porque todavia no tiene la referencia
-    // this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
-    // this.listaDeReparaciones = this.obtenerReparaciones();
+    // console.log(reparacion);
+    reparacion.estado = estado;
+    this.listaDeReparaciones.forEach(element => {
+      if (element == reparacion){
+        this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
+        this.listaDeReparaciones = this.obtenerReparaciones();
+        return;
+      }
+    });
   }
 
 }
