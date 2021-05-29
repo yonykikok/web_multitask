@@ -72,8 +72,10 @@ export class TiendaComponent implements OnInit {
     });
     this.authService.actualizarUsuario();
 
-    this.listadoDePublicaciones = this.cargarPublicacionesActivas();
-    this.listadoDePublicacionesAMostrar = this.listadoDePublicaciones;
+
+      this.listadoDePublicaciones = this.cargarPublicacionesActivas();
+      this.listadoDePublicacionesAMostrar = this.listadoDePublicaciones;
+
 
 
 

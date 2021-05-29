@@ -1,7 +1,7 @@
 <div class="tiendaContainer" style="width: 100%; overflow: hidden; background-color: lightgray;">
   <app-spinner *ngIf="mostrarSpinner"></app-spinner>
 
-  <mat-toolbar>
+  <mat-toolbar style="width: 100%; overflow: hidden; background-color: rgba(71, 16, 160, 0.705);">
     <span class="material-icons"> store </span>
     <span class="mobileNotVisible">Tienda</span>
     <!-- Inicio buscador -->
@@ -17,6 +17,8 @@
       </div>
     </div>
     <!-- Fin buscador -->
+    <button mat-flat-button [routerLink]="['/home']" style="position: absolute;
+    right: 170px;">Inicio</button>
 
     <a (click)="toggleDesplegarMenu()" class="divAvatarUsuario">
       <div class="divPerfilUsuario" *ngIf="user">
@@ -25,10 +27,14 @@
       </div>
       <div class="divMenuOptions" *ngIf="desplegarMenu">
         <a [routerLink]="['/usuario']">Panel</a>
-        <a >Mis favoritos</a>
+        <a [routerLink]="['/favoritos']">Mis favoritos </a>
+        <a [routerLink]="['/carrito']">Mi carrito </a>
         <a (click)="cerrarCesion()">Salir</a>
       </div>
     </a>
+
+    <button mat-flat-button *ngIf="!user" [routerLink]="['/home']" style="position: absolute;
+  right: 10px;">Ingresar al sistema</button>
 
 
     <!-- <a href="/usuario" class="divAvatarUsuario">
@@ -55,13 +61,20 @@
 
   <app-seleccionar-mis-articulos *ngIf="mostrarMiListaDeproductos" [publicacionObjetivo]="publicacionObjetivo"
     (cancelarEvent)="mostrarMiListaDeproductos=false"></app-seleccionar-mis-articulos>
-  <div class="divCardsContainer">
-
+  <div *ngIf="user" class="divCardsContainer">
     <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
       <app-product-to-sell-card [publicacion]="publicacion" (comprarClickEvent)="mostrarFormDePago($event)"
         (permutarClickEvent)="mostrarListaDeProductos($event)"></app-product-to-sell-card>
     </div>
     <mat-icon class="botonFlotante" title="Publicar articulo" [routerLink]="['/testeo3']">add_to_queue</mat-icon>
-
   </div>
+
+  <!-- habria que hacer una tienda en donde se vean tooooooodas las publis si no hay nadie logeado, no bloquearlo -->
+  <!-- <div *ngIf="!user" class="divCardsContainer">
+    <div *ngFor="let publicacion of listadoDePublicaciones">
+      <app-product-to-sell-card [publicacion]="publicacion"></app-product-to-sell-card>
+    </div>
+    <mat-icon class="botonFlotante" title="Publicar articulo" [routerLink]="['/testeo3']">add_to_queue</mat-icon>
+  </div> -->
+
 </div>

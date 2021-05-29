@@ -23,16 +23,16 @@ export class PublicacionesClienteComponent implements OnInit {
   constructor(private firestore: AngularFirestore,
     private dataBase: DatabaseService, public dialog: MatDialog,
     private authService: AuthService,
-    
-    private genNotificacion : GeneradorNotificacionesService,
-    ) { }
+
+    private genNotificacion: GeneradorNotificacionesService,
+  ) { }
 
   ngOnInit(): void {
     this.misPublicaciones = this.obtenerMisPublicaciones();
     setTimeout(() => {
-      
+
       this.misPublicaciones.forEach(element => {
-        console.log(element.titulo+": ",element.listaDeOfertas);
+        console.log(element.titulo + ": ", element.listaDeOfertas);
       });
     }, 1000);
 
@@ -57,25 +57,25 @@ export class PublicacionesClienteComponent implements OnInit {
     })
     return this.misPublicaciones;
   }
-  cancelarPermuta(publicacion){
-        console.log(publicacion);
-        publicacion.listaDeOfertas.forEach(oferta => {
+  cancelarPermuta(publicacion) {
+    console.log(publicacion);
+    publicacion.listaDeOfertas.forEach(oferta => {
 
-      if(oferta.estadoOferta==="aceptadaParaPermutar"){        
+      if (oferta.estadoOferta === "aceptadaParaPermutar") {
         oferta.estadoOferta = 'pendiente';
-        publicacion.estadoPublicacion="aceptado";
-          this.dataBase.actualizar('publicaciones', publicacion, publicacion.id).then(()=>{
-            this.dataBase.eliminar('permutas',oferta.id);
-            this.misPublicaciones = this.obtenerMisPublicaciones();
-            this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Has cancelado la permuta por la publicación" + publicacion.titulo);
+        publicacion.estadoPublicacion = "aceptado";
+        this.dataBase.actualizar('publicaciones', publicacion, publicacion.id).then(() => {
+          this.dataBase.eliminar('permutas', oferta.id);
+          this.misPublicaciones = this.obtenerMisPublicaciones();
+          this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Has cancelado la permuta por la publicación" + publicacion.titulo);
 
-          }).catch(()=>{
-            alert("NO SE PUDO CANCELAR LA OFERTA!");
-          })
-          return;    
-        }
-      });     
-     
+        }).catch(() => {
+          alert("NO SE PUDO CANCELAR LA OFERTA!");
+        })
+        return;
+      }
+    });
+
   }
 
   openDialog(publicacion) {
@@ -107,9 +107,9 @@ export class PublicacionesClienteComponent implements OnInit {
 
   pausar(publicacion, pausa) {
     let estado = "";
-    if(pausa){
+    if (pausa) {
       estado = 'pausado'
-    }else{
+    } else {
       estado = 'aceptado'
     }
 
