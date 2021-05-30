@@ -1,0 +1,30 @@
+.divCalificarContainer {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.divStarContainer {
+  width: 100%;
+  text-align: center;
+}
+.comentarioCompra {
+}
+.star {
+  margin: 0px 5px;
+  transform: scale(1.2);
+  color: rgba(51, 51, 51, 0.616);
+  cursor: pointer;
+}
+.star:first-child
+ {
+     color: yellow;
+ }
+
+
+textarea {
+  width: 100%;
+}
+button {
+  width: 100%;
+}

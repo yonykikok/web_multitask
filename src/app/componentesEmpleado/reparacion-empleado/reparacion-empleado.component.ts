@@ -22,7 +22,6 @@ export class ReparacionEmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.listaDeReparaciones = this.obtenerReparaciones();
-    console.log(this.listaDeReparaciones);
   }
 
   obtenerReparaciones(): any {
@@ -42,7 +41,6 @@ export class ReparacionEmpleadoComponent implements OnInit {
   }
 
   cambiarEstado(reparacion, estado) {
-    // console.log(reparacion);
     reparacion.estado = estado;
     this.listaDeReparaciones.forEach(element => {
       if (element == reparacion){

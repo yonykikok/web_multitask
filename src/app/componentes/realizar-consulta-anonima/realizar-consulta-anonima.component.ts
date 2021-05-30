@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase'
 
 // FIREBASE STORAGE
-import {AngularFireStorage} from "@angular/fire/storage"
+import { AngularFireStorage } from "@angular/fire/storage"
 
 // REGISTRO FORMBUILDER.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,21 +26,21 @@ export class RealizarConsultaAnonimaComponent implements OnInit {
 
 
   consultaJSON = {
-    nombre : "",
+    nombre: "",
     apellido: "",
     correo: "",
-    consulta:"",
-    horaConsulta:"",
-    estadoConsulta:"sinResponder"
+    consulta: "",
+    horaConsulta: "",
+    estadoConsulta: "sinResponder"
   };
 
-  
+
   constructor(private formBuilder: FormBuilder,
 
-    private dataBase : DatabaseService,
-    private st : AngularFireStorage,
-    
-    ) {
+    private dataBase: DatabaseService,
+    private st: AngularFireStorage,
+
+  ) {
 
     this.consultaForm = this.formBuilder.group({
 
@@ -52,9 +52,9 @@ export class RealizarConsultaAnonimaComponent implements OnInit {
 
       consultaValidada: ['', [Validators.required, Validators.minLength(30)]],
 
-   });
-  
- }
+    });
+
+  }
 
   ngOnInit(): void {
 
@@ -69,69 +69,59 @@ export class RealizarConsultaAnonimaComponent implements OnInit {
 
       case 'nombreValidado':
 
-            if (this.consultaForm.controls.nombreValidado.hasError('required')) 
-            {
-              retorno = 'Debe ingresar un nombre.';
-            } 
-            
-            if (this.consultaForm.controls.nombreValidado.hasError('minLength')) 
-            {
-              retorno = 'Debe ingresar un nombre válido.';
-            }
-            
-            if (this.consultaForm.controls.nombreValidado.hasError('pattern')) 
-            {
-              retorno = 'Error con el formato del nombre.';
-            }
+        if (this.consultaForm.controls.nombreValidado.hasError('required')) {
+          retorno = 'Debe ingresar un nombre.';
+        }
+
+        if (this.consultaForm.controls.nombreValidado.hasError('minLength')) {
+          retorno = 'Debe ingresar un nombre válido.';
+        }
+
+        if (this.consultaForm.controls.nombreValidado.hasError('pattern')) {
+          retorno = 'Error con el formato del nombre.';
+        }
 
         break;
-    
-        case 'apellidoValidado':
 
-            if (this.consultaForm.controls.apellidoValidado.hasError('required')) 
-            {
-              retorno = 'Debe ingresar un apellido.';
-            } 
-            
-            if (this.consultaForm.controls.apellidoValidado.hasError('minLength')) 
-            {
-              retorno = 'Debe ingresar un apellido válido.';
-            }
-            
-            if (this.consultaForm.controls.apellidoValidado.hasError('pattern')) 
-            {
-              retorno = 'Error con el formato del apellido.';
-            }
-  
-        break;
+      case 'apellidoValidado':
 
+        if (this.consultaForm.controls.apellidoValidado.hasError('required')) {
+          retorno = 'Debe ingresar un apellido.';
+        }
 
-        case 'correoValidado':
+        if (this.consultaForm.controls.apellidoValidado.hasError('minLength')) {
+          retorno = 'Debe ingresar un apellido válido.';
+        }
 
-            if (this.consultaForm.controls.correoValidado.hasError('required')) 
-            {
-              retorno = 'Debe ingresar un email.';
-            } 
-            
-            if (this.consultaForm.controls.correoValidado.hasError('email')) 
-            {
-              retorno = 'Debe ingresar un email válido.';
-            }
+        if (this.consultaForm.controls.apellidoValidado.hasError('pattern')) {
+          retorno = 'Error con el formato del apellido.';
+        }
 
         break;
 
 
-        case 'consultaValidada':
+      case 'correoValidado':
 
-            if (this.consultaForm.controls.consultaValidada.hasError('required')) 
-            {
-              retorno = 'Debe ingresar una consulta';
-            } 
-            
-            if (this.consultaForm.controls.consultaValidada.hasError('minLength')) 
-            {
-              retorno = 'Debe ingresar una consulta mayor a 30 caracteres';
-            }
+        if (this.consultaForm.controls.correoValidado.hasError('required')) {
+          retorno = 'Debe ingresar un email.';
+        }
+
+        if (this.consultaForm.controls.correoValidado.hasError('email')) {
+          retorno = 'Debe ingresar un email válido.';
+        }
+
+        break;
+
+
+      case 'consultaValidada':
+
+        if (this.consultaForm.controls.consultaValidada.hasError('required')) {
+          retorno = 'Debe ingresar una consulta';
+        }
+
+        if (this.consultaForm.controls.consultaValidada.hasError('minLength')) {
+          retorno = 'Debe ingresar una consulta mayor a 30 caracteres';
+        }
 
         break;
 
@@ -142,21 +132,19 @@ export class RealizarConsultaAnonimaComponent implements OnInit {
 
 
 
-  registrarConsultasAnonimasBD()
-  {
-    this.consultaJSON.horaConsulta = new Date().toLocaleString() 
-    this.dataBase.crear('consultasAnonimas',this.consultaJSON)
-  
-    .then(resultado => { console.log("Consulta enviada con éxito") ; this.vaciarCampos()});
+  registrarConsultasAnonimasBD() {
+    this.consultaJSON.horaConsulta = new Date().toLocaleString()
+    this.dataBase.crear('consultasAnonimas', this.consultaJSON)
+
+      .then(resultado => { console.log("Consulta enviada con éxito"); this.vaciarCampos() });
   }
 
 
-  vaciarCampos()
-  {
-    this.consultaJSON.nombre ="";
-    this.consultaJSON.apellido ="";
-    this.consultaJSON.correo ="";
-    this.consultaJSON.consulta ="";
+  vaciarCampos() {
+    this.consultaJSON.nombre = "";
+    this.consultaJSON.apellido = "";
+    this.consultaJSON.correo = "";
+    this.consultaJSON.consulta = "";
   }
 
 

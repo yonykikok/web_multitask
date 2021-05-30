@@ -15,7 +15,6 @@ export class CreditCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("ON INIT");
   }
 
 }

@@ -1,0 +1,48 @@
+<div class="divReseniaContainer" *ngIf="usuario && usuario.reputacion">
+    <div class="perfilUsuarioContainer" *ngIf="mostrarCompleto">
+        <img src="{{usuario.foto}}" alt="foto de perfil">
+        <label>{{usuario.apellido}} {{usuario.nombre}}</label>
+    </div>
+
+    <hr>
+    <div class="aliniado general">
+        <label *ngIf="!mostrarCompleto">Reputacion</label>
+        <div class="barra barraGeneral">
+            <div class="barraDeCarga barraDeCargaGeneral" [ngStyle]="estiloBarraGeneral"></div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="aliniado" *ngIf="mostrarCompleto">
+        <label>1<mat-icon style="transform: scale(0.70);">star</mat-icon></label>
+        <div class="barra">
+            <div class="barraDeCarga" [ngStyle]="{'width' : usuario.reputacion.unaEstrella + '%' }"></div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="aliniado" *ngIf="mostrarCompleto">
+        <label>2<mat-icon style="transform: scale(0.70);">star</mat-icon></label>
+        <div class="barra">
+            <div class="barraDeCarga" [ngStyle]="{'width' : usuario.reputacion.dosEstrella + '%' }"></div>
+        </div>
+
+    </div>
+    <div class="aliniado" *ngIf="mostrarCompleto">
+        <label>3<mat-icon style="transform: scale(0.70);">star</mat-icon></label>
+        <div class="barra">
+            <div class="barraDeCarga" [ngStyle]="{'width' : usuario.reputacion.tresEstrella + '%' }"></div>
+        </div>
+    </div>
+    <div class="aliniado" *ngIf="mostrarCompleto">
+        <label>4<mat-icon style="transform: scale(0.70);">star</mat-icon></label>
+        <div class="barra">
+            <div class="barraDeCarga" [ngStyle]="{'width' : usuario.reputacion.cuatroEstrella + '%' }"></div>
+        </div>
+    </div>
+    <div class="aliniado" *ngIf="mostrarCompleto">
+        <label>5<mat-icon style="transform: scale(0.70);">star</mat-icon></label>
+        <div class="barra">
+            <div class="barraDeCarga" [ngStyle]="{'width' : usuario.reputacion.cincoEstralla + '%' }"></div>
+        </div>
+    </div>
+</div>

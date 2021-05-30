@@ -32,7 +32,6 @@ export class PublicacionesClienteComponent implements OnInit {
     setTimeout(() => {
 
       this.misPublicaciones.forEach(element => {
-        console.log(element.titulo + ": ", element.listaDeOfertas);
       });
     }, 1000);
 
@@ -58,7 +57,6 @@ export class PublicacionesClienteComponent implements OnInit {
     return this.misPublicaciones;
   }
   cancelarPermuta(publicacion) {
-    console.log(publicacion);
     publicacion.listaDeOfertas.forEach(oferta => {
 
       if (oferta.estadoOferta === "aceptadaParaPermutar") {
@@ -79,7 +77,6 @@ export class PublicacionesClienteComponent implements OnInit {
   }
 
   openDialog(publicacion) {
-    console.log(publicacion.listaDeOfertas);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       listaDeOfertas: publicacion.listaDeOfertas,

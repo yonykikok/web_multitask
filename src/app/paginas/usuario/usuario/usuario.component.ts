@@ -18,6 +18,7 @@ export class UsuarioComponent implements OnInit {
   notificacioens = ["compro tal cosa", "vendio tal cosa", "permuto tal cosa"];
 
   //ADMIN
+  boolTransacciones = false;
   boolRegistroCliente = false;
   boolRegistroEmpleado = false;
   boolListadoCuentas = false;
@@ -32,7 +33,7 @@ export class UsuarioComponent implements OnInit {
   //CLIENTE Y ST
   boolServicio = false;
   boolPubliciones = false;
-  boolResenias = false;
+  boolReputacion = false;
   boolConsultas = false;
   boolFormPublicar = false;
   boolFormMisPermutas = false;
@@ -52,11 +53,14 @@ export class UsuarioComponent implements OnInit {
   }
   cambiarSeleccion() {
     this.selectPublicaciones = document.getElementById("selectPublicaciones")['value'];
-    console.log(this.selectPublicaciones);
   }
-  mostrar(variable) {
+  mostrar(variable, idDivContenedor) {
     this.reiniciarEstadosAFalse();
     this[variable] = true;
+
+    setTimeout(() => {
+      this.scrollToElement(idDivContenedor);
+    }, 600);
   }
 
 
@@ -68,6 +72,7 @@ export class UsuarioComponent implements OnInit {
     this.booEstadisticas = false;
     this.boolAdministrarPublicaciones = false;
 
+
     // EMPLEADO
     this.boolResponderConsultas = false;
     this.boolGenerarReparacion = false;
@@ -76,7 +81,7 @@ export class UsuarioComponent implements OnInit {
     //CLIENTE Y ST
     this.boolServicio = false;
     this.boolPubliciones = false;
-    this.boolResenias = false;
+    this.boolReputacion = false;
     this.boolConsultas = false;
     this.boolFormPublicar = false;
     this.boolFormMisPermutas = false;
@@ -85,8 +90,16 @@ export class UsuarioComponent implements OnInit {
     // todo
 
     this.boolNotificaciones = false;
-
+    this.boolTransacciones = false;
   }
-
+  scrollToElement(id) {
+    let element = document.getElementById(id);
+    if (element != null) {
+      scroll({
+        top: element.offsetTop,
+        behavior: "smooth"
+      });
+    }
+  }
 
 }

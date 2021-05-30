@@ -2,30 +2,56 @@
   margin: 0;
   padding: 0;
 }
+.divCambioDeVista {
+  position: absolute;
+  right: 5%;
+  top: 14%;
+  cursor: pointer;
+}
+.divLogo,
+.divLogo * {
+  cursor: pointer;
+}
+.divLogo mat-icon {
+  position: absolute;
+  transform: translate(58px, -4px);
+}
+.divLogo mat-icon img {
+  width: 35px;
+  opacity: 70%;
+  transform: rotate(19deg);
+}
+.divLogo label {
+  color: white;
+}
+.clickeable:active {
+  transform: scale(0.9);
+}
+#iconViewCards {
+  color: blue;
+}
 
-
-mat-toolbar{
+mat-toolbar {
   box-shadow: 0 0 10px 0 #5a5a5a;
   height: 64px !important;
   margin-bottom: 20px;
 }
-.botonFlotante:hover{
+.botonFlotante:hover {
   box-shadow: 0 0 10px 2px #727272;
   transition: 0.5s;
   /* background-color: lightpink; */
-
 }
-.botonFlotante:active{
+.botonFlotante:active {
   transform: scale(0.95);
 }
-.divMenuOptions a:hover{  
+.divMenuOptions a:hover {
   background-color: rgba(128, 128, 128, 0.644);
 }
-.divMenuOptions a:hover:last-child{  
+.divMenuOptions a:hover:last-child {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
 }
-.divMenuOptions a{  
+.divMenuOptions a {
   font-size: 14px;
   text-decoration: none;
   color: #007bff;
@@ -36,7 +62,7 @@ mat-toolbar{
   padding: 3px auto;
   width: 100%;
 }
-.divMenuOptions{
+.divMenuOptions {
   position: absolute;
   right: 0;
   top: 64px;
@@ -51,7 +77,7 @@ mat-toolbar{
   border-bottom-right-radius: 6px;
 }
 
-.botonFlotante{
+.botonFlotante {
   cursor: pointer;
   position: fixed;
   border: none;
@@ -64,11 +90,12 @@ mat-toolbar{
   align-items: center;
   font-size: 32px;
   color: white;
-  background-color: #047eff;  
+  background-color: #047eff;
   bottom: 21px;
-  right:23px;
+  right: 23px;
 }
-.divAvatarUsuario{
+.divAvatarUsuario {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +105,7 @@ mat-toolbar{
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center; 
+  text-align: center;
   margin-top: 14vh;
   flex-wrap: wrap;
 }

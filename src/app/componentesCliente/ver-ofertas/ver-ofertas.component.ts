@@ -25,7 +25,6 @@ export class VerOfertasComponent implements OnInit {
     const dialogRef = this.dialog.open(ChatPermutaComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     
      
     });
@@ -41,7 +40,6 @@ export class VerOfertasComponent implements OnInit {
     const dialogRef = this.dialog.open(DetalladoPublicacionComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     
      
     });
@@ -51,8 +49,6 @@ export class VerOfertasComponent implements OnInit {
       querySnapShot.forEach((doc) => {
         let permuta=doc.data();
         permuta['id']=doc.id;
-        console.log("Mi ID", this.authService.user);
-        console.log("ID PUBLICO", permuta['idUserQueOferto']);
         
         if(permuta['idUserQuePublico']==this.authService.user['id']){//soy el que recibe la oferta!
           this.misOfertasAceptadas.push(permuta);
@@ -61,7 +57,6 @@ export class VerOfertasComponent implements OnInit {
         {
           this.misPermutasOfrecidas.push(permuta);
         }
-        console.log(permuta);  
     }
     )});
   }

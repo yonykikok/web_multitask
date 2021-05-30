@@ -17,7 +17,7 @@
                 
                 <button *ngIf="!esVistaCompleta" class="btnAcciones" mat-raised-button color="primary" disabled >Comprar ahora</button>
                 <button *ngIf="!esVistaCompleta" class="btnAcciones" mat-stroked-button color="accent" disabled >Permutar</button>
-
+                <app-resenia-usuario *ngIf="vendedor" [mostrarCompleto]=false [usuario]="vendedor"></app-resenia-usuario>
             </div>
         </div>
         <hr>

@@ -1,9 +1,19 @@
+<!-- <app-resenia-usuario></app-resenia-usuario> -->
+
 <div class="tiendaContainer" style="width: 100%; overflow: hidden; background-color: lightgray;">
+  <div class="divCambioDeVista">
+    <mat-icon (click)="cambiarModoVista('iconViewList')" id="iconViewList" class="clickeable">view_list</mat-icon>
+    <mat-icon (click)="cambiarModoVista('iconViewCards')" id="iconViewCards" class="clickeable">border_all</mat-icon>
+  </div>
+
   <app-spinner *ngIf="mostrarSpinner"></app-spinner>
 
   <mat-toolbar style="width: 100%; overflow: hidden; background-color: rgba(71, 16, 160, 0.705);">
-    <span class="material-icons"> store </span>
-    <span class="mobileNotVisible">Tienda</span>
+    <span class="divLogo" (click)="irAHome()">
+      <mat-icon><img src="../../../assets/images/pc5e5enyi.png" alt="logo-Multitask"></mat-icon>
+      <label> Multitask </label>
+    </span>
+
     <!-- Inicio buscador -->
     <div class="input-group inputSearch displayNoneInPhone" [formGroup]="inputSearch">
       <input type="text" class="form-control" formControlName="textoABuscar" (keyup.enter)="buscarCoincidencias()"
@@ -17,9 +27,8 @@
       </div>
     </div>
     <!-- Fin buscador -->
-    <button mat-flat-button [routerLink]="['/home']" style="position: absolute;
-    right: 170px;">Inicio</button>
 
+    <!-- incio avatar usuario -->
     <a (click)="toggleDesplegarMenu()" class="divAvatarUsuario">
       <div class="divPerfilUsuario" *ngIf="user">
         <p class="pNombreUsuario">{{user.nombre}}</p>
@@ -32,17 +41,12 @@
         <a (click)="cerrarCesion()">Salir</a>
       </div>
     </a>
+    <!-- FIN incio avatar usuario -->
 
     <button mat-flat-button *ngIf="!user" [routerLink]="['/home']" style="position: absolute;
   right: 10px;">Ingresar al sistema</button>
 
-
-    <!-- <a href="/usuario" class="divAvatarUsuario">
-    <div class="divPerfilUsuario" *ngIf="user">
-      <p class="pNombreUsuario">{{user.nombre}}</p>
-      <img class="imgFotoDePerfil" src="{{user.foto}}" alt="Foto de perfil">
-    </div>
-  </a> -->
+    
   </mat-toolbar>
 
   <div class="input-group inputSearch displayInPhone" [formGroup]="inputSearch">
@@ -57,24 +61,24 @@
     </div>
   </div>
 
-  <!-- <app-carousel></app-carousel> -->
-
   <app-seleccionar-mis-articulos *ngIf="mostrarMiListaDeproductos" [publicacionObjetivo]="publicacionObjetivo"
     (cancelarEvent)="mostrarMiListaDeproductos=false"></app-seleccionar-mis-articulos>
   <div *ngIf="user" class="divCardsContainer">
+
+    <!-- CARDS -->
     <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
-      <app-product-to-sell-card [publicacion]="publicacion" (comprarClickEvent)="mostrarFormDePago($event)"
-        (permutarClickEvent)="mostrarListaDeProductos($event)"></app-product-to-sell-card>
+      <app-product-to-sell-card *ngIf="modoCards" [publicacion]="publicacion"
+        (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)">
+      </app-product-to-sell-card>
+
+      <app-product-to-sell-row *ngIf="!modoCards" [publicacion]="publicacion"
+        (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)">
+      </app-product-to-sell-row>
     </div>
+    <!-- ROWS -->
+
+
     <mat-icon class="botonFlotante" title="Publicar articulo" [routerLink]="['/testeo3']">add_to_queue</mat-icon>
   </div>
-
-  <!-- habria que hacer una tienda en donde se vean tooooooodas las publis si no hay nadie logeado, no bloquearlo -->
-  <!-- <div *ngIf="!user" class="divCardsContainer">
-    <div *ngFor="let publicacion of listadoDePublicaciones">
-      <app-product-to-sell-card [publicacion]="publicacion"></app-product-to-sell-card>
-    </div>
-    <mat-icon class="botonFlotante" title="Publicar articulo" [routerLink]="['/testeo3']">add_to_queue</mat-icon>
-  </div> -->
 
 </div>

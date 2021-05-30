@@ -1,0 +1,65 @@
+<div class="verDetalleCompraContainer" style="text-align: center;">
+    <div class="moreOptions">
+        <span class="material-icons" (click)="mostrarOpciones= !mostrarOpciones">
+            more_vert
+        </span>
+        <div class="opciones" *ngIf="mostrarOpciones">
+            <label (click)="mostrarOpciones=false">Tengo un problema</label>
+            <label *ngIf="compra.estado=='concretado' && rolEnLaCompra=='comprador' && compra.estadoCalificacion!='calificado'"
+                (click)="mostrarForm()">Calificar</label>
+        </div>
+    </div>
+
+    <h1>Resumen de compra</h1>
+    <div class="divResumenDeCompra">
+        <div class="productoContainer">
+            <div class="divImgContainer">
+                <img *ngFor="let foto of compra.producto.fotos" src={{foto}} alt="{{compra.producto.titulo}}">
+            </div>
+            <label class="productTitle">{{compra.producto.titulo|uppercase}}</label>
+
+            <div class="divDetallado">
+                <label>Producto</label>
+                <label>{{compra.producto.precio|currency}}</label>
+            </div>
+            <hr>
+            <div class="divDetallado">
+                <label>Cantidad de cuotas ({{compra.cantidadDeCuotas}})</label>
+                <label *ngIf="compra.tipoSaldo=='Debito'">{{compra.producto.precio|currency}}</label>
+                <label *ngIf="compra.tipoSaldo=='Credito'">{{compra.precioPorCuota|currency}}</label>
+            </div>
+            <div class="divDetallado">
+                <label>Tarjeta</label>
+                <label>{{compra.tipoTarjeta}} <b>{{compra.tipoSaldo}}</b></label>
+            </div>
+            <div class="divDetallado">
+                <label>Precio Final en cuotas</label>
+                <label>{{compra.precioEnCuotas|currency}}</label>
+            </div>
+        </div>
+        <div class="divRolContainer">
+            <!-- si es vendedor -->
+            <div class="vendedorContainer" *ngIf="rolEnLaCompra=='comprador' && vendedor">
+                <img src="{{vendedor.foto}}">
+                <p><b>Vendedor</b></p>
+                <p>{{vendedor.apellido}} {{vendedor.nombre}}</p>
+                <app-resenia-usuario [mostrarCompleto]=false [usuario]="vendedor"></app-resenia-usuario>
+                <a class="clickeable" (click)="openChat()">Ver mensajes</a>
+            </div>
+            <!--FIN  si es vendedor -->
+
+            <!-- si es comprador -->
+            <div class="vendedorContainer" *ngIf="rolEnLaCompra=='vendedor' && comprador">
+                <img src="{{comprador.foto}}">
+                <p><b>Comprador</b></p>
+                <p>{{comprador.apellido}} {{comprador.nombre}}</p>
+                <app-resenia-usuario [mostrarCompleto]=false [usuario]="comprador"></app-resenia-usuario>
+                <a class="clickeable" (click)="openChat()">Ver mensajes</a>
+            </div>
+            <!-- FIN si es comprador -->
+        </div>
+    </div>
+    <hr *ngIf="mostrarFormCalificar" >
+    <app-form-calificar-compra *ngIf="mostrarFormCalificar" (calificarEvent)="calificarCompra($event)" ></app-form-calificar-compra>
+
+</div>

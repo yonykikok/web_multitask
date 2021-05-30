@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReseniasClienteComponent } from './resenias-cliente.component';
+import { ProductToSellRowComponent } from './product-to-sell-row.component';
 
-describe('ReseniasClienteComponent', () => {
-  let component: ReseniasClienteComponent;
-  let fixture: ComponentFixture<ReseniasClienteComponent>;
+describe('ProductToSellRowComponent', () => {
+  let component: ProductToSellRowComponent;
+  let fixture: ComponentFixture<ProductToSellRowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReseniasClienteComponent ]
+      declarations: [ ProductToSellRowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReseniasClienteComponent);
+    fixture = TestBed.createComponent(ProductToSellRowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

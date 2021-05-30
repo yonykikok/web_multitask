@@ -1,0 +1,14 @@
+<div class="divCalificarContainer">
+    <div class="divStarContainer">
+        <mat-icon class="star" (click)="rellenarEstrellas(1)">star</mat-icon>
+        <mat-icon class="star" (click)="rellenarEstrellas(2)">star</mat-icon>
+        <mat-icon class="star" (click)="rellenarEstrellas(3)">star</mat-icon>
+        <mat-icon class="star" (click)="rellenarEstrellas(4)">star</mat-icon>
+        <mat-icon class="star" (click)="rellenarEstrellas(5)">star</mat-icon>
+    </div>
+    <form name="comentarioCompra">
+        <textarea type="submit" placeholder="Escriba su comentario" name="comentario" [(ngModel)]="comentario">
+        </textarea>
+        <button mat-raised-button color="primary" (click)="calificarUsuario()">Calificar</button>
+    </form>
+</div>

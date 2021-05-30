@@ -32,7 +32,6 @@ export class RevisarPublicacionesPendientesComponent implements OnInit {
           publicacionesPendientes.push(publicacion);
         }
       })
-      console.log(publicacionesPendientes);
     })
     return publicacionesPendientes;
   }
@@ -63,6 +62,5 @@ export class RevisarPublicacionesPendientesComponent implements OnInit {
     
   }
   abrirDetalladoPublicacion(element){
-    console.log(element);
   }
 }

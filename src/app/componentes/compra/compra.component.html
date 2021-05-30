@@ -1,0 +1,66 @@
+<div class="compraContainer" *ngIf="compra">
+    <div class="detalleCompraContainer">
+        <label class="lblFecha">{{fechaCompra}}</label>
+        <div class="productoContainer">
+            <div class="divImgContainer">
+                <img *ngFor="let foto of compra.producto.fotos" src={{foto}} alt="{{compra.producto.titulo}}">
+            </div>
+            <label class="clickeable" (click)="openDetalleProducto(compra.producto)"><a>{{compra.producto.titulo}}</a>
+            </label>
+            <label>{{compra.producto.precio|currency}} </label>
+        </div>
+        <!-- si es vendedor -->
+        <div class="vendedorContainer" *ngIf="rolEnLaCompra=='comprador' && vendedor">
+            <img src="{{vendedor.foto}}">
+            <p><b>Vendedor</b></p>
+            <p>{{vendedor.apellido}} {{vendedor.nombre}}</p>
+            <a class="clickeable" (click)="openChat()">Ver mensajes</a>
+        </div>
+        <!--FIN  si es vendedor -->
+
+        <!-- si es comprador -->
+        <div class="vendedorContainer" *ngIf="rolEnLaCompra=='vendedor' && comprador">
+            <img src="{{comprador.foto}}">
+            <p><b>Comprador</b></p>
+            <p>{{comprador.apellido}} {{comprador.nombre}}</p>
+            <a class="clickeable" (click)="openChat()">Ver mensajes</a>
+        </div>
+        <!-- FIN si es comprador -->
+
+
+        <div class="accionesContainer" *ngIf="compra.estado!='concretado'">
+            <button *ngIf="rolEnLaCompra=='comprador'" (click)="mostarFormConfirmacion=true;">Ya tengo el
+                producto</button>
+            <button *ngIf="rolEnLaCompra=='vendedor'" (click)="mostarFormConfirmacion=true;">Ya entregue el
+                producto</button>
+
+        </div>
+        <div class="moreOptions">
+            <span class="material-icons" (click)="mostrarOpciones= !mostrarOpciones">
+                more_vert
+            </span>
+            <div class="opciones" *ngIf="mostrarOpciones">
+                <label (click)="openVerDetalleCompra()">Ver detalle</label>
+                <label (click)="mostrarOpciones=false">Tengo un problema</label>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div *ngIf="mostarFormConfirmacion" class="divConfirmacion" (click)="mostarFormConfirmacion=false;">
+        <div class="mensajeConfirmacionContainer">
+            <h2 *ngIf="rolEnLaCompra=='comprador'" style="font-size:25px;">Esta seguro de tener el producto?</h2>
+            <h2 *ngIf="rolEnLaCompra=='vendedor'">Esta seguro de haber entregado el producto?</h2>
+            <p>Esta accion no se puede deshacer</p>
+            <div class="divButtonAction">
+                <button mat-stroked-button color="primary" *ngIf="rolEnLaCompra=='comprador'"
+                    (click)="confirmarTransaccion()">Si ya lo tengo</button>
+                <button mat-stroked-button color="primary" *ngIf="rolEnLaCompra=='vendedor'"
+                    (click)="confirmarTransaccion()">Si ya lo entregue</button>
+                <button mat-stroked-button (click)="mostarFormConfirmacion=false;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

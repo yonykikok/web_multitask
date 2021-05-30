@@ -1,0 +1,24 @@
+<div class="divChatCompraContainer">
+    <div id="mensajesContainer" class="divMensajesContainer" *ngIf="compra && compra.mensajes">
+        <div *ngFor="let mensaje of compra.mensajes">
+            <div class="teste" style="min-width: 100%;">
+                <p *ngIf="mensaje.idEmisor==user.id" class="mensajes mensajesEnviados">
+                    <span style="font-size: 8px; display: block;">{{mensaje.fechaDeEnvio | date: 'dd/MM/yyyy'}}</span>
+                    {{mensaje.mensaje}}
+                </p>
+            </div>
+            <div class="teste" style="min-width: 100%;">
+                <p *ngIf="mensaje.idEmisor!=user.id" class="mensajes mensajesRecibidos">
+                    <span style="font-size: 8px; display: block;">{{mensaje.fechaDeEnvio | date: 'dd/MM/yyyy'}}</span>
+                    {{mensaje.mensaje}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <form name="mensajesCompra">
+        <textarea type="submit" placeholder="Escriba su mensaje"  name="mensaje" [(ngModel)]="mensaje" >
+
+        </textarea>
+        <button (click)="enviarMensaje()">Enviar mensaje</button>
+    </form>
+</div>

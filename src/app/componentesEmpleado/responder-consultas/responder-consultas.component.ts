@@ -63,7 +63,6 @@ export class ResponderConsultasComponent implements OnInit {
       querySnapShot.forEach((doc) => {
         if (doc.data()['correo'] == consultaRespondida.correo && doc.data()['horaConsulta'] == consultaRespondida.horaConsulta) 
         {
-          // console.log(doc.data());
           // auxConsulta = doc.data();
           this.dataBase.actualizar("consultasAnonimas", consultaRespondida, doc.id);
 

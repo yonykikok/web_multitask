@@ -118,7 +118,6 @@ import { SpinnerComponent } from './componentes/spinner/spinner.component';
 import { RevisarPublicacionesPendientesComponent } from './componentesEmpleado/revisar-publicaciones-pendientes/revisar-publicaciones-pendientes.component';
 import { DetalladoPublicacionComponent } from './componentes/detallado-publicacion/detallado-publicacion.component';
 import { PublicacionesClienteComponent } from './componentesCliente/publicaciones-cliente/publicaciones-cliente.component';
-import { ReseniasClienteComponent } from './componentesCliente/resenias-cliente/resenias-cliente.component';
 import { EditarUsComponent } from './componentes/editar-us/editar-us.component';
 import { ReparacionesClienteComponent } from './componentesCliente/reparaciones-cliente/reparaciones-cliente.component';
 import { SeleccionarMisArticulosComponent } from './componentes/seleccionar-mis-articulos/seleccionar-mis-articulos.component';
@@ -139,6 +138,14 @@ import { FormularioDePagoComponent } from './componentes/formulario-de-pago/form
 import { TextMaskModule } from 'angular2-text-mask';
 import { CreditCardComponent } from './componentes/credit-card/credit-card.component';
 import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
+import { MisComprasComponent } from './componentesCliente/mis-compras/mis-compras.component';
+import { CompraComponent } from './componentes/compra/compra.component';
+import { ChatCompraComponent } from './componentes/chat-compra/chat-compra.component';
+import { VerDetalleCompraComponent } from './componentes/ver-detalle-compra/ver-detalle-compra.component';
+import { ReseniaUsuarioComponent } from './componentesCliente/resenia-usuario/resenia-usuario.component';
+import { FormCalificarCompraComponent } from './componentesCliente/form-calificar-compra/form-calificar-compra.component';
+import { ReputacionComponent } from './componentesCliente/reputacion/reputacion.component';
+import { ProductToSellRowComponent } from './componentes/product-to-sell-row/product-to-sell-row.component';
 
 @NgModule({
   declarations: [
@@ -160,7 +167,7 @@ import { NotificacionesComponent } from './componentes/notificaciones/notificaci
     SubirImagenesComponentComponent,
     ChatPermutaComponent,
     FormAltaProductoComponent,
-
+    ReputacionComponent,
     UsuarioComponent,
     RegistroEmpleadoComponent,
     NuestrosServiciosComponent,
@@ -171,7 +178,6 @@ import { NotificacionesComponent } from './componentes/notificaciones/notificaci
     RevisarPublicacionesPendientesComponent,
     DetalladoPublicacionComponent,
     PublicacionesClienteComponent,
-    ReseniasClienteComponent,
     EditarUsComponent,
     ReparacionesClienteComponent,
     SeleccionarMisArticulosComponent,
@@ -183,6 +189,13 @@ import { NotificacionesComponent } from './componentes/notificaciones/notificaci
     FormularioDePagoComponent,
     CreditCardComponent,
     NotificacionesComponent,
+    MisComprasComponent,
+    CompraComponent,
+    ChatCompraComponent,
+    VerDetalleCompraComponent,
+    ReseniaUsuarioComponent,
+    FormCalificarCompraComponent,
+    ProductToSellRowComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],

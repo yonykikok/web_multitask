@@ -34,7 +34,6 @@ static arrayImagenes:string[]=[];
           item.uploading=false;
            item.downloadURL.subscribe((link)=>{
              StorageService.arrayImagenes.push(link);
-             console.log(link);
           });
       })
       ).subscribe();

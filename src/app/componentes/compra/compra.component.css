@@ -1,0 +1,149 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+.compraContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.compraContainer img {
+  max-width: 40px;
+  max-height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.compraContainer a {
+  font-size: 12px;
+}
+.detalleCompraContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid green;
+  width: 80%;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f0f3f4;
+  box-shadow: 3px 2px 5px 0 #909090;
+  margin: 5px;
+}
+.vendedorContainer p {
+  font-size: 15px;
+}
+.vendedorContainer img {
+  max-width: 25px;
+  max-height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+  box-shadow: 0 0 2px 0 black;
+  object-fit: contain;
+}
+.lblFecha {
+  position: relative;
+  font-size: 12px;
+  top: -43%;
+}
+button {
+  font-size: 15px;
+  box-shadow: 2px 2px 5px 0 black;
+  border-radius: 10px;
+  border: 1px solid green;
+  padding: 10px;
+}
+
+button:active {
+  box-shadow: 2px 2px 2px 0 black;
+  transform: scale(0.95);
+}
+.productoContainer {
+  text-align: center;
+}
+
+.productoContainer label {
+  display: block;
+}
+.clickeable {
+  text-decoration: underline;
+  cursor: pointer;
+  color: blue;
+}
+
+.clickeable:active {
+  transform: scale(0.97);
+}
+
+.divConfirmacion {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.705);
+  z-index: 99999;
+}
+.mensajeConfirmacionContainer {
+  background-color: white;
+  padding: 10%;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.divButtonAction {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.divConfirmacion h2,
+.divConfirmacion p {
+  padding-bottom: 20px;
+}
+.moreOptions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -40%;
+  color: blue;
+  border-radius: 3px;
+}
+.moreOptions span {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.moreOptions:hover {
+  background-color: #d4d4d4;
+  box-shadow: 0 0 2px 0 black;
+}
+
+.moreOptions label:active {
+  transform: scale(0.95);
+}
+.moreOptions .opciones {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 150px;
+  background-color: white;
+  transform: translate(-60px, 46px);
+}
+
+.moreOptions .opciones label{
+  padding: 5px;  
+  width: 100%;
+  text-align: center;
+}
+
+.moreOptions .opciones label:hover{
+  background-color: #d4d4d4;
+  box-shadow: 0 0 2px 0 black;
+}

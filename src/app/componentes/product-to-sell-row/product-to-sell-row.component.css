@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.divRow {
+  width: 90vw;
+  background-color: white;
+  margin: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+
+.divRow:active {
+  box-shadow: 0 0 10px 0 blue !important;
+  border-radius: 5px;
+}
+.divRow:hover {
+  box-shadow: 0 0 5px 0 #606060;
+}
+
+.divRow img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 100%;
+  transition: 0.7s;
+  margin: 0.2rem;
+  box-shadow: 0 0 2px 0 #909090;
+}
+.divRow img:hover {
+  border-radius: 0%;
+  box-shadow: 0 0 2px 0px blue;
+}
+.divRow .divInfo * {
+  margin: 0 1rem;
+  text-align: start;
+  display: block;
+}
+
+.divRow .positionAbsolute {
+  position: absolute;
+  right: 0;
+}
+.divRow .title {
+  font-weight: bold;
+}
+
+.divRow .divProductContainer {
+  display: inline;
+  width: 70%;
+  max-width: 70%;
+  display: flex;
+  align-items: center;
+}
+.divRow .divVendedorContainer {
+  display: inline;
+  max-width: 30%;
+}
+
+.divRow .favSvg {
+  cursor: pointer;
+  transform: translateY(-7px);
+  z-index: 1;
+  position: absolute;
+  fill: red;
+  right: 7vw;
+  stroke: var(--colorPrincipal);
+}
+.divRow .esMiPublicacion {
+  z-index: 1;
+  position: absolute;
+  border-radius: 100%;  transform: translateY(-7px);
+  right: 7vw;
+  padding: 0 5px 0 5px;
+  font-size: 12px;
+  box-shadow: inset 0 0px 5px #0000ffb8;
+}

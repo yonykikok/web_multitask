@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 export class TiendaComponent implements OnInit {
   desplegarMenu = false;
 
-
+  modoCards = true;
   mostrarSpinner = false;
   publicacionObjetivo;
   mostrarMiListaDeproductos = false;
@@ -40,9 +40,25 @@ export class TiendaComponent implements OnInit {
       textoABuscar: ['', [Validators.required]]
     });
   }
+  irAHome(){
+    this.router.navigateByUrl("/");
+  }
+  cambiarModoVista(idIconSeleccionado) {
+
+    let iconLista = document.getElementById("iconViewList");
+    let iconCards = document.getElementById("iconViewCards");
+    if (idIconSeleccionado == 'iconViewList') {
+      iconLista.style.color = 'blue';
+      iconCards.style.color = 'black';
+      this.modoCards = false;
+    } else {
+      this.modoCards = true;
+      iconLista.style.color = 'black';
+      iconCards.style.color = 'blue';
+    }
+  }
   toggleDesplegarMenu() {
     this.desplegarMenu = !this.desplegarMenu;
-    console.log(this.desplegarMenu);
   }
   cerrarCesion() {
     this.router.navigateByUrl('/');
@@ -56,7 +72,7 @@ export class TiendaComponent implements OnInit {
   buscarCoincidencias() {
     let textoABuscar = this.inputSearch.controls['textoABuscar'].value.toLocaleLowerCase();
     let listaAuxiliar = [];
-    
+
     this.listadoDePublicaciones.forEach((publicacion) => {
       if (publicacion.descripcion.toLocaleLowerCase().includes(textoABuscar) || publicacion.titulo.toLocaleLowerCase().includes(textoABuscar)) {
         listaAuxiliar.push(publicacion);
@@ -73,8 +89,8 @@ export class TiendaComponent implements OnInit {
     this.authService.actualizarUsuario();
 
 
-      this.listadoDePublicaciones = this.cargarPublicacionesActivas();
-      this.listadoDePublicacionesAMostrar = this.listadoDePublicaciones;
+    this.listadoDePublicaciones = this.cargarPublicacionesActivas();
+    this.listadoDePublicacionesAMostrar = this.listadoDePublicaciones;
 
 
 
@@ -114,7 +130,7 @@ export class TiendaComponent implements OnInit {
     }
     const dialogRef = this.dialog.open(FormularioDePagoComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {   
+    dialogRef.afterClosed().subscribe(result => {
       // switch (result) {
       //   case 'confirmarCompra':
       //     this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);

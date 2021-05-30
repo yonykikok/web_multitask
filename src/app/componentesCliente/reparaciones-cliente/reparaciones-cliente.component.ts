@@ -21,7 +21,6 @@ export class ReparacionesClienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.listaDeReparaciones = this.obtenerReparaciones();
-    console.log(this.listaDeReparaciones);
   }
 
   obtenerReparaciones(): any {
@@ -30,7 +29,6 @@ export class ReparacionesClienteComponent implements OnInit {
     this.firestore.collection("reparaciones").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
         reparacion = doc.data();
-        // console.log(this.authService.user['dni']);
         if (reparacion.DNI == this.authService.user['dni']) {
           reparacion['id']=doc.id;  
           this.listaDeReparaciones.push(reparacion);
@@ -41,11 +39,9 @@ export class ReparacionesClienteComponent implements OnInit {
   }
 
   pagar(reparacion){
-    console.log(reparacion);
     reparacion.estado = 'pagado';
     this.listaDeReparaciones.forEach(element => {
       if (element == reparacion){
-        console.log(element);
         //CONECTAR PAGAR
         // this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
         // this.listaDeReparaciones = this.obtenerReparaciones();
@@ -55,11 +51,9 @@ export class ReparacionesClienteComponent implements OnInit {
   }
 
   cancelar(reparacion, estado){
-    console.log(reparacion);
     reparacion.estado = estado;
     this.listaDeReparaciones.forEach(element => {
       if (element == reparacion){
-        // console.log(element);
         this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
         this.listaDeReparaciones = this.obtenerReparaciones();
         return;

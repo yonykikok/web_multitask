@@ -48,7 +48,6 @@ export class DatabaseService {
         if(datos.data().correo == email )
         {
           auxPerfil = datos.data().perfil;
-          console.log(auxPerfil);
           return auxPerfil;
         }
       })

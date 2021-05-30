@@ -1,0 +1,131 @@
+.verDetalleCompraContainer {
+  width: 100%;
+  height: 100%;
+}
+.verDetalleCompraContainer h1{
+    margin: 20px;
+}
+.divResumenDeCompra {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.productoContainer {
+  padding: 10px;
+  border-radius: 10px;
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.divImgContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.divImgContainer img {
+  max-width: 80px;
+  max-height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+}
+.productoContainer .productTitle {
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+.divResumenDeCompra .divRolContainer img {
+  max-width: 100px;
+  max-height: 100px;
+  min-width: 100px;
+  min-height: 100px;
+  border-radius: 10px;
+}
+div.divResumenDeCompra .productoContainer {
+  width: 69%;
+  margin-right: 1%;
+}
+div.divResumenDeCompra .divRolContainer {      
+  min-width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  margin-left: 1%;
+  width: 29%;
+}
+
+hr{
+    width: 100%;
+}
+.divDetallado{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* mas opciones */
+
+.moreOptions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: blue;
+    border-radius: 3px;
+    float: right;
+    top: -22px;
+  }
+  .moreOptions span {
+    padding: 5px;
+    font-size: 18px;
+  }
+  
+  .moreOptions:hover {
+    background-color: #d4d4d4;
+    box-shadow: 0 0 2px 0 black;
+  }
+  
+  .moreOptions label:active {
+    transform: scale(0.95);
+  }
+  .moreOptions .opciones {
+    
+    position: absolute;
+    width: 150px;
+    background-color: white;
+    right: 0%;
+    top: 101%;
+
+    /* position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 150px;
+    background-color: white;
+    transform: translate(-60px, 36px); */
+  }
+  
+  .moreOptions .opciones label{
+    margin: 0;
+    padding: 5px;  
+    width: 100%;
+    text-align: center;
+  }
+  
+  .moreOptions .opciones label:hover{
+    background-color: #d4d4d4;
+    box-shadow: 0 0 2px 0 black;
+  }
+  .cdk-global-overlay-wrapper {
+    overflow: auto;
+  }
+/* fin mas opciones */

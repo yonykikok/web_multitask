@@ -114,7 +114,6 @@ buscarUsuarioLogueado()
          usuario= new Usuario(doc.data()['nombre'],doc.data()['apellido'],doc.data()['DNI'],doc.data()['correo'],doc.data()['tipo'],doc.data()['foto']);
          usuario['id']=doc.id;
         return this.user = usuario;
-         console.log("ENCUENTRO EL USUARIO")
        }
       })
     })

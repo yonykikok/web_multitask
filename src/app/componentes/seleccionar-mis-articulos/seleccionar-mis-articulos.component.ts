@@ -30,7 +30,6 @@ export class SeleccionarMisArticulosComponent implements OnInit {
     let valorAcumulado=0;
     if(event.previousContainer.id[event.previousContainer.id.length-1]=="0"){//mueve de disponible a ofrecer
       valorAcumulado =this.calcularvalorAcumuladoActual()+productoArrastrado['precio'];
-    // console.log(event.previousContainer.id[event.previousContainer.id.length-1]);
     }else{//de ofrecer vuevle a disponible
       valorAcumulado =this.calcularvalorAcumuladoActual()-productoArrastrado['precio'];
     }
@@ -82,9 +81,6 @@ export class SeleccionarMisArticulosComponent implements OnInit {
           }
           listaOfertasExistentes.push(oferta);
           this.publicacionObjetivo.listaDeOfertas=listaOfertasExistentes;
-          console.log("PRECIO PUB",this.publicacionObjetivo.precio);
-          console.log("Valos acumulado",this.valorAcumulado);
-          console.log("OFERTA",oferta.efectivo);
           this.dataBase.actualizar('publicaciones',this.publicacionObjetivo,this.publicacionObjetivo.id).then(()=>{
             alert("Oferta enviada con exito");
           }).catch(()=>{

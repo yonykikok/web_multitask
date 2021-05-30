@@ -20,7 +20,6 @@ export class ListaDePersonalComponent implements OnInit {
 
   ngOnInit(): void {
     this.listado = this.cargarUsuariosQueNoSean();
-    console.log(this.listado);
   }
 
   cargarUsuariosQueNoSean(): any {
@@ -59,7 +58,6 @@ export class ListaDePersonalComponent implements OnInit {
   }
 
   editarUsuario(persona) {
-    console.log(persona);
   }
 
 }

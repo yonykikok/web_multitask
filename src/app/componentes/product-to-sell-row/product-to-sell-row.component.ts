@@ -1,16 +1,16 @@
-import { Component, Input, OnInit, Output, EventEmitter, Renderer2, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
 import { DetalladoPublicacionComponent } from '../detallado-publicacion/detallado-publicacion.component';
-import { SeleccionarMisArticulosComponent } from '../seleccionar-mis-articulos/seleccionar-mis-articulos.component';
 
 @Component({
-  selector: 'app-product-to-sell-card',
-  templateUrl: './product-to-sell-card.component.html',
-  styleUrls: ['./product-to-sell-card.component.css'],
+  selector: 'app-product-to-sell-row',
+  templateUrl: './product-to-sell-row.component.html',
+  styleUrls: ['./product-to-sell-row.component.css']
 })
-export class ProductToSellCardComponent implements OnInit, AfterViewInit {
+export class ProductToSellRowComponent implements OnInit {
+
   @ViewChild("divCarToSell") divCardToSell: ElementRef;
   @ViewChild("svgFav") svgFav: ElementRef;
   usuarioLogeado;
@@ -19,8 +19,13 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
   @Input() publicacion;
   @Output() comprarClickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() permutarClickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
-  constructor(public dialog: MatDialog, private authService: AuthService, private renderer: Renderer2, private dataBase: DatabaseService) {
+  vendedor;
 
+  constructor(
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private renderer: Renderer2,
+    private dataBase: DatabaseService) {
   }
 
   public addClass() {
@@ -32,7 +37,11 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit(): void {
-     
+      // this.dataBase.obtenerPorId('usuarios', this.publicacion.idUserQuePublico).subscribe((res) => {
+      //     this.vendedor = res.payload.data();
+      //     this.vendedor['id'] = res.payload.id;
+      // });
+
     if (this.publicacion.idUserQuePublico == this.authService.user['id']) {
       this.esMiPublicacion = true;
     }
@@ -71,7 +80,8 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
       }
     });
   }
-  faviar(publicacion) {
+  faviar(publicacion,e) {
+    e.stopPropagation();
     let listaDeFavs = [];
 
     if (this.usuarioLogeado['listaDeFavoritos']) {//verificamos si ya tiene algun fav agregado
@@ -94,6 +104,5 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
     this.usuarioLogeado['listaDeFavoritos'] = listaDeFavs;
     this.dataBase.actualizar('usuarios', this.usuarioLogeado, this.usuarioLogeado.id);
   };
-
 
 }

@@ -1,0 +1,10 @@
+<div>
+
+    <h1>Mis Compras</h1>
+    <app-compra *ngFor="let compra of listaDeCompras" [compra]="compra" [rolEnLaCompra]="'comprador'"></app-compra>
+</div>
+<div>
+
+    <h1>Mis Ventas</h1>
+    <app-compra *ngFor="let compra of listaDeVentas" [compra]="compra" [rolEnLaCompra]="'vendedor'"></app-compra>
+</div>
