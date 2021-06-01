@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DatabaseService } from 'src/app/servicios/database.service';
 
 // IMPORTO EL TIMER:
 import { Observable, timer } from 'rxjs';
@@ -29,18 +30,21 @@ export class TiendaComponent implements OnInit {
   listadoDePublicaciones: any[] = [];
   listadoDePublicacionesAMostrar = [];
   inputSearch;
+  flagFavs = false;
+  flagCarrito = false;
 
   constructor(
     private router: Router,
     public dialog: MatDialog,
     private authService: AuthService,
+    private dataBase: DatabaseService,
     private firestore: AngularFirestore,
     private formBuilder: FormBuilder) {
     this.inputSearch = this.formBuilder.group({
       textoABuscar: ['', [Validators.required]]
     });
   }
-  irAHome(){
+  irAHome() {
     this.router.navigateByUrl("/");
   }
   cambiarModoVista(idIconSeleccionado) {
@@ -142,6 +146,81 @@ export class TiendaComponent implements OnInit {
       //     break;
       // }
     });
+  }
+
+  logOff() {
+    this.user = null;
+    localStorage.clear();
+    this.router.navigateByUrl("/home");
+  }
+
+  cambiarLista(parametro) {
+    this.mostrarSpinner = true;
+    if (parametro == "favs") {
+      this.flagFavs = true;
+      this.modoCards = true;
+      this.flagCarrito = false;
+      let listaFavsAux = []
+      let listadoDePublicacionesFavs = [];
+
+      this.firestore.collection("usuarios").get().subscribe((querySnapShot) => {
+        querySnapShot.forEach((doc) => {
+          if (this.user.dni == doc.data()['DNI']) {
+            listaFavsAux = doc.data()['listaDeFavoritos'];
+          }
+        })
+        this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
+          querySnapShot.forEach((doc) => {
+            let publicacion = doc.data();
+            publicacion['id'] = doc.id;
+            listaFavsAux.forEach((favs) => {
+              if (publicacion['id'] == favs) {
+                listadoDePublicacionesFavs.push(publicacion);
+              }
+            })
+
+          })
+        })
+      })
+      this.listadoDePublicacionesAMostrar = listadoDePublicacionesFavs;
+      this.mostrarSpinner = false;
+
+    } else if (parametro == "carrito") {
+      this.flagFavs = false;
+      this.flagCarrito = true;
+      this.modoCards = false;
+      let listadoDePublicacionesCarr = [];
+      let listaCarrAux = []
+
+      this.firestore.collection("usuarios").get().subscribe((querySnapShot) => {
+        querySnapShot.forEach((doc) => {
+          if (this.user.dni == doc.data()['DNI']) {
+            listaCarrAux = doc.data()['listaDeCarrito'];
+          }
+        })
+        this.firestore.collection("publicaciones").get().subscribe((querySnapShot) => {
+          querySnapShot.forEach((doc) => {
+            let publicacion = doc.data();
+            publicacion['id'] = doc.id;
+            listaCarrAux.forEach((favs) => {
+              if (publicacion['id'] == favs) {
+                listadoDePublicacionesCarr.push(publicacion);
+              }
+            })
+
+          })
+        })
+      })
+      this.listadoDePublicacionesAMostrar = listadoDePublicacionesCarr;
+      this.mostrarSpinner = false;
+
+    } else if (parametro == "tienda") {
+      this.flagCarrito = false;
+      this.modoCards = true;
+      this.flagFavs = false;
+      this.listadoDePublicacionesAMostrar = this.listadoDePublicaciones;
+      this.mostrarSpinner = false;
+    }
   }
 
 }

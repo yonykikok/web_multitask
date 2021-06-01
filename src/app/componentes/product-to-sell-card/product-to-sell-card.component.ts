@@ -95,5 +95,27 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
     this.dataBase.actualizar('usuarios', this.usuarioLogeado, this.usuarioLogeado.id);
   };
 
+  agregarCarro(publicacion) {
+    let listaDeCarrito = [];
+
+    if (this.usuarioLogeado['listaDeCarrito']) {//verificamos si ya tiene algun fav agregado
+      listaDeCarrito = this.usuarioLogeado['listaDeCarrito'];
+
+      if (listaDeCarrito.includes(publicacion.id)) {//ahora verificamos si tiene esta publicacion en el carro
+        listaDeCarrito = listaDeCarrito.filter((idCarrito) => idCarrito != publicacion.id);
+        // this.renderer.setAttribute(this.svgFav.nativeElement, "fill", "white");
+      } else {//sino, lo agregamos
+        // this.renderer.setAttribute(this.svgFav.nativeElement, "fill", "blue");
+        listaDeCarrito.push(publicacion.id);
+      }
+
+    } else {//sino, faveamos al primero
+      listaDeCarrito.push(publicacion.id);
+      // this.renderer.setAttribute(this.svgFav.nativeElement, "fill", "blue");
+    }
+    this.usuarioLogeado['listaDeCarrito'] = listaDeCarrito;
+    this.dataBase.actualizar('usuarios', this.usuarioLogeado, this.usuarioLogeado.id);
+  };
+
 
 }

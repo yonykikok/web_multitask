@@ -29,24 +29,49 @@
     <!-- Fin buscador -->
 
     <!-- incio avatar usuario -->
-    <a (click)="toggleDesplegarMenu()" class="divAvatarUsuario">
-      <div class="divPerfilUsuario" *ngIf="user">
-        <p class="pNombreUsuario">{{user.nombre}}</p>
-        <img class="imgFotoDePerfil" src="{{user.foto}}" alt="Foto de perfil">
-      </div>
-      <div class="divMenuOptions" *ngIf="desplegarMenu">
-        <a [routerLink]="['/usuario']">Panel</a>
-        <a [routerLink]="['/favoritos']">Mis favoritos </a>
-        <a [routerLink]="['/carrito']">Mi carrito </a>
-        <a (click)="cerrarCesion()">Salir</a>
-      </div>
-    </a>
+    <div *ngIf="user">
+      <span class="material-icons" *ngIf="!flagFavs && !flagCarrito" (click)="cambiarLista('favs')"
+        style="position: absolute;      right: 205px;">
+        favorite_border
+      </span>
+      <span class="material-icons" *ngIf="flagFavs && !flagCarrito" (click)="cambiarLista('tienda')"
+        style="position: absolute;      right: 205px;">
+        favorite
+      </span>
+      <span class="material-icons" *ngIf="!flagCarrito" (click)="cambiarLista('carrito')"
+        style="position: absolute;      right: 180px;">
+        shopping_cart
+      </span>
+      <span class="material-icons" *ngIf="flagCarrito" (click)="cambiarLista('tienda')"
+        style="position: absolute;      right: 180px;">
+        store
+      </span>
+
+      <a (click)="toggleDesplegarMenu()" class="divAvatarUsuario" style="position: absolute; right: 20px;" [routerLink]="['/usuario']">
+        <div class="divPerfilUsuario" *ngIf="user">
+          <p class="pNombreUsuario">{{user.nombre}}</p>
+          <img class="imgFotoDePerfil" src="{{user.foto}}" alt="Foto de perfil">
+        </div>
+        <!-- <div class="divMenuOptions" *ngIf="desplegarMenu">
+          <a [routerLink]="['/usuario']">Panel</a>
+          <a [routerLink]="['/favoritos']">Mis favoritos </a>
+          <a [routerLink]="['/carrito']">Mi carrito </a>
+          <a (click)="cerrarCesion()">Salir</a>
+        </div> -->
+      </a>
+
+      <svg class="bi bi-power" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg" (click)="logOff()" style="position: absolute; right: 5px;">
+        <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z" />
+        <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z" />
+      </svg>
+    </div>
     <!-- FIN incio avatar usuario -->
 
     <button mat-flat-button *ngIf="!user" [routerLink]="['/home']" style="position: absolute;
   right: 10px;">Login</button>
 
-    
+
   </mat-toolbar>
 
   <div class="input-group inputSearch displayInPhone" [formGroup]="inputSearch">
@@ -71,11 +96,11 @@
         (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)">
       </app-product-to-sell-card>
 
+    <!-- ROWS -->
       <app-product-to-sell-row *ngIf="!modoCards" [publicacion]="publicacion"
         (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)">
       </app-product-to-sell-row>
     </div>
-    <!-- ROWS -->
 
 
     <mat-icon class="botonFlotante" title="Publicar articulo" [routerLink]="['/testeo3']">add_to_queue</mat-icon>

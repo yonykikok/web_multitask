@@ -2,8 +2,11 @@
 
 <header class="fixed-header" role="banner">
 
-    <h1 style="text-align: center"> MULTITASK </h1>
-
+    <a href="home">
+        <h1 style="text-align: center; color: black" > MULTITASK
+            <img src="../../../assets/images/pc5e5enyi.png" alt="logo-Multitask" style="text-align: center; width: 40px">
+        </h1>
+    </a>
 </header>
 
 <body>
@@ -26,6 +29,12 @@
                     <button mat-button color="warn">
                         <mat-icon>edit</mat-icon>Editar datos
                     </button>
+
+                    <a href="testeo">
+                        <button mat-button color="primary">
+                            <mat-icon>phone_iphone</mat-icon> Volver a la tienda
+                        </button>
+                    </a>
 
                     <button mat-button color="warn" (click)="mostrar('boolNotificaciones','divNotificaciones')">
                         <mat-icon>filter_list</mat-icon> Mostrar notificaciones
@@ -212,7 +221,7 @@
             </div>
 
 
-            <div *ngIf="boolOfertasRealizadas == true" id="OfertasRealizadas" >
+            <div *ngIf="boolOfertasRealizadas == true" id="OfertasRealizadas">
                 <app-ver-ofertas></app-ver-ofertas>
             </div>
 
@@ -232,7 +241,8 @@
                 <h2>Publicar Articulo</h2>
                 <app-form-alta-producto></app-form-alta-producto>
             </div>
-            <div *ngIf="boolFormMisPermutas == true" id="FormMisPermutas" style="text-align: center;" id="divFormMisPermutas">
+            <div *ngIf="boolFormMisPermutas == true" id="FormMisPermutas" style="text-align: center;"
+                id="divFormMisPermutas">
                 <h2>Mis permutas</h2>
                 <app-mis-permutas></app-mis-permutas>
             </div>

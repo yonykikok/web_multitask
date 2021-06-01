@@ -13,6 +13,17 @@ mat-card {
   fill: red;
   stroke: var(--colorPrincipal);
 }
+
+.carrSvg{
+  cursor:pointer;
+  transform: translate(40px, 445px);
+  z-index: 1;
+  position: absolute;
+  fill: red;
+  stroke: var(--colorPrincipal);
+  /* right: 1px; */
+}
+
 label {
   transform: translate(110px, 5px);
   z-index: 1;
