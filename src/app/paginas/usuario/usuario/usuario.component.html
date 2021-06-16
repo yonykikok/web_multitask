@@ -197,12 +197,12 @@
 
             <div *ngIf="boolPubliciones == true" id="divPubliciones" style="text-align: center; margin-bottom: 10%;">
                 <select id="selectPublicaciones" (change)="cambiarSeleccion()">
-                    <option value="activas">activas</option>
-                    <option value="pendientes">pendientes</option>
-                    <option value="pausadas">pausadas</option>
-                    <option value="permutaPendiente">permutaPendiente</option>
-                    <option value="rechazadas">rechazadas</option>
-                    <option value="vendidas">vendidas</option>
+                    <option value="activas">Activas</option>
+                    <option value="pendientes">Pendientes</option>
+                    <option value="pausadas">Pausadas</option>
+                    <option value="permutaPendiente">Permuta Pendiente</option>
+                    <option value="rechazadas">Rechazadas</option>
+                    <option value="vendidas">Vendidas</option>
 
                 </select>
                 <app-publicaciones-cliente *ngIf="selectPublicaciones=='pendientes'" [criterioDeFiltrado]="'pendiente'"
