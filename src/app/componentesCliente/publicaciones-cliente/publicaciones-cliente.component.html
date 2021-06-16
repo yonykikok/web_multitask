@@ -1,5 +1,6 @@
 <div *ngIf="misPublicaciones && misPublicaciones.length > 0" style="text-align: center;">
     <h2>{{this.tituloSector}}</h2>
+    
     <table mat-table [dataSource]="this.misPublicaciones" class="mat-elevation-z8">
 
         <ng-container matColumnDef="titulo">
@@ -53,3 +54,6 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
+
+<div *ngIf="misPublicaciones.length == 0" style="text-align: center;">
+No hay publicaciones de este tipo</div>

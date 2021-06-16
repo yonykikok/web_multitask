@@ -54,8 +54,13 @@ export class PublicacionesClienteComponent implements OnInit {
 
 
     })
+    console.log(this.misPublicaciones);
+    console.log(this.criterioDeFiltrado);
     return this.misPublicaciones;
+    
   }
+
+
   cancelarPermuta(publicacion) {
     publicacion.listaDeOfertas.forEach(oferta => {
 

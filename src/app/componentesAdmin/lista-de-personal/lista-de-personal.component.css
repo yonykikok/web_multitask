@@ -76,3 +76,9 @@
   left: 0;
   transition: all 0.5s ease 0s;
 }
+
+img-fluid{
+  border-radius:50%;
+  height:300px;
+  object-fit:cover;
+}
