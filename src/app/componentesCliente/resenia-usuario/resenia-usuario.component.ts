@@ -50,6 +50,9 @@ export class ReseniaUsuarioComponent implements OnInit {
         this.usuario.reputacion.tresEstrella = (tresEstrella / this.usuario.reputacion.cantDeResenias) * 100;
         this.usuario.reputacion.cuatroEstrella = (cuatroEstrella / this.usuario.reputacion.cantDeResenias) * 100;
         this.usuario.reputacion.cincoEstralla = (cincoEstralla / this.usuario.reputacion.cantDeResenias) * 100;
+        this.usuario.reputacion.calificacionGeneral = ((1*unaEstrella + 2*dosEstrella + 3*tresEstrella + 
+          4*cuatroEstrella + 5*cincoEstralla) / this.usuario.reputacion.cantDeResenias) * 100;
+          console.log(this.usuario.reputacion.calificacionGeneral);
 
         setTimeout(() => {
           
@@ -73,27 +76,27 @@ export class ReseniaUsuarioComponent implements OnInit {
   }
 
   cambiarColorBarraGeneral() {
-    if (this.usuario.reputacion.calificacionGeneral <= 40) {
+    if (this.usuario.reputacion.calificacionGeneral <= 100) {
       this.estiloBarraGeneral = {
         'width': this.usuario.reputacion.calificacionGeneral + '%',
         'background-image': 'linear-gradient(90deg, red)'
       };
-    } else if (this.usuario.reputacion.calificacionGeneral > 40 && this.usuario.reputacion.calificacionGeneral <= 60) {
+    } else if (this.usuario.reputacion.calificacionGeneral > 100 && this.usuario.reputacion.calificacionGeneral <= 200) {
 
       this.estiloBarraGeneral = {
         'width': this.usuario.reputacion.calificacionGeneral + '%',
         'background-image': 'linear-gradient(90deg, red,orange)'
       };
-    } else if (this.usuario.reputacion.calificacionGeneral > 60 && this.usuario.reputacion.calificacionGeneral <= 80) {
+    } else if (this.usuario.reputacion.calificacionGeneral > 200 && this.usuario.reputacion.calificacionGeneral <= 300) {
 
       this.estiloBarraGeneral = {
         'width': this.usuario.reputacion.calificacionGeneral + '%',
         'background-image': 'linear-gradient(90deg,yellow,lightgreen)'
       };
-    } else if (this.usuario.reputacion.calificacionGeneral > 80 && this.usuario.reputacion.calificacionGeneral <= 100) {
+    } else if (this.usuario.reputacion.calificacionGeneral > 300 && this.usuario.reputacion.calificacionGeneral <= 400) {
 
       this.estiloBarraGeneral = {
-        'width': this.usuario.reputacion.calificacionGeneral + '%',
+        'width': (this.usuario.reputacion.calificacionGeneral/5) + '%',
         'background-image': 'linear-gradient(90deg,lightgreen,green)'
       };
     }
