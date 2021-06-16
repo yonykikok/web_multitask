@@ -24,7 +24,7 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
     }
     
   ngOnInit(): void {
-    console.log(this.listaDeOfertas);
+    // console.log(this.listaDeOfertas);
   }
   generarObjetoPermuta(publicacion){
       let permuta={

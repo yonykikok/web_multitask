@@ -64,7 +64,7 @@ export class VerDetalleCompraComponent implements OnInit {
         vendedor['reputacion']['cantDeResenias'] += 1;
         vendedor['reputacion']['cantDePuntos'] += calificacion.puntos;
         vendedor['reputacion']['calificacionGeneral'] = (vendedor['reputacion']['cantDePuntos'] / vendedor['reputacion']['cantDeResenias']) * 20;
-        console.log("calificacionNueva: ", vendedor['reputacion']);
+        // console.log("calificacionNueva: ", vendedor['reputacion']);
       } else {
         vendedor['reputacion'] = {
           resenias: [calificacion],
@@ -72,7 +72,7 @@ export class VerDetalleCompraComponent implements OnInit {
           cantDePuntos: calificacion.puntos,
           calificacionGeneral: calificacion.puntos
         }
-        console.log("primaraCalificacion: ", vendedor['reputacion']);
+        // console.log("primaraCalificacion: ", vendedor['reputacion']);
       }
       if (contador == 0) {
         contador++;

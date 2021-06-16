@@ -21,7 +21,7 @@ export class MisComprasComponent implements OnInit {
       querySnapShot.forEach((doc) => {
         let compra = doc.data();
         compra['id'] = doc.id;
-        console.log(compra['idVendedor'] + "---" + this.authService.user['id']);
+        // console.log(compra['idVendedor'] + "---" + this.authService.user['id']);
         if (compra['idComprador'] === this.authService.user['id']) {
           this.listaDeCompras.push(compra);
         }

@@ -62,7 +62,7 @@ export class ReseniaUsuarioComponent implements OnInit {
         this.usuario.reputacion.cincoEstralla = (cincoEstralla / this.usuario.reputacion.cantDeResenias) * 100;
         this.usuario.reputacion.calificacionGeneral = ((1 * unaEstrella + 2 * dosEstrella + 3 * tresEstrella +
           4 * cuatroEstrella + 5 * cincoEstralla) / this.usuario.reputacion.cantDeResenias) * 100;
-        console.log(this.usuario.reputacion.calificacionGeneral);
+        // console.log(this.usuario.reputacion.calificacionGeneral);
 
         this.cantidades.unaEstrella = unaEstrella;
         this.cantidades.dosEstrella = dosEstrella;

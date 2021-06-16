@@ -29,7 +29,7 @@ export class DetalladoConsultaAnonimaComponent implements OnInit {
   enviarRespuesta(){
     this.mostrarAnimacion=true;
     this.consulta['respuesta']=this.respuestaForm.controls.respuestaValida.value;
-    console.log(this.consulta);
+    // console.log(this.consulta);
     setTimeout(() => {
       this.enviarRespuestaEvent.emit(this.consulta);
     }, 4000);
