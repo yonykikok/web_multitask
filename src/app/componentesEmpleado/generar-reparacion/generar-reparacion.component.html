@@ -1,10 +1,3 @@
-
-<!--
-
-                <mat-icon *ngIf="consultaForm.controls.nombreValidado.invalid">check_box_outline_blank</mat-icon>
-                <mat-icon *ngIf="!consultaForm.controls.nombreValidado.invalid">check_box</mat-icon>
--->
-
 <div id="page">
 
 
@@ -15,8 +8,6 @@
     <div class="field-right">
 
         <div class = "miniPageRight">
-            Numero de factura:
-            <br>
             FECHA : {{reparacionJSON.fecha}}
         </div>
 
@@ -33,7 +24,9 @@
 
 
 
-        <div style="text-align: center;" class="form-title">DNI Cliente <span style="color: grey;"> (De no encontrarse en la base de datos, se deberá crear una cuenta)</span></div>
+        <div style="text-align: center;" class="form-title">DNI Cliente / DNI ST <span style="color: grey;"> (De no encontrarse en la base de datos, se deberá crear una cuenta)</span></div>
+        <div style="text-align: center; color: rgb(255, 4, 4);" class="form-title">Importante: <span style="color: grey;"> De no existir el DNI no se podrá generar la reparación</span></div>
+
         <mat-icon *ngIf="consultaForm.controls.DNIValidado.invalid">check_box_outline_blank</mat-icon>
         <mat-icon *ngIf="!consultaForm.controls.DNIValidado.invalid">check_box</mat-icon>
         
@@ -42,7 +35,7 @@
         formControlName="DNIValidado" class="form-field form-message">
 
 
-        <input *ngIf="DNIExiste == true"type="text" [(ngModel)]="reparacionJSON.DNI" placeholder="Ingrese su DNI"
+        <input *ngIf="DNIExiste == true" type="text" [(ngModel)]="reparacionJSON.DNI" placeholder="Ingrese su DNI"
         formControlName="DNIValidado" class="form-field form-message" disabled>
 
         
@@ -150,7 +143,7 @@
 
         <div class="buttons-container">
             <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="buttons"
-                (click)="registrarReparacionBD()">REGISTRAR REPARACIÓN</button>
+                (click)="registrarReparacionBD(); consultaForm.reset()">REGISTRAR REPARACIÓN</button>
         </div>
 
         </div>

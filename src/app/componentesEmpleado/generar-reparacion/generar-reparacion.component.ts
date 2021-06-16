@@ -91,17 +91,27 @@ export class GenerarReparacionComponent implements OnInit {
   {
     this.firestore.collection("usuarios").get().subscribe((querySnapShot) => { querySnapShot.forEach((doc) => {
       
-        if(doc.data()['DNI'] == this.reparacionJSON.DNI && doc.data()['tipo'] == 'cliente')
+        if((doc.data()['DNI'] == this.reparacionJSON.DNI && doc.data()['tipo'] == 'cliente') || (doc.data()['DNI'] == this.reparacionJSON.DNI && doc.data()['tipo'] == 'st'))
           {
-          this.toast.snackBarMensaje("El DNI existe. La factura podrá ser generada.", "Aceptar", 3000);
-          this.reparacionJSON.nombre = doc.data()['nombre'];
-          this.reparacionJSON.apellido = doc.data()['apellido'];
-          this.reparacionJSON.correo = doc.data()['correo'];
-          this.reparacionJSON.telefono = doc.data()['numero'];
-          this.reparacionJSON.idUsuario = doc.id;
-          this.DNIExiste=true;
+            if (doc.data()['tipo'] == 'cliente')
+            {
+              this.toast.snackBarMensaje("El corresponde a Cliente. La factura podrá ser generada.", "Aceptar", 3000);
+
+            }
+            if (doc.data()['tipo'] == 'st')
+            {
+              this.toast.snackBarMensaje("El corresponde a ST. La factura podrá ser generada.", "Aceptar", 3000);
+            }
+
+              this.reparacionJSON.nombre = doc.data()['nombre'];
+              this.reparacionJSON.apellido = doc.data()['apellido'];
+              this.reparacionJSON.correo = doc.data()['correo'];
+              this.reparacionJSON.telefono = doc.data()['numero'];
+              this.reparacionJSON.idUsuario = doc.id;
+              this.DNIExiste=true;
           }
         })
+        
       })
     }
 
@@ -134,6 +144,7 @@ export class GenerarReparacionComponent implements OnInit {
     this.reparacionJSON.trabajoARealizar ="";
     this.reparacionJSON.precio ="";
     this.reparacionJSON.sena ="";
+    this.DNIExiste = false;
   }
 
 
