@@ -15,6 +15,16 @@ export class ReseniaUsuarioComponent implements OnInit {
     'background-image': 'linear-gradient(red)'
 
   };
+
+  cantidades = {
+    unaEstrella: 0,
+    dosEstrella: 0,
+    tresEstrella: 0,
+    cuatroEstrella: 0,
+    cincoEstralla: 0,
+    general: 0
+  };
+
   constructor(
     private authService: AuthService,
     private dataBase: DatabaseService
@@ -50,12 +60,19 @@ export class ReseniaUsuarioComponent implements OnInit {
         this.usuario.reputacion.tresEstrella = (tresEstrella / this.usuario.reputacion.cantDeResenias) * 100;
         this.usuario.reputacion.cuatroEstrella = (cuatroEstrella / this.usuario.reputacion.cantDeResenias) * 100;
         this.usuario.reputacion.cincoEstralla = (cincoEstralla / this.usuario.reputacion.cantDeResenias) * 100;
-        this.usuario.reputacion.calificacionGeneral = ((1*unaEstrella + 2*dosEstrella + 3*tresEstrella + 
-          4*cuatroEstrella + 5*cincoEstralla) / this.usuario.reputacion.cantDeResenias) * 100;
-          console.log(this.usuario.reputacion.calificacionGeneral);
+        this.usuario.reputacion.calificacionGeneral = ((1 * unaEstrella + 2 * dosEstrella + 3 * tresEstrella +
+          4 * cuatroEstrella + 5 * cincoEstralla) / this.usuario.reputacion.cantDeResenias) * 100;
+        console.log(this.usuario.reputacion.calificacionGeneral);
+
+        this.cantidades.unaEstrella = unaEstrella;
+        this.cantidades.dosEstrella = dosEstrella;
+        this.cantidades.tresEstrella = tresEstrella;
+        this.cantidades.cuatroEstrella = cuatroEstrella;
+        this.cantidades.cincoEstralla = cincoEstralla;
+        this.cantidades.general = this.usuario.reputacion.calificacionGeneral / 100;
 
         setTimeout(() => {
-          
+
           this.cambiarColorBarraGeneral();
         }, 500);
       } else {
@@ -96,7 +113,7 @@ export class ReseniaUsuarioComponent implements OnInit {
     } else if (this.usuario.reputacion.calificacionGeneral > 300 && this.usuario.reputacion.calificacionGeneral <= 400) {
 
       this.estiloBarraGeneral = {
-        'width': (this.usuario.reputacion.calificacionGeneral/5) + '%',
+        'width': (this.usuario.reputacion.calificacionGeneral / 5) + '%',
         'background-image': 'linear-gradient(90deg,lightgreen,green)'
       };
     }
