@@ -35,6 +35,9 @@
                         <div class="title">
                             {{publicacion.titulo}}
                         </div>
+                        <div class="title" style="color:darkslateblue">
+                            &nbsp;(${{publicacion.precio}})
+                        </div>
                         <div class="imagenes">
                             <img *ngFor="let foto of publicacion.fotos" class="imgMensaje" src="{{foto}}" alt="">
                         </div>
@@ -50,6 +53,9 @@
                 <div class="example-box" *ngFor="let publicacion of listaOferta" cdkDrag>
                     <div class="title">
                         {{publicacion.titulo}}
+                    </div>
+                    <div class="title" style="color:darkslateblue">
+                        &nbsp;(${{publicacion.precio}})
                     </div>
                     <div class="imagenes">
                         <img *ngFor="let foto of publicacion.fotos" src="{{foto}}" alt="">
