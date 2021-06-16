@@ -13,6 +13,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // SERVICIO DATABASE.
 import { DatabaseService } from "../../servicios/database.service"
 
+// SERVICIO MENSAJITOS
+import { ToastService } from 'src/app/servicios/toast.service';
+
 
 @Component({
   selector: 'app-realizar-consulta-anonima',
@@ -39,6 +42,7 @@ export class RealizarConsultaAnonimaComponent implements OnInit {
 
     private dataBase: DatabaseService,
     private st: AngularFireStorage,
+    private toast : ToastService,
 
   ) {
 
@@ -133,14 +137,21 @@ export class RealizarConsultaAnonimaComponent implements OnInit {
 
 
   registrarConsultasAnonimasBD() {
+
     this.consultaJSON.horaConsulta = new Date().toLocaleString()
     this.dataBase.crear('consultasAnonimas', this.consultaJSON)
 
-      .then(resultado => { console.log("Consulta enviada con éxito"); this.vaciarCampos() });
+      .then(resultado => 
+        
+      { 
+           this.vaciarCampos() 
+      });
   }
 
 
   vaciarCampos() {
+    
+    this.toast.snackBarMensaje("Se ha enviado la consulta anonima", "Aceptar", 3000);
     this.consultaJSON.nombre = "";
     this.consultaJSON.apellido = "";
     this.consultaJSON.correo = "";
