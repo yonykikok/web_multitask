@@ -42,3 +42,5 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
+
+<div *ngIf="!listaDeReparaciones || listaDeReparaciones.length == 0" style="text-align: center;">No tiene ninguna reparacion</div>
