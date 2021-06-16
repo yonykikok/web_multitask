@@ -17,6 +17,7 @@ export class ToastService {
       //snackWarning snackSuccess snackPrimary snackDanger
     });
   }
+  
   /**
    * 
    * @param message 

@@ -63,7 +63,7 @@
 
         <div class="btnContainer">
             <button [disabled]="!consultaForm.valid" type="submit" mat-raised-button color="primary" class="btnLogin"
-            (click)="registrarConsultasAnonimasBD()">Enviar consulta</button>
+            (click)="registrarConsultasAnonimasBD(); consultaForm.reset()">Enviar consulta</button>
         </div>
 
     </form>

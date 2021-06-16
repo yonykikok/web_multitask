@@ -57,7 +57,7 @@ export class RegistroComponent implements OnInit {
     numero: "",
     tipo: "cliente",
     // CAMBIAR ESTO, PORQUE ES UN LINK DE DESCARGA EN LUGAR DE UNO DE VISUALIZACION POR DEFECTO.
-    foto: "https://firebasestorage.googleapis.com/v0/b/tp-ppsii.appspot.com/o/defaultUserIMG.png?alt=media&token=d3d95cee-dc8e-4d8a-9d67-ac5a51ba62a6",
+    foto: "https://firebasestorage.googleapis.com/v0/b/tp-ppsii.appspot.com/o/usuarios%2FdefaultUserIMG.png?alt=media&token=4a230313-e8b9-4cf4-afbd-c70d68c78c58",
     contrasenia: "",
     repetirContrasenia: "",
   };
