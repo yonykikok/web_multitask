@@ -1,4 +1,4 @@
-import { Component, OnInit,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 
 // LOGIN FORMBUILDER.
@@ -12,7 +12,7 @@ import { AuthService } from "../../servicios/auth.service"
 import { Router } from '@angular/router';
 
 // FIRESTORE
-import {AngularFirestore} from "@angular/fire/firestore";
+import { AngularFirestore } from "@angular/fire/firestore";
 
 import jwt_decode from "jwt-decode"; // ESTO LO OBTENGO CON npm i jwt-decode
 
@@ -26,15 +26,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-//test guard
+  //test guard
 
-tokenUsuario;
-payloadUsuario;
-emailUsuario;
-//fin test guard
+  tokenUsuario;
+  payloadUsuario;
+  emailUsuario;
+  //fin test guard
 
-//
-quiereRegistrarse = false;
+  //
+  quiereRegistrarse = false;
 
 
   private ocultaClave = true;
@@ -42,52 +42,51 @@ quiereRegistrarse = false;
   public clave;
   formularioLogin: FormGroup;
   //evento de salida
-  @Output() ingresarEventClick:EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() cancelLoginEventClick:EventEmitter<boolean> = new EventEmitter<boolean>();
-  
+  @Output() ingresarEventClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() cancelLoginEventClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   user: Usuario;
   currentUser$: Observable<Usuario>;
-  
-  constructor( 
-    private formBuilder: FormBuilder, 
-    private authService : AuthService,
-    private routerService : Router,
-    private firestore : AngularFirestore,
-    private dataBase:DatabaseService, )     
-    {
-      this.formularioLogin = this.formBuilder.group({
-        claveValidada: ['', [Validators.required, Validators.minLength(6)]],
-        correoValidado: ['', [Validators.required, Validators.email] ],
-     });
-    }
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private routerService: Router,
+    private firestore: AngularFirestore,
+    private dataBase: DatabaseService,) {
+    this.formularioLogin = this.formBuilder.group({
+      claveValidada: ['', [Validators.required, Validators.minLength(6)]],
+      correoValidado: ['', [Validators.required, Validators.email]],
+    });
+  }
 
 
-  ngOnInit(): void { 
-  
-   }
+  ngOnInit(): void {
 
-   cargarDatosAutoLogin(perfil){
-    this.clave='123456';
-    switch(perfil){
+  }
+
+  cargarDatosAutoLogin(perfil) {
+    this.clave = '123456';
+    switch (perfil) {
       case 'administrador':
-        this.correo="admin@gmail.com";
-      break;
+        this.correo = "admin@gmail.com";
+        break;
       case 'empleado':
-        this.correo="empleadouno@hotmail.com";
-      break;
+        this.correo = "empleadouno@hotmail.com";
+        break;
       case 'cliente':
-        this.correo="clienteuno@hotmail.com";
-      break;
+        this.correo = "clienteuno@hotmail.com";
+        break;
       case 'st':
-        this.correo="serviciotecnico@gmail.com";
-      break;
+        this.correo = "serviciotecnico@gmail.com";
+        break;
     }
     this.onSubmitLogin();
   }
 
 
-  
-  cerrarFormLogin(){
+
+  cerrarFormLogin() {
     this.cancelLoginEventClick.emit();
   }
 
@@ -106,53 +105,46 @@ quiereRegistrarse = false;
     switch (control) {
 
       case 'correoValidado':
-        if (this.formularioLogin.controls.correoValidado.hasError('required')) 
-        {
+        if (this.formularioLogin.controls.correoValidado.hasError('required')) {
           retorno = 'Debe ingresar un correo electrónico.';
-        }         
-        else if (this.formularioLogin.controls.correoValidado.hasError('email')) 
-        {
+        }
+        else if (this.formularioLogin.controls.correoValidado.hasError('email')) {
           retorno = 'Debe ingresar un correo electrónico válido.';
-        }       
-        else 
-        {
+        }
+        else {
           retorno = 'Error con el correo.';
         }
         break;
-    
+
       case 'claveValidada':
-        if (this.formularioLogin.controls.claveValidada.hasError('required')) 
-        {
+        if (this.formularioLogin.controls.claveValidada.hasError('required')) {
           retorno = 'Debe ingresar una clave';
-        } 
-        else if (this.formularioLogin.controls.claveValidada.hasError('minlength')) 
-        {
+        }
+        else if (this.formularioLogin.controls.claveValidada.hasError('minlength')) {
           retorno = 'La clave ingresada debe contener al menos 6 caracteres';
-        } 
+        }
         break;
     }
 
     return retorno;
   }
 
-  
-  onSubmitLogin()
-  {    
-    this.authService.login(this.correo, this.clave)  
-    .then ((res) => {      
-      this.ingresarEventClick.emit();
-      this.currentUser$ = this.authService.obtenerUsuario$();
-      this.currentUser$.subscribe(usuarios => {
-      this.user = usuarios;
-    });
-    this.authService.actualizarUsuario();
 
+  onSubmitLogin() {
+    this.authService.login(this.correo, this.clave)
+      .then((res) => {
+        this.ingresarEventClick.emit();
+        this.currentUser$ = this.authService.obtenerUsuario$();
+        this.currentUser$.subscribe(usuarios => {
+          this.user = usuarios;
+        });
+        this.authService.actualizarUsuario();
+
+      }
+      )
+      .catch(err => alert("Los datos son incorrectos. No existe tal usuario"));
   }
-    )  
-    .catch(err => alert("Los datos son incorrectos. No existe tal usuario"));
-  }
-  irRegistrarse()
-  {
+  irRegistrarse() {
     this.routerService.navigate(['/registro']);
   }
 

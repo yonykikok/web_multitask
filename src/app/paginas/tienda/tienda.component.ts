@@ -149,8 +149,9 @@ export class TiendaComponent implements OnInit {
   }
 
   logOff() {
-    this.user = null;
+    this.authService.isLogged = false;
     localStorage.clear();
+    this.authService.user = null;
     this.router.navigateByUrl("/home");
   }
 

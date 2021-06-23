@@ -24,13 +24,20 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.userIsLogged = this.authService.isLogged;
+    this.userIsLogged = false;
+    // console.log(this.authService.isLogged);
+    // this.userIsLogged = this.authService.isLogged;
+    // this.userIsLogged = true;
     //cambiar
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
       this.user = usuarios;
+      console.log(this.user);
+      this.userIsLogged = true;
     });
     this.authService.actualizarUsuario();
+
+
 
   }
 
@@ -54,9 +61,10 @@ export class HeaderComponent implements OnInit {
     this.ingresarEventClick.emit();
   }
 
-  logOff(){
+  logOff() {
     this.userIsLogged = false;
     localStorage.clear();
+    this.authService.user = null;
     this.router.navigateByUrl("/home");
   }
 }

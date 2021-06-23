@@ -3,6 +3,7 @@ import { AfterViewInit, Component, OnChanges, OnInit, EventEmitter, Output } fro
 // FIRESTORE
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 @Component({
@@ -21,16 +22,19 @@ export class HomeComponent implements OnInit, OnChanges {
   // // HARDCODEADO PARA VER EL TIPO DE USUARIO
   // tipoUsuario = 'administrador';
 
+  currentUser$: Observable<Usuario>;
+  user: Usuario;
+
   constructor(private firestore: AngularFirestore,
     private authService: AuthService,
   ) { }
 
 
   ngOnInit(): void {
+
   }
   ngOnChanges() {
-    this.userIsLogged = this.authService.isLogged;
-    alert("ENTRA");
+
   }
 
   buscarInfoLogueado() {
@@ -45,7 +49,7 @@ export class HomeComponent implements OnInit, OnChanges {
         }
       })
     })
-
+    console.log(this.authService.user);
   }
 
 }
