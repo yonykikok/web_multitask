@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, OnChanges {
         }
       })
     })
-    console.log(this.authService.user);
+    // console.log(this.authService.user);
   }
 
 }

@@ -29,26 +29,31 @@ export class AuthService {
   }
 
   public actualizarUsuario() {
-    this.tokenUsuario = localStorage.getItem('token');
-    this.payloadUsuario = jwt_decode(this.tokenUsuario);
-    this.emailUsuario = this.payloadUsuario.email;
+    try {
+      this.tokenUsuario = localStorage.getItem('token');
+      this.payloadUsuario = jwt_decode(this.tokenUsuario);
+      this.emailUsuario = this.payloadUsuario.email;
 
-    this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
-      querySnapShot.forEach((doc) => {
-        if (doc.data()['correo'].toUpperCase() == this.emailUsuario.toUpperCase()) {
-          console.log("EXISTO")
-          let usuario = new Usuario(doc.data()['nombre'], doc.data()['apellido'], doc.data()['DNI'], doc.data()['correo'], doc.data()['tipo'], doc.data()['foto']);
-          usuario['id'] = doc.id;
-          this.user = usuario;
-          this.currentUser$.next(usuario);
-          this.isLogged = true;
+      this.firestore.collection('usuarios').get().subscribe((querySnapShot) => {
+        querySnapShot.forEach((doc) => {
+          if (doc.data()['correo'].toUpperCase() == this.emailUsuario.toUpperCase()) {
+            // console.log("EXISTO")
+            let usuario = new Usuario(doc.data()['nombre'], doc.data()['apellido'], doc.data()['DNI'], doc.data()['correo'], doc.data()['tipo'], doc.data()['foto']);
+            usuario['id'] = doc.id;
+            this.user = usuario;
+            this.currentUser$.next(usuario);
+            this.isLogged = true;
 
-        }
+          }
+        })
       })
-    })
-    setTimeout(() => {
-      return this.user;
-    }, 500);
+      setTimeout(() => {
+        return this.user;
+      }, 500);
+    } catch (error) {
+      console.error(error.message);
+      return null;
+    }
   }
   //obtenerUsuario
 

@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
       this.user = usuarios;
-      console.log(this.user);
+      // console.log(this.user);
       this.userIsLogged = true;
     });
     this.authService.actualizarUsuario();

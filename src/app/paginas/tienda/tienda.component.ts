@@ -152,7 +152,9 @@ export class TiendaComponent implements OnInit {
     this.authService.isLogged = false;
     localStorage.clear();
     this.authService.user = null;
-    this.router.navigateByUrl("/home");
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 500);
   }
 
   cambiarLista(parametro) {

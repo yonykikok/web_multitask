@@ -37,20 +37,21 @@ const routes: Routes = [
 
   { path: 'notificaciones', component: NotificacionesComponent },
 
-  { path: 'testeo', component: TiendaComponent },
+  { path: 'testeo', pathMatch: 'full', redirectTo: 'tienda' },
+  { path: 'tienda', component: TiendaComponent },
   { path: 'testeo2', component: SeleccionarMisArticulosComponent },
   { path: 'testeo3', component: FormAltaProductoComponent },
   { path: 'home', component: HomeComponent, },
 
-  { path: '', pathMatch: 'full', redirectTo: 'home'},
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
 
-  
+
   { path: 'login', component: LoginComponent },
   { path: 'usuario', component: UsuarioComponent },
 
-  { path: 'registro', component: RegistroComponent},
+  { path: 'registro', component: RegistroComponent },
 
-  
+
   { path: 'home', component: HomeComponent },
 
 
@@ -60,9 +61,9 @@ const routes: Routes = [
 
   /// ESTO DESPUES BORRAR, PORQUE ES UN COMPONENTE PROPIO DE ADMIN.
 
-  { path: 'listaPersonal', component: ListaDePersonalComponent },
-  
- 
+  // { path: 'listaPersonal', component: ListaDePersonalComponent },
+
+
 ];
 
 
