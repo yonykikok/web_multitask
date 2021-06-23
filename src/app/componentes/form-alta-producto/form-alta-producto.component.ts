@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Producto } from 'src/app/clases/producto/producto';
 import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
-import {InfoCompartidaService} from 'src/app/servicios/info-compartida.service';
+import { InfoCompartidaService } from 'src/app/servicios/info-compartida.service';
 import { StorageService } from 'src/app/shared/upload-image/storage.service';
 @Component({
   selector: 'app-form-alta-producto',
@@ -15,10 +15,10 @@ import { StorageService } from 'src/app/shared/upload-image/storage.service';
 })
 export class FormAltaProductoComponent implements OnInit {
 
-  mostrarSpinner=false;
-  mostrarTextAreaDeGarantia=false;
-  imagenesSeleccionadas=false;
-  
+  mostrarSpinner = false;
+  mostrarTextAreaDeGarantia = false;
+  imagenesSeleccionadas = false;
+
   isLinear = false;
   tituloFormGroup: FormGroup;
   estadoFormGroup: FormGroup;
@@ -27,24 +27,24 @@ export class FormAltaProductoComponent implements OnInit {
   precioFormGroup: FormGroup;
   garantiaFormGroup: FormGroup;
   hayImagenesSeleccionadas$: Observable<boolean>;
-  imagenSeleccionada=false;
+  imagenSeleccionada = false;
   user: Usuario;
   currentUser$: Observable<Usuario>;
- 
- 
+
+
 
   constructor(private _formBuilder: FormBuilder,
-    private readonly storageService:StorageService,
-    private authService:AuthService,
-    private dataBase:DatabaseService,
-    private router:Router) {}
+    private readonly storageService: StorageService,
+    private authService: AuthService,
+    private dataBase: DatabaseService,
+    private router: Router) { }
 
   ngOnInit() {
     this.hayImagenesSeleccionadas$ = InfoCompartidaService.obtenerSiHayImagenesSeleccionadas$();
     this.hayImagenesSeleccionadas$.subscribe(hayImagen => {
-      this.imagenSeleccionada = hayImagen;     
+      this.imagenSeleccionada = hayImagen;
     });
-    
+
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
       this.user = usuarios;
@@ -52,7 +52,7 @@ export class FormAltaProductoComponent implements OnInit {
     this.authService.actualizarUsuario();
 
     this.hayImagenesSeleccionadas$.subscribe(hayImagen => {
-      this.imagenSeleccionada = hayImagen;     
+      this.imagenSeleccionada = hayImagen;
     });
 
     this.tituloFormGroup = this._formBuilder.group({
@@ -72,46 +72,47 @@ export class FormAltaProductoComponent implements OnInit {
     });
     this.garantiaFormGroup = this._formBuilder.group({
       garantiaControl: ['', Validators.required],
-      textAreaControl:['']
+      textAreaControl: ['']
     });
-    this.imagenesSeleccionadas=InfoCompartidaService.imagenesSeleccionadas;
+    this.imagenesSeleccionadas = InfoCompartidaService.imagenesSeleccionadas;
   }
 
-  cambiarEstadoGarantia(garantia){
-    garantia=='conGarantia'?this.mostrarTextAreaDeGarantia=true:this.mostrarTextAreaDeGarantia=false;
+  cambiarEstadoGarantia(garantia) {
+    garantia == 'conGarantia' ? this.mostrarTextAreaDeGarantia = true : this.mostrarTextAreaDeGarantia = false;
   }
 
 
-  publicarProducto(){    
-   this.mostrarSpinner=true;
-   let publicacion={
-      titulo:this.tituloFormGroup.controls['tituloControl'].value,
-      estado:this.estadoFormGroup.controls['estadoControl'].value,
-      descripcion:this.descripcionFormGroup.controls['descripcionControl'].value,
-      fotos:this.fotosFormGroup.controls['fotosControl'].value,
-      precio:this.precioFormGroup.controls['precioControl'].value,
-      garantia:this.garantiaFormGroup.controls['garantiaControl'].value,
-      fechaDePublicacion:new Date().getMilliseconds(),
-      estadoPublicacion:'pendiente'
+  publicarProducto() {
+    this.mostrarSpinner = true;
+    let publicacion = {
+      titulo: this.tituloFormGroup.controls['tituloControl'].value,
+      estado: this.estadoFormGroup.controls['estadoControl'].value,
+      descripcion: this.descripcionFormGroup.controls['descripcionControl'].value,
+      fotos: this.fotosFormGroup.controls['fotosControl'].value,
+      precio: this.precioFormGroup.controls['precioControl'].value,
+      garantia: this.garantiaFormGroup.controls['garantiaControl'].value,
+      fechaDePublicacion: new Date().getMilliseconds(),
+      estadoPublicacion: 'pendiente'
     }
 
-    if(publicacion.garantia){
-      publicacion['detalleGarantia']=this.garantiaFormGroup.controls['textAreaControl'].value;
-     }
-     publicacion['idUserQuePublico']=this.user['id'];
-     //falta linkear el id del usuario que publica
-     this.subirImagenesAlStorage(publicacion);
-    
+    if (publicacion.garantia) {
+      publicacion['detalleGarantia'] = this.garantiaFormGroup.controls['textAreaControl'].value;
+    }
+    publicacion['idUserQuePublico'] = this.user['id'];
+    //falta linkear el id del usuario que publica
+    this.subirImagenesAlStorage(publicacion);
   }
-     subirImagenesAlStorage(publicacion){
-       this.storageService.uploadImage(StorageService.filesDropped);
-       setTimeout(() => {
-        publicacion.fotos=StorageService.arrayImagenes;
-         this.dataBase.crear('publicaciones',publicacion).then((res)=>{
-           this.mostrarSpinner=false;
-         });
-       }, 5000);
-  
+  subirImagenesAlStorage(publicacion) {
+    this.storageService.uploadImage(StorageService.filesDropped);
+    setTimeout(() => {
+      publicacion.fotos = StorageService.arrayImagenes;
+      this.dataBase.crear('publicaciones', publicacion).then((res) => {
+        this.mostrarSpinner = false;
+        window.location.reload();
+
+      });
+    }, 5000);
+
   }
 
 }

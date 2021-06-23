@@ -60,6 +60,8 @@ private extractFiles(fileList:FileList):void{
           alert("Solo 3 fotos como maximo no insista, usa bien mi software!");
           break;
         }
+    }else{
+      alert("No se admite este tipo de archivo");
     }
   }
   
