@@ -1,8 +1,40 @@
+/* DIV PARA MODIFICAR DATOS*/
+
+.divEditarDatos{
+  z-index: 999 !important;
+  width: 50%;
+  height: 50%; 
+  position: absolute !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 25%;
+  border: black;
+  border-style: dashed;
+}
+
+.inputsContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.divRow{
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
 /*
 button{
   width: 100%;
 }
 */
+
 select{
   
   border: none;

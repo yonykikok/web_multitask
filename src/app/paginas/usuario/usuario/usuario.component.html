@@ -26,7 +26,60 @@
                     <span id="descripcionPerfil"> DNI: {{user.dni}} </span>
                     <br>
 
-                    <button mat-button color="warn">
+
+                    <!-- DIV PARA EDITAR DATOS-->
+                    <mat-card class="divEditarDatos" *ngIf="mostrarDivEditar == true" >
+  
+                        <form [formGroup]="nuevosDatosForm">
+                       
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Nombre</mat-label>
+                    
+                                    <input matInput placeholder="Ingrese su nombre" formControlName="nombreValidado"
+                                        [(ngModel)]="nuevosDatosJSON.nombre">
+                    
+                                    <mat-error *ngIf="nuevosDatosForm.controls.nombreValidado.invalid">{{mostrarErrorRegistro('nombreValidado')
+                                        }}</mat-error>
+                                </mat-form-field>
+                    
+                    
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Apellido</mat-label>
+                    
+                                    <input matInput placeholder="Ingrese su apellido" formControlName="apellidoValidado"
+                                        [(ngModel)]="nuevosDatosJSON.apellido">
+                    
+                                    <mat-error *ngIf="nuevosDatosForm.controls.apellidoValidado.invalid">
+                                        {{mostrarErrorRegistro('apellidoValidado') }}</mat-error>
+                                </mat-form-field>
+                    
+                      
+                            <div class = "divRow">  
+
+                                <div class="btnContainer">
+                                    <button [disabled]="!nuevosDatosForm.valid" type="submit" mat-raised-button color="primary"
+                                    (click)="actualizarDatos(); nuevosDatosForm.reset()">Actualizar datos</button>
+                                </div>
+
+                                <!--
+
+                               
+                                <div class="btnContainer">
+                                    <button type="submit" mat-raised-button color="primary"
+                                    (click)="mostrarDivEditar=false; nuevosDatosForm.reset()">Cancelar</button>
+                                </div>
+
+                            -->
+
+                             </div>
+                    
+                        </form>
+
+                    </mat-card>
+
+
+
+                    <button (click)="mostrarDivEditar=true" mat-button color="warn">
                         <mat-icon>edit</mat-icon>Editar datos
                     </button>
 
