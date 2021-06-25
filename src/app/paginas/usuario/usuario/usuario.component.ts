@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/clases/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { DatabaseService } from 'src/app/servicios/database.service';
+
+// FIRESTORE
+import { AngularFirestore } from "@angular/fire/firestore";
 
 //FORMBUILDER.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -59,7 +63,7 @@ export class UsuarioComponent implements OnInit {
   boolNotificaciones = false;
   mostrarDivEditar = false;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { 
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private firestore : AngularFirestore, private dataBase: DatabaseService,) { 
 
     this.nuevosDatosForm = this.formBuilder.group({
 
@@ -122,9 +126,16 @@ export class UsuarioComponent implements OnInit {
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
       this.user = usuarios;
+
+      // cargo los datos del usuario, por si en algún momento los quiere modificar.
+      this.nuevosDatosJSON.nombre = this.user.nombre;
+      this.nuevosDatosJSON.apellido = this.user.apellido;
+      
     });
     this.authService.actualizarUsuario();
+
   }
+
   cambiarSeleccion() {
     this.selectPublicaciones = document.getElementById("selectPublicaciones")['value'];
   }
@@ -176,8 +187,27 @@ export class UsuarioComponent implements OnInit {
     }
   }
 
-  actualizarDatos(){
-    
-  }
 
+  actualizarDatos()
+
+  {
+    let auxDatosDePersona = null;
+    this.firestore.collection("usuarios").get().subscribe((querySnapShot) => {
+      querySnapShot.forEach((doc) => {
+
+        // recorro toda la bd para que busque el email. 
+        if(doc.data()['correo'] == this.user.correo)
+        {
+          console.log(doc.data());
+          auxDatosDePersona = doc.data();
+
+          auxDatosDePersona.nombre = this.nuevosDatosJSON.nombre;
+          auxDatosDePersona.apellido = this.nuevosDatosJSON.apellido;
+         //this.dataBase.actualizar("usuarios", auxDatosDePersona, doc.id);
+
+         console.log(auxDatosDePersona);
+        }
+      })
+    })
+  }
 }

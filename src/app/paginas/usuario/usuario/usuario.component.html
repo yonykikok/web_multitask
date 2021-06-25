@@ -38,8 +38,8 @@
                                     <input matInput placeholder="Ingrese su nombre" formControlName="nombreValidado"
                                         [(ngModel)]="nuevosDatosJSON.nombre">
                     
-                                    <mat-error *ngIf="nuevosDatosForm.controls.nombreValidado.invalid">{{mostrarErrorRegistro('nombreValidado')
-                                        }}</mat-error>
+                                    <mat-error *ngIf="nuevosDatosForm.controls.nombreValidado.invalid">
+                                        {{mostrarErrorRegistro('nombreValidado')}}</mat-error>
                                 </mat-form-field>
                     
                     
