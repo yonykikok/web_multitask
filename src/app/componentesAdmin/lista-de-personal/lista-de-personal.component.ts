@@ -5,7 +5,7 @@ import { Usuario } from 'src/app/clases/usuario';
 import { DatabaseService } from '../../servicios/database.service';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogModificarDatosComponent } from 'src/app/componentes/dialog-modificar-datos/dialog-modificar-datos.component';
-
+import { ToastService } from 'src/app/servicios/toast.service';
 
 
 
@@ -22,7 +22,8 @@ export class ListaDePersonalComponent implements OnInit {
 
   constructor(private dataBase: DatabaseService,
     private firestore: AngularFirestore, 
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public toast : ToastService) { }
 
   ngOnInit(): void {
     this.listado = this.cargarUsuariosQueNoSean();
@@ -72,7 +73,24 @@ export class ListaDePersonalComponent implements OnInit {
       { data: 
         {DNI : persona.DNI, 
         nombre : persona.nombre,
-        apellido : persona.apellido} 
+        apellido : persona.apellido,
+        correo : persona.correo} 
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+
+        if (result)
+        {
+          setTimeout(() => {
+            window.location.reload();
+          }, 2500);
+        }
+        else
+        {
+            this.toast.snackBarMensaje("No se realizaron cambios", "Aceptar", 3000);
+        }
+
+        
       });
 
   }

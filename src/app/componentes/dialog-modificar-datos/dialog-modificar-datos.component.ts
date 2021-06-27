@@ -4,6 +4,15 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 // REGISTRO FORMBUILDER.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatabaseService } from 'src/app/servicios/database.service';
+
+
+// FIRESTORE
+import { AngularFirestore } from "@angular/fire/firestore";
+import { ToastService } from 'src/app/servicios/toast.service';
+
+
+
 
 @Component({
   selector: 'app-dialog-modificar-datos',
@@ -23,9 +32,15 @@ export class DialogModificarDatosComponent implements OnInit {
      DNI:"",
    };
 
+   mostrarSpinner = false;
+
 
   // con esto, injecto la data en data.
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
+  private formBuilder: FormBuilder, 
+  private dataBase: DatabaseService, 
+  private firestore : AngularFirestore,
+  private toast : ToastService) { 
 
     this.nuevosDatosForm = this.formBuilder.group({
 
@@ -112,7 +127,36 @@ export class DialogModificarDatosComponent implements OnInit {
 
 
   actualizarDatos(){
+
+    {
+      let auxDatosDePersona = null;
+  
+      this.firestore.collection("usuarios").get().subscribe((querySnapShot) => {
+        querySnapShot.forEach((doc) => {
+  
+          // recorro toda la bd para que busque el email. 
+          if(doc.data()['correo'] === this.data.correo)
+          {
+            auxDatosDePersona = doc.data();
+  
+            auxDatosDePersona.nombre = this.nuevosDatosJSON.nombre;
+            auxDatosDePersona.apellido = this.nuevosDatosJSON.apellido;
+
+            this.dataBase.actualizar("usuarios", auxDatosDePersona, doc.id);
+            this.toast.snackBarMensaje("Los cambios fueron realizados... Actualizando", "Aceptar", 3000);
+          }
+        })
+      })
+
+    }
     
+  }
+
+
+
+  probar()
+  {
+    console.log("lala");
   }
 
 }

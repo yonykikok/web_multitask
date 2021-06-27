@@ -1,7 +1,6 @@
 <h2 mat-dialog-title>Modificación de datos - Panel ADMINISTRADOR</h2>
 <mat-dialog-content class="mat-typography">
-
-
+    
     <form [formGroup]="nuevosDatosForm">
           
         <div class="containerLogin">
@@ -39,7 +38,6 @@
                 {{mostrarErrorRegistro('DNIValidado') }}</mat-error>
         </mat-form-field>
 
-
     </div>
                 
 </form>
@@ -52,7 +50,7 @@
 
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button [disabled]="!nuevosDatosForm.valid" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="actualizarDatos()"> Actualizar datos </button>
+    <button [disabled]="!nuevosDatosForm.valid" (click)="actualizarDatos()" mat-button [mat-dialog-close]="true" cdkFocusInitial> Actualizar datos </button>
 </mat-dialog-actions>
 
 </form>
