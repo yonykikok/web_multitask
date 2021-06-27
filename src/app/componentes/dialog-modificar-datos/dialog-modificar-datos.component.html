@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Modificación de datos - Panel ADMINISTRADOR</h2>
+<mat-dialog-content class="mat-typography">
+
+
+    <form [formGroup]="nuevosDatosForm">
+          
+        <div class="containerLogin">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+
+            <input matInput placeholder="Ingrese su nuevo nombre" formControlName="nombreValidado"
+                [(ngModel)]="nuevosDatosJSON.nombre">
+
+            <mat-error *ngIf="nuevosDatosForm.controls.nombreValidado.invalid">
+                {{mostrarErrorRegistro('nombreValidado')}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+
+            <input matInput placeholder="Ingrese su nuevo apellido" formControlName="apellidoValidado"
+                [(ngModel)]="nuevosDatosJSON.apellido">
+
+            <mat-error *ngIf="nuevosDatosForm.controls.apellidoValidado.invalid">
+                {{mostrarErrorRegistro('apellidoValidado') }}</mat-error>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>DNI</mat-label>
+
+            <input matInput placeholder="Ingrese su nuevo DNI" formControlName="DNIValidado"
+                [(ngModel)]="nuevosDatosJSON.DNI">
+
+            <mat-error *ngIf="nuevosDatosForm.controls.DNIValidado.invalid">
+                {{mostrarErrorRegistro('DNIValidado') }}</mat-error>
+        </mat-form-field>
+
+
+    </div>
+                
+</form>
+
+
+</mat-dialog-content>
+
+
+<form [formGroup]="nuevosDatosForm">
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button [disabled]="!nuevosDatosForm.valid" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="actualizarDatos()"> Actualizar datos </button>
+</mat-dialog-actions>
+
+</form>

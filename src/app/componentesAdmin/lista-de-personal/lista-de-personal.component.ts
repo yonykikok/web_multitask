@@ -2,7 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 // ANGULAR FIRESTORE.
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Usuario } from 'src/app/clases/usuario';
-import { DatabaseService } from '../../servicios/database.service'
+import { DatabaseService } from '../../servicios/database.service';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogModificarDatosComponent } from 'src/app/componentes/dialog-modificar-datos/dialog-modificar-datos.component';
+
+
+
 
 @Component({
   selector: 'app-lista-de-personal',
@@ -16,11 +21,13 @@ export class ListaDePersonalComponent implements OnInit {
   listado: any[] = [];
 
   constructor(private dataBase: DatabaseService,
-    private firestore: AngularFirestore) { }
+    private firestore: AngularFirestore, 
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.listado = this.cargarUsuariosQueNoSean();
   }
+
 
   cargarUsuariosQueNoSean(): any {
     var listaUsuarios = [];
@@ -41,6 +48,7 @@ export class ListaDePersonalComponent implements OnInit {
     return listaUsuarios;
   }
 
+
   borrarUsuario(persona) {
     if (confirm("¿Esta segurx que queire borrar a " + persona.nombre + " " + persona.apellido + "?")) {
       let id: string;
@@ -57,7 +65,15 @@ export class ListaDePersonalComponent implements OnInit {
     }
   }
 
-  editarUsuario(persona) {
-  }
 
+  editarUsuario(persona) {
+
+    const dialogRef = this.dialog.open(DialogModificarDatosComponent, 
+      { data: 
+        {DNI : persona.DNI, 
+        nombre : persona.nombre,
+        apellido : persona.apellido} 
+      });
+
+  }
 }

@@ -146,6 +146,7 @@ import { ReseniaUsuarioComponent } from './componentesCliente/resenia-usuario/re
 import { FormCalificarCompraComponent } from './componentesCliente/form-calificar-compra/form-calificar-compra.component';
 import { ReputacionComponent } from './componentesCliente/reputacion/reputacion.component';
 import { ProductToSellRowComponent } from './componentes/product-to-sell-row/product-to-sell-row.component';
+import { DialogModificarDatosComponent } from './componentes/dialog-modificar-datos/dialog-modificar-datos.component';
 
 @NgModule({
   declarations: [
@@ -196,6 +197,7 @@ import { ProductToSellRowComponent } from './componentes/product-to-sell-row/pro
     ReseniaUsuarioComponent,
     FormCalificarCompraComponent,
     ProductToSellRowComponent,
+    DialogModificarDatosComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],
