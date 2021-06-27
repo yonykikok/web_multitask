@@ -1,5 +1,5 @@
 <!-- V LUCHO -->
-
+<app-spinner *ngIf="mostrarSpinner"></app-spinner>
 <header class="fixed-header" role="banner">
 
     <a href="home">
@@ -57,8 +57,17 @@
                             <div class = "divRow">  
 
                                 <div class="btnContainer">
+
+                                    <!-- SI UTILIZO ESTO, CON UN RESET, NO FUNCIONA PORQUE PRIMERO ME RESETEA LOS CAMPOS.
+                                      <button [disabled]="!nuevosDatosForm.valid" type="submit" mat-raised-button color="primary"
+                                    (click)="actualizarDatos(); nuevosDatosForm.reset()">Actualizar datos</button>  
+                                    -->
+
                                     <button [disabled]="!nuevosDatosForm.valid" type="submit" mat-raised-button color="primary"
-                                    (click)="actualizarDatos(); nuevosDatosForm.reset()">Actualizar datos</button>
+                                    (click)="actualizarDatos()">Actualizar datos</button>
+                                    
+                                    <button [disabled]="!nuevosDatosForm.valid" type="submit" mat-raised-button color="primary"
+                                    (click)="mostrarDivEditar = false">Cerrar</button>
                                 </div>
 
                                 <!--

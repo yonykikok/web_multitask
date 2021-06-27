@@ -10,6 +10,10 @@ import { AngularFirestore } from "@angular/fire/firestore";
 //FORMBUILDER.
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+// Servicio
+import { ToastService } from 'src/app/servicios/toast.service';
+
+
 
 @Component({
   selector: 'app-usuario',
@@ -35,6 +39,9 @@ export class UsuarioComponent implements OnInit {
     nombre: "",
     apellido: "",
   };
+
+  mostrarSpinner = false;
+
 
 
   //ADMIN
@@ -63,7 +70,7 @@ export class UsuarioComponent implements OnInit {
   boolNotificaciones = false;
   mostrarDivEditar = false;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private firestore : AngularFirestore, private dataBase: DatabaseService,) { 
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private firestore : AngularFirestore, private dataBase: DatabaseService, private toast : ToastService) { 
 
     this.nuevosDatosForm = this.formBuilder.group({
 
@@ -119,9 +126,6 @@ export class UsuarioComponent implements OnInit {
   }
 
 
-
-
-
   ngOnInit(): void {
     this.currentUser$ = this.authService.obtenerUsuario$();
     this.currentUser$.subscribe(usuarios => {
@@ -132,7 +136,8 @@ export class UsuarioComponent implements OnInit {
       this.nuevosDatosJSON.apellido = this.user.apellido;
       
     });
-    this.authService.actualizarUsuario();
+
+   this.authService.actualizarUsuario();
 
   }
 
@@ -189,25 +194,33 @@ export class UsuarioComponent implements OnInit {
 
 
   actualizarDatos()
-
   {
+    this.mostrarSpinner = true;
     let auxDatosDePersona = null;
+
     this.firestore.collection("usuarios").get().subscribe((querySnapShot) => {
       querySnapShot.forEach((doc) => {
 
         // recorro toda la bd para que busque el email. 
-        if(doc.data()['correo'] == this.user.correo)
+        if(doc.data()['correo'] === this.user.correo)
         {
-          console.log(doc.data());
           auxDatosDePersona = doc.data();
 
           auxDatosDePersona.nombre = this.nuevosDatosJSON.nombre;
           auxDatosDePersona.apellido = this.nuevosDatosJSON.apellido;
-         //this.dataBase.actualizar("usuarios", auxDatosDePersona, doc.id);
+          
+         this.dataBase.actualizar("usuarios", auxDatosDePersona, doc.id);
 
-         console.log(auxDatosDePersona);
+          setTimeout(() => {
+            console.log("estoy en timeout");
+            auxDatosDePersona = null;
+            this.mostrarSpinner = false;
+            window.location.reload();
+          }, 2000);
+
         }
       })
     })
   }
+
 }

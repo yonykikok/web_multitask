@@ -2,8 +2,6 @@
 
 .divEditarDatos{
   z-index: 999 !important;
-  width: 50%;
-  height: 50%; 
   position: absolute !important;
   display: flex;
   justify-content: center;
