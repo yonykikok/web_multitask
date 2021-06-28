@@ -78,7 +78,8 @@
 }
 
 img-fluid{
+  width: 90% !important;
+  height: 90% !important;
   border-radius:50%;
-  height:300px;
-  object-fit:cover;
+  object-fit:cover !important;
 }
