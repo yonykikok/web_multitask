@@ -10,9 +10,11 @@ import { DatabaseService } from 'src/app/servicios/database.service';
   styleUrls: ['./reparaciones-cliente.component.css']
 })
 export class ReparacionesClienteComponent implements OnInit {
+  reparacion;
   listaDeReparaciones: any[] = [];
-  displayedColumns: string[] = ['fecha', 'marca','estado', 'accion'];
+  displayedColumns: string[] = ['fecha', 'marca', 'estado', 'accion'];
 
+  mostrarFormDePagoReparacion = false;
   constructor(
     private firestore: AngularFirestore,
     private dataBase: DatabaseService,
@@ -30,7 +32,7 @@ export class ReparacionesClienteComponent implements OnInit {
       querySnapShot.forEach((doc) => {
         reparacion = doc.data();
         if (reparacion.DNI == this.authService.user['dni']) {
-          reparacion['id']=doc.id;  
+          reparacion['id'] = doc.id;
           this.listaDeReparaciones.push(reparacion);
         }
       })
@@ -38,22 +40,27 @@ export class ReparacionesClienteComponent implements OnInit {
     return this.listaDeReparaciones;
   }
 
-  pagar(reparacion){
-    reparacion.estado = 'pagado';
-    this.listaDeReparaciones.forEach(element => {
-      if (element == reparacion){
-        //CONECTAR PAGAR
-        // this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
-        // this.listaDeReparaciones = this.obtenerReparaciones();
-        return;
-      }
-    });
+  pagar(reparacion) {
+    this.reparacion=reparacion;
+    // reparacion.estado = 'pagado';
+    console.log(reparacion);
+    this.mostrarFormDePagoReparacion = true;
+
+
+    /*  this.listaDeReparaciones.forEach(element => {
+        if (element == reparacion){
+          //CONECTAR PAGAR
+          // this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
+          // this.listaDeReparaciones = this.obtenerReparaciones();
+          return;
+        }
+      });*/
   }
 
-  cancelar(reparacion, estado){
+  cancelar(reparacion, estado) {
     reparacion.estado = estado;
     this.listaDeReparaciones.forEach(element => {
-      if (element == reparacion){
+      if (element == reparacion) {
         this.dataBase.actualizar('reparaciones', reparacion, reparacion.id);
         this.listaDeReparaciones = this.obtenerReparaciones();
         return;

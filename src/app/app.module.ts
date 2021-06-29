@@ -147,6 +147,7 @@ import { FormCalificarCompraComponent } from './componentesCliente/form-califica
 import { ReputacionComponent } from './componentesCliente/reputacion/reputacion.component';
 import { ProductToSellRowComponent } from './componentes/product-to-sell-row/product-to-sell-row.component';
 import { DialogModificarDatosComponent } from './componentes/dialog-modificar-datos/dialog-modificar-datos.component';
+import { FormPagoReparacionComponent } from './componentesCliente/form-pago-reparacion/form-pago-reparacion.component';
 
 @NgModule({
   declarations: [
@@ -198,6 +199,7 @@ import { DialogModificarDatosComponent } from './componentes/dialog-modificar-da
     FormCalificarCompraComponent,
     ProductToSellRowComponent,
     DialogModificarDatosComponent,
+    FormPagoReparacionComponent,
     //HorarioDeAperturaComponent,
     //SpinnerComponent
   ],

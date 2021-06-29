@@ -1,3 +1,4 @@
+<app-form-pago-reparacion [reparacion]="reparacion" *ngIf="mostrarFormDePagoReparacion" (cancelarEvent)="mostrarFormDePagoReparacion=false"></app-form-pago-reparacion>
 <div *ngIf="listaDeReparaciones && listaDeReparaciones.length != 0" style="text-align: center;">
     <table mat-table [dataSource]="this.listaDeReparaciones" class="mat-elevation-z8">
 
