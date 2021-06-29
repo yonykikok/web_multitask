@@ -134,21 +134,11 @@ export class TiendaComponent implements OnInit {
     }
     const dialogRef = this.dialog.open(FormularioDePagoComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("COMPRO! aca!!", result);
+    dialogRef.afterClosed().subscribe(publicacionComprada => {
+      console.log("COMPRO! aca!!", publicacionComprada);
       this.listadoDePublicacionesAMostrar = this.listadoDePublicacionesAMostrar.filter((publicacion) => {
-        if (publicacion.id != result.id) return publicacion;
+        if (publicacion.id != publicacionComprada.id) return publicacion;
       })
-      // switch (result) {
-      //   case 'confirmarCompra':
-      //     this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
-      //     break;
-      //   case 'comprar':
-      //     break;
-      //   default:
-      //     no hacemos nada!
-      //     break;
-      // }
     });
   }
 
