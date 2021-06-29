@@ -341,7 +341,7 @@ export class FormularioDePagoComponent implements OnInit {
         return this.dataBase.crear('compras', this.compra)
       }).then(resCompra => {
         this.toast.snackBarEditable("Compra realizada con exito", "Cerrar", 3000, "snackSuccess");
-        this.dialogRef.close();//cerramos el formulario de pago!
+        this.dialogRef.close(this.publicacionObjetivo);//cerramos el formulario de pago!
         this.mostrarSpinner = false;
         //ACA FALTA ACTUALIZAR LA TIENDA PARA QUE DESAPARESCA EL PRODUCTO COMPRADO. O REDIRECCIONAR AL USUARIO AL DETALLE DE LA COMPRA!
         this.reiniciarDatosCompra();

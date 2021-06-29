@@ -99,7 +99,6 @@ export class TiendaComponent implements OnInit {
 
 
 
-
   }
 
 
@@ -116,6 +115,7 @@ export class TiendaComponent implements OnInit {
         this.mostrarSpinner = false;
 
       })
+      console.log(listaPublicaciones[0]);
     })
     return listaPublicaciones;
   }
@@ -135,6 +135,10 @@ export class TiendaComponent implements OnInit {
     const dialogRef = this.dialog.open(FormularioDePagoComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log("COMPRO! aca!!", result);
+      this.listadoDePublicacionesAMostrar = this.listadoDePublicacionesAMostrar.filter((publicacion) => {
+        if (publicacion.id != result.id) return publicacion;
+      })
       // switch (result) {
       //   case 'confirmarCompra':
       //     this.dialog.open(SeleccionarMisArticulosComponent,dialogConfig);
