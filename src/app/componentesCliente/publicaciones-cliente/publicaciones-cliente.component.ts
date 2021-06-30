@@ -57,7 +57,7 @@ export class PublicacionesClienteComponent implements OnInit {
     // console.log(this.misPublicaciones);
     // console.log(this.criterioDeFiltrado);
     return this.misPublicaciones;
-    
+
   }
 
 
@@ -111,26 +111,16 @@ export class PublicacionesClienteComponent implements OnInit {
     let estado = "";
     if (pausa) {
       estado = 'pausado'
+      this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Ha modificado el estado de la publicación: " + publicacion.titulo + " a pausado");
     } else {
       estado = 'aceptado'
-    }
-
-    if (estado = 'aceptado')
-    {
       this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Ha modificado el estado de la publicación: " + publicacion.titulo + " a despausado");
-
     }
-    else
-    {
-      this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Ha modificado el estado de la publicación: " + publicacion.titulo + " a " + publicacion.estado);
-    }
-
-
 
     publicacion.estadoPublicacion = estado;
     this.dataBase.actualizar('publicaciones', publicacion, publicacion.id);
     this.misPublicaciones = this.obtenerMisPublicaciones();
-    
+
     setTimeout(this.misPublicaciones = this.obtenerMisPublicaciones(), 2);
   }
 
