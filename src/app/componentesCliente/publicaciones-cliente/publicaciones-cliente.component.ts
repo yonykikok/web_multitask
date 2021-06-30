@@ -115,7 +115,17 @@ export class PublicacionesClienteComponent implements OnInit {
       estado = 'aceptado'
     }
 
-    this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Ha modificado el estado de la publicación: " + publicacion.titulo);
+    if (estado = 'aceptado')
+    {
+      this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Ha modificado el estado de la publicación: " + publicacion.titulo + " a despausado");
+
+    }
+    else
+    {
+      this.genNotificacion.crearNotificacion(this.authService.user['id'], "sistema", "sistema", "Ha modificado el estado de la publicación: " + publicacion.titulo + " a " + publicacion.estado);
+    }
+
+
 
     publicacion.estadoPublicacion = estado;
     this.dataBase.actualizar('publicaciones', publicacion, publicacion.id);

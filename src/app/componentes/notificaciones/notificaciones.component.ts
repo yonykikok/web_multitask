@@ -11,9 +11,9 @@ import { DatabaseService } from 'src/app/servicios/database.service';
 })
 export class NotificacionesComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore, 
+  constructor(private firestore: AngularFirestore,
     private authService: AuthService,
-    private dataBase : DatabaseService) { }
+    private dataBase: DatabaseService) { }
 
   listadoNotificacionesCompraVenta = [];
   listadoNotificacionesSistema = [];
@@ -38,16 +38,23 @@ export class NotificacionesComponent implements OnInit {
 
         notificacion['id'] = doc.id;
 
-        if (this.authService.user['id'] == notificacion.receptor && tipo == notificacion.tipo) 
-        {
+        if (this.authService.user['id'] == notificacion.receptor && tipo == notificacion.tipo) {
           listaNotificaciones.push(notificacion);
         }
 
       })
     })
+    listaNotificaciones.sort((fechaUno, fechaDos) => {
+      if (fechaUno < fechaDos) { return -1;} 
+      
+      if (fechaUno > fechaDos) { return 1; }
+  
+      return 0;
+    });
     return listaNotificaciones;
   }
 
+  
 
 
   eliminarNotificacion(notificacionParametro) {

@@ -20,7 +20,7 @@ export class GeneradorNotificacionesService {
       emisor: emisor,
       tipo: tipo,
       mensaje : mensaje,
-      fecha: new Date().toLocaleDateString(),
+      fecha: new Date().toLocaleDateString("en-GB"),
     };
 
     return this.firestore.collection("notificaciones").add(notificacionJSON);
