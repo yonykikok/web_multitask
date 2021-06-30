@@ -45,35 +45,46 @@ export class NotificacionesComponent implements OnInit {
       })
     })
     listaNotificaciones.sort((fechaUno, fechaDos) => {
-      if (fechaUno < fechaDos) { return -1;} 
-      
+      if (fechaUno < fechaDos) { return -1; }
+
       if (fechaUno > fechaDos) { return 1; }
-  
+
       return 0;
     });
     return listaNotificaciones;
   }
 
-  
+
 
 
   eliminarNotificacion(notificacionParametro) {
-    alert("no me toques porque no hago nada, me rompi");
-    /*
+    console.log(notificacionParametro);
+
     if (confirm("¿Esta seguro que quiere eliminar esta notificación?")) {
       let id: string;
       this.dataBase.obtenerTodos("notificaciones").subscribe((auxNotificaciones) => {
         auxNotificaciones.forEach((response: any) => {
-          let notiInfo = response.payload.doc.data();
-          if (notiInfo.id == notificacionParametro.id) {
-            id = response.payload.doc.id;
-            this.dataBase.eliminar("notificaciones", id);
-            this.listadoNotificaciones = this.cargarNotificacionesNoVistas();
+          let idAEliminar = response.payload.doc.id;
+          if (idAEliminar == notificacionParametro) {
+            console.log(idAEliminar + "---" + notificacionParametro)
+            this.dataBase.eliminar("notificaciones", idAEliminar).then(res => {
+
+            
+              this.listadoNotificacionesSistema = this.listadoNotificacionesSistema.filter(notificacion => {
+                if (notificacion.id != idAEliminar) return notificacion;
+              })
+
+
+            }).catch(err => {
+
+              console.log("ERROR!", err);
+            })
+            // this.listadoNotificaciones = this.cargarNotificacionesNoVistas();
           }
         })
       });
     }
-    */
+
   }
 
 

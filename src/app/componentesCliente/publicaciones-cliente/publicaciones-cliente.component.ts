@@ -119,9 +119,12 @@ export class PublicacionesClienteComponent implements OnInit {
 
     publicacion.estadoPublicacion = estado;
     this.dataBase.actualizar('publicaciones', publicacion, publicacion.id);
-    this.misPublicaciones = this.obtenerMisPublicaciones();
+    // this.misPublicaciones = this.obtenerMisPublicaciones();
 
-    setTimeout(this.misPublicaciones = this.obtenerMisPublicaciones(), 2);
+    this.misPublicaciones = this.misPublicaciones.filter(auxPublicacion => {
+      if (auxPublicacion.id != publicacion.id) return auxPublicacion;
+    })
+    // setTimeout(this.misPublicaciones = this.obtenerMisPublicaciones(), 2);
   }
 
 
