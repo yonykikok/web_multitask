@@ -16,6 +16,11 @@
             <td mat-cell *matCellDef="let element"> {{element.marcaYModelo}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="trabajoARealizar">
+            <th mat-header-cell *matHeaderCellDef> Trabajo a realizar </th>
+            <td mat-cell *matCellDef="let element"> {{element.trabajoARealizar}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="observaciones">
             <th mat-header-cell *matHeaderCellDef> Observaciones </th>
             <td mat-cell *matCellDef="let element"> {{element.observaciones}} </td>

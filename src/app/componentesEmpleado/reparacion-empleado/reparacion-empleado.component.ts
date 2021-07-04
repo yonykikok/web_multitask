@@ -12,7 +12,7 @@ import { DatabaseService } from 'src/app/servicios/database.service';
 export class ReparacionEmpleadoComponent implements OnInit {
 
   listaDeReparaciones: any[] = [];
-  displayedColumns: string[] = ['fecha', 'marca', 'observaciones', "correo", 'accion'];
+  displayedColumns: string[] = ['fecha', 'marca', 'trabajoARealizar' , 'observaciones', "correo", 'accion'];
 
   constructor(
     private firestore: AngularFirestore,
