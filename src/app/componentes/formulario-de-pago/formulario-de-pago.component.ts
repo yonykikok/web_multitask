@@ -350,13 +350,18 @@ export class FormularioDePagoComponent implements OnInit {
         // 
         // this.publicacionObjetivo.idUserQuePublico
 
+        console.log(this.publicacionObjetivo);
+
+        console.log(this.authService.user['id']);
+
+        console.log(this.authService.user.nombre);
+
 
         this.genNotificacion.crearNotificacionCompraVenta(this.publicacionObjetivo.idUserQuePublico, this.authService.user['id'], "compraventa", "Ha vendido un producto al usuario " + this.authService.user.nombre);
         // le avisa al que compró.                 
-        this.genNotificacion.crearNotificacionCompraVenta(this.authService.user['id'], this.publicacionObjetivo.idUserQuePublico, "compraventa", "Ha comprado al usuario " + this.publicacionObjetivo.idUserQuePublico);
+        this.genNotificacion.crearNotificacionCompraVenta(this.authService.user['id'], this.publicacionObjetivo.idUserQuePublico, "compraventa", "Compra realizada con éxito");
 
         //fin notificacion. 
-
 
       })
       .catch(err => {
@@ -364,6 +369,7 @@ export class FormularioDePagoComponent implements OnInit {
       });
 
   }
+
   procesarInformacionDePago() {
     if (this.esUnaTarjetaRegistrada()) {
       let fechaActual = new Date();
@@ -427,4 +433,6 @@ export class FormularioDePagoComponent implements OnInit {
     }
 
   }
+  
+
 }

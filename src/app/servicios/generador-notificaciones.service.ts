@@ -28,25 +28,26 @@ export class GeneradorNotificacionesService {
 
 
   public crearNotificacionCompraVenta(idReceptor: any, idEmisor: any, tipo: any, mensaje: any) {
-    let emisor;
+    let emisorAux;
 
     let notificacionJSON = {
       receptor: idReceptor,
-      emisor: emisor,
+      emisor: idEmisor,
       tipo: tipo,
       mensaje: mensaje,
       fecha: new Date().toLocaleDateString("en-GB"),
       foto: "https://i.imgur.com/jAehbWl.png"
     };
 
-    if (idEmisor != "sistema") {
       this.dataBase.obtenerPorId("usuarios", idEmisor).subscribe((res) => {
         if (res) {
-          emisor = res.payload.data();
-          notificacionJSON.foto = emisor.foto;
+          emisorAux = res.payload.data();
+          notificacionJSON.emisor = emisorAux;
+          notificacionJSON.foto = emisorAux.foto;
+          return this.firestore.collection("notificaciones").add(notificacionJSON);
         }
-      });
-    }
+    });
+    
+    
   }
-
 }
