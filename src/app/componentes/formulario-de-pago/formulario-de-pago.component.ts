@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { HomeComponent } from 'src/app/paginas/home/home.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
+import { GeneradorNotificacionesService } from 'src/app/servicios/generador-notificaciones.service';
 import { ToastService } from 'src/app/servicios/toast.service';
 @Component({
   selector: 'app-formulario-de-pago',
@@ -62,9 +63,9 @@ export class FormularioDePagoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data,
     private _formBuilder: FormBuilder, private dataBase: DatabaseService,
     private firestore: AngularFirestore,
-    private toast: ToastService
+    private toast: ToastService,
+    private genNotificacion: GeneradorNotificacionesService
   ) {
-
     this.publicacionObjetivo = { ...data.publicacion };
 
     this.testGroupTarjetaForm = this._formBuilder.group({
@@ -345,6 +346,18 @@ export class FormularioDePagoComponent implements OnInit {
         this.mostrarSpinner = false;
         //ACA FALTA ACTUALIZAR LA TIENDA PARA QUE DESAPARESCA EL PRODUCTO COMPRADO. O REDIRECCIONAR AL USUARIO AL DETALLE DE LA COMPRA!
         this.reiniciarDatosCompra();
+        //aca notificacion!
+        // 
+        // this.publicacionObjetivo.idUserQuePublico
+
+
+        this.genNotificacion.crearNotificacionCompraVenta(this.publicacionObjetivo.idUserQuePublico, this.authService.user['id'], "compraventa", "Ha vendido un producto al usuario " + this.authService.user.nombre);
+        // le avisa al que compró.                 
+        this.genNotificacion.crearNotificacionCompraVenta(this.authService.user['id'], this.publicacionObjetivo.idUserQuePublico, "compraventa", "Ha comprado al usuario " + this.publicacionObjetivo.idUserQuePublico);
+
+        //fin notificacion. 
+
+
       })
       .catch(err => {
         this.toast.snackBarEditable("ERROR, al efectuar Compra ( " + err.message() + " )", "Cerrar", 3000, "snackDanger");

@@ -1,91 +1,89 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <button mat-button (click)="mostrar='sistema'"> <mat-icon>notification_important</mat-icon> Notificaciones sistema </button>
-    <button mat-button (click)="mostrar='compraventa'"> <mat-icon>notifications</mat-icon> Notificaciones usuarios </button>
+    <button mat-button (click)="mostrar='sistema'">
+      <mat-icon>notification_important</mat-icon> Notificaciones sistema
+    </button>
+    <button mat-button (click)="mostrar='compraventa'">
+      <mat-icon>notifications</mat-icon> Notificaciones usuarios
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
 
 <main role="main">
 
-    <div class="notification-list" *ngIf="mostrar=='sistema'">
+  <div class="notification-list" *ngIf="mostrar=='sistema'">
 
-      <div class="controls">
-        <span class="controls-message"> Tiene {{listadoNotificacionesSistema.length}} notificacion/es sin leer </span>
-      </div>
-      <br>
-      
-      <div *ngFor="let notificacion of listadoNotificacionesSistema">
+    <div class="controls">
+      <span class="controls-message"> Tiene {{listadoNotificacionesSistema.length}} notificacion/es sin leer </span>
+    </div>
+    <br>
 
-          <!-- NOTIFICACIONES DEL SISTEMA (BORRADO DE PUBLICACIONES) -->
+    <div *ngFor="let notificacion of listadoNotificacionesSistema">
 
-        
-                  <div class="notification" style="background-color: lightsteelblue;">
-                    <img
-                      alt="Notificacion Icono"
-                      class="notification-avatar"
-                      src="../notificaciones/../../../assets/images/notificacionSistema.png"
-                    >
-                    <div class="notification-content">
-                      <h1 class="notification-title">{{notificacion.mensaje}}</h1>
-                      <p class="notification-meta">{{notificacion.fecha}}</p>
-                    </div>
-                    <time class="notification-time">
+      <!-- NOTIFICACIONES DEL SISTEMA (BORRADO DE PUBLICACIONES) -->
 
-                      <button aria-label="Mark all as read" (click)="eliminarNotificacion(notificacion.id)"> 
-                        <mat-icon>delete_forever</mat-icon>
-                      </button>
 
-                    </time>
-                  </div><!-- /.notification -->
-
+      <div class="notification" style="background-color: lightsteelblue;">
+        <img alt="Notificacion Icono" class="notification-avatar"
+          src="../notificaciones/../../../assets/images/notificacionSistema.png">
+        <div class="notification-content">
+          <h1 class="notification-title">{{notificacion.mensaje}}</h1>
+          <p class="notification-meta">{{notificacion.fecha}}</p>
         </div>
-    
-    </div><!-- /.notification-list -->
+        <time class="notification-time">
+
+          <button aria-label="Mark all as read" (click)="eliminarNotificacion(notificacion.id)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+
+        </time>
+      </div><!-- /.notification -->
+
+    </div>
+
+  </div><!-- /.notification-list -->
 
 
 
-    <div class="notification-list" *ngIf="mostrar=='compraventa'">
+  <div class="notification-list" *ngIf="mostrar=='compraventa'">
 
-      <div class="controls">
-        <span class="controls-message"> Tiene {{listadoNotificacionesCompraVenta.length}} notificacion/es sin leer </span>
-      </div>
-      <br>
-      
-      <div *ngFor="let notificacion of listadoNotificacionesCompraVenta">
+    <div class="controls">
+      <span class="controls-message"> Tiene {{listadoNotificacionesCompraVenta.length}} notificacion/es sin leer </span>
+    </div>
+    <br>
 
-          <!-- NOTIFICACIONES DEL SISTEMA (BORRADO DE PUBLICACIONES) -->
+    <div *ngFor="let notificacion of listadoNotificacionesCompraVenta">
 
-            <div class="notification">
-              <img
-                alt="Profile picture of Eugene"
-                class="notification-avatar"
-                src="https://randomuser.me/api/portraits/men/5.jpg"
-              >
-              <div class="notification-content">
-                <h1 class="notification-title">{{notificacion.emisor}}</h1>
-                <p class="notification-meta">{{notificacion.receptor}}</p>
-              </div>
-              <time class="notification-time">
-        
-                <button aria-label="Mark all as read" (click)="eliminarNotificacion(notificacion.id)"> 
-                  <mat-icon>delete_forever</mat-icon>
-                </button>
-        
-              </time>
-            </div><!-- /.notification -->
+      <!-- NOTIFICACIONES DEL SISTEMA (BORRADO DE PUBLICACIONES) -->
 
-        
+      <div class="notification">
+        <img alt="Profile picture of Eugene" class="notification-avatar"
+          src="https://randomuser.me/api/portraits/men/5.jpg">
+        <div class="notification-content">
+          <h1 class="notification-title">{{notificacion.mensaje}}</h1>
+          <p class="notification-meta">{{notificacion.fecha}}</p>
+          <p class="notification-meta">{{notificacion.emisor.nombre}}</p>
         </div>
-    
-    </div><!-- /.notification-list -->
+        <time class="notification-time">
+
+          <button aria-label="Mark all as read" (click)="eliminarNotificacion(notificacion.id)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+
+        </time>
+      </div><!-- /.notification -->
+
+
+    </div>
+
+  </div><!-- /.notification-list -->
 
 
 
 
 
-    
+
 
 
 </main>
-

@@ -22,6 +22,7 @@ export class NotificacionesComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
     this.listadoNotificacionesCompraVenta = this.cargarNotificacionesNoVistas("compraventa");
     this.listadoNotificacionesSistema = this.cargarNotificacionesNoVistas("sistema");
     this.mostrar = "";
@@ -69,7 +70,7 @@ export class NotificacionesComponent implements OnInit {
             console.log(idAEliminar + "---" + notificacionParametro)
             this.dataBase.eliminar("notificaciones", idAEliminar).then(res => {
 
-            
+
               this.listadoNotificacionesSistema = this.listadoNotificacionesSistema.filter(notificacion => {
                 if (notificacion.id != idAEliminar) return notificacion;
               })
