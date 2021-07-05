@@ -13,6 +13,7 @@ export class ProductToSellRowComponent implements OnInit {
 
   @ViewChild("divCarToSell") divCardToSell: ElementRef;
   @ViewChild("svgFav") svgFav: ElementRef;
+  @ViewChild("carrSvg") carrSvg: ElementRef;
   usuarioLogeado;
   esMiPublicacion = false;
   @Input() esVistaCompleta = true;
@@ -51,6 +52,11 @@ export class ProductToSellRowComponent implements OnInit {
       if (this.usuarioLogeado['listaDeFavoritos'] && this.usuarioLogeado['listaDeFavoritos'].includes(this.publicacion.id)) {
         if (this.svgFav) {
           this.renderer.setAttribute(this.svgFav.nativeElement, "fill", "blue");
+        }
+      }
+      if (this.usuarioLogeado['listaDeCarrito'] && this.usuarioLogeado['listaDeCarrito'].includes(this.publicacion.id)) {
+        if (this.carrSvg) {
+          this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#fff");
         }
       }
     });
@@ -102,6 +108,31 @@ export class ProductToSellRowComponent implements OnInit {
 
     }
     this.usuarioLogeado['listaDeFavoritos'] = listaDeFavs;
+    this.dataBase.actualizar('usuarios', this.usuarioLogeado, this.usuarioLogeado.id);
+  };
+
+  agregarCarro(publicacion, e) {
+    e.stopPropagation();
+    let listaDeCarrito = [];
+
+    if (this.usuarioLogeado['listaDeCarrito']) {//verificamos si ya tiene algun fav agregado
+      listaDeCarrito = this.usuarioLogeado['listaDeCarrito'];
+
+      if (listaDeCarrito.includes(publicacion.id)) {//ahora verificamos si tiene esta publicacion en el carro
+        listaDeCarrito = listaDeCarrito.filter((idCarrito) => idCarrito != publicacion.id);
+        this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#000");
+      } else {//sino, lo agregamos
+        this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#fff");
+        listaDeCarrito.push(publicacion.id);
+      }
+
+    } else {//sino, faveamos al primero
+      listaDeCarrito.push(publicacion.id);
+      // this.renderer.setAttribute(this.carrSvg.nativeElement, "fill", "blue");
+      this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#fff");
+
+    }
+    this.usuarioLogeado['listaDeCarrito'] = listaDeCarrito;
     this.dataBase.actualizar('usuarios', this.usuarioLogeado, this.usuarioLogeado.id);
   };
 
