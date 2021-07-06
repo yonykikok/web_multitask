@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 })
 export class TiendaComponent implements OnInit {
   desplegarMenu = false;
-
+  banderaLugar = "tienda";
   modoCards = true;
   mostrarSpinner = false;
   publicacionObjetivo;
@@ -44,6 +44,7 @@ export class TiendaComponent implements OnInit {
       textoABuscar: ['', [Validators.required]]
     });
   }
+
   irAHome() {
     this.router.navigateByUrl("/");
   }
@@ -152,6 +153,7 @@ export class TiendaComponent implements OnInit {
   }
 
   cambiarLista(parametro) {
+    this.banderaLugar = parametro;
     this.mostrarSpinner = true;
     if (parametro == "favs") {
       this.flagFavs = true;
@@ -220,11 +222,19 @@ export class TiendaComponent implements OnInit {
     }
   }
 
+  removerPublicacionDePublicacionesAMostrar(event) {
+    console.log(this.banderaLugar);
+    console.log(event)
+    if (this.banderaLugar != "tienda") {
+      let publicacionARemover = event.publicacion;
+      let lugarActual = event.lugar;//puede tomar valor de favoritos o carrito    
 
-  removerPublicacionDeCarrito(publicacionARemover) {
-    console.log("LLEGA????", publicacionARemover);
-    this.listadoDePublicacionesAMostrar = this.listadoDePublicacionesAMostrar.filter(publicacion => publicacion.id != publicacionARemover.id);
+      if (this.banderaLugar == event.lugar) {
+        this.listadoDePublicacionesAMostrar = this.listadoDePublicacionesAMostrar.filter(publicacion => publicacion.id != publicacionARemover.id);
+      }
+    }
   }
+
 
 }
 

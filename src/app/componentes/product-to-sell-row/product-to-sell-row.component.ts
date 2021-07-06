@@ -20,6 +20,7 @@ export class ProductToSellRowComponent implements OnInit {
   @Input() publicacion;
   @Output() comprarClickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() permutarClickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() removeItemEvent: EventEmitter<any> = new EventEmitter<any>();
   vendedor;
 
   constructor(
@@ -38,10 +39,10 @@ export class ProductToSellRowComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-      // this.dataBase.obtenerPorId('usuarios', this.publicacion.idUserQuePublico).subscribe((res) => {
-      //     this.vendedor = res.payload.data();
-      //     this.vendedor['id'] = res.payload.id;
-      // });
+    // this.dataBase.obtenerPorId('usuarios', this.publicacion.idUserQuePublico).subscribe((res) => {
+    //     this.vendedor = res.payload.data();
+    //     this.vendedor['id'] = res.payload.id;
+    // });
 
     if (this.publicacion.idUserQuePublico == this.authService.user['id']) {
       this.esMiPublicacion = true;
@@ -86,7 +87,7 @@ export class ProductToSellRowComponent implements OnInit {
       }
     });
   }
-  faviar(publicacion,e) {
+  faviar(publicacion, e) {
     e.stopPropagation();
     let listaDeFavs = [];
 
@@ -96,6 +97,7 @@ export class ProductToSellRowComponent implements OnInit {
       if (listaDeFavs.includes(publicacion.id)) {//ahora verificamos si tiene esta publicacion faveada
         listaDeFavs = listaDeFavs.filter((idFaveado) => idFaveado != publicacion.id);
         this.renderer.setAttribute(this.svgFav.nativeElement, "fill", "white");
+        this.removeItemEvent.emit({ publicacion: publicacion, lugar: "favs" });
       } else {//sino, lo agregamos
         this.renderer.setAttribute(this.svgFav.nativeElement, "fill", "blue");
         listaDeFavs.push(publicacion.id);
@@ -115,11 +117,14 @@ export class ProductToSellRowComponent implements OnInit {
     e.stopPropagation();
     let listaDeCarrito = [];
 
+    //{publicacion,bandera}
     if (this.usuarioLogeado['listaDeCarrito']) {//verificamos si ya tiene algun fav agregado
       listaDeCarrito = this.usuarioLogeado['listaDeCarrito'];
 
       if (listaDeCarrito.includes(publicacion.id)) {//ahora verificamos si tiene esta publicacion en el carro
         listaDeCarrito = listaDeCarrito.filter((idCarrito) => idCarrito != publicacion.id);
+        console.log("ACA SI??");
+        this.removeItemEvent.emit({ publicacion: publicacion, lugar: "carrito" });
         this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#000");
       } else {//sino, lo agregamos
         this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#fff");
@@ -133,7 +138,7 @@ export class ProductToSellRowComponent implements OnInit {
 
     }
     this.usuarioLogeado['listaDeCarrito'] = listaDeCarrito;
+
     this.dataBase.actualizar('usuarios', this.usuarioLogeado, this.usuarioLogeado.id);
   };
-
 }

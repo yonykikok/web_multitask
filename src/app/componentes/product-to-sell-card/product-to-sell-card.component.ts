@@ -20,7 +20,7 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
   @Input() publicacion;
   @Output() comprarClickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() permutarClickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() removeItemCarritoEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() removeItemEvent: EventEmitter<any> = new EventEmitter<any>();
 
 
   constructor(public dialog: MatDialog, private authService: AuthService, private renderer: Renderer2, private dataBase: DatabaseService) {
@@ -88,6 +88,8 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
 
       if (listaDeFavs.includes(publicacion.id)) {//ahora verificamos si tiene esta publicacion faveada
         listaDeFavs = listaDeFavs.filter((idFaveado) => idFaveado != publicacion.id);
+        // this.removeItemEvent.emit(publicacion);
+        this.removeItemEvent.emit({publicacion:publicacion,lugar:"favs"});
         this.renderer.setAttribute(this.svgFav.nativeElement, "fill", "white");
       } else {//sino, lo agregamos
         this.renderer.setAttribute(this.svgFav.nativeElement, "fill", "blue");
@@ -112,8 +114,8 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
 
       if (listaDeCarrito.includes(publicacion.id)) {//ahora verificamos si tiene esta publicacion en el carro
         listaDeCarrito = listaDeCarrito.filter((idCarrito) => idCarrito != publicacion.id);
-        console.log("ACA SI??");
-        this.removeItemCarritoEvent.emit(publicacion);
+        this.removeItemEvent.emit({publicacion:publicacion,lugar:"carrito"});
+        // this.removeItemEvent.emit(publicacion);
         this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#000");
       } else {//sino, lo agregamos
         this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#fff");

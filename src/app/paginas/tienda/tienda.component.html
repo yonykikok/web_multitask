@@ -47,7 +47,8 @@
         store
       </span>
 
-      <a (click)="toggleDesplegarMenu()" class="divAvatarUsuario" style="position: absolute; right: 20px;" [routerLink]="['/usuario']">
+      <a (click)="toggleDesplegarMenu()" class="divAvatarUsuario" style="position: absolute; right: 20px;"
+        [routerLink]="['/usuario']">
         <div class="divPerfilUsuario" *ngIf="user">
           <p class="pNombreUsuario">{{user.nombre}}</p>
           <img class="imgFotoDePerfil" src="{{user.foto}}" alt="Foto de perfil">
@@ -92,12 +93,14 @@
 
     <!-- CARDS -->
     <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
-      <app-product-to-sell-card *ngIf="modoCards" [publicacion]="publicacion" (removeItemCarritoEvent)="removerPublicacionDeCarrito($event)"
+      <app-product-to-sell-card *ngIf="modoCards" [publicacion]="publicacion"
+        (removeItemEvent)="removerPublicacionDePublicacionesAMostrar($event)"
         (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)">
       </app-product-to-sell-card>
 
-    <!-- ROWS -->
-      <app-product-to-sell-row *ngIf="!modoCards" [publicacion]="publicacion" (removeItemCarritoEvent)="removerPublicacionDeCarrito($event)"
+      <!-- ROWS -->
+      <app-product-to-sell-row *ngIf="!modoCards" [publicacion]="publicacion"
+        (removeItemEvent)="removerPublicacionDePublicacionesAMostrar($event)"
         (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)">
       </app-product-to-sell-row>
     </div>
