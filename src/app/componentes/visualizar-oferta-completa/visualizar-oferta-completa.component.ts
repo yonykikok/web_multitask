@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, Input} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { DatabaseService } from 'src/app/servicios/database.service';
+import { GeneradorNotificacionesService } from 'src/app/servicios/generador-notificaciones.service';
 import { DetalladoPublicacionComponent } from '../detallado-publicacion/detallado-publicacion.component';
 
 
@@ -18,7 +19,7 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
   @Input() listaDeOfertas;
   ampliarOferta=false;
   constructor(public dialog: MatDialog, private dialogRef: MatDialogRef<VisualizarOfertaCompletaComponent>,
-    @Inject(MAT_DIALOG_DATA) data, private authService:AuthService, private dataBase: DatabaseService,) { 
+    @Inject(MAT_DIALOG_DATA) data, private authService:AuthService, private dataBase: DatabaseService, private genNotificacion : GeneradorNotificacionesService) { 
       this.listaDeOfertas = data.listaDeOfertas;
       this.publicacionOriginal = data.publicacionOriginal;
     }
@@ -73,10 +74,24 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
     if(auxOferta===oferta){
         auxOferta.estadoOferta = estado;
         if(estado==='aceptadaParaPermutar'){
+          
           this.publicacionOriginal.estadoPublicacion="permutaPendiente";
           this.dataBase.crear('permutas',this.generarObjetoPermuta(this.publicacionOriginal)).then((res)=>{
+            
             auxOferta['id']=res.id;
             this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
+
+            // NOTIFICACIÓN:
+
+            console.log(auxOferta);
+
+
+            // ESTE NO FUNCA. this.genNotificacion.crearNotificacionCompraVenta(this.publicacionOriginal.idUserQuePublico, this.authService.user['id'], "compraventa", "El usuario " + this.authService.user.nombre + " te ha aceptado tu permuta.");
+            // le avisa al que compró.                 
+            this.genNotificacion.crearNotificacionCompraVenta(this.authService.user['id'], this.publicacionOriginal.idUserQuePublico, "compraventa", "Permuta ACEPTADA con éxito. Recuerden comunicarse mediante nuestro chat.");
+    
+
+
               alert("Oferta actualizada con exito");
             }).catch(()=>{
               alert("NO SE PUDO ENVIAR LA OFERTA!");
