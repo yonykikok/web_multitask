@@ -20,6 +20,9 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
   @Input() publicacion;
   @Output() comprarClickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() permutarClickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() removeItemCarritoEvent: EventEmitter<any> = new EventEmitter<any>();
+
+
   constructor(public dialog: MatDialog, private authService: AuthService, private renderer: Renderer2, private dataBase: DatabaseService) {
 
   }
@@ -33,7 +36,7 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit(): void {
-     
+
     if (this.publicacion.idUserQuePublico == this.authService.user['id']) {
       this.esMiPublicacion = true;
     }
@@ -109,6 +112,8 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
 
       if (listaDeCarrito.includes(publicacion.id)) {//ahora verificamos si tiene esta publicacion en el carro
         listaDeCarrito = listaDeCarrito.filter((idCarrito) => idCarrito != publicacion.id);
+        console.log("ACA SI??");
+        this.removeItemCarritoEvent.emit(publicacion);
         this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#000");
       } else {//sino, lo agregamos
         this.renderer.setStyle(this.carrSvg.nativeElement, "color", "#fff");
@@ -122,6 +127,7 @@ export class ProductToSellCardComponent implements OnInit, AfterViewInit {
 
     }
     this.usuarioLogeado['listaDeCarrito'] = listaDeCarrito;
+
     this.dataBase.actualizar('usuarios', this.usuarioLogeado, this.usuarioLogeado.id);
   };
 

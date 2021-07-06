@@ -220,5 +220,11 @@ export class TiendaComponent implements OnInit {
     }
   }
 
+
+  removerPublicacionDeCarrito(publicacionARemover) {
+    console.log("LLEGA????", publicacionARemover);
+    this.listadoDePublicacionesAMostrar = this.listadoDePublicacionesAMostrar.filter(publicacion => publicacion.id != publicacionARemover.id);
+  }
+
 }
 

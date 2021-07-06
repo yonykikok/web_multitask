@@ -92,12 +92,12 @@
 
     <!-- CARDS -->
     <div *ngFor="let publicacion of listadoDePublicacionesAMostrar">
-      <app-product-to-sell-card *ngIf="modoCards" [publicacion]="publicacion"
+      <app-product-to-sell-card *ngIf="modoCards" [publicacion]="publicacion" (removeItemCarritoEvent)="removerPublicacionDeCarrito($event)"
         (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)">
       </app-product-to-sell-card>
 
     <!-- ROWS -->
-      <app-product-to-sell-row *ngIf="!modoCards" [publicacion]="publicacion"
+      <app-product-to-sell-row *ngIf="!modoCards" [publicacion]="publicacion" (removeItemCarritoEvent)="removerPublicacionDeCarrito($event)"
         (comprarClickEvent)="mostrarFormDePago($event)" (permutarClickEvent)="mostrarListaDeProductos($event)">
       </app-product-to-sell-row>
     </div>
