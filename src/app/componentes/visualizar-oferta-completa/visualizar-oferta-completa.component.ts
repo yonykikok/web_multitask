@@ -75,28 +75,29 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
         auxOferta.estadoOferta = estado;
         if(estado==='aceptadaParaPermutar'){
           
-          this.publicacionOriginal.estadoPublicacion="permutaPendiente";
-          this.dataBase.crear('permutas',this.generarObjetoPermuta(this.publicacionOriginal)).then((res)=>{
+            this.publicacionOriginal.estadoPublicacion="permutaPendiente";
+            this.dataBase.crear('permutas',this.generarObjetoPermuta(this.publicacionOriginal)).then((res)=>{
             
             auxOferta['id']=res.id;
             this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(()=>{
 
             // NOTIFICACIÓN:
 
-            console.log(auxOferta);
+            console.log(auxOferta.idUserQueOferto);
+            console.log(this.authService.user['id']);
 
 
-            // ESTE NO FUNCA. this.genNotificacion.crearNotificacionCompraVenta(this.publicacionOriginal.idUserQuePublico, this.authService.user['id'], "compraventa", "El usuario " + this.authService.user.nombre + " te ha aceptado tu permuta.");
-            // le avisa al que compró.                 
-            this.genNotificacion.crearNotificacionCompraVenta(this.authService.user['id'], this.publicacionOriginal.idUserQuePublico, "compraventa", "Permuta ACEPTADA con éxito. Recuerden comunicarse mediante nuestro chat.");
+            this.genNotificacion.crearNotificacionCompraVenta(auxOferta.idUserQueOferto, this.authService.user['id'], "compraventa", "El usuario " + this.authService.user.nombre + " te ha aceptado tu permuta.");
+        
+            this.genNotificacion.crearNotificacionCompraVenta(this.authService.user['id'], auxOferta.idUserQueOferto, "compraventa", "Permuta ACEPTADA con éxito. Recuerden comunicarse mediante nuestro chat.");
     
+            alert("Oferta actualizada con exito");
 
+             }).catch(()=>{
+                alert("NO SE PUDO ENVIAR LA OFERTA!");
+              })  
 
-              alert("Oferta actualizada con exito");
-            }).catch(()=>{
-              alert("NO SE PUDO ENVIAR LA OFERTA!");
-            })  
-          }); 
+           }); 
         }
       }
     });     
