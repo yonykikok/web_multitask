@@ -26,7 +26,7 @@
             <td mat-cell *matCellDef="let element" justify="end">
                 <div class="example-button-row">
                     <button mat-fab color="accent" (click)="openDialog(element)"
-                        *ngIf="element.listaDeOfertas  && element.estadoPublicacion=='aceptado'">
+                        *ngIf="element.listaDeOfertas  && element.estadoPublicacion=='aceptado' && element.listaDeOfertas.length>0">
                         <span>{{element.listaDeOfertas.length}}</span>
                     </button>
                     <button mat-raised-button
