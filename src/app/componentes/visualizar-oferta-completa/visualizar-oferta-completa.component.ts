@@ -94,10 +94,9 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
         }
         else {
 
+            this.publicacionOriginal.listaDeOfertas = this.listaDeOfertas.filter(x => oferta != x);
 
-          this.publicacionOriginal.listaDeOfertas = this.listaDeOfertas.filter(x => oferta != x);
-
-          this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(() => {
+            this.dataBase.actualizar('publicaciones', this.publicacionOriginal, this.publicacionOriginal.id).then(() => {
 
             this.genNotificacion.crearNotificacionCompraVenta(auxOferta.idUserQueOferto, this.authService.user['id'], "compraventa", "El usuario " + this.authService.user.nombre + " te ha rechazado tu permuta.");
 
@@ -108,7 +107,6 @@ export class VisualizarOfertaCompletaComponent implements OnInit {
           }).catch(() => {
             alert("NO SE PUDO ENVIAR LA OFERTA!");
           })
-
 
         }
 

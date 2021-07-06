@@ -92,6 +92,7 @@ export class SeleccionarMisArticulosComponent implements OnInit {
             // le avisa al que compró.                 
             this.genNotificacion.crearNotificacionCompraVenta(this.authService.user['id'], this.publicacionObjetivo.idUserQuePublico, "compraventa", "Permuta realizada con éxito");
     
+            this.cancelarEvent.emit();
 
           }).catch(()=>{
             alert("NO SE PUDO ENVIAR LA OFERTA!");
